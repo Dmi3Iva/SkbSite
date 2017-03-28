@@ -11,6 +11,7 @@ public class User {
     private String username;
     private String password;
     private String passwordConfirm;
+    private String photoPath;
     private Set<Role> roles;
 
     @Id
@@ -46,6 +47,14 @@ public class User {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     @ManyToMany

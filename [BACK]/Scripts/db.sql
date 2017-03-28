@@ -25,10 +25,11 @@ INSERT INTO roles VALUES (1, 'ROLE_USER');
 -----------------------------------
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
-  id SERIAL NOT NULL,
-  username varchar(255) DEFAULT NULL,
-  password varchar(255) DEFAULT NULL,
-  PRIMARY KEY (id)
+	id SERIAL NOT NULL,
+	username varchar(255) DEFAULT NULL,
+	password varchar(255) DEFAULT NULL,
+	photopath varchar(255) DEFAULT NULL,
+	PRIMARY KEY (id)
 );
 
 -- id пользователей начинается с 2
