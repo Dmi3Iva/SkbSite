@@ -1,6 +1,6 @@
 -- Database structure for db 'accounts'
 
-CREATE DATABASE accounts;
+--CREATE DATABASE accounts;
 
 -----------------------------------
 -- Table structure for table 'roles'
