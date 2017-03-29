@@ -32,7 +32,10 @@
         </form>
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-        ${name}
+
+        <!--Отображаем фотку пользователя-->
+        <img src="${contextPath}/resources/images/${photoPath}" alt="Photo must be here"/>
+
     </c:if>
 
 </div>

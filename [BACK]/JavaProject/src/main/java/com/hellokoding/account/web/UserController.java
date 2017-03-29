@@ -5,14 +5,16 @@ import com.hellokoding.account.service.SecurityService;
 import com.hellokoding.account.service.UserService;
 import com.hellokoding.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 
@@ -62,6 +64,25 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+        // Какой-то поток обрабатывает данный запрос
+        // В его контексте лежит информация о зашедшем пользователе
+        // Ниже она и достаётся
+        Authentication a = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails;
+        String photoPath = "";
+
+        if (a.getPrincipal() instanceof UserDetails) {
+            userDetails = (UserDetails)a.getPrincipal();
+            // Достаём пользователя из базы данных
+            User user = userService.findByUsername(userDetails.getUsername());
+
+            // Если у пользователя нет фотки, т.е. photoPath == null, программа работает корректно
+            photoPath = user.getPhotoPath();
+        }
+
+        // Добавляем в модель атрибут photoPath (атрибуты модели будут использоваться в welcome.jsp)
+        model.addAttribute("photoPath", photoPath);
+
         return "welcome";
     }
 }
