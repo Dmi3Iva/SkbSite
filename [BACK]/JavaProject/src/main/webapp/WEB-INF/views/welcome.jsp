@@ -16,7 +16,7 @@
     <title>Welcome</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="${contextPath}/resources/css/welcome.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -34,9 +34,33 @@
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
         <!--Отображаем фотку пользователя-->
-        <img src="${contextPath}/resources/images/${photoPath}" alt="Photo must be here"/>
+        <img class="userImage" src="${contextPath}/resources/images/${photoPath}" alt="Photo must be here"/>
+    </c:if>
+    <br><br>
+    <c:if test="${!empty userList}">
+        <table id="listUser">
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Password</th>
+                <th>Photo</th>
+            </tr>
+
+            <c:forEach items="${userList}" var="item">
+                <tr>
+                    <td>${item.username}</td>
+                    <td>${item.id}</td>
+                    <td>${item.password}</td>
+                    <td><img class="userImage" src="${contextPath}/resources/images/${item.photoPath}"> </td>
+                </tr>
+            </c:forEach>
+
+
+        </table>
 
     </c:if>
+
+
 
 </div>
 <!-- /container -->

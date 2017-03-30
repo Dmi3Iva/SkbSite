@@ -1,0 +1,10 @@
+#listUser {
+    width: 100%;
+    border: 4px double black;
+    border-collapse: collapse;
+}
+
+.userImage {
+    width: 200px;
+    height: 200px;
+}
