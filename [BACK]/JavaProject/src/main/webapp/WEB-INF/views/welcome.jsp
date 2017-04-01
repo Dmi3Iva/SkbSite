@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="imageSource" value="${contextPath}/resources/images"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +23,42 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+    function UpdateCurrentUser() {
+        $.ajax({
+            url : 'welcome/getPhotoPath',
+            type: 'GET',
+
+            success: function (data) {
+                $("#newUserImage").attr("src", "${imageSource}/" + data);
+                alert(data);
+            }
+        });
+    }
+    //функция, для обновления всех пользователей
+    /*function UpdateAll() {
+        var table=document.getElementById("tableUser");
+        var row = document.getElementById('tableUser').getElementsByTagName('tr');
+        var column = document.getElementById('tableUser').getElementsByTagName('td');
+        $.ajax({
+            url : 'welcome/fake',
+            type: 'GET',
+            success: function (data) {
+                var i = 0;
+                while (i < row.length){
+                    table[i][2].attr("src", "{imageSource}/" + data[i]);
+                    i++;
+                }
+                UpdateCurrentUser();
+                alert(data);
+            }
+       });
+    }*/
+</script>
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -34,11 +69,17 @@
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
         <!--Отображаем фотку пользователя-->
-        <img class="userImage" src="${contextPath}/resources/images/${photoPath}" alt="Photo must be here"/>
+        <img id="newUserImage" class="userImage" src="${imageSource}/${photoPath}" alt="Photo must be here"/>
     </c:if>
+    <input type="button" value="Update image" onclick="UpdateCurrentUser()">
     <br><br>
+
+    ${stringUserList}
+
+
+    <!--ТАБЛИЦА-->
     <c:if test="${!empty userList}">
-        <table id="listUser">
+        <table id="tableUser">
             <tr>
                 <th>Name</th>
                 <th>Id</th>
@@ -51,20 +92,14 @@
                     <td>${item.username}</td>
                     <td>${item.id}</td>
                     <td>${item.password}</td>
-                    <td><img class="userImage" src="${contextPath}/resources/images/${item.photoPath}"> </td>
+                    <td><img class="userImage" src="${imageSource}/${item.photoPath}"> </td>
                 </tr>
             </c:forEach>
-
 
         </table>
 
     </c:if>
 
-
-
 </div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
