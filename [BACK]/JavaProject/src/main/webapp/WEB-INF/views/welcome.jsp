@@ -28,6 +28,58 @@
 </head>
 <body>
 <script type="text/javascript">
+    function UpdateLeft()
+    {
+        $.ajax({
+            url : 'welcome/getLeftPhoto',
+            type: 'GET',
+
+            success: function (data) {
+                var imageSrc = "";
+                var userName="";
+                var i = 0;
+                while (data[i] != ','){
+                    imageSrc +=data[i];
+                    i++;
+                }
+                i++;
+                while (i < data.length){
+                    userName +=data[i];
+                    i ++;
+                }
+                $("#newUserImage").attr("src", "${imageSource}/" + imageSrc);
+                $("#currentUserName").text(userName);
+                alert(data);
+            }
+        });
+    }
+
+    function UpdateRight()
+    {
+        $.ajax({
+            url : 'welcome/getRightPhoto',
+            type: 'GET',
+
+            success: function (data) {
+                var imageSrc = "";
+                var userName="";
+                var i = 0;
+                while (data[i] != ','){
+                    imageSrc +=data[i];
+                    i++;
+                }
+                i++;
+                while (i < data.length){
+                    userName +=data[i];
+                    i ++;
+                }
+                $("#newUserImage").attr("src", "${imageSource}/" + imageSrc);
+                $("#currentUserName").text(userName);
+                alert(data);
+            }
+        });
+    }
+
     function UpdateCurrentUser() {
         $.ajax({
             url : 'welcome/getPhotoPath',
@@ -39,22 +91,28 @@
             }
         });
     }
+
+    function setImage(src){
+        $("#newUserImage").attr("src", "${imageSource}/" + src);
+        alert(src);
+    }
     //функция, для обновления всех пользователей
     /*function UpdateAll() {
         var table=document.getElementById("tableUser");
-        var row = document.getElementById('tableUser').getElementsByTagName('tr');
-        var column = document.getElementById('tableUser').getElementsByTagName('td');
         $.ajax({
             url : 'welcome/fake',
             type: 'GET',
             success: function (data) {
-                var i = 0;
+                var mas ='{ "0": "Kara.jpg", "1": Cillian.jpg, default.jpg];
+                mas = JSON.parse(mas);
+                var i = 1;
                 while (i < row.length){
-                    table[i][2].attr("src", "{imageSource}/" + data[i]);
+                    table.rows[i].cells[3].innerHTML = '<img src = "{imageSource}/" + mas[i])>';
                     i++;
                 }
                 UpdateCurrentUser();
                 alert(data);
+                alert(mas);
             }
        });
     }*/
@@ -73,7 +131,10 @@
     </c:if>
     <input type="button" value="Update image" onclick="UpdateCurrentUser()">
     <br><br>
-
+    <p id = "currentUserName"></p>
+    <br><br>
+    <input type="button" value="<--"  onclick="UpdateLeft()">
+    <input type="button" value="-->" onclick="UpdateRight()">
     ${stringUserList}
 
 

@@ -26,6 +26,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    //переменная для польщователя
+    private int idPic = 0;
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -62,14 +65,28 @@ public class UserController {
     //сервлет, возвращающий JSP welcome
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-
+        //добавляем список пользователей
         model.addAttribute("userList", getUsers());
 
         // Добавляем в модель атрибут photoPath (атрибуты модели будут использоваться в welcome.jsp)
         model.addAttribute("photoPath", getPhotoPath());
 
-        // для отладки
-        //model.addAttribute("stringUserList", fake());
+        //узнаем, пользователем с каким id зашел на сайт
+        Authentication a = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails;
+
+        String name="";
+        if (a.getPrincipal() instanceof UserDetails) {
+            name = ((UserDetails) a.getPrincipal()).getUsername();
+        }
+        List<User> user = getUsers();
+        for (int i = 0 ; i < user.size(); i++){
+            if (user.get(i).getUsername() == name){
+                idPic  = i;
+                break;
+            }
+        }
+        // закончили узнавать
 
         return "welcome";
     }
@@ -99,6 +116,25 @@ public class UserController {
         return photoPath;
     }
 
+    //Сервлет возвращающий картинку пользователя с id -1
+    @RequestMapping(value = "/welcome/getLeftPhoto", method = RequestMethod.GET)
+    public @ResponseBody String getLeftPhoto() {
+        String res = "";
+        List<User> users = getUsers();
+        if (idPic == 0) idPic = users.size() - 1;
+        else idPic --;
+        return users.get(idPic).getPhotoPath()+","+ users.get(idPic).getUsername();
+    }
+
+    //Сервлет возвращающий картинку пользователя с id +1
+    @RequestMapping(value = "/welcome/getRightPhoto", method = RequestMethod.GET)
+    public @ResponseBody String getRightPhoto() {
+        String res = "";
+        List<User> users = getUsers();
+        idPic = (idPic+1) % users.size();
+        return users.get(idPic).getPhotoPath()+","+ users.get(idPic).getUsername();
+    }
+
     //сервлет, который возвращает список юзеров
     @RequestMapping(value = "/welcome/getUsers", method = RequestMethod.GET)
     public @ResponseBody List<User> getUsers() {
@@ -107,7 +143,7 @@ public class UserController {
     }
 
     //отладка для обновления таблицы пользователей
-    /*@RequestMapping(value = "/welcome/fake", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome/fake", method = RequestMethod.GET)
     public @ResponseBody String fake() {
         List<User> userList = userService.getAll();
         User[] users = new User[userList.size()];
@@ -127,6 +163,6 @@ public class UserController {
             else res+=", ";
         }
         return res;
-    }*/
+    }
 
 }
