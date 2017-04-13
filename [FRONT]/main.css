@@ -1,0 +1,161 @@
+body{
+	margin: 0px;
+}
+
+header {
+	width: 100%;
+	height: 50px;
+	padding-top: 30px;
+	border: 0px;
+	font-family: Helvetica ;
+	background-color:#1391c4;
+	display: inline-block;
+}
+
+header a{
+	color: #efe;
+	text-decoration: none;
+}
+
+header a:hover {
+	color: #82ccd9;
+}
+
+#title {
+	float: left;
+	text-align: center;
+	display: inline-block;
+	margin: 10px 10px 10px 150px;
+	margin-left: 10%; 
+	font-size: 30px;
+}
+
+#enter {
+	float: right;
+	margin: 15px 10px 10px 50px ;
+	font-size: 24px;
+}
+
+#registration {
+	float: right;
+	margin: 15px 150px 10px 25px;
+	margin-right: 10%;
+	font-size: 24px;
+}
+
+#logo {
+	width: 100px;
+	margin-left: 10%; 
+}
+
+#main_nav {
+	display: inline-block;
+	padding: 10px 10px 10px 20px;
+}
+
+#main_nav a{
+	color: #5c7681;
+	text-decoration: none;
+}
+
+#main_nav ul {
+	display: inline-block;
+	float: right;
+}
+
+#main_nav li {
+	display: inline;
+	margin: 0px 40px 0px 40px;
+	font-family: serif;
+	font-size: 20px;
+}
+
+#main_nav li:hover {
+	background-color: #82ccd9;
+}
+
+#search {
+	float: right;
+	margin-right: 10%;
+	margin-top: 25px;
+}
+
+#news {
+	background: rgb(240, 240, 240);
+}
+
+
+footer{
+	background-color:#1391c4; 
+}
+
+/*
+body {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+
+#entry_form {
+	float:right;
+	padding-right: 13px;
+}
+
+#entry_form li {
+	display: inline;
+	padding-right: 7px;
+}
+
+#logo {
+	float: left;
+	padding-left: 2%;
+	width: 220px;
+}
+/*
+#logo_name {
+	margin-left: 22%;
+	font-family: fantasy;
+	text-align: left;
+	font-size: 40px;
+	vertical-align: middle;
+}
+
+#main_nav {
+		text-align: center;
+		border-collapse: collapse;
+		margin: 20px;
+}
+#main_nav ul {
+		text-align: center;
+		padding: 0px;
+		border-collapse: collapse;
+		margin: 20px;
+}
+#main_nav ul li {
+		display: inline;
+		border: 1px solid black;
+		padding: 10px 5% 10px 5%;
+		text-align: center;
+		margin: -2px;
+}
+
+#content{
+	margin: 20px;
+	padding: 10px;
+}``
+
+#footer_nav {
+	text-align: center;
+}
+
+#footer_nav li {
+	display: inline;
+}
+
+#about {
+	text-align: right;
+}
+
+.clear {
+	clear: left;
+}
+*/

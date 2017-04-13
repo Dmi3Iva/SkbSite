@@ -12,6 +12,10 @@
 
     <mvc:annotation-driven />
 
+    <!--для загрузки .css и .js -->
+    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+
+
     <context:component-scan base-package="com.kantiana.skb" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
