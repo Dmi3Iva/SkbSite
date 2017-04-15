@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	background-color: rgb(240, 240, 240); 
 }
 
 header {
@@ -43,50 +44,89 @@ header a:hover {
 	font-size: 24px;
 }
 
+/*Стиль контента*/
+
+#content {
+	margin-right: 10%;
+	margin-left: 10%;
+	background-color: #efe;
+}
+
+#main_nav ul {
+	margin: 0;
+	width: 650px;
+	margin-left: 0;
+}
+
 #logo {
-	width: 100px;
-	margin-left: 10%; 
+	height: 100px;
 }
 
 #main_nav {
-	display: inline-block;
-	padding: 10px 10px 10px 20px;
+	font-size: 20px;
+	background-color: #fff;
+	padding-right: 0;
 }
 
 #main_nav a{
 	color: #5c7681;
 	text-decoration: none;
+	font-weight: bold;
 }
 
-#main_nav ul {
-	display: inline-block;
-	float: right;
-}
-
-#main_nav li {
-	display: inline;
-	margin: 0px 40px 0px 40px;
-	font-family: serif;
-	font-size: 20px;
-}
-
-#main_nav li:hover {
+#main_nav a:hover  {
+	border-radius: 20px 5px;
 	background-color: #82ccd9;
 }
 
+#main_nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+#main_nav li {
+	width: 100px;
+	display: inline;
+	padding: 15px 2.5px;
+}
+
 #search {
+	display: block;
 	float: right;
-	margin-right: 10%;
-	margin-top: 25px;
+	width: 200px;
+	overflow: hidden;
 }
-
-#news {
-	background: rgb(240, 240, 240);
-}
-
 
 footer{
 	background-color:#1391c4; 
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 10px;
+	width: 100%;
+}
+
+#footer_nav{
+	margin-left: 10%;
+	width: 100px;
+}
+
+#footer_nav ul {
+	list-style: none;
+}
+
+#footer_nav a{
+	text-decoration: none;
+	color: #efe;
+}
+
+#footer_nav a:hover {
+	color: #82ccd9;
+}
+
+#about_information {
+	float: right;
+	margin-right: 10%;
 }
 
 /*
