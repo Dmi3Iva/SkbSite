@@ -1,4 +1,4 @@
-﻿-- Database structure for db 'SKB'
+-- Database structure for db 'SKB'
 
 ----------------*-------------------
 -- Table structure for table 'roles'
@@ -28,6 +28,7 @@ CREATE TABLE users (
   id SERIAL NOT NULL,
   username varchar(255) DEFAULT NULL,
   password varchar(255) DEFAULT NULL,
+  photopath varchar(300) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 

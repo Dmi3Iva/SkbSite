@@ -14,6 +14,8 @@
 
     <context:component-scan base-package="com.kantiana.skb" />
 
+    <import resource="data.xml"/>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/views/</value>
