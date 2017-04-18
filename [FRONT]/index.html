@@ -5,6 +5,9 @@
     <meta charset="utf-8"/>
     <title>СКБ</title>
     <link type="text/css" rel="stylesheet" href="main.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 </head>
 <body>
 <!--HEADER -->
@@ -13,19 +16,30 @@
         <div id = "registration"> <a href="registration.html">Регистрация</a></div>
         <div id = "enter"><a href="enter.html">Вход</a></div>
     </header>
-    <class="clear">
-
     <div id="content">
+        <div id = "left_grey"></div>
+        <div id = "right_grey"></div>
+        <a href = "index.html"><img id = "logo" src = "images/logo.png" alt = "Логотип СКБ"></a>
         <nav id="main_nav">
             <ul>
-            <li><a href = "index.html"><img id = "logo" src = "images/logo.png" alt = "Логотип СКБ"></a></li>
-            <li><a href = "index.html">Новости</a></li>
-            <li><a href = "projects.html">Проекты</a></li>
-            <li><a href = "equipments.html">Оборудование</a></li>
-            <li><a href = "orders.html">Заказы</a></li>
-            <li><a href = "about.html">О нас</a></li>
+                <li><a href = "index.html">Новости</a></li>
+                <li><a href = "equipments.html">Оборудование</a></li>
+                <li><a href = "projects.html">Проекты</a></li>
+                <li><a href = "orders.html">Заказы</a></li>
+                <li><a href = "about.html">О нас</a></li>
+                <li>
+                    <div id = "search"> 
+                        <input placeholder="Поиск по разделу">
+                    </div>
+                </li>
             </ul>
-            <div id = "search"> <input placeholder="Поиск по разделу"></div>
+            <!--<form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+                <button type="submit" class="btn btn-default">Найти</button>
+            </form>-->
+            
         </nav>
         <br class="clear">
         <div id = "news">
@@ -35,7 +49,7 @@
 
     <!--FOOTER -->
     <footer>
-        <nav id="footer_nav">
+        <!--<nav id="footer_nav">
             <ul>
                 <li><a href = "index.html">Новости</a></li>
                 <li><a href = "projects.html">Проекты</a></li>
@@ -43,10 +57,20 @@
                 <li><a href = "orders.html">Заказы</a></li>
                 <li><a href = "about.html">О нас</a></li>
             </ul>
-        </nav>
-        <div id="about_information">
-            <p id="about">Сайт делала команда TRIP</p>
+        </nav> -->
+        <div class = "footer_right">Мы в социальных сетях</div>
+        <div id = "footer_news"><a href="index.html">Новости</a></div>
+        <div class = "footer_right">
+            <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte"></a> 
+            <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a> 
+            <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
         </div>
+        <div id = "footer_equipments"><a href="equipments.html">Оборудование</a></div>
+        <div id = "footer_projects"><a href="projects.html">Проекты</a></div>
+        <div class = "footer_right">Copyright &copy 2017</div>
+        <div id = "footer_orders"><a href="orders.html">Заказы</a></div>
+        <div class = "footer_right">Сайт разработала команда TRIP</div>
+        <div id = "footer_about"><a href="about.html">О нас</a></div>
     </footer>
 </body>
 

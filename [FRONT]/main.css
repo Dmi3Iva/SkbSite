@@ -1,12 +1,14 @@
 body{
-	margin: 0px;
-	background-color: rgb(240, 240, 240); 
+	margin: 0;
+	padding: 0;
+	background-color: rgb(255, 255, 255); 
 }
 
 header {
 	width: 100%;
-	height: 50px;
-	padding-top: 30px;
+	height: 10%;
+	margin: 0;
+	padding-top: 20px;
 	border: 0px;
 	font-family: Helvetica ;
 	background-color:#1391c4;
@@ -26,68 +28,96 @@ header a:hover {
 	float: left;
 	text-align: center;
 	display: inline-block;
-	margin: 10px 10px 10px 150px;
+	margin: 10px 10px 0px 150px;
 	margin-left: 10%; 
-	font-size: 30px;
+	font-size: 150%;
 }
 
 #enter {
 	float: right;
-	margin: 15px 10px 10px 50px ;
+	margin: 15px 10px 0px 50px ;
 	font-size: 24px;
 }
 
 #registration {
 	float: right;
-	margin: 15px 150px 10px 25px;
+	margin: 15px 150px 0px 25px;
 	margin-right: 10%;
 	font-size: 24px;
 }
 
 /*Стиль контента*/
 
-#content {
-	margin-right: 10%;
-	margin-left: 10%;
-	background-color: #efe;
+#left_grey {
+	position: fixed;
+	left: 0;
+	width: 10%;
+	height: 100%;
+	background-color: rgb(240, 240, 240);
 }
 
-#main_nav ul {
-	margin: 0;
-	width: 650px;
-	margin-left: 0;
+#right_grey {
+	position: fixed;
+	right:  0;
+	width: 10%;
+	height: 90%;
+	background-color: rgb(240, 240, 240);
+}
+
+#content {
+	margin: 0 10% 0 10%;
+	padding: 0;
+	background-color: #fff;
 }
 
 #logo {
-	height: 100px;
+	width: 12%;
 }
 
 #main_nav {
+	float: right;
+	margin-right: 1%;
+	background-color: #fff;
+}
+
+#main_nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 	font-size: 20px;
 	background-color: #fff;
-	padding-right: 0;
+	text-align: center;
+}
+
+#main_nav li {
+	font-family: 'Oswald', sans-serif;
+	font-size:  2.4em;
+	line-height:  40px;
+	height: 50px;
+	float: left;
+	margin: 10px;
+	padding: 0px 10px;
 }
 
 #main_nav a{
 	color: #5c7681;
 	text-decoration: none;
 	font-weight: bold;
+	text-align: center;
+	padding: 14px 16px;
+	font-size: 20px;
+	transition: .3s background-color;
 }
 
-#main_nav a:hover  {
-	border-radius: 20px 5px;
+#main_nav a:hover {
 	background-color: #82ccd9;
+	color: black;
 }
 
-#main_nav ul {
-	list-style: none;
-	padding: 0;
-}
-
-#main_nav li {
-	width: 100px;
-	display: inline;
-	padding: 15px 2.5px;
+#main_nav a.active {
+	background-color: #1391c4;
+	color: white;
+	cursor: default;
 }
 
 #search {
@@ -97,7 +127,9 @@ header a:hover {
 	overflow: hidden;
 }
 
-footer{
+/*Работа с footerом*/
+
+footer {
 	background-color:#1391c4; 
 	position: fixed;
 	left: 0;
@@ -106,18 +138,58 @@ footer{
 	width: 100%;
 }
 
+footer a {
+	text-decoration: none;
+	font-size: 17px;
+	color: #efe;
+}
+
+#footer_news {
+	margin-left: 10%;
+}
+
+#footer_equipments {
+	margin-left: 10%;
+}
+
+#footer_projects {
+	margin-left: 10%;
+}
+
+#footer_orders {
+	margin-left: 10%;
+}
+
+#footer_about {
+	margin-left: 10%;
+}
+
+.footer_right {
+	text-align: right;
+	margin-right: 11%;
+	float: right;
+	font-size: 17px;
+	color: #efe;
+}
+
+.footer_right img {
+	width: 25px;
+}
+
 #footer_nav{
 	margin-left: 10%;
-	width: 100px;
+	width: 30%;
 }
 
 #footer_nav ul {
+	width: 30%;
 	list-style: none;
 }
 
 #footer_nav a{
 	text-decoration: none;
 	color: #efe;
+	font-size: 17px;
 }
 
 #footer_nav a:hover {
@@ -127,6 +199,11 @@ footer{
 #about_information {
 	float: right;
 	margin-right: 10%;
+	color: #efe;
+}
+
+.clear {
+	clear: all;
 }
 
 /*
