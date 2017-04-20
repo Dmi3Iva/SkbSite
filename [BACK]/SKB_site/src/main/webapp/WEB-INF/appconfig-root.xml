@@ -6,10 +6,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="appconfig-mvc.xml"/>
+    <import resource="appconfig-data.xml"/>
 
     <!-- Scans within the base package of the application for @Component classes to configure as beans -->
     <context:component-scan base-package="com.kantiana.skb.*"/>
 
-    <!--<context:property-placeholder location="classpath:application.properties"/> -->
+    <!--<context:property-placeholder location="classpath:application.properties"/>-->
 
 </beans>
