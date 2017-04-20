@@ -9,6 +9,7 @@ public class News {
     private String name;
     private String text;
     private String date;
+    private Long authorId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +43,14 @@ public class News {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
 }
