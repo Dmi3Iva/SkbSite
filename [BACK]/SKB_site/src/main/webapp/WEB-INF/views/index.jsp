@@ -46,7 +46,18 @@
     </nav>
     <br class="clear">
     <div id = "news">
-        <br>
+        <c:if test="${!empty news}">
+            <c:forEach items="${news}" var="item">
+                <div class="articles__horizontal">
+                    <article class="article">
+                        <div class="article__image"><img src="${contextPath}/resources/images/koala.jpg">
+                            <div class="article__info">Автор: ${item.author.name}<br>
+                                <div class="article__info__preview">${item.article}<a href="#">Подробнее...</a></div>
+                    </article>
+                </div>
+            </c:forEach>
+        </c:if>
+        <!--
         <div class="row">
             <div class="articles__horizontal">
                 <article class="article">
@@ -93,6 +104,7 @@
                         <div class="article__info__preview">Панда взломал сайт СКБ. Что мы вообще знаем о пандах? Так в чем же секрет энергии mr.Panda?<a href="#">Подробнее...</a></div>
                 </article>
             </div>
+            -->
         </div>
 
     </div>

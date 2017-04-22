@@ -1,5 +1,7 @@
 package com.kantiana.skb.model;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,7 +10,7 @@ import java.util.Set;
 public class User {
     private Long id;
     private String name;
-    //private Set<News> news;
+    private Set<News> news;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +30,12 @@ public class User {
         this.name = name;
     }
 
-    /* Set<News> getNews() {
+    @OneToMany(targetEntity = News.class,  mappedBy = "author", cascade = CascadeType.ALL)
+    Set<News> getNews() {
         return news;
     }
 
     public void setNews(Set<News> news) {
         this.news = news;
-    }*/
+    }
 }
