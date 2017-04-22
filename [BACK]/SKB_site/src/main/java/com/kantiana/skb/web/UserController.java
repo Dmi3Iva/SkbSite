@@ -18,8 +18,8 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String printHello(Model model) {
         // Передаём в index.jsp все новости
-//        List<News> news = newsService.getAllNews();
-//        model.addAttribute("news", news);
+        List<News> news = newsService.getAllNews();
+        model.addAttribute("news", news);
 
         return "index";
     }

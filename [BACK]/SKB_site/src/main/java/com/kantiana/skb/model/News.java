@@ -8,7 +8,7 @@ public class News {
     private Long id;
     private String name;
     private String text;
-    private String date;
+    private String dateOfCreation;
     private Long authorId;
 
     @Id
@@ -37,12 +37,12 @@ public class News {
         this.text = text;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateOfCreation(String dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
     }
 
     public Long getAuthorId() {

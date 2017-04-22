@@ -22,7 +22,7 @@
     <!-- Configure the entity manager factory bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.kantiana.skb"/>
+        <property name="packagesToScan" value="com.kantiana.skb.model"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
@@ -48,6 +48,6 @@
       repository interfaces
     -->
 
-    <jpa:repositories base-package="com.kantiana.skb"/>
+    <jpa:repositories base-package="com.kantiana.skb.repository"/>
 
 </beans>
