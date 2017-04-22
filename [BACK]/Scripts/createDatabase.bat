@@ -1,10 +1,15 @@
-:: Скрипт создания базы данных accounts
+:: Скрипт создания базы данных сайта СКБ
+
+:: Переменная с именем базы данных
+SET db="skb"
 
 :: Если база данных accounts существует, удаляем её
-dropdb -U postgres accounts
+dropdb -U postgres %db%
 
 :: Создаём её
-createdb -U postgres accounts
+createdb -U postgres %db%
 
 :: Создаём таблицы в базе данных accounts
-psql -U postgres --dbname=accounts < db.sql
+psql -U postgres --dbname=%db% < db.sql
+
+pause
