@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class News {
     private Long id;
     private String name;
-    private String text;
+    private String article;
     private String dateOfCreation;
     private Long authorId;
 
@@ -29,12 +29,12 @@ public class News {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getArticle() {
+        return article;
     }
 
-    public void setText(String name) {
-        this.text = text;
+    public void setArticle(String name) {
+        this.article = article;
     }
 
     public String getDateOfCreation() {
@@ -45,6 +45,8 @@ public class News {
         this.dateOfCreation = dateOfCreation;
     }
 
+    /*@ManyToOne
+    @JoinColumn(name="authodId", nullable=false)*/
     public Long getAuthorId() {
         return authorId;
     }

@@ -1,12 +1,14 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
 public class User {
     private Long id;
     private String name;
+    //private Set<News> news;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,12 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+    /* Set<News> getNews() {
+        return news;
+    }
+
+    public void setNews(Set<News> news) {
+        this.news = news;
+    }*/
 }
