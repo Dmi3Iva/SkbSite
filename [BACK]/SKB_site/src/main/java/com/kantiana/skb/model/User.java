@@ -28,7 +28,8 @@ public class User {
         this.name = name;
     }
 
-    /* Set<News> getNews() {
+    /*@OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    Set<News> getNews() {
         return news;
     }
 

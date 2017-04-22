@@ -33,7 +33,7 @@ public class News {
         return article;
     }
 
-    public void setArticle(String name) {
+    public void setArticle(String article) {
         this.article = article;
     }
 
@@ -46,13 +46,13 @@ public class News {
     }
 
     /*@ManyToOne
-    @JoinColumn(name="authodId", nullable=false)*/
+    @JoinColumn(name="authodId", nullable=false)
     public Long getAuthorId() {
         return authorId;
     }
 
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
-    }
+    }*/
 
 }
