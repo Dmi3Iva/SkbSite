@@ -9,7 +9,7 @@ public class News {
     private String name;
     private String article;
     private String dateOfCreation;
-    private Long authorId;
+    private User author;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,7 @@ public class News {
         return article;
     }
 
-    public void setArticle(String article) {
-        this.article = article;
-    }
+    public void setArticle(String article) { this.article = article;}
 
     public String getDateOfCreation() {
         return dateOfCreation;
@@ -45,14 +43,9 @@ public class News {
         this.dateOfCreation = dateOfCreation;
     }
 
-    /*@ManyToOne
-    @JoinColumn(name="authodId", nullable=false)
-    public Long getAuthorId() {
-        return authorId;
-    }
+    @ManyToOne
+    @JoinColumn(name="authorId", nullable=false)
+    public User getAuthor() { return author; }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }*/
-
+    public void setAuthor(User author) { this.author = author; }
 }
