@@ -1,308 +1,47 @@
+@import "bootstrap/css/bootstrap.css";
+
+/*определяем цвета*/
+:root {
+  --blue:#0066d2;
+  --white: #f8fdff;
+  --white-hover: #caf2ff;
+}
+
 body{
-	margin: 0;
-	padding: 0;
-	background-color: rgb(255, 255, 255); 
+  font-family:Roboto,sans-serif;
+  margin-top: 100px;
 }
 
-header {
-	width: 100%;
-	height: 7%;
-	position: fixed;
-	margin: 0;
-	padding-top: 20px;
-	border: 0px;
-	font-family: Helvetica ;
-	background-color:#1391c4;
-	display: inline-block;
-}
-
-header a{
-	color: #efe;
-	text-decoration: none;
-}
-
-header a:hover {
-	color: #82ccd9;
-}
-
-#title {
-	float: left;
-	text-align: center;
-	display: inline-block;
-	margin: 10px 10px 0px 150px;
-	margin-left: 10%; 
-	font-size: 150%;
-}
-
-#enter {
-	float: right;
-	margin: 15px 10px 0px 50px ;
-	font-size: 24px;
-}
-
-#registration {
-	float: right;
-	margin: 15px 150px 0px 25px;
-	margin-right: 10%;
-	font-size: 24px;
-}
-
-/*Создание боковых вставок*/
-
-#left_grey {
-	position: fixed;
-	left: 0;
-	width: 10%;
-	height: 100%;
-	background-color: rgb(240, 240, 240);
-}
-
-#right_grey {
-	position: fixed;
-	right:  0;
-	width: 10%;
-	height: 90%;
-	background-color: rgb(240, 240, 240);
-}
-
-/*Стиль контента*/
-
-#content {
-	margin: 0 10% 0 10%;
-	padding: 5% 0 8% 0;
-	background-color: #fff;
-}
-
-/*Создвние навигационного меню*/
-
-#logo {
-	width: 12%;
-}
-
-#main_nav {
-	float: right;
-	margin-right: 1%;
-	background-color: #fff;
-}
-
-#main_nav ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	font-size: 20px;
-	background-color: #fff;
-	text-align: center;
-}
-
-#main_nav li {
-	font-family: 'Oswald', sans-serif;
-	font-size:  2.4em;
-	line-height:  40px;
-	height: 50px;
-	float: left;
-	margin: 10px;
-	padding: 0px 10px;
-}
-
-#main_nav a{
-	color: #5c7681;
-	text-decoration: none;
-	font-weight: bold;
-	text-align: center;
-	padding: 14px 16px;
-	font-size: 20px;
-	transition: .3s background-color;
-}
-
-#main_nav a:hover {
-	background-color: #82ccd9;
-	color: black;
-}
-
-#main_nav a.active {
-	background-color: #1391c4;
-	color: white;
-	cursor: default;
-}
-
-#search {
-	display: block;
-	float: right;
-	width: 200px;
-	overflow: hidden;
-}
-
-/*Работа с тематическим содержимым*/
-
-#row {
-	display: block;
-}
-
-.article {
-	/*float: left;*/
-	width: 95%;
-	background-color: rgb(240, 240, 240);
-	margin: 5px 1% 5px 2%;
-}
-
-.article__image img{
-	width: 150px;
-}
-
-.article__info__preview {
-}
-
-.article__info__preview a {
-	text-decoration: none;
-	color: #5c7681;
-}
-
-/*Работа с footerом*/
-
-footer {
-	background-color:#1391c4; 
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	padding: 10px;
-	width: 100%;
-}
-
-footer a {
-	text-decoration: none;
-	font-size: 17px;
-	color: #efe;
-}
-
-#footer_news {
-	margin-left: 10%;
-}
-
-#footer_equipments {
-	margin-left: 10%;
-}
-
-#footer_projects {
-	margin-left: 10%;
-}
-
-#footer_orders {
-	margin-left: 10%;
-}
-
-#footer_about {
-	margin-left: 10%;
-}
-
-.footer_right {
-	text-align: right;
-	margin-right: 11%;
-	float: right;
-	font-size: 17px;
-	color: #efe;
-}
-
-.footer_right img {
-	width: 25px;
-}
-
-#footer_nav{
-	margin-left: 10%;
-	width: 30%;
-}
-
-#footer_nav ul {
-	width: 30%;
-	list-style: none;
-}
-
-#footer_nav a{
-	text-decoration: none;
-	color: #efe;
-	font-size: 17px;
-}
-
-#footer_nav a:hover {
-	color: #82ccd9;
-}
-
-#about_information {
-	float: right;
-	margin-right: 10%;
-	color: #efe;
-}
-
-.clear {
-	clear: all;
-}
-
-/*
-body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-}
-
-#entry_form {
-	float:right;
-	padding-right: 13px;
-}
-
-#entry_form li {
-	display: inline;
-	padding-right: 7px;
-}
-
-#logo {
-	float: left;
-	padding-left: 2%;
-	width: 220px;
-}
-/*
-#logo_name {
-	margin-left: 22%;
-	font-family: fantasy;
-	text-align: left;
-	font-size: 40px;
-	vertical-align: middle;
-}
-
-#main_nav {
-		text-align: center;
-		border-collapse: collapse;
-		margin: 20px;
-}
-#main_nav ul {
-		text-align: center;
-		padding: 0px;
-		border-collapse: collapse;
-		margin: 20px;
-}
-#main_nav ul li {
-		display: inline;
-		border: 1px solid black;
-		padding: 10px 5% 10px 5%;
-		text-align: center;
-		margin: -2px;
-}
-
-#content{
-	margin: 20px;
-	padding: 10px;
-}``
-
-#footer_nav {
-	text-align: center;
-}
-
-#footer_nav li {
-	display: inline;
-}
-
-#about {
-	text-align: right;
-}
-
-.clear {
-	clear: left;
-}
+/* Сайт с пояснениями о классах
+https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
+.navbar-default{
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
+.navbar-default .navbar-brand{
+  color: var(--white);
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: var(--white-hover);
+}
+
+.navbar-default .navbar-link {
+  color:var(--white);
+}
+
+.book{
+  background-color: var(--blue);
+  padding: 10px;
+  /*margin: 10px;*/
+}
+.book img{
+  margin-right: 10px;
+}
+
+.events{
+  background-color: var(--blue);
+}
