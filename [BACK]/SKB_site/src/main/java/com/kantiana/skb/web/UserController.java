@@ -24,4 +24,14 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registrationGet(Model model) {
+        // Передаём в index.jsp все новости
+        //List<News> news = newsService.getAllNews();
+        //model.addAttribute("news", news);
+
+        return "registration";
+    }
+
+
 }
