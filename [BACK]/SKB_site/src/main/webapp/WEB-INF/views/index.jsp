@@ -18,7 +18,7 @@
 <!--HEADER -->
 <header>
     <div id = "title"><a href="index.html"> Студенческое контсрукторское бюро </a></div>
-    <div id = "registration"> <a href="#">Регистрация</a></div>
+    <div id = "registration"> <a href="${contextPath}/registration">Регистрация</a></div>
     <div id = "enter"><a href="#">Вход</a></div>
 </header>
 <div id="content">
