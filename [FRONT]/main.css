@@ -8,8 +8,9 @@
 }
 
 body{
-  font-family:Roboto,sans-serif;
-  margin-top: 100px;
+  font-family:"Roboto Light",sans-serif;
+  /*font-style:Light;*/
+  margin-top: 50px;
 }
 
 /* Сайт с пояснениями о классах
@@ -33,15 +34,45 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   color:var(--white);
 }
 
+#logotip:visited, #logotip:hover, #logotip{
+  background-color: transparent;
+}
+
 .book{
+  color:var(--white);
   background-color: var(--blue);
-  padding: 10px;
-  /*margin: 10px;*/
+  height: 280px;
+}
+.book p{
+  padding:10px;
 }
 .book img{
-  margin-right: 10px;
+  float:left;
+  padding: 10px;
 }
 
 .events{
+  height: 280px;
+  padding:10px;
   background-color: var(--blue);
+  color: var(--white);
+}
+.events a{
+  float: right;
+
+}
+.events a,.events a:hover, .events a:focus{
+  color:var(--white);
+}
+
+
+#news{
+  background-color: var(--blue);
+  color:var(--white);
+  
+}
+
+#projects{
+  background-color: var(--blue);
+  color:var(--white);
 }
