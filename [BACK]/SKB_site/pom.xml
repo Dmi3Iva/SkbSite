@@ -71,12 +71,6 @@
             <version>${jstl.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring-security.version}</version>
-        </dependency>
-
         <!--Hibernate validator позволяет работать с ограничениями данных через аннотации-->
         <dependency>
             <groupId>org.hibernate</groupId>
