@@ -7,6 +7,10 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <http auto-config="true">
+
+    </http>
+
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">
             <password-encoder ref="encoder"></password-encoder>
