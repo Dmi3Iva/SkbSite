@@ -1,5 +1,13 @@
 @import "bootstrap/css/bootstrap.css";
 
+.left-grey{
+  background-color: #000;
+}
+
+.right-grey{
+  background-color: #000;
+}
+
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -21,7 +29,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   border-color: var(--blue);
 }
 
-.navbar-default .navbar-brand{
+.navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
   color: var(--white);
 }
 
@@ -30,14 +38,24 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     color: var(--white-hover);
 }
 
-.navbar-default .navbar-link {
+.navbar-default .navbar-link, .navbar-link:visited {
   color:var(--white);
+}
+.navbar-default .navbar-link:hover,.navbar-default .navbar-link:focus{
+  color:var(--white-hover);
+  text-decoration: none;
 }
 
 #logotip:visited, #logotip:hover, #logotip{
   background-color: transparent;
 }
-
+input{
+  margin: 0px auto;
+  text-align: left;
+}
+.masthead{
+  margin-bottom: 10px;
+}
 .book{
   color:var(--white);
   background-color: var(--blue);
@@ -50,29 +68,92 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   float:left;
   padding: 10px;
 }
+.book a,.book a:hover, .book a:focus{
+  color:var(--white);
+  padding: 10px 15px;
+  border-radius: 26px;
+  background-color: #3095ff;
+}
 
 .events{
-  height: 280px;
+
   padding:10px;
+  height: 280px;
   background-color: var(--blue);
   color: var(--white);
-}
+}/*
 .events a{
   float: right;
 
-}
+}**/
 .events a,.events a:hover, .events a:focus{
   color:var(--white);
+  padding: 10px 15px;
+  border-radius: 26px;
+  background-color: #3095ff;
 }
 
-
-#news{
-  background-color: var(--blue);
-  color:var(--white);
-  
+#mainBlock{
+  margin-bottom: 10px;
 }
 
-#projects{
+.link{
+  white-space:nowrap;
+}
+.link a{
+  margin:-3px;
+}
+/*
+@media screen and (max-width: 992px)
+{
+  .book{
+    height: 315px;
+  }
+}*/
+@media screen and (max-width: 1198px)
+{
+  .book a{
+    margin-right: 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  body{
+    margin-top: 100px;
+  }
+
+  .book{
+    height:140px;
+  }
+    .book img {
+      visibility: hidden;
+      width: 0px;
+      height: 0px;
+      padding: 0px;
+    }
+
+    .book a{
+      width: 80%;
+      text-align: center;
+    }
+}
+
+#news,#projects{
   background-color: var(--blue);
   color:var(--white);
+
+}
+
+#news div a, #projects div a{
+  color:var(--white);
+  padding: 10px 15px;
+
+  border-radius: 26px;
+  background-color: #3095ff;
+}
+#news div, #projects div{
+  padding: 15px;
+}
+
+#news h3,#projects h3{
+  width: 40%;
 }
