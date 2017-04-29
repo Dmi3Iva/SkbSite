@@ -18,8 +18,8 @@
 <!--HEADER -->
 <header>
     <div id = "title"><a href="index.html"> Студенческое контсрукторское бюро </a></div>
-    <div id = "registration"> <a href="${contextPath}/registration">Регистрация</a></div>
-    <div id = "enter"><a href="#">Вход</a></div>
+    <div id = "registration"> <a href="registration">Регистрация</a></div>
+    <div id = "enter"><a href="login">Вход</a></div>
 </header>
 <div id="content">
     <a href = "index.html"><img id = "logo" src = "${contextPath}/resources/images/logo.png" alt = "Логотип СКБ"></a>

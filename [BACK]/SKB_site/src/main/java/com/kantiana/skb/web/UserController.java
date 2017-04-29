@@ -57,11 +57,16 @@ public class UserController {
 
         userService.save(userForm);
 
-        System.out.println("****************************");
-        System.out.println(userForm.getUsername());
-
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model, String error, String logout) {
+        if (error != null) {
+            model.addAttribute("error", "Ваше имя и пароль не действительны.");
+        }
+        return "login";
     }
 }
