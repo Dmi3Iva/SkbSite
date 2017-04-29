@@ -16,7 +16,7 @@ public class UserController {
     private NewsService newsService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String printHello(Model model) {
+    public String main(Model model) {
         // Передаём в index.jsp все новости
         List<News> news = newsService.getAllNews();
         model.addAttribute("news", news);

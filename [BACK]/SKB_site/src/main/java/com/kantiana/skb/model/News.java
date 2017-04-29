@@ -35,6 +35,7 @@ public class News {
 
     public void setArticle(String article) { this.article = article;}
 
+    @Column(name = "date_of_creation")
     public String getDateOfCreation() {
         return dateOfCreation;
     }
@@ -44,7 +45,7 @@ public class News {
     }
 
     @ManyToOne
-    @JoinColumn(name="authorId", nullable=false)
+    @JoinColumn(name="author_id", nullable=false)
     public User getAuthor() { return author; }
 
     public void setAuthor(User author) { this.author = author; }

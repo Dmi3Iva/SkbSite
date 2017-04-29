@@ -8,7 +8,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.hellokoding.account">
+    <logger name="com.kantiana.skb">
         <level value="debug"/>
     </logger>
 
