@@ -51,7 +51,7 @@
                 <div class="articles__horizontal">
                     <article class="article">
                         <div class="article__image"><img src="${contextPath}/resources/images/koala.jpg">
-                            <div class="article__info">Автор: ${item.author.name}<br>
+                            <div class="article__info">Автор: ${item.author.username}<br>
                                 <div class="article__info__preview">${item.article}<a href="#">Подробнее...</a></div>
                     </article>
                 </div>
