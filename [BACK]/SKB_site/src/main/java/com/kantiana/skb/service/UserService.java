@@ -1,5 +1,13 @@
 package com.kantiana.skb.service;
 
-public interface UserService {
+import com.kantiana.skb.model.User;
 
+import java.util.List;
+
+public interface UserService {
+    void save(User user);
+
+    User findByUsername(String username);
+
+    List<User> getAll();
 }
