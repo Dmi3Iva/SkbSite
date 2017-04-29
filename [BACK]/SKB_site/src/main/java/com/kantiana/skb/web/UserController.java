@@ -57,8 +57,11 @@ public class UserController {
 
         userService.save(userForm);
 
-        securityService.autologin(userForm.getName(), userForm.getPasswordConfirm());
+        System.out.println("****************************");
+        System.out.println(userForm.getUsername());
 
-        return "redirect:/index";
+        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+        return "redirect:/";
     }
 }

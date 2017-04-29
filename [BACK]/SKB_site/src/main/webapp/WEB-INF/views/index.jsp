@@ -42,6 +42,9 @@
             </div>
             <button type="submit" class="btn btn-default">Найти</button>
         </form>-->
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            Welcome ${pageContext.request.userPrincipal.name}
+        </c:if>
 
     </nav>
     <br class="clear">
