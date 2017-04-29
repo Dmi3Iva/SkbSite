@@ -23,12 +23,12 @@ public class UserValidator implements Validator {
         User user = (User) o;
 
         // Проверка имени пользователя
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
-        if (user.getName().length() < 6 || user.getName().length() > 32) {
-            errors.rejectValue("name", "Size.userForm.username");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+            errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUsername(user.getName()) != null) {
-            errors.rejectValue("name", "Duplicate.userForm.username");
+        if (userService.findByUsername(user.getUsername()) != null) {
+            errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
         // Проверка пароля

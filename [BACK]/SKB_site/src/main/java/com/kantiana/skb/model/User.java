@@ -1,7 +1,5 @@
 package com.kantiana.skb.model;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,7 +7,7 @@ import java.util.Set;
 @Table(name="users")
 public class User {
     private Long id;
-    private String name;
+    private String username;
     private String password;
     private String passwordConfirm;
     private Set<News> news;
@@ -24,12 +22,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
