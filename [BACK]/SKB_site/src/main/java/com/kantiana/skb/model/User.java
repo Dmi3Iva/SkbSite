@@ -10,6 +10,8 @@ import java.util.Set;
 public class User {
     private Long id;
     private String name;
+    private String password;
+    private String passwordConfirm;
     private Set<News> news;
 
     @Id
@@ -28,6 +30,23 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     @OneToMany(targetEntity = News.class,  mappedBy = "author", cascade = CascadeType.ALL)
