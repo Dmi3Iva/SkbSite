@@ -3,50 +3,59 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8"/>
-
     <meta name="description" content="">
     <meta name="author" content="">
-
     <link rel="icon" href="images/logo.png">
+
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-
 <body>
 
-  <div class="container" id="header">
-    <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="#">Студенческое контсрукторское бюро</a></div>
-                <p class="navbar-text navbar-right"><a class="navbar-link" href="#">Войти</a> <a class="navbar-link" href="/registration">Регистрация</a></p>
-            </div>
-    </nav>
-
-
-    <div class="masthead">
-      <nav>
-        <ul class="nav nav-justified">
-          <li><a id="logotip" href=""><img src ="images/logo.png"></a></li>
-          <li><a href="#">Новости</a></li>
-          <li><a href="#">Оборудование</a></li>
-          <li><a href="#">Проекты</a></li>
-          <li><a href="#">Заказы</a></li>
-          <li><a href="#">О нас</a></li>
-          <li align="center"><input ></li>
-        </ul>
-      </nav>
-    </div>
-</div>
+  <div id="leftSide">
+  </div>
+  <div id="rightSide">
+  </div>
 
 <div class="container">
 
+  <!--header-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header"><a class="navbar-brand" href="#">Студенческое контсрукторское бюро</a></div>
+      <p class="navbar-text navbar-right">
+        <a class="navbar-link" href="#">Войти</a>
+        <a class="navbar-link" href="#">Регистрация</a>
+      </p>
+    </div>
+  </nav>
+
+  <!--navbar-->
+  <div class="masthead">
+    <nav>
+      <ul class="nav nav-justified">
+        <li><a id="logotip" href=""><img src ="images/logo.png"></a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">Оборудование</a></li>
+        <li><a href="#">Проекты</a></li>
+        <li><a href="#">Заказы</a></li>
+        <li><a href="#">О нас</a></li>
+        <li align="center"><input ></li>
+      </ul>
+    </nav>
+  </div>
+
+</div>
+
+<!-- main-->
+<div class="container">
+
 <div class= "row">
+  <!--Бронирование оборудования-->
   <div class="col-md-8 col-lg-8 .col-sm-8" >
     <div class = "book" id="mainBlock">
-        <img src = "images/professiya_programmist5.jpg" alt="Работающий программист" width="69%">
-
-
+      <img src = "images/professiya_programmist5.jpg" alt="Работающий программист" width="69%">
       <p>Если Вы давно хотели научиться программировать микроконтроллеры,
          но по какой-то причине не знали что этим можно заниматься в СКБ,
           то сейчас самое время забронировать для себя нужное оборудование!</p>
@@ -55,122 +64,169 @@
       </div>
     </div>
   </div>
+  <!--Ближайшие события-->
   <div class="col-md-4 col-lg-4 .col-sm-4">
     <div class="events">
       <p>Открытые курсы СКБ:<br>
-<br>
-    Python основы в пятницу 28.03.2017 18:30<br>
-  Введёт курс Гвидо ван Россум<br>
-<br>
-    Как правильно пользоваться блокнотом<br>
-  30.03.2017 12:00<br>
-Введёт Эллиот Блокнотович<br>
+      <br>
+      Python основы в пятницу 28.03.2017 18:30<br>
+      Введёт курс Гвидо ван Россум<br>
+      <br>
+      Как правильно пользоваться блокнотом<br>
+      30.03.2017 12:00<br>
+      Введёт Эллиот Блокнотович<br>
       </p>
-      <div align="center">
-      <a href="#">Подробнее...</a>
-    </div>
+      <div align="right" class="link">
+        <a href="#">Подробнее...</a>
+      </div>
     </div>
   </div>
 </div>
 
-
+<!--Новости и проекты-->
   <div class="row">
+
+    <!--Новости-->
     <div class="col-md-6" >
-      <div id="news">
-        <h3>Новости</h3>
-        <div align="center">
-        <a href="#">смотреть всё</a>
+      <ul id ="news">
+        <li><div class="smallBlueBox"></div></li>
+        <li><h3>Новости</h3></li>
+        <li>
+          <div align="center" class=link>
+            <a href="#">смотреть всё</a>
+          </div>
+        </li>
+      </ul>
+
+      <!--Новости-->
+      <div class="block">
+        <img src = "images/girl-w250.jpg" alt="girl" width="250">
+        <p class="description">
+                Автор:  Енот
+                09.03.2017
+                18:35
+        </p>
+        <p class = "title">
+                Енот устал писать макет этого сайта,
+                но он не сдаётся
+        </p>
+        <p class="article">
+                Отрывок из книжки Енотика
+                На долю нашего поколения не досталось великой войны или
+                великой депрессии, поэтому мы должны сами объявить войну...
+        </p>
+        <p class="detailes">
+                <a href="#">Подробнее...</a>
+        </p>
       </div>
+      <!--новотсь уровня 2-->
+      <div class="block">
+        <img src="images/enot.jpg" alt="enot">
+        <p class="description">
+                Автор:  Енот
+                09.03.2017
+                18:35
+        </p>
+        <p class = "title">
+                Студенты работающие в скб решили
+                создать киборга
+        </p>
+        <p class="article">
+                Отрывок из книжки Енотика
+                На долю нашего поколения не досталось великой войны или
+                великой депрессии, поэтому мы должны сами объявить войну...
+        </p>
+        <p class="detailes">
+                <a href="#">Подробнее...</a>
+        </p>
+      </div>
+      <!--проект1-->
+
+    </div>
+
+<!--проекты-->
+    <div class="col-md-6" >
+      <ul id="projects">
+        <li><div class="smallBlueBox"></div></li>
+        <li><h3>Проекты</h3></li>
+        <li>
+          <div align="center" class=link>
+            <a href="#">смотреть всё</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="block">
+        <img src="images/enot.jpg" alt="enot" >
+        <p class="description">
+                Автор:  Енот
+                09.03.2017
+                18:35
+        </p>
+        <p class = "title">
+                Студенты работающие в скб решили
+                создать киборга
+        </p>
+        <p class="article">
+                Отрывок из книжки Енотика
+                На долю нашего поколения не досталось великой войны или
+                великой депрессии, поэтому мы должны сами объявить войну...
+        </p>
+        <p class="detailes">
+                <a href="#">Подробнее...</a>
+        </p>
+      </div>
+    <!--проект2-->
+      <div class="block">
+        <img src = "images/girl-w250.jpg" alt="girl" width="250" align="left">
+        <p class="description">
+                Автор:  Енот
+                09.03.2017
+                18:35
+        </p>
+        <p class = "title">
+                Енот устал писать макет этого сайта,
+                но он не сдаётся
+        </p>
+        <p class="article">
+                Отрывок из книжки Енотика
+                На долю нашего поколения не досталось великой войны или
+                великой депрессии, поэтому мы должны сами объявить войну...
+        </p>
+        <p class="detailes">
+              <a href="#">  Подробнее...</a>
+        </p>
       </div>
     </div>
 
-    <div class="col-md-6" >
-      <div id="projects">
-        <h3>Проекты</h3>
-        <div align="center">
-        <a href="#">смотреть всё</a>
-      </div>
-        </a>
-      </div>
-    </div>
-<!--level1-->
-    <div class="col-md-3 col-lg-3 .col-sm-3">
-      <img src = "images/girl.jpg" alt="girl" width="auto">
-    </div>
-    <div class="col-md-3">
-      <div class="news1">
-            <p class="description">
-              Автор:  Енот
-              09.03.2017
-              18:35
-            </p>
-            <p class = "title">
-              Енот устал писать макет этого сайта,
-но он не сдаётся
-            </p>
-            <p class="article">
-Отрывок из книжки Енотика
-На долю нашего поколения не досталось великой войны или
-великой депрессии, поэтому мы должны сами объявить войну...
-            </p>
-            <p class="detailes">
-              Подробнее...
-            </p>
-      </div>
-    </div>
-    <div class="col-md-3 col-lg-3 .col-sm-3">
-      <img src = "images/enot.jpg" alt="girl" width="auto">
-    </div>
-    <div class="col-md-3 col-lg-3 .col-sm-3">
-      <div class="project1">
-            <p class="description">
-              Автор:  Енот
-              09.03.2017
-              18:35
-            </p>
-            <p class = "title">
-              Студенты работающие в скб решили
-создать киборга
-            </p>
-            <p class="article">
-Отрывок из книжки Енотика
-На долю нашего поколения не досталось великой войны или
-великой депрессии, поэтому мы должны сами объявить войну...
-            </p>
-            <p class="detailes">
-              Подробнее...
-            </p>
-      </div>
-    </div>
-<!--level1 end-->
-  </div>
 
+
+<!--close row-->
+</div>
+<!--close container-->
 </div>
 
     <!--FOOTER -->
-    <footer>
-        <!--<nav id="footer_nav">
-            <ul>
-                <li><a href = "index.html">Новости</a></li>
-                <li><a href = "projects.html">Проекты</a></li>
-                <li><a href = "equipments.html">Оборудование</a></li>
-                <li><a href = "orders.html">Заказы</a></li>
-                <li><a href = "about.html">О нас</a></li>
-            </ul>
-        </nav> -->
+    <footer><!-- class="text-muted "-->
+      <div class="container ">
+
         <div class = "footer_right">Мы в социальных сетях</div>
-        <div id = "footer_news"><a href="index.html">Новости</a></div>
-        <div class = "footer_right">
+        <ul id ="footerMenu">
+          <li><a href="index.html">Новости</a></li>
+          <li><a href="#">Оборудование</a></li>
+          <li><a href="#">Проекты</a></li>
+          <li><a href="#">Заказы</a></li>
+          <li><a href="#">О нас</a></li>
+        </ul>
+
+        <div class = "ico" align="right">
             <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte"></a>
             <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
             <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
         </div>
-        <div id = "footer_equipments"><a href="#">Оборудование</a></div>
-        <div id = "footer_projects"><a href="#">Проекты</a></div>
-        <div class = "footer_right">Copyright &copy 2017</div>
-        <div id = "footer_orders"><a href="#">Заказы</a></div>
-        <div class = "footer_right">Сайт разработала команда TRIP</div>
-        <div id = "footer_about"><a href="#">О нас</a></div>
+        <div class = "author" align="right">Copyright &copy 2017</div>
+        <div class = "author" align="right">Сайт разработала команда TRIP</div>
+      </div>
     </footer>
 </body>
 

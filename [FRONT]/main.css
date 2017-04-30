@@ -1,13 +1,5 @@
 @import "bootstrap/css/bootstrap.css";
 
-.left-grey{
-  background-color: #000;
-}
-
-.right-grey{
-  background-color: #000;
-}
-
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -17,11 +9,36 @@
 
 body{
   font-family:"Roboto Light",sans-serif;
-  /*font-style:Light;*/
   margin-top: 50px;
 }
 
-/* Сайт с пояснениями о классах
+@media screen and (max-width: 767px) {
+  body{
+    margin-top: 100px;
+  }
+}
+
+/*Полоски по бокам*/
+#leftSide, #rightSide{
+  background-color: #f2f2f2;
+  height: 100%;
+  position: fixed;
+  padding: 0px;
+  margin: 0px;
+  width: 10%;
+  z-index: 1;
+}
+#rightSide{
+  right:0px;
+}
+
+@media screen and (max-width: 1443px){
+  #leftSide,#rightSide{
+    visibility: hidden;
+  }
+}
+
+/* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
 .navbar-default{
@@ -49,25 +66,55 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 #logotip:visited, #logotip:hover, #logotip{
   background-color: transparent;
 }
-input{
-  margin: 0px auto;
-  text-align: left;
-}
+
+
+/*Бронирование оборудования*/
 .masthead{
   margin-bottom: 10px;
+}
+
+.masthead li a{
+  font-size: 24px;
+}
+
+.masthead li input{
+  width:80%;
+/*  font-size: 24px;*/
+}
+
+.link{
+  padding-top: 5px;
+  padding-bottom: 20px;
+  white-space:nowrap;
+}
+
+.link a{
+  margin-right:5px;
+  text-decoration: none;
 }
 .book{
   color:var(--white);
   background-color: var(--blue);
   height: 280px;
 }
+
 .book p{
   padding:10px;
 }
+
 .book img{
   float:left;
   padding: 10px;
 }
+
+@media screen and (max-width: 991px) {
+  .book img{
+    width: 68%;
+    padding:5px;
+  }
+
+}
+
 .book a,.book a:hover, .book a:focus{
   color:var(--white);
   padding: 10px 15px;
@@ -75,54 +122,17 @@ input{
   background-color: #3095ff;
 }
 
-.events{
-
-  padding:10px;
-  height: 280px;
-  background-color: var(--blue);
-  color: var(--white);
-}/*
-.events a{
-  float: right;
-
-}**/
-.events a,.events a:hover, .events a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
-}
-
-#mainBlock{
-  margin-bottom: 10px;
-}
-
-.link{
-  white-space:nowrap;
-}
-.link a{
-  margin:-3px;
-}
-/*
-@media screen and (max-width: 992px)
-{
-  .book{
-    height: 315px;
-  }
-}*/
 @media screen and (max-width: 1198px)
 {
   .book a{
     margin-right: 10px;
   }
 }
+/*для слишком маленьких картинок убираем картинку*/
 @media screen and (max-width: 767px) {
-  body{
-    margin-top: 100px;
-  }
-
   .book{
-    height:140px;
+    position: relative;
+    height: auto;
   }
     .book img {
       visibility: hidden;
@@ -137,23 +147,157 @@ input{
     }
 }
 
-#news,#projects{
-  background-color: var(--blue);
-  color:var(--white);
-
+.book{
+  margin-bottom: 10px;
 }
 
-#news div a, #projects div a{
+/*События*/
+.events{
+  padding:10px;
+  height: 280px;
+  margin-bottom: 10px;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.events a,.events a:hover, .events a:focus{
   color:var(--white);
   padding: 10px 15px;
-
   border-radius: 26px;
   background-color: #3095ff;
 }
-#news div, #projects div{
-  padding: 15px;
+
+.events .link{
+  margin-top: 50px;
 }
 
+/*Новости и проекты*/
+#news, #projects{
+  background-color: var(--blue);
+  color:var(--white);
+  width:70%;
+}
+/*
 #news h3,#projects h3{
+  padding: 10px 0px 10px 30px;
+  margin:0px;
   width: 40%;
+}*/
+#news div,#projects div{
+  float:right;
+}
+
+ul#news li, ul#projects li{
+  display: inline-block;
+  white-space:nowrap;
+  padding: 0px;
+}
+
+ul#news,ul#projects{
+  padding: 0px;
+  width: 100%;
+  height: 60px;
+}
+ul#news li:first-child,ul#projects li:first-child{
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+}
+
+ul#news li:nth-child(2),ul#projects li:nth-child(2){
+  padding: 10px;
+  padding-top: 0px;
+  margin: 10px;
+  margin-top: 0px;
+  display: inline-block;
+  /*background-color: #000;*/
+  vertical-align: top;
+}
+
+.smallBlueBox{
+  height: 60px;
+  width: 15px;
+  background-color: #3095ff;
+}
+
+ul#news li:nth-child(3),ul#projects li:nth-child(3){
+  font-size: 12px;
+  margin-top: 20px;
+  display: inline-block;
+  /*background-color: #000;*/
+  vertical-align: top;
+}
+/*форма ссылки*/
+#news div a, #projects div a{
+  color:var(--white);
+  padding: 4px 10px;
+  border-radius: 26px;
+  background-color: #3095ff;
+}
+
+#news div, #projects div{
+  /*padding: 15px;*/
+}
+
+/*блок новостей или проектов*/
+.block img{
+  float: left;
+  padding-right: 10px;
+}
+
+.block{
+  padding:60px 0px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 991px) {
+  .block img{
+  position:static;
+  }
+}
+
+.block .description{
+  color:#003765;
+  font-size: 12px;
+}
+
+.block .title{
+  color:#282828;
+  font-size:16px;
+}
+
+.block .article{
+color:#6a6a6a;
+font-size:12px;
+}
+
+.block .detailes{
+  color:#297bc0;
+  font-size:12px;
+}
+
+.block .detailes a{
+  text-decoration: none;
+}
+
+/*footer*/
+footer{
+  z-index: 3;
+  /*width: 100%;*/
+  background-color: var(--blue);
+  color:var(--white);
+}
+
+footer .container .ico img{
+  width: 30px;
+  height: 30px;
+}
+
+#footerMenu{
+   list-style-type:none;
+}
+
+#footerMenu li a{
+  color:var(--white);
+  text-decoration: none;
 }
