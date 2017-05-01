@@ -26,7 +26,7 @@ body{
   padding: 0px;
   margin: 0px;
   width: 10%;
-  z-index: 1;
+  z-index: -1;
 }
 #rightSide{
   right:0px;
@@ -282,10 +282,11 @@ font-size:12px;
 
 /*footer*/
 footer{
-  z-index: 3;
   /*width: 100%;*/
   background-color: var(--blue);
   color:var(--white);
+  font-size: 16px;
+
 }
 
 footer .container .ico img{
@@ -293,11 +294,26 @@ footer .container .ico img{
   height: 30px;
 }
 
+.we{
+  font-size: 20px;
+  padding-top: 10px;
+}
 #footerMenu{
    list-style-type:none;
+   z-index: 999;
+   padding: 5px 10px ;
+
 }
 
 #footerMenu li a{
   color:var(--white);
   text-decoration: none;
+}
+
+.aboutInfo{
+  margin-top: 75px;
+}
+
+#footerMenuAndTitle{
+  float:left;
 }
