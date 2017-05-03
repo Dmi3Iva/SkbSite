@@ -68,19 +68,42 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 
+
 /*Бронирование оборудования*/
 .masthead{
   margin-bottom: 10px;
 }
 
+.masthead li{
+  padding-right: 0;
+  padding-left: 0;
+  /*width: 40px;*/
+}
+
 .masthead li a{
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .masthead li input{
   width:80%;
 /*  font-size: 24px;*/
 }
+
+/*@media screen and (max-width: 767px) {
+  .masthead li{
+    width: 100%;
+  }
+
+}*/
+
+/*@media (max-width: 991px) and (min-width: 767px){
+  #logotip {
+      padding: 0;
+      width: 60px;
+  }
+}*/
+
+/*Контент*/
 
 .link{
   padding-top: 5px;
@@ -281,39 +304,18 @@ font-size:12px;
 }
 
 /*footer*/
-footer{
-  /*width: 100%;*/
+
+.socialIcons img {
+  height: 22px;
+}
+
+footer {
   background-color: var(--blue);
   color:var(--white);
   font-size: 16px;
-
 }
 
-footer .container .ico img{
-  width: 30px;
-  height: 30px;
-}
-
-.we{
-  font-size: 20px;
-  padding-top: 10px;
-}
-#footerMenu{
-   list-style-type:none;
-   z-index: 999;
-   padding: 5px 10px ;
-
-}
-
-#footerMenu li a{
-  color:var(--white);
+footer li a{
   text-decoration: none;
-}
-
-.aboutInfo{
-  margin-top: 75px;
-}
-
-#footerMenuAndTitle{
-  float:left;
+  color:var(--white);
 }

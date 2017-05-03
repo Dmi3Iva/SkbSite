@@ -23,29 +23,118 @@
   <!--header-->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <div class="navbar-header"><a class="navbar-brand" href="#">Студенческое контсрукторское бюро</a></div>
-      <p class="navbar-text navbar-right">
+      <div class="navbar-header col-xs-8"><a class="navbar-brand" href="#">Студенческое контсрукторское бюро</a></div>
+      <p class="navbar-text navbar-right text-right col-xs-4">
         <a class="navbar-link" href="#">Войти</a>
         <a class="navbar-link" href="#">Регистрация</a>
       </p>
     </div>
   </nav>
 
-  <!--navbar-->
-  <div class="masthead">
-    <nav>
-      <ul class="nav nav-justified">
-        <li><a id="logotip" href=""><img src ="images/logo.png"></a></li>
-        <li><a href="#">Новости</a></li>
-        <li><a href="#">Оборудование</a></li>
-        <li><a href="#">Проекты</a></li>
-        <li><a href="#">Заказы</a></li>
-        <li><a href="#">О нас</a></li>
-        <li align="center"><input ></li>
-      </ul>
-    </nav>
-  </div>
+  <!--header-->
+  
+  <!-- Попытка сделать адаптивный Header
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Студенческое контсрукторское бюро</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="sr-only">Toogle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+      </div>
+      <div id="navbar-collapse-1" class="collapse navbar-collapse">
+        <div class="navbar-header col-sm-6 col-xs-1">
+          <p class="navbar-text navbar-right">
+            <a class="navbar-link" href="#">Войти</a>
+            <a class="navbar-link" href="#">Регистрация</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </nav>
+  -->
 
+  <!--navbar-->
+  <nav>
+    <div class="masthead">
+      <div class="container">
+        <div class="row">
+          
+            <ul class="nav nav-justified">
+              <li class="col-sm-2"><a id="logotip" href=""><img src ="images/logo.png"></a></li>
+              <li class="col-sm-1"><a href="#">Новости</a></li>
+              <li class="col-sm-1"><a href="#">Оборудование</a></li>
+              <li class="col-sm-1"><a href="#">Проекты</a></li>
+              <li class="col-sm-1"><a href="#">Заказы</a></li>
+              <li class="col-sm-1"><a href="#">О нас</a></li>
+              <li class="col-sm-5" align="center"><input ></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!--navbar-->
+  <!-- Адаптивный Navbar -->
+  <!--<div class="masthead">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="visible-xs-block" href="#">LOGO</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1">
+                    <a href="#" class="hidden-xs"><img id="logotip" src="images/logo.png"></a>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="list-unstyled row row-no-gutter">
+                        <li class="col-sm-3">
+                            <a href="#"><span>Link 1<span class="sr-only">(current)</span></span></a>
+                        </li>
+                        <li class="col-sm-3">
+                            <a href="#"><span>Link 2</span></a>
+                        </li>
+                        <li class="col-sm-3">
+                            <a href="#"><span>Link 3 Lots of informati</span></a>
+                        </li>
+                        <li class="col-sm-3">
+                            <a href="#"><span>Link 4</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <div class="vertical-align-md">
+                        <form role="search">
+                            <div class="input-group input-group-lg input-group-full">
+                              <input type="text" class="form-control" aria-label="Search">
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-default" aria-label="Execute search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      </div>
+    </nav>
+  </div> -->
+  
 </div>
 
 <!-- main-->
@@ -205,31 +294,36 @@
 </div>
 <!--close container-->
 </div>
-
-    <!--FOOTER -->
-    <footer><!-- class="text-muted "-->
-      <div class="container ">
-        <div id="footerMenuAndTitle">
-          <div class = "we">Мы в социальных сетях</div>
-          <ul id ="footerMenu">
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="#">Оборудование</a></li>
-            <li><a href="#">Проекты</a></li>
-            <li><a href="#">Заказы</a></li>
-            <li><a href="#">О нас</a></li>
-          </ul>
+<footer>
+  <div class="container">    
+      <div class="row">
+          <div class="col-xs-12">
+              <div class="col-xs-6">
+                <ul class="list-unstyled">
+                  <li><a href="#">Новости</a></li>
+                  <li><a href="#">Оборудование</a></li>
+                  <li><a href="#">Проекты</a></li>
+                  <li><a href="#">Заказы</a></li>
+                  <li><a href="#">О нас</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul class="list-unstyled text-right">
+                <li>Мы в социальных сетях<li>
+                <li class="socialIcons text-right">
+                  <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte">
+                  </a>
+                  <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
+                  <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
+                </li>
+                <li><br></li>
+                <li>Copyright &copy 2017</li>
+                <li>Сайт разработала команда TRIP</li>              
+              </ul>
+            </div>  
         </div>
-        <div class="aboutInfo">
-        <div class = "ico" align="right">
-            <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte"></a>
-            <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
-            <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
-        </div>
-        <div class = "author" align="right">Copyright &copy 2017</div>
-        <div class = "author" align="right">Сайт разработала команда TRIP</div>
-      </div>
-
-    </footer>
+  </div>
+</footer>
 </body>
 
 </html>
