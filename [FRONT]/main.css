@@ -1,5 +1,5 @@
 @import "bootstrap/css/bootstrap.css";
-
+@import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -10,9 +10,19 @@
 body{
   font-family:"Roboto Light",sans-serif;
   margin-top: 50px;
+  font-size: 12px;
+  color:var(--white);
+  margin-top: 100px;
+}
+.nav-item{
+  color:var(--white);
+}
+.navbar{
+  border-radius: 0px;
 }
 
-
+.navbar a{
+}
 /*Полоски по бокам*/
 #leftSide, #rightSide{
   background-color: #f2f2f2;
@@ -33,6 +43,10 @@ body{
   }
 }
 
+/*отступ для иконок*/
+#navbarsDefault ul {
+  padding-left: 15px;
+}
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
@@ -43,6 +57,13 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 .navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
   color: var(--white);
+}
+
+.navbar>a{
+  font-size:20px;
+}
+.navbar-default .navbar-nav>li>a{
+  color:var(--white);
 }
 
 .navbar-default .navbar-brand:hover,
@@ -77,7 +98,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   padding-right: 0;
   padding-left: 0;
   margin: 0 10px;
-  
+
 }
 
 .masthead li a{
@@ -109,7 +130,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 @media (max-width: 991px) and (min-width: 767px){
   #main_nav li {
-    width: 150px; 
+    width: 150px;
   }
   #main_nav li a{
     padding: 0;
