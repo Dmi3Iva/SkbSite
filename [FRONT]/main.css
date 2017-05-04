@@ -14,6 +14,7 @@ body{
   color:var(--white);
   margin-top: 70px;
 }
+
 .nav-item, .navbar button span{
   color:var(--white);
 }
@@ -27,8 +28,11 @@ body{
   border-radius: 0px;
 }
 
-.navbar a{
+#main_nav li{
+  margin: 0px;
 }
+
+
 /*Полоски по бокам*/
 #leftSide, #rightSide{
   background-color: #f2f2f2;
@@ -40,6 +44,7 @@ body{
   width: 10%;
   z-index: -1;
 }
+
 #rightSide{
   right:0px;
 }
@@ -54,9 +59,11 @@ body{
 #navbarsDefault ul {
   padding-left: 15px;
 }
+
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
+
 .navbar-default{
   background-color: var(--blue);
   border-color: var(--blue);
@@ -68,7 +75,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 .navbar>a{
   font-size:18px;
-  padding: auto 0;
+  /*padding: auto 0;*/
 }
 .navbar-default .navbar-nav>li>a{
   color:var(--white);
@@ -95,9 +102,14 @@ padding: 0;
   background-color: transparent;
 }
 
+/* Исправление бага с маленькими вкладками*/
+@media (min-width: 768px){
+navs.less, .nav-justified > li {
+    width: 100% !important;
+  }
+}
 
 /*Бронирование оборудования*/
-
 #main_nav {
   padding-top: 25px;
 }
@@ -126,7 +138,6 @@ padding: 0;
     text-align: center;
     width: 100%;
   }
-
 }
 
 /*@media (min-width: 992px ){
@@ -138,7 +149,6 @@ padding: 0;
     padding: 2%;
   }
 }*/
-
 
 @media (max-width: 991px) and (min-width: 767px){
   #main_nav li {
@@ -179,7 +189,6 @@ padding: 0;
 }
 
 /*Контент*/
-
 .link{
   padding-top: 5px;
   padding-bottom: 20px;
@@ -215,7 +224,6 @@ padding: 0;
     width: 68%;
     padding:5px;
   }
-
 }
 
 .book a,.book a:hover, .book a:focus{
@@ -231,6 +239,7 @@ padding: 0;
     margin-right: 10px;
   }
 }
+
 /*для слишком маленьких картинок убираем картинку*/
 @media screen and (max-width: 767px) {
   .book{
@@ -330,6 +339,7 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
   /*background-color: #000;*/
   vertical-align: top;
 }
+
 /*форма ссылки*/
 #news div a, #projects div a{
   color:var(--white);
