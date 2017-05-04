@@ -1,5 +1,4 @@
 @import "bootstrap/css/bootstrap.css";
-@import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
 
 /*определяем цвета*/
 :root {
@@ -10,13 +9,9 @@
 
 body{
   font-family:"Roboto Light",sans-serif;
+  margin-top: 50px;
 }
 
-@media screen and (max-width: 767px) {
-  body{
-    margin-top: 100px;
-  }
-}
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
@@ -68,40 +63,87 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 
-
 /*Бронирование оборудования*/
+
+#main_nav {
+  padding-top: 25px;
+}
+
 .masthead{
   margin-bottom: 10px;
 }
 
-.masthead li{
+.masthead ul li{
   padding-right: 0;
   padding-left: 0;
-  /*width: 40px;*/
+  margin: 0 10px;
+  
 }
 
 .masthead li a{
   font-size: 20px;
 }
 
-.masthead li input{
-  width:80%;
-/*  font-size: 24px;*/
+#search {
+  padding: 10px 15px;
 }
 
-/*@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .masthead li{
+    text-align: center;
     width: 100%;
   }
 
-}*/
+}
 
-/*@media (max-width: 991px) and (min-width: 767px){
-  #logotip {
-      padding: 0;
-      width: 60px;
+/*@media (min-width: 992px ){
+  #main_nav a {
+    font-size: 25px;
+  }
+  #main_nav li{
+    width: auto;
+    padding: 2%;
   }
 }*/
+
+
+@media (max-width: 991px) and (min-width: 767px){
+  #main_nav li {
+    width: 150px; 
+  }
+  #main_nav li a{
+    padding: 0;
+  }
+  #main_nav {
+    padding-top: 30px;
+    padding-left: 27px;
+  }
+  .logotip {
+    width: 50px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 767px){
+  #main_nav {
+    float: right;
+    display: inline-block;
+  }
+  #main_nav li a{
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px){
+  .search_group{
+    width: 50%;
+    margin: auto;
+  }
+  #main_nav {
+    padding-top: 0;
+    padding-left: auto;
+    text-align: center;
+  }
+}
 
 /*Контент*/
 
@@ -319,3 +361,16 @@ footer li a{
   text-decoration: none;
   color:var(--white);
 }
+
+/*Для фикскированного body, при уменьшении экрана меньше 360px*/
+ @media screen and (max-width: 360px){
+  body {
+    position: absolute;
+  }
+  .header_navbar {
+    width: 360px;
+  }
+  .footer_navbar {
+    width: 360px;
+  }
+ }
