@@ -16,7 +16,7 @@ ${error}
 <form:form method="POST" action="${contextPath}/login">
     <input name="username" type="text" class="form-control" placeholder="Имя пользователя"
            autofocus="true"/> <br/>
-    <input type="password" path="password" placeholder="Пароль"/> <br/>
+    <input name="password" type="password" placeholder="Пароль"/> <br/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 

@@ -36,7 +36,6 @@ public class UserController {
         // Передаём в index.jsp все новости
         List<News> news = newsService.getAllNews();
         model.addAttribute("news", news);
-
         return "index";
     }
 
@@ -50,15 +49,11 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
         userService.save(userForm);
-
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/";
     }
 
