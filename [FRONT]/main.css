@@ -1,4 +1,6 @@
 @import "bootstrap/css/bootstrap.css";
+@import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
+
 
 /*определяем цвета*/
 :root {
@@ -10,19 +12,49 @@
 body{
   font-family:"Roboto Light",sans-serif;
   margin-top: 50px;
+  font-size: 12px;
+  color:var(--white);
+  margin-top: 70px;
+}
+
+.nav-item, .navbar button span{
+  color:var(--white);
+}
+
+.navbar button {
+  border: 1px solid var(--white);
+  margin-top: 20px;
+}
+
+.navbar{
+  border-radius: 0px;
+}
+
+@media screen and (max-width: 767px){
+  #main_nav{
+    display: block;
+  }
+}
+
+
+#main_nav li{
+  margin: 0px;
+
 }
 
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
   background-color: #f2f2f2;
-  height: 100%;
+  height: 130%;
   position: fixed;
+  top:10px;
   padding: 0px;
   margin: 0px;
   width: 10%;
   z-index: -1;
 }
+
 #rightSide{
   right:0px;
 }
@@ -33,9 +65,15 @@ body{
   }
 }
 
+/*отступ для иконок*/
+#navbarsDefault ul {
+  padding-left: 15px;
+}
+
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
+
 .navbar-default{
   background-color: var(--blue);
   border-color: var(--blue);
@@ -43,6 +81,14 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 .navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
   color: var(--white);
+}
+
+.navbar>a{
+  font-size:18px;
+  /*padding: auto 0;*/
+}
+.navbar-default .navbar-nav>li>a{
+  color:var(--white);
 }
 
 .navbar-default .navbar-brand:hover,
@@ -58,13 +104,22 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   text-decoration: none;
 }
 
+.navbar .navbar-collapse{
+padding: 0;
+}
+
 #logotip:visited, #logotip:hover, #logotip{
   background-color: transparent;
 }
 
+/* Исправление бага с маленькими вкладками*/
+@media (min-width: 768px){
+navs.less, .nav-justified > li {
+    width: 100% !important;
+  }
+}
 
 /*Бронирование оборудования*/
-
 #main_nav {
   padding-top: 25px;
 }
@@ -77,7 +132,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   padding-right: 0;
   padding-left: 0;
   margin: 0 10px;
-  
+
 }
 
 .masthead li a{
@@ -93,7 +148,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     text-align: center;
     width: 100%;
   }
-
 }
 
 /*@media (min-width: 992px ){
@@ -106,10 +160,9 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   }
 }*/
 
-
 @media (max-width: 991px) and (min-width: 767px){
   #main_nav li {
-    width: 150px; 
+    width: 150px;
   }
   #main_nav li a{
     padding: 0;
@@ -146,7 +199,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 /*Контент*/
-
 .link{
   padding-top: 5px;
   padding-bottom: 20px;
@@ -157,6 +209,11 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   margin-right:5px;
   text-decoration: none;
 }
+
+.container{
+  margin-top: 20px;
+}
+
 .book{
   color:var(--white);
   background-color: var(--blue);
@@ -177,7 +234,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     width: 68%;
     padding:5px;
   }
-
 }
 
 .book a,.book a:hover, .book a:focus{
@@ -193,6 +249,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     margin-right: 10px;
   }
 }
+
 /*для слишком маленьких картинок убираем картинку*/
 @media screen and (max-width: 767px) {
   .book{
@@ -292,6 +349,7 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
   /*background-color: #000;*/
   vertical-align: top;
 }
+
 /*форма ссылки*/
 #news div a, #projects div a{
   color:var(--white);
