@@ -1,5 +1,7 @@
 @import "bootstrap/css/bootstrap.css";
 @import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
+
+
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -28,8 +30,16 @@ body{
   border-radius: 0px;
 }
 
+@media screen and (max-width: 767px){
+  #main_nav{
+    display: block;
+  }
+}
+
+
 #main_nav li{
   margin: 0px;
+
 }
 
 
