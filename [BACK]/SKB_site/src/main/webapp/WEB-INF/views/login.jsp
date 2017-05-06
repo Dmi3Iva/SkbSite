@@ -12,7 +12,7 @@
     <title>Вход</title>
 </head>
 <body>
-${error}
+<p>${error}</p>
 <form:form method="POST" action="${contextPath}/login">
     <input name="username" type="text" class="form-control" placeholder="Имя пользователя"
            autofocus="true"/> <br/>

@@ -31,11 +31,15 @@ public class UserController {
     private UserValidator userValidator;
 
     // Контроллер главной страницы
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(Model model) {
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    public String index(Model model, String logout) {
         // Передаём в index.jsp все новости
         List<News> news = newsService.getAllNews();
         model.addAttribute("news", news);
+        // Если пользователь вышел сообщаем ему об этом
+        if (logout != null) {
+            model.addAttribute("logoutMessage", "Вы успешно вышли");
+        }
         return "index";
     }
 
@@ -46,6 +50,7 @@ public class UserController {
         return "registration";
     }
 
+    // Контроллер, регистрирующий пользователя
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
@@ -57,8 +62,9 @@ public class UserController {
         return "redirect:/";
     }
 
+    // Контроллер страницы входа
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
         }

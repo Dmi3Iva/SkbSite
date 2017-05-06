@@ -21,6 +21,7 @@
     <div id = "registration"> <a href="registration">Регистрация</a></div>
     <div id = "enter"><a href="login">Вход</a></div>
 </header>
+
 <div id="content">
     <a href = "index.html"><img id = "logo" src = "${contextPath}/resources/images/logo.png" alt = "Логотип СКБ"></a>
     <nav id="main_nav">
@@ -42,12 +43,18 @@
             </div>
             <button type="submit" class="btn btn-default">Найти</button>
         </form>-->
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            Welcome ${pageContext.request.userPrincipal.name}
-        </c:if>
-
     </nav>
     <br class="clear">
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+        Welcome ${pageContext.request.userPrincipal.name}
+        <a onclick="document.forms['logoutForm'].submit()">Выйти</a>
+    </c:if>
+    <c:if test="${logoutMessage != null}">
+        <br/><h4>${logoutMessage}</h4>
+    </c:if>
     <div id = "news">
         <c:if test="${!empty news}">
             <c:forEach items="${news}" var="item">
