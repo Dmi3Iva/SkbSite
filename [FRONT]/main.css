@@ -289,34 +289,34 @@ navs.less, .nav-justified > li {
 }
 
 /*Новости и проекты*/
-#news, #projects{
+.titleHead{
   background-color: var(--blue);
   color:var(--white);
   width:70%;
 }
 
-#news div,#projects div{
+ .titleHead div{
   float:right;
 }
 
-ul#news li, ul#projects li{
+ ul.titleHead li{
   display: inline-block;
   white-space:nowrap;
   padding: 0px;
 }
 
-ul#news,ul#projects{
+ul.titleHead{
   padding: 0px;
   width: 100%;
   height: 70px;
 }
-ul#news li:first-child,ul#projects li:first-child{
+ul.titleHead li:first-child{
   padding: 0px;
   margin: 0px;
   display: inline-block;
 }
 
-ul#news li:nth-child(2),ul#projects li:nth-child(2){
+ul.titleHead li:nth-child(2){
   padding: 10px;
   margin: 13px;
   display: inline-block;
@@ -329,7 +329,7 @@ ul#news li:nth-child(2),ul#projects li:nth-child(2){
   background-color: #3095ff;
 }
 
-ul#news li:nth-child(3),ul#projects li:nth-child(3){
+ul.titleHead li:nth-child(3){
   font-size: 12px;
   margin-top: 20px;
   display: inline-block;
@@ -337,7 +337,7 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
 }
 
 /*форма ссылки*/
-#news div a, #projects div a{
+.titleHead div a{
   color:var(--white);
   padding: 4px 10px;
   border-radius: 26px;

@@ -1,0 +1,27 @@
+.equipment img{
+  width: 200px;
+  margin-right: 5px;
+  float:left;
+}
+
+.equipment{
+  background-color: var(--blue);
+  padding-left: 0px;
+  margin-right: 10px;
+  margin-top: 10px;
+  min-height: 150px;
+
+}
+
+.name{
+  background-color: var(--blue);
+  color:var(--white);
+  margin-top: 20px;
+  font-size:14px;
+  display: table;
+}
+
+a:hover{
+  text-decoration: none;
+  color:var(--white-hover);
+}
