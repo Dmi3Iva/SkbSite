@@ -23,7 +23,7 @@ body{
 
 .navbar button {
   border: 1px solid var(--white);
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .navbar{
@@ -36,12 +36,16 @@ body{
   }
 }
 
-
 #main_nav li{
   margin: 0px;
 
 }
 
+@media screen and (max-width: 767px) and (min-width:767px){
+  #main_nav li{
+    margin: auto;
+  }
+}
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
@@ -85,7 +89,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 .navbar>a{
   font-size:18px;
-  /*padding: auto 0;*/
 }
 
 .navbar-default .navbar-nav>li>a{
@@ -150,16 +153,6 @@ navs.less, .nav-justified > li {
     width: 100%;
   }
 }
-
-/*@media (min-width: 992px ){
-  #main_nav a {
-    font-size: 25px;
-  }
-  #main_nav li{
-    width: auto;
-    padding: 2%;
-  }
-}*/
 
 @media (max-width: 991px) and (min-width: 767px){
   #main_nav li {
@@ -301,12 +294,7 @@ navs.less, .nav-justified > li {
   color:var(--white);
   width:70%;
 }
-/*
-#news h3,#projects h3{
-  padding: 10px 0px 10px 30px;
-  margin:0px;
-  width: 40%;
-}*/
+
 #news div,#projects div{
   float:right;
 }
@@ -330,11 +318,8 @@ ul#news li:first-child,ul#projects li:first-child{
 
 ul#news li:nth-child(2),ul#projects li:nth-child(2){
   padding: 10px;
-  /*padding-top: 10px;*/
   margin: 13px;
-  /*margin-top: 10px;*/
   display: inline-block;
-  /*background-color: #000;*/
   vertical-align: top;
 }
 
@@ -348,7 +333,6 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
   font-size: 12px;
   margin-top: 20px;
   display: inline-block;
-  /*background-color: #000;*/
   vertical-align: top;
 }
 
@@ -358,10 +342,6 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
   padding: 4px 10px;
   border-radius: 26px;
   background-color: #3095ff;
-}
-
-#news div, #projects div{
-  /*padding: 15px;*/
 }
 
 /*блок новостей или проектов*/
@@ -423,7 +403,7 @@ footer li a{
 }
 
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
- @media screen and (max-width: 360px){
+ @media screen and (max-width: 386px){
   body {
     position: absolute;
   }
