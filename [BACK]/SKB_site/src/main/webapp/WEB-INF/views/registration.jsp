@@ -37,10 +37,14 @@
             </div>
         </spring:bind>
 
+        <spring:bind path="customer">
+            <div>
+                <form:checkbox path="customer"></form:checkbox> Вы заказчик?
+            </div>
+        </spring:bind>
+
         <button type="submit">Отправить</button>
     </form:form>
-
-
 
 </body>
 </html>

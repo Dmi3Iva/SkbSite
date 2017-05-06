@@ -12,6 +12,7 @@ public class User {
     private String passwordConfirm;
     private Set<News> news;
     private Set<Role> roles;
+    private boolean customer;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,5 +66,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Transient
+    public boolean isCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(boolean customer) {
+        this.customer = customer;
     }
 }

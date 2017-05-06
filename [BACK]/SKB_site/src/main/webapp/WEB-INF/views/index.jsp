@@ -49,11 +49,12 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        Welcome ${pageContext.request.userPrincipal.name}
+        <p>Welcome ${pageContext.request.userPrincipal.name}</p>
+        <p>Ваши роли: ${pageContext.request.userPrincipal.authorities}</p>
         <a onclick="document.forms['logoutForm'].submit()">Выйти</a>
     </c:if>
     <c:if test="${logoutMessage != null}">
-        <br/><h4>${logoutMessage}</h4>
+        <h4>${logoutMessage}</h4>
     </c:if>
     <div id = "news">
         <c:if test="${!empty news}">
