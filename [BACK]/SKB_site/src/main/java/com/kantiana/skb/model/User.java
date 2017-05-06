@@ -1,7 +1,5 @@
 package com.kantiana.skb.model;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,7 +7,9 @@ import java.util.Set;
 @Table(name="users")
 public class User {
     private Long id;
-    private String name;
+    private String username;
+    private String password;
+    private String passwordConfirm;
     private Set<News> news;
 
     @Id
@@ -22,12 +22,29 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     @OneToMany(targetEntity = News.class,  mappedBy = "author", cascade = CascadeType.ALL)
