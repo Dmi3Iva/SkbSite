@@ -123,6 +123,21 @@ navs.less, .nav-justified > li {
   }
 }
 
+/*Карусель*/
+#carousel {
+  margin: 1% 10%;
+  background-color: var(--blue);
+}
+
+#carousel img {
+  margin: auto;
+}
+
+.carousel-indicators{
+  margin: auto;
+}
+
+
 /*Бронирование оборудования*/
 #main_nav {
   padding-top: 25px;
@@ -402,15 +417,24 @@ footer li a{
   color:var(--white);
 }
 
+.footer_navbar {
+  width: 100%;
+}
+
+
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
  @media screen and (max-width: 386px){
   body {
     position: absolute;
+    width: 386px;
   }
   .header_navbar {
     width: 386px;
   }
   .footer_navbar {
+    width: 386px;
+  }
+  .my_header {
     width: 386px;
   }
  }
