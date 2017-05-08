@@ -14,6 +14,10 @@
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/profile.css">
 
+    <!--Незримая форма, помогающая выйти-->
+    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </head>
 <body>
 
@@ -34,10 +38,10 @@
         <div class="collapse navbar-collapse" id="navbarsDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Личный кабинет </a>
+                    <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-home"></span> Личный кабинет </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-out"></span> Выход </a>
+                    <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -85,10 +89,10 @@
                         <img src="${contextPath}/resources/images/hacker.jpg">
                     </div>
                     <div class="col-xs-6">
-                        <p>Ф.И.О: Опасность Павел Эдуардович</p>
-                        <p>Логин: ~М а М и Н  М о Д н И к~</p>
-                        <p>E-mail: hypebeast256@mail.ru</p>
-                        <p>Органицзация: Фриланс</p>
+                        <p>Ф.И.О: ${user.lastName} ${user.firstName}</p>
+                        <p>Логин: ${user.username}</p>
+                        <p>E-mail: ${user.email}</p>
+                        <p>Органицзация: ${user.organization}</p>
                         <p>Проекты: Телеграмм, ВК</p>
                     </div>
                 </div>
@@ -100,7 +104,7 @@
                     <button type="submit" class="btn btn-primary btn-lg">
                         Изменить пароль
                     </button>
-                    <button type="submit" class="btn btn-primary btn-lg">
+                    <button onclick="document.forms['logoutForm'].submit()" class="btn btn-primary btn-lg">
                         Выход
                     </button>
                 </div>

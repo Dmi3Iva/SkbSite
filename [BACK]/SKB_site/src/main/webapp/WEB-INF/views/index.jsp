@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var = "contextPath" value = "#{pageContext.request.contextPath}"/>
+<c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
 <c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
 <!doctype html>
@@ -18,6 +18,10 @@
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/main.css">
 
+    <!--Незримая форма, помогающая выйти-->
+    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </head>
 <body>
 <!--Left and right section -->
@@ -36,23 +40,19 @@
                 <!--Если пользователь не зарегистрирован, то в хедере выводятся кнопки "Регистрация", "Войти"-->
                 <c:if test = "${userPrincipal.name == null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span>Регистрация</a>
+                        <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-in"></span>Вход</a>
+                        <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-in"></span> Вход</a>
                     </li>
                 </c:if>
                 <!--Иначе выводятся "Личный кабинет" и "Выйти"-->
                 <c:if test = "${userPrincipal.name != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-home"></span>Личный кабинет</a>
+                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-home"></span> Личный кабинет</a>
                     </li>
-                    <!--Незримая форма, помогающая выйти-->
-                    <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>Выход</a>
+                        <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
                     </li>
                 </c:if>
             </ul>
