@@ -26,6 +26,7 @@
                     <h1>Авторизация</h1>
                     <form:form method="POST" action="${contextPath}/login" class="form-horizontal">
                         <div class="form-group">
+                            <p class="alert-danger">${error}</p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">
                                 <input name="username" type="text" class="form-control" placeholder="Имя пользователя" autofocus="true"/>
@@ -37,9 +38,8 @@
                                 <input name="password" type="password" class="form-control" placeholder="Пароль"/>
                             </div>
                         </div>
-                        <!-- не знаю для чего это, поэтому просто закомментировал
+                        <!--Какая-то защита от кросс-доменных запросов-->
                         <input type="hidden" name="$ {_csrf.parameterName}" value="$ {_csrf.token}"/>
-                        -->
                         <div class="form-group">
                             <div class=" col-xs-offset-3 col-xs-2">
                                 <button type="submit" class="btn btn-primary btn-lg text-right">Войти</button>
