@@ -61,7 +61,7 @@ public class UserController {
 
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
-    public String login(Model model, String error) {
+    public String authorization(Model model, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
         }

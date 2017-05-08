@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-        <form-login login-page="/login" default-target-url="/"
-                    authentication-failure-url="/login?error"
+        <form-login login-page="/authorization" default-target-url="/"
+                    authentication-failure-url="/authorization?error"
                     username-parameter="username"
                     password-parameter="password"/>
         <logout logout-success-url="/index?logout"/>
