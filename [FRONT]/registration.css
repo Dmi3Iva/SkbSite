@@ -1,0 +1,46 @@
+@import "bootstrap/css/bootstrap.css";
+@import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
+
+/*определяем цвета*/
+:root {
+  --blue:#0066d2;
+  --white: #f8fdff;
+  --white-hover: #caf2ff;
+}
+
+body{
+	background-color: var(--blue);
+}
+
+.header{
+	padding-bottom: 20px;
+	padding-left: 10%;
+}
+
+.registration-form {
+	/*margin: 50px 100px;
+	padding: 50px 300px;
+	width: 80%;*/
+	padding: 5%;
+	margin: 9% 7% 9% 15% ;
+	background-color: var(--white);
+	color: var(--blue);
+	border-radius: 20px;
+	font-size: 16px;
+}
+
+
+h1 {
+	text-align: center;
+	padding-bottom: 10px; 
+}
+
+@media (max-width: 386px){
+	body{
+		position: absolute;
+	}
+	.registration-form{
+		width: 386px;
+	}
+}
+
