@@ -11,6 +11,8 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<News> news;
+    private Set<Role> roles;
+    private boolean customer;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,5 +56,24 @@ public class User {
 
     public void setNews(Set<News> news) {
         this.news = news;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Transient
+    public boolean isCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(boolean customer) {
+        this.customer = customer;
     }
 }
