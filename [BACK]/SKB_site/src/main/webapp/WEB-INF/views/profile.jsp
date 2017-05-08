@@ -12,7 +12,7 @@
     <title>Личная информация</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/personal_Information.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/profile.css">
 
 </head>
 <body>
