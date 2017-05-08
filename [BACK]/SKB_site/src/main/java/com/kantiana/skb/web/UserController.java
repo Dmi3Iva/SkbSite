@@ -67,4 +67,14 @@ public class UserController {
         }
         return "authorization";
     }
+
+    // Контроллер личного кабинета
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(Model model) {
+        // Достаём информацию о текущем пользователе и передаём её в .jsp
+        String username = securityService.findLoggedInUsername();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        return "profile";
+    }
 }
