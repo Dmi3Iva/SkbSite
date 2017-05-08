@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-xs-5">
                                 <input type="submit" class="btn btn-back btn-lg" value="Забыли пароль">
-                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index_student';" value="На главную">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index';" value="На главную">
                             </div>
                         </div>
                     </form:form>
