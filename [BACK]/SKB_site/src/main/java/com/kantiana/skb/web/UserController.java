@@ -31,16 +31,16 @@ public class UserController {
     private UserValidator userValidator;
 
     // Контроллер главной страницы
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index_student"}, method = RequestMethod.GET)
     public String index(Model model, String logout) {
-        // Передаём в index.jsp все новости
+        // Передаём в index_student.jsp все новости
         List<News> news = newsService.getAllNews();
         model.addAttribute("news", news);
         // Если пользователь вышел сообщаем ему об этом
         if (logout != null) {
             model.addAttribute("logoutMessage", "Вы успешно вышли");
         }
-        return "index";
+        return "index_student";
     }
 
     // Контроллер страницы регистрации
@@ -63,11 +63,11 @@ public class UserController {
     }
 
     // Контроллер страницы входа
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String login(Model model, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
         }
-        return "login";
+        return "authorization";
     }
 }

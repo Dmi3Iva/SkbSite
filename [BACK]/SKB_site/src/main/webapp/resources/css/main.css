@@ -1,308 +1,440 @@
+/*@import "resources/bootstrap/css/bootstrap.css";*/
+@import url("https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css");
+
+
+/*определяем цвета*/
+:root {
+	--blue:#0066d2;
+	--white: #f8fdff;
+	--white-hover: #caf2ff;
+}
+
 body{
-	margin: 0;
-	padding: 0;
-	background-color: rgb(255, 255, 255);
+	font-family:"Roboto Light",sans-serif;
+	margin-top: 50px;
+	font-size: 12px;
+	color:var(--white);
+	margin-top: 85px;
 }
 
-header {
-	width: 100%;
-	height: 7%;
+.nav-item, .navbar button span{
+	color:var(--white);
+}
+
+.navbar button {
+	border: 1px solid var(--white);
+	margin-top: 15px;
+}
+
+.navbar{
+	border-radius: 0px;
+}
+
+@media screen and (max-width: 767px){
+	#main_nav{
+		display: block;
+	}
+}
+
+#main_nav li{
+	margin: 0px;
+
+}
+
+@media screen and (max-width: 767px) and (min-width:767px){
+	#main_nav li{
+		margin: auto;
+	}
+}
+
+/*Полоски по бокам*/
+#leftSide, #rightSide{
+	background-color: #f2f2f2;
+	height: 130%;
 	position: fixed;
-	margin: 0;
-	padding-top: 20px;
-	border: 0px;
-	font-family: Helvetica ;
-	background-color:#1391c4;
-	display: inline-block;
+	top:10px;
+	padding: 0px;
+	margin: 0px;
+	width: 10%;
+	z-index: -1;
 }
 
-header a{
-	color: #efe;
+#rightSide{
+	right:0px;
+}
+
+@media screen and (max-width: 1443px){
+	#leftSide,#rightSide{
+		visibility: hidden;
+	}
+}
+
+/*отступ для иконок*/
+#navbarsDefault ul {
+	padding-left: 15px;
+}
+
+/* Сайт с пояснениями о классах навигационного меню
+https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
+*/
+
+.navbar-default{
+	background-color: var(--blue);
+	border-color: var(--blue);
+}
+
+.navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
+	color: var(--white);
+}
+
+.navbar>a{
+	font-size:18px;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color:var(--white);
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	color: var(--white-hover);
+}
+
+.navbar-default .navbar-link, .navbar-link:visited {
+	color:var(--white);
+}
+.navbar-default .navbar-link:hover,.navbar-default .navbar-link:focus{
+	color:var(--white-hover);
 	text-decoration: none;
 }
 
-header a:hover {
-	color: #82ccd9;
+.navbar .navbar-collapse{
+	padding: 0;
 }
 
-#title {
-	float: left;
-	text-align: center;
-	display: inline-block;
-	margin: 10px 10px 0px 150px;
-	margin-left: 10%;
-	font-size: 150%;
+#logotip:visited, #logotip:hover, #logotip{
+	background-color: transparent;
 }
 
-#enter {
-	float: right;
-	margin: 15px 10px 0px 50px ;
-	font-size: 24px;
+/* Исправление бага с маленькими вкладками*/
+@media (min-width: 768px){
+	navs.less, .nav-justified > li {
+		width: 100% !important;
+	}
 }
 
-#registration {
-	float: right;
-	margin: 15px 150px 0px 25px;
-	margin-right: 10%;
-	font-size: 24px;
+/*Карусель*/
+#carousel {
+	margin: 1% 10%;
+	background-color: var(--blue);
 }
 
-/*Создание боковых вставок*/
-
-#left_grey {
-	position: fixed;
-	left: 0;
-	width: 10%;
-	height: 100%;
-	background-color: rgb(240, 240, 240);
+#carousel img {
+	margin: auto;
 }
 
-#right_grey {
-	position: fixed;
-	right:  0;
-	width: 10%;
-	height: 90%;
-	background-color: rgb(240, 240, 240);
+.carousel-indicators{
+	margin: auto;
 }
 
-/*Стиль контента*/
 
-#content {
-	margin: 0 10% 0 10%;
-	padding: 5% 0 8% 0;
-	background-color: #fff;
-}
-
-/*Создвние навигационного меню*/
-
-#logo {
-	width: 12%;
-}
-
+/*Бронирование оборудования*/
 #main_nav {
-	float: right;
-	margin-right: 1%;
-	background-color: #fff;
+	padding-top: 25px;
 }
 
-#main_nav ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+.masthead{
+	margin-bottom: 10px;
+}
+
+.masthead ul li{
+	padding-right: 0;
+	padding-left: 0;
+	margin: 0 10px;
+
+}
+
+.masthead li a{
 	font-size: 20px;
-	background-color: #fff;
-	text-align: center;
-}
-
-#main_nav li {
-	font-family: 'Oswald', sans-serif;
-	font-size:  2.4em;
-	line-height:  40px;
-	height: 50px;
-	float: left;
-	margin: 10px;
-	padding: 0px 10px;
-}
-
-#main_nav a{
-	color: #5c7681;
-	text-decoration: none;
-	font-weight: bold;
-	text-align: center;
-	padding: 14px 16px;
-	font-size: 20px;
-	transition: .3s background-color;
-}
-
-#main_nav a:hover {
-	background-color: #82ccd9;
-	color: black;
-}
-
-#main_nav a.active {
-	background-color: #1391c4;
-	color: white;
-	cursor: default;
 }
 
 #search {
-	display: block;
-	float: right;
-	width: 200px;
-	overflow: hidden;
+	padding: 10px 15px;
 }
 
-/*Работа с тематическим содержимым*/
-
-#row {
-	display: block;
+@media screen and (max-width: 767px) {
+	.masthead li{
+		text-align: center;
+		width: 100%;
+	}
 }
 
-.article {
-	/*float: left;*/
-	width: 95%;
-	background-color: rgb(240, 240, 240);
-	margin: 5px 1% 5px 2%;
+@media (max-width: 991px) and (min-width: 767px){
+	#main_nav li {
+		width: 150px;
+	}
+	#main_nav li a{
+		padding: 0;
+	}
+	#main_nav {
+		padding-top: 30px;
+		padding-left: 27px;
+	}
+	.logotip {
+		width: 50px;
+	}
 }
 
-.article__image img{
-	width: 150px;
+@media (max-width: 767px) and (min-width: 767px){
+	#main_nav {
+		float: right;
+		display: inline-block;
+	}
+	#main_nav li a{
+		text-align: center;
+	}
 }
 
-.article__info__preview {
+@media (max-width: 767px){
+	.search_group{
+		width: 50%;
+		margin: auto;
+	}
+	#main_nav {
+		padding-top: 0;
+		padding-left: auto;
+		text-align: center;
+	}
 }
 
-.article__info__preview a {
+/*Контент*/
+.link{
+	padding-top: 5px;
+	padding-bottom: 20px;
+	white-space:nowrap;
+}
+
+.link a{
+	margin-right:5px;
 	text-decoration: none;
-	color: #5c7681;
 }
 
-/*Работа с footerом*/
+.container{
+	margin-top: 20px;
+}
+
+.book{
+	color:var(--white);
+	background-color: var(--blue);
+	height: 280px;
+}
+
+.book p{
+	padding:10px;
+}
+
+.book img{
+	float:left;
+	padding: 10px;
+}
+
+@media screen and (max-width: 991px) {
+	.book img{
+		width: 68%;
+		padding:5px;
+	}
+}
+
+.book a,.book a:hover, .book a:focus{
+	color:var(--white);
+	padding: 10px 15px;
+	border-radius: 26px;
+	background-color: #3095ff;
+	box-sizing:border-box;
+}
+
+@media screen and (max-width: 1198px)
+{
+	.book a{
+		margin-right: 10px;
+	}
+}
+
+/*для слишком маленьких картинок убираем картинку*/
+@media screen and (max-width: 767px) {
+	.book{
+		position: relative;
+		height: auto;
+	}
+	.book img {
+		visibility: hidden;
+		width: 0px;
+		height: 0px;
+		padding: 0px;
+	}
+
+	.book a{
+		width: 80%;
+		text-align: center;
+	}
+}
+
+.book{
+	margin-bottom: 10px;
+}
+
+/*События*/
+.events{
+	padding:10px;
+	height: 280px;
+	margin-bottom: 10px;
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.events a,.events a:hover, .events a:focus{
+	color:var(--white);
+	padding: 10px 15px;
+	border-radius: 26px;
+	background-color: #3095ff;
+}
+
+.events .link{
+	margin-top: 50px;
+}
+
+/*Новости и проекты*/
+#news, #projects{
+	background-color: var(--blue);
+	color:var(--white);
+	width:70%;
+}
+
+#news div,#projects div{
+	float:right;
+}
+
+ul#news li, ul#projects li{
+	display: inline-block;
+	white-space:nowrap;
+	padding: 0px;
+}
+
+ul#news,ul#projects{
+	padding: 0px;
+	width: 100%;
+	height: 70px;
+}
+ul#news li:first-child,ul#projects li:first-child{
+	padding: 0px;
+	margin: 0px;
+	display: inline-block;
+}
+
+ul#news li:nth-child(2),ul#projects li:nth-child(2){
+	padding: 10px;
+	margin: 13px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.smallBlueBox{
+	height: 70px;
+	width: 15px;
+	background-color: #3095ff;
+}
+
+ul#news li:nth-child(3),ul#projects li:nth-child(3){
+	font-size: 12px;
+	margin-top: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/*форма ссылки*/
+#news div a, #projects div a{
+	color:var(--white);
+	padding: 4px 10px;
+	border-radius: 26px;
+	background-color: #3095ff;
+}
+
+/*блок новостей или проектов*/
+.block img{
+	float: left;
+	padding-right: 10px;
+}
+
+.block{
+	padding:60px 0px;
+	margin-bottom: 30px;
+}
+
+@media screen and (max-width: 991px) {
+	.block img{
+		position:static;
+	}
+}
+
+.block .description{
+	color:#003765;
+	font-size: 12px;
+}
+
+.block .title{
+	color:#282828;
+	font-size:16px;
+}
+
+.block .article{
+	color:#6a6a6a;
+	font-size:12px;
+}
+
+.block .detailes{
+	color:#297bc0;
+	font-size:12px;
+}
+
+.block .detailes a{
+	text-decoration: none;
+}
+
+/*footer*/
+
+.socialIcons img {
+	height: 22px;
+}
 
 footer {
-	background-color:#1391c4;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	padding: 10px;
+	background-color: var(--blue);
+	color:var(--white);
+	font-size: 16px;
+}
+
+footer li a{
+	text-decoration: none;
+	color:var(--white);
+}
+
+.footer_navbar {
 	width: 100%;
 }
 
-footer a {
-	text-decoration: none;
-	font-size: 17px;
-	color: #efe;
-}
 
-#footer_news {
-	margin-left: 10%;
+/*Для фикскированного body, при уменьшении экрана меньше 360px*/
+@media screen and (max-width: 386px){
+	body {
+		position: absolute;
+		width: 386px;
+	}
+	.header_navbar {
+		width: 386px;
+	}
+	.footer_navbar {
+		width: 386px;
+	}
+	.my_header {
+		width: 386px;
+	}
 }
-
-#footer_equipments {
-	margin-left: 10%;
-}
-
-#footer_projects {
-	margin-left: 10%;
-}
-
-#footer_orders {
-	margin-left: 10%;
-}
-
-#footer_about {
-	margin-left: 10%;
-}
-
-.footer_right {
-	text-align: right;
-	margin-right: 11%;
-	float: right;
-	font-size: 17px;
-	color: #efe;
-}
-
-.footer_right img {
-	width: 25px;
-}
-
-#footer_nav{
-	margin-left: 10%;
-	width: 30%;
-}
-
-#footer_nav ul {
-	width: 30%;
-	list-style: none;
-}
-
-#footer_nav a{
-	text-decoration: none;
-	color: #efe;
-	font-size: 17px;
-}
-
-#footer_nav a:hover {
-	color: #82ccd9;
-}
-
-#about_information {
-	float: right;
-	margin-right: 10%;
-	color: #efe;
-}
-
-.clear {
-	clear: all;
-}
-
-/*
-body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-}
-
-#entry_form {
-	float:right;
-	padding-right: 13px;
-}
-
-#entry_form li {
-	display: inline;
-	padding-right: 7px;
-}
-
-#logo {
-	float: left;
-	padding-left: 2%;
-	width: 220px;
-}
-/*
-#logo_name {
-	margin-left: 22%;
-	font-family: fantasy;
-	text-align: left;
-	font-size: 40px;
-	vertical-align: middle;
-}
-
-#main_nav {
-		text-align: center;
-		border-collapse: collapse;
-		margin: 20px;
-}
-#main_nav ul {
-		text-align: center;
-		padding: 0px;
-		border-collapse: collapse;
-		margin: 20px;
-}
-#main_nav ul li {
-		display: inline;
-		border: 1px solid black;
-		padding: 10px 5% 10px 5%;
-		text-align: center;
-		margin: -2px;
-}
-
-#content{
-	margin: 20px;
-	padding: 10px;
-}``
-
-#footer_nav {
-	text-align: center;
-}
-
-#footer_nav li {
-	display: inline;
-}
-
-#about {
-	text-align: right;
-}
-
-.clear {
-	clear: left;
-}
-*/
