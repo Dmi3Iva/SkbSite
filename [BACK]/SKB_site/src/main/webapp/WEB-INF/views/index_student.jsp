@@ -2,7 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="contextPath" value = "#{pageContext.request.contextPath}"/>
+<c:set var = "contextPath" value = "#{pageContext.request.contextPath}"/>
+<c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
 <!doctype html>
 <html>
@@ -22,7 +23,6 @@
 <!--Left and right section -->
     <div id="leftSide"></div>
     <div id="rightSide"></div>
-
 <!--HEADER -->
     <nav class="navbar navbar-toggleable-sm navbar-default fixed-top my_header ">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -33,12 +33,28 @@
         <a class="navbar-brand pt-3 px-0" href="#">Студентческое конструкторское бюро</a>
         <div class="collapse navbar-collapse" id="navbarsDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-out"></span> Вход </a>
-                </li>
+                <!--Если пользователь не зарегистрирован, то в хедере выводятся кнопки "Регистрация", "Войти"-->
+                <c:if test = "${userPrincipal.name == null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span>Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-in"></span>Вход</a>
+                    </li>
+                </c:if>
+                <!--Иначе выводятся "Личный кабинет" и "Выйти"-->
+                <c:if test = "${userPrincipal.name != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-home"></span>Личный кабинет</a>
+                    </li>
+                    <!--Незримая форма, помогающая выйти-->
+                    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>Выход</a>
+                    </li>
+                </c:if>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
@@ -71,18 +87,17 @@
         </div>
     </nav>
 
-
     <!--Приветствие для авторизоавнного пользователя-->
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-        Welcome ${pageContext.request.userPrincipal.name}
-        <a onclick="document.forms['logoutForm'].submit()">Выйти</a>
-    </c:if>
-    <c:if test="${logoutMessage != null}">
-        <br/><h4>${logoutMessage}</h4>
-    </c:if>
+    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+        <%--<form id="logoutForm" method="POST" action="${contextPath}/logout">--%>
+            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+        <%--</form>--%>
+        <%--Welcome ${pageContext.request.userPrincipal.name}--%>
+        <%--<a onclick="document.forms['logoutForm'].submit()">Выйти</a>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${logoutMessage != null}">--%>
+        <%--<br/><h4>${logoutMessage}</h4>--%>
+    <%--</c:if>--%>
 
     <!-- main-->
     <div id="carousel" class="carousel slide">
