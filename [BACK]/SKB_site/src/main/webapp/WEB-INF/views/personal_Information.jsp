@@ -56,7 +56,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2 hidden-xs">
-                        <a class="logotip" href="index_student.html"><img src ="${contextPath}/resources/images/logo.png"></a>
+                        <a class="logotip" href="/index_student"><img src ="${contextPath}/resources/images/logo.png"></a>
                     </div>
                     <div class="col-sm-10 mx-auto">
                         <ul id="main_nav" class="nav nav-justified">

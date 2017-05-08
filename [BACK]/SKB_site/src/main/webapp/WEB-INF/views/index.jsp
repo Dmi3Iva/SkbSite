@@ -132,7 +132,7 @@
             </ul>
         </nav> -->
         <div class = "footer_right">Мы в социальных сетях</div>
-        <div id = "footer_news"><a href="index.html">Новости</a></div>
+        <div id = "footer_news"><a href="/index">Новости</a></div>
         <div class = "footer_right">
             <a href="https://vk.com"><img src="${contextPath}/resources/images/vk.png" alt="Vkontakte"></a>
             <a href="https://instagram.com"><img src="${contextPath}/resources/images/instagram.png" alt="Instagram"></a>
