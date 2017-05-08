@@ -25,25 +25,33 @@
                 <div class="registration-form">
                     <h1>Регистрация</h1>
                     <form:form method="POST" modelAttribute="userForm" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-xs-5" for="firstName">Имя</label>
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" id="firstName" placeholder="">
+                        <spring:bind path="firstName">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="firstName">Имя</label>
+                                <div class="col-xs-7">
+                                    <form:input type="text" path="firstName" class="form-control" id="firstName"
+                                           placeholder="" autofocus="true"/>
+                                    <form:errors path="firstName"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-5" for="lastName">Фамилия</label>
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" id="lastName" placeholder="">
+                        </spring:bind>
+                        <spring:bind path="lastName">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="lastName">Фамилия</label>
+                                <div class="col-xs-7">
+                                    <form:input type="text" path="lastName" class="form-control" id="lastName"
+                                                placeholder="" autofocus="true"/>
+                                    <form:errors path="lastName"/>
+                                </div>
                             </div>
-                        </div>
+                        </spring:bind>
                         <spring:bind path="username">
                             <div class="form-group">
                                 <label class="control-label col-xs-5">Логин</label>
                                 <div class="col-xs-7">
-                                    <form:input type="text" path="username" placeholder="Имя пользователя"
-                                                autofocus="true"></form:input>
-                                    <form:errors path="username"></form:errors>
+                                    <form:input type="text" path="username" class="form-control"
+                                                autofocus="true" placeholder=""/>
+                                    <form:errors path="username"/>
                                 </div>
                             </div>
                         </spring:bind>
@@ -51,8 +59,8 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-5">Пароль</label>
                                 <div class="col-xs-7">
-                                    <form:input type="password" path="password" placeholder="Пароль"></form:input>
-                                    <form:errors path="password"></form:errors>
+                                    <form:input type="password" path="password" class="form-control" placeholder=""/>
+                                    <form:errors path="password"/>
                                 </div>
                             </div>
                         </spring:bind>
@@ -60,24 +68,29 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-5">Повторите пароль</label>
                                 <div class="col-xs-7">
-                                    <form:input type="password" path="passwordConfirm"
-                                                placeholder="Повторите свой пароль"></form:input>
-                                    <form:errors path="passwordConfirm"></form:errors>
+                                    <form:input type="password" path="passwordConfirm" class="form-control" placeholder=""/>
+                                    <form:errors path="passwordConfirm"/>
                                 </div>
                             </div>
                         </spring:bind>
-                        <div class="form-group">
-                            <label class="control-label col-xs-5" for="e-mail">E-mail</label>
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" id="e-mail" placeholder="">
+                        <spring:bind path="email">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="e-mail">E-mail</label>
+                                <div class="col-xs-7">
+                                    <form:input type="text" path="email" class="form-control" id="e-mail" placeholder=""/>
+                                    <form:errors path="email"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-5" for="organization">Организация</label>
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" id="organization" placeholder="">
+                        </spring:bind>
+                        <spring:bind path="organization">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="organization">Организация</label>
+                                <div class="col-xs-7">
+                                    <form:input type="text" path="organization" class="form-control" id="organization" placeholder=""/>
+                                    <form:errors path="organization"/>
+                                </div>
                             </div>
-                        </div>
+                        </spring:bind>
                         <div class="form-group">
                             <label class="control-label col-xs-5" for="kapcha">Введите число с картинки</label>
                             <div class="col-xs-7">

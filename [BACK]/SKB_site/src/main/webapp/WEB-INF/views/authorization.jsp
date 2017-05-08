@@ -30,13 +30,13 @@
                             <p class="alert-danger">${error}</p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">
-                                <input name="username" type="text" class="form-control" placeholder="Имя пользователя" autofocus="true"/>
+                                <input name="username" type="text" class="form-control" autofocus="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5">Пароль</label>
                             <div class="col-xs-5">
-                                <input name="password" type="password" class="form-control" placeholder="Пароль"/>
+                                <input name="password" type="password" class="form-control"/>
                             </div>
                         </div>
                         <!--Какая-то защита от кросс-доменных запросов-->
