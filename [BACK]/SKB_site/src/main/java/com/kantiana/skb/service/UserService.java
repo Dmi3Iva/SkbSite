@@ -5,9 +5,9 @@ import com.kantiana.skb.model.User;
 import java.util.List;
 
 public interface UserService {
-    void save(User user);
+    public void save(User user);
 
-    User findByUsername(String username);
+    public User findByUsername(String username);
 
-    List<User> getAll();
+    public List<User> getAll();
 }
