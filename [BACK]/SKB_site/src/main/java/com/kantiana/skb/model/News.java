@@ -51,4 +51,13 @@ public class News {
     public User getAuthor() { return author; }
 
     public void setAuthor(User author) { this.author = author; }
+
+    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 }

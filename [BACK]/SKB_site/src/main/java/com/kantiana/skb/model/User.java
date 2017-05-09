@@ -22,6 +22,7 @@ public class User {
     private String about;
     private Set<News> news;
     private Set<Role> roles;
+    private Set<Comment> comments;
     private boolean customer;
 
     @Id
@@ -159,6 +160,15 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @OneToMany(targetEntity = Comment.class, mappedBy = "author", cascade = CascadeType.ALL)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     @Transient
