@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class News {
     private Long id;
     private String name;
-    private String article;
+    private String content;
     private String dateOfCreation;
     private User author;
 
@@ -30,10 +30,10 @@ public class News {
     }
 
     public String getArticle() {
-        return article;
+        return content;
     }
 
-    public void setArticle(String article) { this.article = article;}
+    public void setArticle(String content) { this.content = content;}
 
     @Column(name = "date_of_creation")
     public String getDateOfCreation() {
