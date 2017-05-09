@@ -1,6 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="news")
@@ -10,6 +11,7 @@ public class News {
     private String content;
     private String dateOfCreation;
     private User author;
+    private Set<Comment> comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +31,11 @@ public class News {
         this.name = name;
     }
 
-    public String getArticle() {
+    public String getContent() {
         return content;
     }
 
-    public void setArticle(String content) { this.content = content;}
+    public void setContent(String content) { this.content = content;}
 
     @Column(name = "date_of_creation")
     public String getDateOfCreation() {
