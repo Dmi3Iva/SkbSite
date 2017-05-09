@@ -10,11 +10,16 @@ public class User {
     private String lastName;
     private String firstName;
     private String middleName;
+    private String dateOfBirth;
     private String username;
     private String email;
     private String organization;
     private String password;
     private String passwordConfirm;
+    private String photoPath;
+    private String github;
+    private String contactDetails;
+    private String about;
     private Set<News> news;
     private Set<Role> roles;
     private boolean customer;
@@ -51,6 +56,15 @@ public class User {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    @Column(name = "date_of_birth")
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getUsername() {
@@ -92,6 +106,40 @@ public class User {
 
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+
+    @Column(name = "photo_path")
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+    @Column(name = "contact_details")
+    public String getContactDetails() {
+        return contactDetails;
+    }
+
+    public void setContactDetails(String contactDetails) {
+        this.contactDetails = contactDetails;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     @OneToMany(targetEntity = News.class,  mappedBy = "author", cascade = CascadeType.ALL)
