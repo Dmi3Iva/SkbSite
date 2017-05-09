@@ -12,6 +12,10 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentRepository commentRepository;
 
+    public void save(Comment comment) {
+        commentRepository.save(comment);
+    }
+
     public List<Comment> getAll() {
         return commentRepository.findAll();
     }

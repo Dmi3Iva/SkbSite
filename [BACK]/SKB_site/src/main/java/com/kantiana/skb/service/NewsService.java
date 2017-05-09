@@ -4,5 +4,7 @@ import com.kantiana.skb.model.News;
 import java.util.List;
 
 public interface NewsService {
-    public List<News> getAllNews();
+    public void save(News news);
+
+    public List<News> getAll();
 }
