@@ -6,5 +6,5 @@ import java.util.List;
 public interface NewsService {
     public void save(News news);
 
-    public List<News> getAll();
+    public List<News> getAllNews();
 }

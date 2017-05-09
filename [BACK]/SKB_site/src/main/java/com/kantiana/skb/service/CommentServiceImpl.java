@@ -16,7 +16,7 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.save(comment);
     }
 
-    public List<Comment> getAll() {
+    public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
 }

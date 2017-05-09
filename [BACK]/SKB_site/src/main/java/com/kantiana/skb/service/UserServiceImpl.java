@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     final String ROLE_MEMBER = "ROLE_MEMBER",
                ROLE_CUSTOMER = "ROLE_CUSTOMER";
 
-    public List<User> getAll() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
