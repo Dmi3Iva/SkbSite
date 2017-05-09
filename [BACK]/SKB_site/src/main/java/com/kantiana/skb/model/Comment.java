@@ -1,6 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "comments")
@@ -8,7 +9,7 @@ public class Comment {
     private Long id;
     private News news;
     private User author;
-    private String dateOfCreation;
+    private Date dateOfCreation;
     private String content;
 
     @Id
@@ -41,11 +42,11 @@ public class Comment {
         this.author = author;
     }
 
-    public String getDateOfCreation() {
+    public Date getDateOfCreation() {
         return dateOfCreation;
     }
 
-    public void setDateOfCreation(String dateOfCreation) {
+    public void setDateOfCreation(Date dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
 

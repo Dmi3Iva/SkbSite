@@ -1,6 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -10,7 +11,7 @@ public class User {
     private String lastName;
     private String firstName;
     private String middleName;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String username;
     private String email;
     private String organization;
@@ -60,11 +61,11 @@ public class User {
     }
 
     @Column(name = "date_of_birth")
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
