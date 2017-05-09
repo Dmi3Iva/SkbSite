@@ -26,27 +26,28 @@
                     <h1>Авторизация</h1>
                     <form:form method="POST" action="${contextPath}/login" class="form-horizontal">
                         <div class="form-group">
+                            <!--Ошибка некрасиво выводится-->
+                            <p class="alert-danger">${error}</p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">
-                                <input name="username" type="text" class="form-control" placeholder="Имя пользователя" autofocus="true"/>
+                                <input name="username" type="text" class="form-control" autofocus="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5">Пароль</label>
                             <div class="col-xs-5">
-                                <input name="password" type="password" class="form-control" placeholder="Пароль"/>
+                                <input name="password" type="password" class="form-control"/>
                             </div>
                         </div>
-                        <!-- не знаю для чего это, поэтому просто закомментировал
+                        <!--Какая-то защита от кросс-доменных запросов-->
                         <input type="hidden" name="$ {_csrf.parameterName}" value="$ {_csrf.token}"/>
-                        -->
                         <div class="form-group">
                             <div class=" col-xs-offset-3 col-xs-2">
                                 <button type="submit" class="btn btn-primary btn-lg text-right">Войти</button>
                             </div>
                             <div class="col-xs-5">
                                 <input type="submit" class="btn btn-back btn-lg" value="Забыли пароль">
-                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index_student';" value="На главную">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index';" value="На главную">
                             </div>
                         </div>
                     </form:form>

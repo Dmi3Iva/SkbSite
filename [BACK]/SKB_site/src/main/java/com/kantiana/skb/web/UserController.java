@@ -28,16 +28,16 @@ public class UserController {
     private UserValidator userValidator;
 
     // Контроллер главной страницы
-    @RequestMapping(value = {"/", "/index_student"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model, String logout) {
-        // Передаём в index_student.jsp все новости
+        // Передаём в index.jsp все новости
         List<News> news = newsService.getAllNews();
         model.addAttribute("news", news);
         // Если пользователь вышел сообщаем ему об этом
         if (logout != null) {
             model.addAttribute("logoutMessage", "Вы успешно вышли");
         }
-        return "index_student";
+        return "index";
     }
 
     // Контроллер страницы регистрации
@@ -61,10 +61,20 @@ public class UserController {
 
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
-    public String login(Model model, String error) {
+    public String authorization(Model model, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
         }
         return "authorization";
+    }
+
+    // Контроллер личного кабинета
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(Model model) {
+        // Достаём информацию о текущем пользователе и передаём её в .jsp
+        String username = securityService.findLoggedInUsername();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        return "profile";
     }
 }

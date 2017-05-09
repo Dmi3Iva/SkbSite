@@ -7,12 +7,14 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <!--Здесь настраиваются страницы входа, возможность выхода, фильтры доступа к страницам-->
     <http auto-config="true">
-        <form-login login-page="/login" default-target-url="/"
-                    authentication-failure-url="/login?error"
+        <form-login login-page="/authorization" default-target-url="/"
+                    authentication-failure-url="/authorization?error"
                     username-parameter="username"
                     password-parameter="password"/>
         <logout logout-success-url="/index?logout"/>
+        <intercept-url pattern="/profile" access="isAuthenticated()"/>
     </http>
 
     <authentication-manager alias="authenticationManager">
