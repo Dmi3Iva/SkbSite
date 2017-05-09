@@ -16,6 +16,7 @@
     <title>Регистрация</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/registration.css"></head>
 <body>
 
@@ -42,6 +43,22 @@
                                     <form:input type="text" path="lastName" class="form-control" id="lastName"
                                                 placeholder="" autofocus="true"/>
                                     <form:errors path="lastName"/>
+                                </div>
+                            </div>
+                        </spring:bind>
+                        <spring:bind path="middleName">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="middleName">Отчество</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control" id="middleName" placeholder="">
+                                </div>
+                            </div>
+                        </spring:bind>
+                        <spring:bind path="dateOfBirth">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>
+                                <div class="col-xs-7">
+                                    <input type="date" class="form-control" id="dateOfBirth" placeholder="">
                                 </div>
                             </div>
                         </spring:bind>

@@ -16,6 +16,7 @@
     <title>Авторизация</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/authorization.css">
 </head>
 <body>

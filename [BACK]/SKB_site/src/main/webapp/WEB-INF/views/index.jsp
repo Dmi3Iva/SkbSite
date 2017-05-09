@@ -16,6 +16,7 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/main.css">
 
     <!--Незримая форма, помогающая выйти-->

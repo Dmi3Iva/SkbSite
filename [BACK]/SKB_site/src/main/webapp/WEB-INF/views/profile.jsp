@@ -12,6 +12,7 @@
     <title>Личная информация</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/profile.css">
 
     <!--Незримая форма, помогающая выйти-->
@@ -89,11 +90,16 @@
                         <img src="${contextPath}/resources/images/hacker.jpg">
                     </div>
                     <div class="col-xs-6">
-                        <p>Ф.И.О: ${user.lastName} ${user.firstName}</p>
+                        <p>Ф.И.О: ${user.lastName} ${user.firstName} Отчество</p>
+                        <p>Дата рождения: 13.12.2001</p>
+                        <p>Пол: мужской</p>
                         <p>Логин: ${user.username}</p>
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
                         <p>Проекты: Телеграмм, ВК</p>
+                        <p>Github: https://github.com/BestProger666</p>
+                        <p>Мобильный телефон: 88005553535</p>
+                        <p>О себе: люблю программирование и русский рэп.</p>
                     </div>
                 </div>
                 <div class="col-xs-6">
