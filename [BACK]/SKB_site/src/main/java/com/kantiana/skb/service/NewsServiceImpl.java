@@ -12,6 +12,10 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsRepository newsRepository;
 
+    public void save(News news) {
+        newsRepository.save(news);
+    }
+
     public List<News> getAllNews() {
         return newsRepository.findAll();
     }

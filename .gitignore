@@ -9,3 +9,14 @@ buildNumber.properties
 .mvn/timing.properties
 workspace.xml
 [BACK]/SKB_site/.idea/workspace.xml
+**/.idea/**
+*.iml
+
+**/.idea/**
+*.iml
+*.exe
+*.out
+**/out/**
+*.iml
+**/META-INF/**
+*.jar

@@ -1,5 +1,6 @@
 @import "bootstrap/css/bootstrap.css";
 
+
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -89,6 +90,22 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 .navbar-default .navbar-toggle .icon-bar {
     background-color: var(--white);
 }
+
+
+/*Карусель*/
+#carousel {
+  margin: 1% 10%;
+  background-color: var(--blue);
+}
+
+#carousel img {
+  margin: auto;
+}
+
+.carousel-indicators{
+  margin: auto;
+}
+
 
 /*Вкладки навигиации*/
 #main_nav {
@@ -364,15 +381,23 @@ footer li a{
   color:var(--white);
 }
 
+.footer_navbar {
+  width: 100%;
+}
+
+
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
  @media screen and (max-width: 424px){
   body {
     position: absolute;
+    width: 386px;
   }
+
   .navbar-fixed-top {
     width: 424px;
   }
   .footer_navbar {
     width: 424px;
+
   }
  }

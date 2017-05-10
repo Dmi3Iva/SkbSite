@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="skb@localhost">
-  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.0">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.1">
     <root id="1"/>
     <database id="2" parent="1" name="skb">
-      <ObjectId>16384</ObjectId>
+      <ObjectId>16573</ObjectId>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-04-27.21:05:53.532</IntrospectionTimestamp>
-      <IntrospectionStateNumber>545</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-05-09.22:14:25.951</IntrospectionTimestamp>
+      <IntrospectionStateNumber>633</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,67 +30,70 @@
       <ObjectId>12113</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="news_id_seq">
-      <ObjectId>16398</ObjectId>
-      <StateNumber>545</StateNumber>
+      <ObjectId>16587</ObjectId>
+      <StateNumber>633</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <sequence id="10" parent="3" name="users_id_seq">
-      <ObjectId>16385</ObjectId>
-      <StateNumber>544</StateNumber>
+      <ObjectId>16574</ObjectId>
+      <StateNumber>632</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <table id="11" parent="3" name="news">
-      <ObjectId>16400</ObjectId>
-      <StateNumber>545</StateNumber>
+      <ObjectId>16589</ObjectId>
+      <StateNumber>633</StateNumber>
     </table>
     <table id="12" parent="3" name="users">
-      <ObjectId>16387</ObjectId>
-      <StateNumber>545</StateNumber>
+      <ObjectId>16576</ObjectId>
+      <StateNumber>633</StateNumber>
     </table>
     <column id="13" parent="11" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>545</StateNumber>
+      <StateNumber>633</StateNumber>
+      <SequenceName>news_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;news_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="14" parent="11" name="authorid">
+    <column id="14" parent="11" name="author_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>545</StateNumber>
+      <StateNumber>633</StateNumber>
     </column>
     <column id="15" parent="11" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>545</StateNumber>
+      <StateNumber>633</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
     <column id="16" parent="11" name="article">
       <Position>4</Position>
       <DataType>text|0</DataType>
-      <StateNumber>545</StateNumber>
+      <StateNumber>633</StateNumber>
     </column>
-    <column id="17" parent="11" name="dateofcreation">
+    <column id="17" parent="11" name="date_of_creation">
       <Position>5</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>545</StateNumber>
+      <StateNumber>633</StateNumber>
     </column>
     <index id="18" parent="11" name="news_pkey">
-      <ObjectId>16408</ObjectId>
+      <ObjectId>16597</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="19" parent="11" name="news_pkey">
-      <ObjectId>16409</ObjectId>
+      <ObjectId>16598</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>news_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="20" parent="11" name="news_authorid_fkey">
-      <ObjectId>16410</ObjectId>
-      <ColNames>authorid</ColNames>
+    <foreign-key id="20" parent="11" name="news_author_id_fkey">
+      <ObjectId>16599</ObjectId>
+      <ColNames>author_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
@@ -99,28 +102,29 @@
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>544</StateNumber>
+      <StateNumber>632</StateNumber>
+      <SequenceName>users_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="22" parent="12" name="name">
+    <column id="22" parent="12" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>544</StateNumber>
+      <StateNumber>632</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
     <column id="23" parent="12" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>544</StateNumber>
+      <StateNumber>632</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
     <index id="24" parent="12" name="users_pkey">
-      <ObjectId>16396</ObjectId>
+      <ObjectId>16585</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="25" parent="12" name="users_pkey">
-      <ObjectId>16397</ObjectId>
+      <ObjectId>16586</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
