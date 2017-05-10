@@ -9,7 +9,6 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
@@ -21,30 +20,36 @@
 
 
 <!--header-->
-  <nav class="navbar navbar-toggleable-sm navbar-default fixed-top ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-         data-target="#navbarsDefault" aria-controls="navbarsExampleDefault"
-          aria-expanded="false" aria-label="Toggle navigation">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </button>
-        <a class="navbar-brand pt-3 px-0" href="#">Студентческое конструкторское бюро</a>
-        <div class="collapse navbar-collapse" id="navbarsDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+<nav class="navbar navbar-default navbar-toggleable-md navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Студентческое конструкторское бюро</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+          <form class="navbar-nav navbar-form  ">
+            <div class="form-group">
+              <input type="text" placeholder="Поиск" class="form-control">
+            </div>
+            <button type="submit" class="btn btn btn-default">Найти</button>
+          </form>
+
+          <ul class="nav navbar-nav ">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Личный кабинет </a>
             </li>
-            <li class="nav-item">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-out"></span> Выход </a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
-          </form>
-        </div>
-      </nav>
-
-
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
       <!--navbar-->
       <nav>
@@ -53,11 +58,11 @@
         <div class="container">
           <div class="row">
               <div class="col-sm-2 hidden-xs">
-                <a class="logotip" href="index.html"><img src ="images/logo.png"></a>
+                <a class="logotip" href="#"><img src ="images/logo.png"></a>
               </div>
-              <div class="col-sm-10 mx-auto">
+              <div class="col-sm-10">
                 <ul id="main_nav" class="nav nav-justified">
-                  <li class=" visible-xs"><a class="logotip" href=""><img src ="images/logo-100.png"></a></li>
+                  <li class=" visible-xs"><a class="logotip" href="#"><img src ="images/logo-100.png"></a></li>
                   <li class=""><a href="#">Новости</a></li>
                   <li class=""><a href="#">Оборудование</a></li>
                   <li class=""><a href="#">Проекты</a></li>
@@ -70,26 +75,27 @@
       </div>
     </nav>
 
-
-<!-- main-->
 <div class="container" >
-
 <div class= "row">
   <!--Бронирование оборудования-->
-  <div class="col-md-8 col-lg-8 .col-sm-8" >
-    <div class = "book" id="mainBlock">
-      <img src = "images/professiya_programmist5.jpg" alt="Работающий программист" width="69%">
-      <p>Если Вы давно хотели научиться программировать микроконтроллеры,
-         но по какой-то причине не знали что этим можно заниматься в СКБ,
-          то сейчас самое время забронировать для себя нужное оборудование!</p>
-      <div class="link" align="center">
-        <a href="#">Забронировать оборудование</a>
+  <div class="col-md-8" >
+    <div class="" id="blockBook">
+      <div class="col-xs-6 col-xs-offset-6">
+        <p class="brand-right">Если Вы давно хотели научиться программировать микроконтроллеры,
+           но по какой-то причине не знали что этим можно заниматься в СКБ,
+            то сейчас самое время забронировать для себя нужное оборудование!</p>
+
+        <div class="link" align="center">
+          <a href="#">Забронировать оборудование</a>
+        </div>
       </div>
+
+
     </div>
   </div>
   <!--Ближайшие события-->
-  <div class="col-md-4 col-lg-4 .col-sm-4">
-    <div class="events">
+  <div class="col-md-4 events">
+    <div id="events">
       <p>Открытые курсы СКБ:<br>
       <br>
       Python основы в пятницу 28.03.2017 18:30<br>
@@ -106,9 +112,9 @@
   </div>
 </div>
 
+
 <!--Новости и проекты-->
   <div class="row">
-
     <!--Новости-->
     <div class="col-md-6" >
       <ul class="titleHead">
@@ -260,13 +266,10 @@
 </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
