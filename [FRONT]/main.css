@@ -1,52 +1,38 @@
+@import "bootstrap/css/bootstrap.css";
+
 
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
+  --blue-btn:#3095ff;
+  --blue-btn-action:#1481f4;
   --white: #f8fdff;
   --white-hover: #caf2ff;
+  --side:#f2f2f2;
 }
 
 body{
   font-family:"Roboto Light",sans-serif;
-  margin-top: 50px;
-  font-size: 12px;
-  color:var(--white);
-  margin-top: 85px;
-}
-
-.nav-item, .navbar button span{
+  margin-top: 75px;
   color:var(--white);
 }
 
-.navbar button {
-  border: 1px solid var(--white);
-  margin-top: 15px;
-}
-
-.navbar{
-  border-radius: 0px;
-}
-
-@media screen and (max-width: 767px){
-  #main_nav{
-    display: block;
+@media screen and (max-width: 991px){
+  body{
+    margin-top: 125px;
   }
 }
 
-#main_nav li{
-  margin: 0px;
 
-}
-
-@media screen and (max-width: 767px) and (min-width:767px){
-  #main_nav li{
-    margin: auto;
+@media screen and (max-width: 767px){
+  body{
+    margin-top: 75px;
   }
 }
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
-  background-color: #f2f2f2;
+  background-color: var(--side);
   height: 130%;
   position: fixed;
   top:10px;
@@ -66,11 +52,6 @@ body{
   }
 }
 
-/*отступ для иконок*/
-#navbarsDefault ul {
-  padding-left: 15px;
-}
-
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
@@ -84,10 +65,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   color: var(--white);
 }
 
-.navbar>a{
-  font-size:18px;
-}
-
 .navbar-default .navbar-nav>li>a{
   color:var(--white);
 }
@@ -97,28 +74,23 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     color: var(--white-hover);
 }
 
-.navbar-default .navbar-link, .navbar-link:visited {
-  color:var(--white);
-}
-.navbar-default .navbar-link:hover,.navbar-default .navbar-link:focus{
-  color:var(--white-hover);
-  text-decoration: none;
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: var(--blue);
 }
 
-.navbar .navbar-collapse{
-padding: 0;
+/*Change button top*/
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+  background-color: var(--blue-btn-action);
 }
 
-#logotip:visited, #logotip:hover, #logotip{
-  background-color: transparent;
+.navbar-default .navbar-toggle{
+  background-color: var(--blue-btn);
 }
 
-/* Исправление бага с маленькими вкладками*/
-@media (min-width: 768px){
-navs.less, .nav-justified > li {
-    width: 100% !important;
-  }
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: var(--white);
 }
+
 
 /*Карусель*/
 #carousel {
@@ -135,7 +107,7 @@ navs.less, .nav-justified > li {
 }
 
 
-/*Бронирование оборудования*/
+/*Вкладки навигиации*/
 #main_nav {
   padding-top: 25px;
 }
@@ -155,9 +127,6 @@ navs.less, .nav-justified > li {
   font-size: 20px;
 }
 
-#search {
-  padding: 10px 15px;
-}
 
 @media screen and (max-width: 767px) {
   .masthead li{
@@ -186,9 +155,17 @@ navs.less, .nav-justified > li {
   #main_nav {
     float: right;
     display: inline-block;
+        padding-left:0;
+  }
+
+  #main_nav li{
+    width: 100%;
   }
   #main_nav li a{
     text-align: center;
+    margin: auto;
+
+    padding-left: : 50px;
   }
 }
 
@@ -205,132 +182,121 @@ navs.less, .nav-justified > li {
 }
 
 /*Контент*/
-.link{
-  padding-top: 5px;
-  padding-bottom: 20px;
-  white-space:nowrap;
-}
-
-.link a{
-  margin-right:5px;
+#blockBook .link a,#blockBook.link a:hover,#blockBook .link a:focus,
+#events .link a,#events .link a:hover,#events .link a:focus{
+  color:var(--white);
+  padding: 10px 5px;
+  margin-top: 10px;
+  border-radius: 26px;
+  background-color: #3095ff;
+  box-sizing:border-box;
+  white-space: nowrap;
   text-decoration: none;
 }
 
-.container{
-  margin-top: 20px;
+#blockBook .link a:hover,#events .link a:hover{
+  background-color: var(--blue-btn-action);
 }
 
-.book{
-  color:var(--white);
-  background-color: var(--blue);
-  height: 280px;
+#blockBook{
+  background-image: url("images/programmist.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
 }
 
-.book p{
-  padding:10px;
-}
-
-.book img{
-  float:left;
+#blockBook p{
   padding: 10px;
 }
 
-@media screen and (max-width: 991px) {
-  .book img{
-    width: 68%;
-    padding:5px;
-  }
-}
-
-.book a,.book a:hover, .book a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
-   box-sizing:border-box;
-}
-
-@media screen and (max-width: 1198px)
-{
-  .book a{
-    margin-right: 10px;
-  }
-}
-
-/*для слишком маленьких картинок убираем картинку*/
-@media screen and (max-width: 767px) {
-  .book{
-    position: relative;
-    height: auto;
-  }
-    .book img {
-      visibility: hidden;
-      width: 0px;
-      height: 0px;
-      padding: 0px;
-    }
-
-    .book a{
-      width: 80%;
-      text-align: center;
-    }
-}
-
-.book{
-  margin-bottom: 10px;
-}
-
-/*События*/
-.events{
-  padding:10px;
-  height: 280px;
-  margin-bottom: 10px;
+#blockBook,#blockBook .col-md-8{
   background-color: var(--blue);
-  color: var(--white);
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.events a,.events a:hover, .events a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
+.row{
+  margin-top: 10px;
 }
 
-.events .link{
-  margin-top: 50px;
+#bookbtn {
+  padding: 0;
+  /*color:var(--white);*/
+}
+
+#bookbtn p{
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+#bookbtn .link{
+  padding-bottom:10px;
+}
+
+#events{
+  height: 300px;
+  background-color: var(--blue);
+  padding: 10px;
+}
+@media screen and (max-width: 1199px)
+{
+  #events{
+    height: 221.281px;
+  }
+}
+
+@media screen and (max-width: 991px)
+{
+  #events{
+    height: auto;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.blue-box{
+  background-color: var(--blue-btn);
+
 }
 
 /*Новости и проекты*/
-#news, #projects{
+.titleHead{
   background-color: var(--blue);
   color:var(--white);
   width:70%;
 }
 
-#news div,#projects div{
+ .titleHead div{
   float:right;
 }
 
-ul#news li, ul#projects li{
+ ul.titleHead li{
   display: inline-block;
   white-space:nowrap;
   padding: 0px;
 }
 
-ul#news,ul#projects{
+ul.titleHead{
   padding: 0px;
   width: 100%;
   height: 70px;
 }
-ul#news li:first-child,ul#projects li:first-child{
+ul.titleHead li:first-child{
   padding: 0px;
   margin: 0px;
   display: inline-block;
 }
 
-ul#news li:nth-child(2),ul#projects li:nth-child(2){
-  padding: 10px;
-  margin: 13px;
+ul.titleHead li:nth-child(2){
+  padding: 0px 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+ul.titleHead li:nth-child(3){
+  margin-top: 25px;
   display: inline-block;
   vertical-align: top;
 }
@@ -341,15 +307,8 @@ ul#news li:nth-child(2),ul#projects li:nth-child(2){
   background-color: #3095ff;
 }
 
-ul#news li:nth-child(3),ul#projects li:nth-child(3){
-  font-size: 12px;
-  margin-top: 20px;
-  display: inline-block;
-  vertical-align: top;
-}
-
 /*форма ссылки*/
-#news div a, #projects div a{
+.titleHead div a{
   color:var(--white);
   padding: 4px 10px;
   border-radius: 26px;
@@ -360,6 +319,7 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
 .block img{
   float: left;
   padding-right: 10px;
+  max-width: 400px;
 }
 
 .block{
@@ -373,6 +333,9 @@ ul#news li:nth-child(3),ul#projects li:nth-child(3){
   }
 }
 
+.block img{
+  padding: 0 15px;
+}
 .block .description{
   color:#003765;
   font-size: 12px;
@@ -398,7 +361,6 @@ font-size:12px;
 }
 
 /*footer*/
-
 .socialIcons img {
   height: 22px;
 }
@@ -407,6 +369,11 @@ footer {
   background-color: var(--blue);
   color:var(--white);
   font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
 }
 
 footer li a{
@@ -420,18 +387,17 @@ footer li a{
 
 
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
- @media screen and (max-width: 386px){
+ @media screen and (max-width: 424px){
   body {
     position: absolute;
     width: 386px;
   }
-  .header_navbar {
-    width: 386px;
+
+  .navbar-fixed-top {
+    width: 424px;
   }
   .footer_navbar {
-    width: 386px;
-  }
-  .my_header {
-    width: 386px;
+    width: 424px;
+
   }
  }
