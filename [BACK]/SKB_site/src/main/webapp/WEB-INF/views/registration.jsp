@@ -50,7 +50,8 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-5" for="middleName">Отчество</label>
                                 <div class="col-xs-7">
-                                    <input type="text" class="form-control" id="middleName" placeholder="">
+                                    <form:input type="text" path="middleName" class="form-control" id="middleName" placeholder=""/>
+                                    <form:errors path="middleName"/>
                                 </div>
                             </div>
                         </spring:bind>
@@ -58,7 +59,8 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>
                                 <div class="col-xs-7">
-                                    <input type="date" class="form-control" id="dateOfBirth" placeholder="">
+                                    <form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>
+                                    <form:errors path="dateOfBirth"/>
                                 </div>
                             </div>
                         </spring:bind>

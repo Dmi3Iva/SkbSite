@@ -90,16 +90,16 @@
                         <img src="${contextPath}/resources/images/hacker.jpg">
                     </div>
                     <div class="col-xs-6">
-                        <p>Ф.И.О: ${user.lastName} ${user.firstName} Отчество</p>
-                        <p>Дата рождения: 13.12.2001</p>
+                        <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
+                        <p>Дата рождения: ${user.dateOfBirth}</p>
                         <p>Пол: мужской</p>
                         <p>Логин: ${user.username}</p>
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
                         <p>Проекты: Телеграмм, ВК</p>
-                        <p>Github: https://github.com/BestProger666</p>
+                        <p>Github: ${user.github}</p>
                         <p>Мобильный телефон: 88005553535</p>
-                        <p>О себе: люблю программирование и русский рэп.</p>
+                        <p>О себе: ${user.about}</p>
                     </div>
                 </div>
                 <div class="col-xs-6">
