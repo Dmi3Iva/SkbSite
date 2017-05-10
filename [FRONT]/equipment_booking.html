@@ -1,6 +1,5 @@
-
-<!doctype html>
-r<html lang="ru">
+ <!doctype html>
+<html lang="ru">
 <head>
     <meta charset="utf-8"/>
     <meta name="description" content="">
@@ -12,6 +11,9 @@ r<html lang="ru">
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" type="text/css" href="equipment.css">
     <link rel="stylesheet" type="text/css" href="equipment_booking.css">
+    <!-- bootstrap datetime  https://github.com/smalot/bootstrap-datetimepicker-->
+    <!--link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"-->
+    <link href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 
@@ -22,7 +24,7 @@ r<html lang="ru">
 
 
 <!--header-->
-  <nav class="navbar navbar-toggleable-sm navbar-default fixed-top ">
+  <!--nav class="navbar navbar-toggleable-sm navbar-default fixed-top ">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
          data-target="#navbarsDefault" aria-controls="navbarsExampleDefault"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +45,7 @@ r<html lang="ru">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
           </form>
         </div>
-      </nav>
+      </nav-->
 
 
 
@@ -83,33 +85,72 @@ r<html lang="ru">
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <table width="100%" border="1" align="top">
-        <caption>
-          Вами забронированы следующие устройства
-        </caption>
-        <tr>
-          <th>№</th>
-          <th>Устройство</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Ардруино</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Ардруино</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Ардруино</td>
-        </tr>
+    <div class="col-md-4">
+      <table class="table">
+        <caption>Вами забронированы следующие устройства</caption>
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Устройство</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Ардруино</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Ардруино</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Ардруино</td>
+          </tr>
+        <tbody>
       </table>
 
     </div>
-    <div class="col-md-9">
-      <input type="text">
-      <canvas></canvas>
+    <div class="col-md-8">
+      <!--Выбор даты-->
+      <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+        <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            <canvas id="timePlot" width="700px" height="200px" style="border: 1px solid #000">
+              Your browser does not support the HTML5 canvas tag
+            </canvas>
+<!--выбор времени-->
+<div class="form-group">
+          <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+          <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+              <input class="form-control" size="16" type="text" value="" readonly>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+          </div>
+  <input type="hidden" id="dtp_input2" value="" /><br/>
+      </div>
+      <div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+
+        <button type="button" class="btn btn-default btn-lg">Large button</button>
+            </div>
+
+
+      </div>
+
+
     </div>
   </div>
   <row>
@@ -119,14 +160,11 @@ r<html lang="ru">
       <p></p>
       <p></p>
     </div>
-    <div class="col-md-2">
-      <input type="text">
-      <input type="text">
-      <button></button>
-    </div>
+
   </row>
 
 </div>
+
 
 <!--end main-->
 
@@ -166,9 +204,66 @@ r<html lang="ru">
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'dd/MM/YYYY'
+            });
+        });
+    </script>
+
+
+    <!--datetime-->
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/sample-in-bootstrap-v3/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/sample-in-bootstrap-v3/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 2,
+    		forceParse: 0,
+            showMeridian: 1
+        });
+    	$('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 2,
+    		minView: 2,
+    		forceParse: 0
+        });
+    	$('.form_time').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 1,
+    		minView: 0,
+    		maxView: 1,
+    		forceParse: 0
+        });
+    </script>
+  <!--canvas script-->
+  <script>
+    var c = document.getElementById("timePlot");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "#0066d2";
+    ctx.fillRect(0,0,100,200);
+    ctx.stroke();
+    ctx.fillStyle = "#7F0000";
+    ctx.fillRect(100,0,700,200);
+  </script>
 
 </body>
 

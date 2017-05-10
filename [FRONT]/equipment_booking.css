@@ -1,8 +1,21 @@
 canvas{
   width: 100%;
-  min-height:100px;
 }
 
 table{
   color:#333;
+}
+
+caption{
+  caption-side: top;
+  font-size: 16px;
+}
+
+thead{
+  background-color: var(--blue);
+  color:var(--white);
+}
+
+.input-group-addon, .input-group-btn{
+  width: auto;
 }

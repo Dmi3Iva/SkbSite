@@ -29,37 +29,6 @@ body{
   }
 }
 
-/*
-.nav-item, .navbar button span{
-  color:var(--white);
-}
-
-.navbar button {
-  border: 1px solid var(--white);
-  margin-top: 15px;
-}
-
-.navbar{
-  border-radius: 0px;
-}
-
-@media screen and (max-width: 767px){
-  #main_nav{
-    display: block;
-  }
-}
-
-#main_nav li{
-  margin: 0px;
-
-}
-
-@media screen and (max-width: 767px) and (min-width:767px){
-  #main_nav li{
-    margin: auto;
-  }
-}
-
 /*Полоски по бокам*/
 #leftSide, #rightSide{
   background-color: var(--side);
@@ -80,11 +49,6 @@ body{
   #leftSide,#rightSide{
     visibility: hidden;
   }
-}
-
-/*отступ для иконок*//*
-#navbarsDefault ul {
-  padding-left: 15px;
 }
 
 /* Сайт с пояснениями о классах навигационного меню
@@ -124,18 +88,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 .navbar-default .navbar-toggle .icon-bar {
     background-color: var(--white);
-}
-
-/*
-#logotip:visited, #logotip:hover, #logotip{
-  background-color: transparent;
-}
-
-/* Исправление бага с маленькими вкладками*//*
-@media (min-width: 768px){
-navs.less, .nav-justified > li {
-    width: 100% !important;
-  }
 }
 
 /*Вкладки навигиации*/
@@ -285,64 +237,11 @@ navs.less, .nav-justified > li {
     margin-top: 10px;
     width: 100%;
   }
-  .events{/*
-    padding-left: 0;
-    padding-right: 0;*/
-  }
 }
+
 .blue-box{
   background-color: var(--blue-btn);
 
-}
-/*
-@media screen and (max-width: 1198px)
-{
-  .book a{
-    margin-right: 10px;
-  }
-}
-
-/*для слишком маленьких картинок убираем картинку*//*
-@media screen and (max-width: 767px) {
-  .book{
-    position: relative;
-    height: auto;
-  }
-    .book img {
-      visibility: hidden;
-      width: 0px;
-      height: 0px;
-      padding: 0px;
-    }
-
-    .book a{
-      width: 80%;
-      text-align: center;
-    }
-}
-
-.book{
-  margin-bottom: 10px;
-}
-
-/*События*//*
-.events{
-  padding:10px;
-  height: 280px;
-  margin-bottom: 10px;
-  background-color: var(--blue);
-  color: var(--white);
-}
-
-.events a,.events a:hover, .events a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
-}
-
-.events .link{
-  margin-top: 50px;
 }
 
 /*Новости и проекты*/
@@ -403,6 +302,7 @@ ul.titleHead li:nth-child(3){
 .block img{
   float: left;
   padding-right: 10px;
+  max-width: 400px;
 }
 
 .block{
@@ -416,6 +316,9 @@ ul.titleHead li:nth-child(3){
   }
 }
 
+.block img{
+  padding: 0 15px;
+}
 .block .description{
   color:#003765;
   font-size: 12px;
@@ -441,7 +344,6 @@ font-size:12px;
 }
 
 /*footer*/
-
 .socialIcons img {
   height: 22px;
 }
