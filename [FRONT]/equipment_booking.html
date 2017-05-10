@@ -9,10 +9,9 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="equipment.css">
     <link rel="stylesheet" type="text/css" href="equipment_booking.css">
-    <!-- bootstrap datetime  https://github.com/smalot/bootstrap-datetimepicker-->
-    <!--link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"-->
+
+    <!--datetime css-->
     <link href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -24,43 +23,49 @@
 
 
 <!--header-->
-  <!--nav class="navbar navbar-toggleable-sm navbar-default fixed-top ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-         data-target="#navbarsDefault" aria-controls="navbarsExampleDefault"
-          aria-expanded="false" aria-label="Toggle navigation">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </button>
-        <a class="navbar-brand pt-3 px-0" href="#">Студентческое конструкторское бюро</a>
-        <div class="collapse navbar-collapse" id="navbarsDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+<nav class="navbar navbar-default navbar-toggleable-md navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Студентческое конструкторское бюро</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+          <form class="navbar-nav navbar-form  ">
+            <div class="form-group">
+              <input type="text" placeholder="Поиск" class="form-control">
+            </div>
+            <button type="submit" class="btn btn btn-default">Найти</button>
+          </form>
+
+          <ul class="nav navbar-nav ">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Личный кабинет </a>
             </li>
-            <li class="nav-item">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-out"></span> Выход </a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
-          </form>
-        </div>
-      </nav-->
-
-
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
       <!--navbar-->
       <nav>
       <div class="masthead">
 
-        <div class="container ">
+        <div class="container">
           <div class="row">
               <div class="col-sm-2 hidden-xs">
-                <a class="logotip" href="index.html"><img src ="images/logo.png"></a>
+                <a class="logotip" href="#"><img src ="images/logo.png"></a>
               </div>
-              <div class="col-sm-10 mx-auto">
+              <div class="col-sm-10">
                 <ul id="main_nav" class="nav nav-justified">
-                  <li class=" visible-xs"><a class="logotip" href=""><img src ="images/logo-100.png"></a></li>
+                  <li class=" visible-xs"><a class="logotip" href="#"><img src ="images/logo-100.png"></a></li>
                   <li class=""><a href="#">Новости</a></li>
                   <li class=""><a href="#">Оборудование</a></li>
                   <li class=""><a href="#">Проекты</a></li>
@@ -114,7 +119,7 @@
     <div class="col-md-8">
       <!--Выбор даты-->
       <div class="form-group">
-                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                <label for="dtp_input2" class="col-md-2 control-label">День бронирования</label>
                 <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                     <input class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -127,7 +132,7 @@
             </canvas>
 <!--выбор времени-->
 <div class="form-group">
-          <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+          <label for="dtp_input3" class="col-md-2 control-label">Время бронирования</label>
           <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
               <input class="form-control" size="16" type="text" value="" readonly>
               <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -136,7 +141,7 @@
   <input type="hidden" id="dtp_input2" value="" /><br/>
       </div>
       <div class="form-group">
-                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                <label for="dtp_input3" class="col-md-2 control-label">время окончания бронинрования</label>
                 <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
                     <input class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -144,7 +149,7 @@
                 </div>
 				<input type="hidden" id="dtp_input3" value="" /><br/>
 
-        <button type="button" class="btn btn-default btn-lg">Large button</button>
+        <button type="button" class="btn btn-default btn-lg">Забронировать</button>
             </div>
 
 

@@ -352,6 +352,11 @@ footer {
   background-color: var(--blue);
   color:var(--white);
   font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
 }
 
 footer li a{

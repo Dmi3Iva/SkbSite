@@ -19,3 +19,7 @@ thead{
 .input-group-addon, .input-group-btn{
   width: auto;
 }
+
+label{
+  color:#333;
+}
