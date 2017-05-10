@@ -1,6 +1,5 @@
 @import "bootstrap/css/bootstrap.css";
 
-
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
@@ -52,6 +51,21 @@ body{
   }
 }
 
+/**Карусель*/
+#carousel {
+  margin: 1% 10%;
+  background-color: var(--blue);
+  height: 350px;
+}
+
+#carousel img {
+  margin: auto;
+  height: 350px;
+}
+
+.carousel-indicators{
+  margin: auto;
+}
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
@@ -90,22 +104,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 .navbar-default .navbar-toggle .icon-bar {
     background-color: var(--white);
 }
-
-
-/*Карусель*/
-#carousel {
-  margin: 1% 10%;
-  background-color: var(--blue);
-}
-
-#carousel img {
-  margin: auto;
-}
-
-.carousel-indicators{
-  margin: auto;
-}
-
 
 /*Вкладки навигиации*/
 #main_nav {
@@ -313,6 +311,11 @@ ul.titleHead li:nth-child(3){
   padding: 4px 10px;
   border-radius: 26px;
   background-color: #3095ff;
+  text-decoration: none;
+}
+
+.titleHead div a:hover{
+  background-color: var(--blue-btn-action);
 }
 
 /*блок новостей или проектов*/
@@ -369,11 +372,6 @@ footer {
   background-color: var(--blue);
   color:var(--white);
   font-size: 16px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
 }
 
 footer li a{
@@ -381,23 +379,15 @@ footer li a{
   color:var(--white);
 }
 
-.footer_navbar {
-  width: 100%;
-}
-
-
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
  @media screen and (max-width: 424px){
   body {
     position: absolute;
-    width: 386px;
   }
-
   .navbar-fixed-top {
     width: 424px;
   }
   .footer_navbar {
     width: 424px;
-
   }
  }
