@@ -54,3 +54,25 @@ CREATE TABLE comments (
 	date_of_creation DATE NOT NULL,
 	content TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS project_statuses CASCADE;
+CREATE TABLE project_statuses (
+	id SERIAL NOT NULL PRIMARY KEY,
+	name VARCHAR(63) NOT NULL
+ );
+
+INSERT INTO project_statuses (name) VALUES ('ACTIVE');
+INSERT INTO project_statuses (name) VALUES ('FROZEN');
+INSERT INTO project_statuses (name) VALUES ('COMPLETED');
+
+DROP TABLE IF EXISTS projects CASCADE;
+CREATE TABLE projects (
+	id SERIAL NOT NULL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	status_id INT REFERENCES project_statuses(id) DEFAULT 0,
+	status_percent INT CHECK (0 <= status_percent AND status_percent <= 100) DEFAULT 0,
+	captain_id INT REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	date_of_start DATE NOT NULL,
+	date_of_last_update DATE NOT NULL,
+	about TEXT NOT NULL
+);
