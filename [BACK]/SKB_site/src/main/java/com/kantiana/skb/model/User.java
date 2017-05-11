@@ -24,6 +24,7 @@ public class User {
     private Set<News> news;
     private Set<Role> roles;
     private Set<Comment> comments;
+    private Set<Project> ownProjects;
     private boolean customer;
 
     @Id
@@ -170,6 +171,15 @@ public class User {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @OneToMany(targetEntity = Project.class, mappedBy = "captain", cascade = CascadeType.ALL)
+    public Set<Project> getOwnProjects() {
+        return ownProjects;
+    }
+
+    public void setOwnProjects(Set<Project> ownProjects) {
+        this.ownProjects = ownProjects;
     }
 
     @Transient
