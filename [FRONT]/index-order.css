@@ -1,22 +1,5 @@
 @import "main.css";
 
-/*Карусель*/
-#carousel {
-  margin: 1% 10%;
-  background-color: var(--blue);
-  /*height: 350px;*/
-}
-
-#carousel img {
-  margin: auto;
-  /*height: 350px;*/
-}
-
-.carousel-indicators{
-  margin: auto;
-}
-
-
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
@@ -131,10 +114,15 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 /*Карусель*/
-.carousel ol {
-  margin-left: 0px;
-  padding-left: 0px;
-  text-align: left;
+#carousel {
+  /*margin: 1% 10%;*/
+  background-color: var(--blue);
+  /*height: 350px;*/
+}
+
+#carousel img {
+  margin: auto;
+  /*height: 350px;*/
 }
 
 
