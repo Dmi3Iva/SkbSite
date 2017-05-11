@@ -130,6 +130,15 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   }
 }
 
+/*Карусель*/
+.carousel ol {
+  margin-left: 0px;
+  padding-left: 0px;
+  text-align: left;
+}
+
+
+
 /*Контент*/
 #blockBook .link a,#blockBook.link a:hover,#blockBook .link a:focus,
 #events .link a,#events .link a:hover,#events .link a:focus{
