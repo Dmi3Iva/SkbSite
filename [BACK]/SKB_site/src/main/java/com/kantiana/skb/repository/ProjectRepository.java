@@ -4,5 +4,5 @@ import com.kantiana.skb.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    public Project findByName();
+    public Project findByName(String name);
 }

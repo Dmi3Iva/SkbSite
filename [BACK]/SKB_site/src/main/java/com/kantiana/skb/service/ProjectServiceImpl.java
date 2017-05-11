@@ -17,7 +17,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     public Project findByName(String name) {
-        return projectRepository.findByName();
+        return projectRepository.findByName(name);
     }
 
     public List<Project> getAllProjects() {
