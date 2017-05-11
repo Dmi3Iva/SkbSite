@@ -2,10 +2,9 @@
 
 .blue-box{
   background-color: var(--blue-btn);
-
 }
 
-/*Новости и проекты*/
+/*Заголовок*/
 .titleHead{
   background-color: var(--blue);
   color:var(--white);
@@ -43,19 +42,6 @@ ul.titleHead li:nth-child(2){
   height: 70px;
   width: 15px;
   background-color: #3095ff;
-}
-
-/*форма ссылки*/
-.titleHead div a{
-  color:var(--white);
-  padding: 4px 10px;
-  border-radius: 26px;
-  background-color: #3095ff;
-  text-decoration: none;
-}
-
-.titleHead div a:hover{
-  background-color: var(--blue-btn-action);
 }
 
 /*блок новостей или проектов*/
