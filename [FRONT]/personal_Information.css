@@ -26,15 +26,12 @@
   border-radius: 5px;
 }
 
-
-
 .load_btn {
   margin-left: 50%;
   margin-right: 5%;
+  margin-bottom: 15px;
 }
 
-/*footer*/
-
-.socialIcons img {
-  height: 22px;
+footer{
+  margin-top: 20px;
 }

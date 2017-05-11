@@ -4,12 +4,12 @@
 #carousel {
   margin: 1% 10%;
   background-color: var(--blue);
-  height: 350px;
+  /*height: 350px;*/
 }
 
 #carousel img {
   margin: auto;
-  height: 350px;
+  /*height: 350px;*/
 }
 
 .carousel-indicators{
