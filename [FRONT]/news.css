@@ -1,0 +1,104 @@
+@import "main.css";
+
+.blue-box{
+  background-color: var(--blue-btn);
+
+}
+
+/*Новости и проекты*/
+.titleHead{
+  background-color: var(--blue);
+  color:var(--white);
+  width:70%;
+}
+
+ .titleHead div{
+  float:right;
+}
+
+ ul.titleHead li{
+  display: inline-block;
+  white-space:nowrap;
+  padding: 0px;
+}
+
+ul.titleHead{
+  padding: 0px;
+  width: 100%;
+  height: 70px;
+}
+ul.titleHead li:first-child{
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+}
+
+ul.titleHead li:nth-child(2){
+  padding: 0px 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.smallBlueBox{
+  height: 70px;
+  width: 15px;
+  background-color: #3095ff;
+}
+
+/*форма ссылки*/
+.titleHead div a{
+  color:var(--white);
+  padding: 4px 10px;
+  border-radius: 26px;
+  background-color: #3095ff;
+  text-decoration: none;
+}
+
+.titleHead div a:hover{
+  background-color: var(--blue-btn-action);
+}
+
+/*блок новостей или проектов*/
+.block img{
+  float: left;
+  padding-right: 10px;
+  max-width: 400px;
+}
+
+.block{
+  padding:60px 0px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 991px) {
+  .block img{
+  position:static;
+  }
+}
+
+.block img{
+  padding: 0 15px;
+}
+.block .description{
+  color:#003765;
+  font-size: 12px;
+}
+
+.block .title{
+  color:#282828;
+  font-size:16px;
+}
+
+.block .article{
+color:#6a6a6a;
+font-size:12px;
+}
+
+.block .detailes{
+  color:#297bc0;
+  font-size:12px;
+}
+
+.block .detailes a{
+  text-decoration: none;
+}
