@@ -1,0 +1,32 @@
+.titleName{
+  background-color: var(--blue);
+  height: 40px;
+  padding-top: 10px;
+}
+
+.titleName h4{
+  margin-top: 10px;
+  color:var(--white);
+}
+
+.image img{
+    width: 100%;
+}
+
+h4{
+
+  font-size: 16px;
+  text-align: center;
+}
+
+h5,p{
+  font-size: 16px;
+}
+h5,p,h4{
+  color: var(--blue);
+}
+
+#micro_detailed{
+  color: var(--blue);
+  font-size: 14px;
+}

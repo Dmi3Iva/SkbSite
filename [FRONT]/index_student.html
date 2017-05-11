@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,11 +8,7 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/v4-alpha-bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
-
+    <link rel="stylesheet" type="text/css" href="index-student.css">
 </head>
 <body>
 
@@ -24,30 +19,36 @@
 
 
 <!--header-->
-  <nav class="navbar navbar-toggleable-sm navbar-default fixed-top my_header ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-         data-target="#navbarsDefault" aria-controls="navbarsExampleDefault"
-          aria-expanded="false" aria-label="Toggle navigation">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </button>
-        <a class="navbar-brand pt-3 px-0" href="#">Студентческое конструкторское бюро</a>
-        <div class="collapse navbar-collapse" id="navbarsDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+<nav class="navbar navbar-default navbar-toggleable-md navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Студентческое конструкторское бюро</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+          <form class="navbar-nav navbar-form  ">
+            <div class="form-group">
+              <input type="text" placeholder="Поиск" class="form-control">
+            </div>
+            <button type="submit" class="btn btn btn-default">Найти</button>
+          </form>
+
+          <ul class="nav navbar-nav ">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Личный кабинет </a>
             </li>
-            <li class="nav-item">
+            <li>
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-out"></span> Выход </a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
-          </form>
-        </div>
-      </nav>
-
-
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
       <!--navbar-->
       <nav>
@@ -56,11 +57,11 @@
         <div class="container">
           <div class="row">
               <div class="col-sm-2 hidden-xs">
-                <a class="logotip" href="index.html"><img src ="images/logo.png"></a>
+                <a class="logotip" href="#"><img src ="images/logo.png"></a>
               </div>
-              <div class="col-sm-10 mx-auto">
+              <div class="col-sm-10">
                 <ul id="main_nav" class="nav nav-justified">
-                  <li class=" visible-xs"><a class="logotip" href=""><img src ="images/logo-100.png"></a></li>
+                  <li class=" visible-xs"><a class="logotip" href="#"><img src ="images/logo-100.png"></a></li>
                   <li class=""><a href="#">Новости</a></li>
                   <li class=""><a href="#">Оборудование</a></li>
                   <li class=""><a href="#">Проекты</a></li>
@@ -73,63 +74,49 @@
       </div>
     </nav>
 
+<div class="container" >
+<div class= "row">
+  <!--Бронирование оборудования-->
+  <div class="col-md-8" >
+    <div class="" id="blockBook">
+      <div class="col-xs-6 col-xs-offset-6">
+        <p class="brand-right">Если Вы давно хотели научиться программировать микроконтроллеры,
+           но по какой-то причине не знали что этим можно заниматься в СКБ,
+            то сейчас самое время забронировать для себя нужное оборудование!</p>
 
-<!-- main-->
-<div id="carousel" class="carousel slide">
-    <!--Индикаторы слайдов -->
-    <ol class="carousel-indicators">
-      <li class="active" data-target="#carousel" data-slide-to="0"></li>
-      <li data-target="#carousel" data-slide-to="1"></li>
-      <li data-target="#carousel" data-slide-to="2"></li>
-    </ol>
-
-    <!--Слайды -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="images/drop1.jpg" width="50%" alt="drop1">
-        <div class="carousel-caption">
-          <h3>СКБ ньюз</h3>
-          <p>Скандал. Юные шмодники часам стоят в очереди, чтобы забронировать оборудование в СКБ.</p>
+        <div class="link" align="center">
+          <a href="#">Забронировать оборудование</a>
         </div>
       </div>
-      <div class="item">
-        <img src="images/drop2.jpg" width="50%" alt="drop2">
-        <div class="carousel-caption">
-          <h3>СКБ ньюз</h3>
-          <p>Делают они это, разумеется не для себя, а для перепродажи.</p>
-        </div>
-      </div>
-      <div class="item">
-        <img src="images/drop3.jpg" width="50%" alt="drop3">
-        <div class="carousel-caption">
-          <h3>СКБ ньюз</h3>
-          <p>Будьте бдительный и бронируйте быстрей. Или пишите ботов.</p>
-        </div>
+
+
+    </div>
+  </div>
+  <!--Ближайшие события-->
+  <div class="col-md-4 events">
+    <div id="events">
+      <p>Открытые курсы СКБ:<br>
+      <br>
+      Python основы в пятницу 28.03.2017 18:30<br>
+      Введёт курс Гвидо ван Россум<br>
+      <br>
+      Как правильно пользоваться блокнотом<br>
+      30.03.2017 12:00<br>
+      Введёт Эллиот Блокнотович<br>
+      </p>
+      <div align="right" class="link">
+        <a href="#">Подробнее...</a>
       </div>
     </div>
+  </div>
+</div>
 
-
-    <!--Стрелки переключения между вкладками-->
-    <a href="#carousel" class="left carousel-control" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a href="#carousel" class="right carousel-control" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div> 
-
-
-
-<div class="container" >
-  <div class= "row">
-    
 
 <!--Новости и проекты-->
   <div class="row">
-
-    <!--Новости-->
+    <!--Новости раздел-->
     <div class="col-md-6" >
-      <ul id ="news">
+      <ul class="titleHead">
         <li><div class="smallBlueBox"></div></li>
         <li><h3>Новости</h3></li>
         <li>
@@ -139,116 +126,127 @@
         </li>
       </ul>
 
-      <!--Новости-->
-      <div class="block">
-        <img src = "images/girl-w250.jpg" alt="girl" width="250">
-        <p class="description">
-                Автор:  Енот
-                09.03.2017
-                18:35
-        </p>
-        <p class = "title">
-                Енот устал писать макет этого сайта,
-                но он не сдаётся
-        </p>
-        <p class="article">
-                Отрывок из книжки Енотика
-                На долю нашего поколения не досталось великой войны или
-                великой депрессии, поэтому мы должны сами объявить войну...
-        </p>
-        <p class="detailes">
-                <a href="#">Подробнее...</a>
-        </p>
-      </div>
-      <!--новотсь уровня 2-->
-      <div class="block">
-        <img src="images/enot.jpg" alt="enot">
-        <p class="description">
-                Автор:  Енот
-                09.03.2017
-                18:35
-        </p>
-        <p class = "title">
-                Студенты работающие в скб решили
-                создать киборга
-        </p>
-        <p class="article">
-                Отрывок из книжки Енотика
-                На долю нашего поколения не досталось великой войны или
-                великой депрессии, поэтому мы должны сами объявить войну...
-        </p>
-        <p class="detailes">
-                <a href="#">Подробнее...</a>
-        </p>
-      </div>
-      <!--проект1-->
+      <!--Новости уровень 1-->
 
-    </div>
-
-<!--проекты-->
-    <div class="col-md-6" >
-      <ul id="projects">
-        <li><div class="smallBlueBox"></div></li>
-        <li><h3>Проекты</h3></li>
-        <li>
-          <div align="center" class=link>
-            <a href="#">смотреть всё</a>
+          <div class="row">
+            <div class="col-md-6 block">
+              <img src="images/girl-w250.jpg" alt="girl" width="100%">
+            </div>
+              <div class="col-md-6 block">
+                <p class="description">
+                        Автор:  Енот
+                        09.03.2017
+                        18:35
+                </p>
+                <p class = "title">
+                        Енот устал писать макет этого сайта,
+                        но он не сдаётся
+                </p>
+                <p class="article">
+                        Отрывок из книжки Енотика
+                        На долю нашего поколения не досталось великой войны или
+                        великой депрессии, поэтому мы должны сами объявить войну...
+                </p>
+                <p class="detailes">
+                        <a href="#">Подробнее...</a>
+                </p>
+              </div>
           </div>
-        </li>
-      </ul>
 
-      <div class="block">
-        <img src="images/enot.jpg" alt="enot" >
-        <p class="description">
-                Автор:  Енот
-                09.03.2017
-                18:35
-        </p>
-        <p class = "title">
-                Студенты работающие в скб решили
-                создать киборга
-        </p>
-        <p class="article">
-                Отрывок из книжки Енотика
-                На долю нашего поколения не досталось великой войны или
-                великой депрессии, поэтому мы должны сами объявить войну...
-        </p>
-        <p class="detailes">
-                <a href="#">Подробнее...</a>
-        </p>
+          <div class="row">
+            <div class="col-md-6 block">
+              <img src="images/girl-w250.jpg" alt="girl" width="100%">
+            </div>
+              <div class="col-md-6 block">
+                <p class="description">
+                        Автор:  Енот
+                        09.03.2017
+                        18:35
+                </p>
+                <p class = "title">
+                        Енот устал писать макет этого сайта,
+                        но он не сдаётся
+                </p>
+                <p class="article">
+                        Отрывок из книжки Енотика
+                        На долю нашего поколения не досталось великой войны или
+                        великой депрессии, поэтому мы должны сами объявить войну...
+                </p>
+                <p class="detailes">
+                        <a href="#">Подробнее...</a>
+                </p>
+              </div>
+          </div>
       </div>
-    <!--проект2-->
-      <div class="block">
-        <img src = "images/girl-w250.jpg" alt="girl" width="250" align="left">
-        <p class="description">
-                Автор:  Енот
-                09.03.2017
-                18:35
-        </p>
-        <p class = "title">
-                Енот устал писать макет этого сайта,
-                но он не сдаётся
-        </p>
-        <p class="article">
-                Отрывок из книжки Енотика
-                На долю нашего поколения не досталось великой войны или
-                великой депрессии, поэтому мы должны сами объявить войну...
-        </p>
-        <p class="detailes">
-              <a href="#">  Подробнее...</a>
-        </p>
+
+      <div class="col-md-6">
+        <ul class="titleHead">
+          <li><div class="smallBlueBox"></div></li>
+          <li><h3>Проекты</h3></li>
+          <li>
+            <div align="center" class=link>
+              <a href="#">смотреть всё</a>
+            </div>
+          </li>
+        </ul>
+        <div class="row">
+          <div class="col-xs-6 block">
+            <img src="images/girl-w250.jpg" alt="girl" width="100%">
+          </div>
+            <div class="col-xs-6 block">
+              <p class="description">
+                      Автор:  Енот
+                      09.03.2017
+                      18:35
+              </p>
+              <p class = "title">
+                      Енот устал писать макет этого сайта,
+                      но он не сдаётся
+              </p>
+              <p class="article">
+                      Отрывок из книжки Енотика
+                      На долю нашего поколения не досталось великой войны или
+                      великой депрессии, поэтому мы должны сами объявить войну...
+              </p>
+              <p class="detailes">
+                      <a href="#">Подробнее...</a>
+              </p>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6 block">
+            <img src="images/girl-w250.jpg" alt="girl" width="100%">
+          </div>
+            <div class="col-xs-6 block">
+              <p class="description">
+                      Автор:  Енот
+                      09.03.2017
+                      18:35
+              </p>
+              <p class = "title">
+                      Енот устал писать макет этого сайта,
+                      но он не сдаётся
+              </p>
+              <p class="article">
+                      Отрывок из книжки Енотика
+                      На долю нашего поколения не досталось великой войны или
+                      великой депрессии, поэтому мы должны сами объявить войну...
+              </p>
+              <p class="detailes">
+                      <a href="#">Подробнее...</a>
+              </p>
+            </div>
+        </div>
+
+
+        </div>
       </div>
     </div>
+  </div>
 
 
-
-<!--close row-->
-</div>
-<!--close container-->
-</div>
-</div>
-
-<!--Footer -->
+      <!--end contant-->
 <footer class="footer_navbar">
   <div class="container">
       <div class="row">
@@ -261,38 +259,30 @@
                   <li><a href="#">Заказы</a></li>
                   <li><a href="#">О нас</a></li>
                 </ul>
-              </div>
-              <div class="col-xs-6">
-                <ul class="list-unstyled text-right">
-                  <li>Мы в социальных сетях</li>
-                  <li class="socialIcons text-right">
-                    <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte">
-                    </a>
-                    <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
-                  </li>
-                  <li><br></li>
-                  <li>Copyright &copy 2017</li>
-                  <li>Сайт разработала команда TRIP</li>
-                </ul>
-              </div>
+            </div>
+            <div class="col-xs-6">
+              <ul class="list-unstyled text-right">
+                <li>Мы в социальных сетях<li>
+                <li class="socialIcons text-right">
+                  <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte">
+                  </a>
+                  <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
+                  <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
+                </li>
+                <li><br></li>
+                <li>Copyright &copy 2017</li>
+                <li>Сайт разработала команда TRIP</li>
+              </ul>
+            </div>
         </div>
-    </div>
   </div>
 </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

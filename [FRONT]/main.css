@@ -1,52 +1,37 @@
+@import "bootstrap/css/bootstrap.css";
 
 /*определяем цвета*/
 :root {
   --blue:#0066d2;
+  --blue-btn:#3095ff;
+  --blue-btn-action:#1481f4;
   --white: #f8fdff;
   --white-hover: #caf2ff;
+  --side:#f2f2f2;
 }
 
 body{
   font-family:"Roboto Light",sans-serif;
-  margin-top: 50px;
-  font-size: 12px;
-  color:var(--white);
-  margin-top: 85px;
-}
-
-.nav-item, .navbar button span{
+  margin-top: 75px;
   color:var(--white);
 }
 
-.navbar button {
-  border: 1px solid var(--white);
-  margin-top: 15px;
-}
-
-.navbar{
-  border-radius: 0px;
-}
-
-@media screen and (max-width: 767px){
-  #main_nav{
-    display: block;
+@media screen and (max-width: 991px){
+  body{
+    margin-top: 125px;
   }
 }
 
-#main_nav li{
-  margin: 0px;
 
-}
-
-@media screen and (max-width: 767px) and (min-width:767px){
-  #main_nav li{
-    margin: auto;
+@media screen and (max-width: 767px){
+  body{
+    margin-top: 75px;
   }
 }
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
-  background-color: #f2f2f2;
+  background-color: var(--side);
   height: 130%;
   position: fixed;
   top:10px;
@@ -66,11 +51,6 @@ body{
   }
 }
 
-/*отступ для иконок*/
-#navbarsDefault ul {
-  padding-left: 15px;
-}
-
 /* Сайт с пояснениями о классах навигационного меню
 https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
@@ -84,10 +64,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
   color: var(--white);
 }
 
-.navbar>a{
-  font-size:18px;
-}
-
 .navbar-default .navbar-nav>li>a{
   color:var(--white);
 }
@@ -97,45 +73,24 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
     color: var(--white-hover);
 }
 
-.navbar-default .navbar-link, .navbar-link:visited {
-  color:var(--white);
-}
-.navbar-default .navbar-link:hover,.navbar-default .navbar-link:focus{
-  color:var(--white-hover);
-  text-decoration: none;
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: var(--blue);
 }
 
-.navbar .navbar-collapse{
-padding: 0;
+/*Change button top*/
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+  background-color: var(--blue-btn-action);
 }
 
-#logotip:visited, #logotip:hover, #logotip{
-  background-color: transparent;
+.navbar-default .navbar-toggle{
+  background-color: var(--blue-btn);
 }
 
-/* Исправление бага с маленькими вкладками*/
-@media (min-width: 768px){
-navs.less, .nav-justified > li {
-    width: 100% !important;
-  }
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: var(--white);
 }
 
-/*Карусель*/
-#carousel {
-  margin: 1% 10%;
-  background-color: var(--blue);
-}
-
-#carousel img {
-  margin: auto;
-}
-
-.carousel-indicators{
-  margin: auto;
-}
-
-
-/*Бронирование оборудования*/
+/*Вкладки навигиации*/
 #main_nav {
   padding-top: 25px;
 }
@@ -155,9 +110,6 @@ navs.less, .nav-justified > li {
   font-size: 20px;
 }
 
-#search {
-  padding: 10px 15px;
-}
 
 @media screen and (max-width: 767px) {
   .masthead li{
@@ -186,17 +138,21 @@ navs.less, .nav-justified > li {
   #main_nav {
     float: right;
     display: inline-block;
+        padding-left:0;
+  }
+
+  #main_nav li{
+    width: 100%;
   }
   #main_nav li a{
     text-align: center;
+    margin: auto;
+
+    padding-left: : 50px;
   }
 }
 
 @media (max-width: 767px){
-  .search_group{
-    width: 50%;
-    margin: auto;
-  }
   #main_nav {
     padding-top: 0;
     padding-left: auto;
@@ -204,201 +160,7 @@ navs.less, .nav-justified > li {
   }
 }
 
-/*Контент*/
-.link{
-  padding-top: 5px;
-  padding-bottom: 20px;
-  white-space:nowrap;
-}
-
-.link a{
-  margin-right:5px;
-  text-decoration: none;
-}
-
-.container{
-  margin-top: 20px;
-}
-
-.book{
-  color:var(--white);
-  background-color: var(--blue);
-  height: 280px;
-}
-
-.book p{
-  padding:10px;
-}
-
-.book img{
-  float:left;
-  padding: 10px;
-}
-
-@media screen and (max-width: 991px) {
-  .book img{
-    width: 68%;
-    padding:5px;
-  }
-}
-
-.book a,.book a:hover, .book a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
-   box-sizing:border-box;
-}
-
-@media screen and (max-width: 1198px)
-{
-  .book a{
-    margin-right: 10px;
-  }
-}
-
-/*для слишком маленьких картинок убираем картинку*/
-@media screen and (max-width: 767px) {
-  .book{
-    position: relative;
-    height: auto;
-  }
-    .book img {
-      visibility: hidden;
-      width: 0px;
-      height: 0px;
-      padding: 0px;
-    }
-
-    .book a{
-      width: 80%;
-      text-align: center;
-    }
-}
-
-.book{
-  margin-bottom: 10px;
-}
-
-/*События*/
-.events{
-  padding:10px;
-  height: 280px;
-  margin-bottom: 10px;
-  background-color: var(--blue);
-  color: var(--white);
-}
-
-.events a,.events a:hover, .events a:focus{
-  color:var(--white);
-  padding: 10px 15px;
-  border-radius: 26px;
-  background-color: #3095ff;
-}
-
-.events .link{
-  margin-top: 50px;
-}
-
-/*Новости и проекты*/
-#news, #projects{
-  background-color: var(--blue);
-  color:var(--white);
-  width:70%;
-}
-
-#news div,#projects div{
-  float:right;
-}
-
-ul#news li, ul#projects li{
-  display: inline-block;
-  white-space:nowrap;
-  padding: 0px;
-}
-
-ul#news,ul#projects{
-  padding: 0px;
-  width: 100%;
-  height: 70px;
-}
-ul#news li:first-child,ul#projects li:first-child{
-  padding: 0px;
-  margin: 0px;
-  display: inline-block;
-}
-
-ul#news li:nth-child(2),ul#projects li:nth-child(2){
-  padding: 10px;
-  margin: 13px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.smallBlueBox{
-  height: 70px;
-  width: 15px;
-  background-color: #3095ff;
-}
-
-ul#news li:nth-child(3),ul#projects li:nth-child(3){
-  font-size: 12px;
-  margin-top: 20px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-/*форма ссылки*/
-#news div a, #projects div a{
-  color:var(--white);
-  padding: 4px 10px;
-  border-radius: 26px;
-  background-color: #3095ff;
-}
-
-/*блок новостей или проектов*/
-.block img{
-  float: left;
-  padding-right: 10px;
-}
-
-.block{
-  padding:60px 0px;
-  margin-bottom: 30px;
-}
-
-@media screen and (max-width: 991px) {
-  .block img{
-  position:static;
-  }
-}
-
-.block .description{
-  color:#003765;
-  font-size: 12px;
-}
-
-.block .title{
-  color:#282828;
-  font-size:16px;
-}
-
-.block .article{
-color:#6a6a6a;
-font-size:12px;
-}
-
-.block .detailes{
-  color:#297bc0;
-  font-size:12px;
-}
-
-.block .detailes a{
-  text-decoration: none;
-}
-
 /*footer*/
-
 .socialIcons img {
   height: 22px;
 }
@@ -414,24 +176,15 @@ footer li a{
   color:var(--white);
 }
 
-.footer_navbar {
-  width: 100%;
-}
-
-
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/
- @media screen and (max-width: 386px){
+ @media screen and (max-width: 424px){
   body {
     position: absolute;
-    width: 386px;
   }
-  .header_navbar {
-    width: 386px;
+  .navbar-fixed-top {
+    width: 424px;
   }
   .footer_navbar {
-    width: 386px;
-  }
-  .my_header {
-    width: 386px;
+    width: 424px;
   }
  }

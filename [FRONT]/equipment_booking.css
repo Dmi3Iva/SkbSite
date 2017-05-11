@@ -1,0 +1,27 @@
+@import "main.css";
+
+canvas{
+  width: 100%;
+}
+
+table{
+  color:#333;
+}
+
+caption{
+  caption-side: top;
+  font-size: 16px;
+}
+
+thead{
+  background-color: var(--blue);
+  color:var(--white);
+}
+
+.input-group-addon, .input-group-btn{
+  width: auto;
+}
+
+label{
+  color:#333;
+}
