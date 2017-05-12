@@ -1,5 +1,13 @@
 @import "main.css";
 
+.content{
+  color:#333;
+  margin-bottom: 40px;
+}
+.row{
+  margin-top: 40px;
+
+}
 .blue-box{
   background-color: var(--blue-btn);
 }
@@ -45,46 +53,63 @@ ul.titleHead li:nth-child(2){
 }
 
 /*блок новостей или проектов*/
-.block img{
+image{
   float: left;
   padding-right: 10px;
   max-width: 400px;
 }
 
 .block{
-  padding:60px 0px;
+  padding-top: 40px;
   margin-bottom: 30px;
 }
 
 @media screen and (max-width: 991px) {
-  .block img{
+  image{
   position:static;
   }
 }
 
-.block img{
+image{
+  overflow: hidden;
+  min-width: 360px;
   padding: 0 15px;
 }
-.block .description{
+ .description{
   color:#003765;
   font-size: 12px;
+
+  float: right;
 }
 
-.block .title{
+ .title{
   color:#282828;
   font-size:16px;
 }
 
-.block .article{
+ .article{
 color:#6a6a6a;
 font-size:12px;
 }
 
-.block .detailes{
+ .detailes{
   color:#297bc0;
   font-size:12px;
+  list-style-type: none;
+  display: inline;
 }
+.detailes li, .detailes p{
+  display: inline;
+
+}
+
+
 
 .block .detailes a{
   text-decoration: none;
+}
+
+.new{
+  border-left: 5px solid var(--blue);
+  padding-left: 15px;
 }
