@@ -1,4 +1,4 @@
-﻿@import "main.css";
+@import "main.css";
 
 .content{
   color:#333;
@@ -20,9 +20,8 @@
 }
 
  .titleHead div{
-  float: right;
+  float:right;
 }
-
 
  ul.titleHead li{
   display: inline-block;

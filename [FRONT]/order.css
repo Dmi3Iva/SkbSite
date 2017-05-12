@@ -1,4 +1,4 @@
-﻿@import "main.css";
+@import "main.css";
 
 .content{
   color:#333;
@@ -20,9 +20,8 @@
 }
 
  .titleHead div{
-  float: right;
+  float:right;
 }
-
 
  ul.titleHead li{
   display: inline-block;
@@ -104,13 +103,15 @@ font-size:12px;
 
 }
 
-
-
 .block .detailes a{
   text-decoration: none;
 }
 
-.new{
+.lineblue{
   border-left: 5px solid var(--blue);
-  padding-left: 15px;
+  /*padding-left: 15px;*/
+}
+
+.names{
+  padding-top: 20px;
 }
