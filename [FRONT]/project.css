@@ -103,15 +103,13 @@ font-size:12px;
 
 }
 
+
+
 .block .detailes a{
   text-decoration: none;
 }
 
-.lineblue{
+.new{
   border-left: 5px solid var(--blue);
-  /*padding-left: 15px;*/
-}
-
-.names{
-  padding-top: 20px;
+  padding-left: 15px;
 }
