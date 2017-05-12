@@ -169,6 +169,7 @@ footer {
   background-color: var(--blue);
   color:var(--white);
   font-size: 16px;
+  margin-top: 80px;
 }
 
 footer li a{
