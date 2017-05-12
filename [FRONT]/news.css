@@ -1,4 +1,4 @@
-@import "main.css";
+﻿@import "main.css";
 
 .blue-box{
   background-color: var(--blue-btn);
@@ -13,8 +13,9 @@
 }
 
  .titleHead div{
-  float:right;
+  float: right;
 }
+
 
  ul.titleHead li{
   display: inline-block;
