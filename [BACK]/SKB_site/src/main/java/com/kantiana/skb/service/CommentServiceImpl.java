@@ -5,6 +5,7 @@ import com.kantiana.skb.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class CommentServiceImpl implements CommentService {
     CommentRepository commentRepository;
 
     public void save(Comment comment) {
+        comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         commentRepository.save(comment);
     }
 
