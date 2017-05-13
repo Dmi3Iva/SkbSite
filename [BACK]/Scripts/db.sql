@@ -72,7 +72,7 @@ CREATE TABLE news (
 	project_id INT DEFAULT NULL REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
-	date_of_creation DATE NOT NULL
+	time_of_creation TIMESTAMP NOT NULL
 );
 
 DROP TABLE IF EXISTS comments CASCADE;
