@@ -131,7 +131,7 @@
                            <li>
                                <p class="description">
                                    Автор: ${item.author.username}
-                                   ${item.dateOfCreation}
+                                   ${item.timeOfCreation}
                                </p>
                            </li>
                        </ul>
