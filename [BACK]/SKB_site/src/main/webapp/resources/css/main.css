@@ -1,4 +1,4 @@
-
+@import "../bootstrap/css/bootstrap.css";
 /*определяем цвета*/
 :root {
 	--blue:#0066d2;

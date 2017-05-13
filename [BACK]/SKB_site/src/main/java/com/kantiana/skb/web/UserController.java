@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.String;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -77,4 +78,28 @@ public class UserController {
         model.addAttribute("user", user);
         return "profile";
     }
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String news(Model model) {
+        List<News> newsList= newsService.getAllNews();
+        model.addAttribute("newsList", newsList);
+        return "news";
+    }
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
+    public String newsDetailed(Model model, Long newsId) {
+        List<News> newsList= newsService.getAllNews();
+        model.addAttribute("newsList", newsList);
+        for (News i: newsList){
+            if (i.getId() == newsId){
+                model.addAttribute("aboutNews", i);
+                model.addAttribute("comments", i.getComments());
+                break;
+            }
+        }
+        return "news-detailed";
+    }
+
 }
