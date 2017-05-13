@@ -1,7 +1,6 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
