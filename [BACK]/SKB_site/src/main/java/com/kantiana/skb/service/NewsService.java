@@ -7,4 +7,6 @@ public interface NewsService {
     public void save(News news);
 
     public List<News> getAllNews();
+
+    public News findById(Long id);
 }
