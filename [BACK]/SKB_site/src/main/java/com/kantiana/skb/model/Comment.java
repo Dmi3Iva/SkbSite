@@ -1,7 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "comments")
@@ -9,7 +9,7 @@ public class Comment {
     private Long id;
     private News news;
     private User author;
-    private Date dateOfCreation;
+    private Timestamp timeOfCreation;
     private String content;
 
     @Id
@@ -42,12 +42,13 @@ public class Comment {
         this.author = author;
     }
 
-    public Date getDateOfCreation() {
-        return dateOfCreation;
+    @Column(name = "time_of_creation")
+    public Timestamp getTimeOfCreation() {
+        return timeOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
-        this.dateOfCreation = dateOfCreation;
+    public void setTimeOfCreation(Timestamp timeOfCreation) {
+        this.timeOfCreation = timeOfCreation;
     }
 
     public String getContent() {
