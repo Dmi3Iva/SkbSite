@@ -25,6 +25,7 @@ public class User {
     private Set<Role> roles;
     private Set<Comment> comments;
     private Set<Project> ownProjects;
+    private Set<Project> projects;
     private boolean customer;
 
     @Id
@@ -180,6 +181,16 @@ public class User {
 
     public void setOwnProjects(Set<Project> ownProjects) {
         this.ownProjects = ownProjects;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "projects_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Transient

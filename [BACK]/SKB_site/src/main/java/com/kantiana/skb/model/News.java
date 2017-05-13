@@ -12,6 +12,7 @@ public class News {
     private String content;
     private Date dateOfCreation;
     private User author;
+    private Project project;
     private Set<Comment> comments;
 
     @Id
@@ -48,10 +49,20 @@ public class News {
     }
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable=false)
+    @JoinColumn(name = "author_id", nullable=false)
     public User getAuthor() { return author; }
 
     public void setAuthor(User author) { this.author = author; }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
