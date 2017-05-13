@@ -77,4 +77,51 @@ public class UserController {
         model.addAttribute("user", user);
         return "profile";
     }
+
+    //Контроллеры для интграции страниц
+
+    @RequestMapping(value = "/equipment", method = RequestMethod.GET)
+    public String equipment() {
+        return "equipment";
+    }
+
+    @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
+    public String equipmentBooking() {
+        return "equipment-booking";
+    }
+
+    @RequestMapping(value = "/equipment-item", method = RequestMethod.GET)
+    public String equipmentItem() {
+        return "equipment-item";
+    }
+
+    @RequestMapping(value = "/index-order", method = RequestMethod.GET)
+    public String indexOrder() {
+        return "index-order";
+    }
+
+    @RequestMapping(value = "/index-student", method = RequestMethod.GET)
+    public String indexStudent() {
+        return "index-student";
+    }
+
+    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    public String order() {
+        return "order";
+    }
+
+    @RequestMapping(value = "/order-detailed", method = RequestMethod.GET)
+    public String orderDetailed() {
+        return "order-detailed";
+    }
+
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
+    public String projects() {
+        return "projects";
+    }
+
+    @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
+    public String projectDetailed() {
+        return "project-detailed";
+    }
 }

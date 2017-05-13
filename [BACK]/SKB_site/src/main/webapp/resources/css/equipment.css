@@ -1,0 +1,108 @@
+@import "main.css";
+
+.item .col-xs-6{
+  background-color: var(--blue);
+  margin: 15px auto;
+  padding-left: 0;
+  height: 123.75px;
+}
+
+.col-xs-12{
+  background-color: var(--blue);
+  margin: 15px auto;
+  padding-left: 0;
+}
+
+.item p{
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+.item img{
+  min-width: 100px;
+}
+
+.visible-xs{
+  padding: 10px;
+}
+@media screen and (max-width:1199px) {
+  .item .col-xs-6{
+    height:98.734px;
+  }
+}
+
+@media screen and (max-width:991px) {
+  .item .col-xs-6,.col-xs-12{
+    height:71.250px;
+  }
+}
+
+@media screen and (max-width:400px) {
+  .item .col-xs-6{
+    height:100%;
+  }
+}
+.item a{
+  text-decoration:none;
+  color:var(--white);
+}
+
+
+/**/
+.titleHead{
+  background-color: var(--blue);
+  color:var(--white);
+  width:70%;
+}
+
+ .titleHead div{
+  float:right;
+}
+
+ ul.titleHead li{
+  display: inline-block;
+  white-space:nowrap;
+  padding: 0px;
+}
+
+ul.titleHead{
+  padding: 0px;
+  width: 100%;
+  height: 70px;
+}
+ul.titleHead li:first-child{
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+}
+
+ul.titleHead li:nth-child(2){
+  padding: 0px 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+ul.titleHead li:nth-child(3){
+  margin-top: 25px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.smallBlueBox{
+  height: 70px;
+  width: 15px;
+  background-color: #3095ff;
+}
+
+/*форма ссылки*/
+.titleHead div a{
+  color:var(--white);
+  padding: 4px 10px;
+  border-radius: 26px;
+  background-color: #3095ff;
+  text-decoration: none;
+}
+
+.titleHead div a:hover{
+  background-color: var(--blue-btn-action);
+}

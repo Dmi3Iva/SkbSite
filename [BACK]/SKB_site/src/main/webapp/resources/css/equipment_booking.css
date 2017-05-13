@@ -1,0 +1,52 @@
+@import "main.css";
+
+canvas{
+  width: 100%;
+}
+
+table{
+  color:#333;
+}
+
+caption{
+  caption-side: top;
+  font-size: 16px;
+}
+
+thead{
+  background-color: var(--blue);
+  color:var(--white);
+}
+
+.input-group-addon, .input-group-btn{
+  width: auto;
+}
+
+label{
+  color:#333;
+}
+
+.red, .blue, .whiteblue{
+  display: flex;
+  color: #333;
+  list-style-type: none;
+}
+
+.block{
+  height: 15px;
+  width: 15px;
+  margin-right: 15px;
+  background-color: #333;
+}
+
+.red .block{
+  background-color:#7F0000;
+}
+
+.blue .block{
+  background-color:var(--blue);
+}
+
+.whiteblue .block{
+  background-color: var(--blue-btn);
+}
