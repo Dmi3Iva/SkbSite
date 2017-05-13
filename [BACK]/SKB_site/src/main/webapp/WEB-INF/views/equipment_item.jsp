@@ -11,7 +11,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="images/logo.png">
+    <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -64,12 +64,12 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-2 hidden-xs">
-            <a class="logotip" href="#"><img src="images/logo.png"></a>
+            <a class="logotip" href="#"><img src="${contextPath}/resources/images/logo.png"></a>
           </div>
           <div class="col-sm-10">
             <ul id="main_nav" class="nav nav-justified">
               <li class=" visible-xs">
-                <a class="logotip" href="#"><img src="images/logo-100.png"></a>
+                <a class="logotip" href="#"><img src="${contextPath}/resources/images/logo-100.png"></a>
               </li>
               <li class=""><a href="#">Новости</a></li>
               <li class=""><a href="#">Оборудование</a></li>
@@ -102,7 +102,7 @@
         <h4 class= "my-auto">Arduino Titan</h4>
       </div>
       <div class="image">
-        <img src="images/microcontrollers/1.jpg" alt="Микроконтроллер1">
+        <img src="${contextPath}/resources/images/microcontrollers/1.jpg" alt="Микроконтроллер1">
       </div>
 
     </div>
@@ -158,7 +158,7 @@
     <div class="col-xs-4" >
       <div class="item">
         <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="images\microcontrollers\1.jpg" alt="" width=100%></div>
+          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\1.jpg" alt="" width=100%></div>
           <div class="col-xs-6 hidden-xs">
             <p>Ardruino Titan</p>
           </div>
@@ -172,7 +172,7 @@
     <div class="col-xs-4">
       <div class="item">
         <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="images\microcontrollers\2.jpg" alt="" width=100%></div>
+          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\2.jpg" alt="" width=100%></div>
           <div class="col-xs-6 hidden-xs">
             <p>Ardruino MKR1000</p>
           </div>
@@ -187,7 +187,7 @@
     <div class="col-xs-4">
       <div class="item">
         <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="images\microcontrollers\3.jpg" alt="" width=100%></div>
+          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\3.jpg" alt="" width=100%></div>
           <div class="col-xs-6 hidden-xs">
             <p>Ardruino MKRFOX1200</p>
           </div>
@@ -219,10 +219,10 @@
               <ul class="list-unstyled text-right">
                 <li>Мы в социальных сетях<li>
                 <li class="socialIcons text-right">
-                  <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte">
+                  <a href="https://vk.com"><img src="${contextPath}/resources/images/vk.png" alt="Vkontakte">
                   </a>
-                  <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
-                  <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
+                  <a href="https://instagram.com"><img src="${contextPath}/resources/images/instagram.png" alt="Instagram"></a>
+                  <a href="https://twitter.com"><img src="${contextPath}/resources/images/twitter.png" alt="Twitter"></a>
                 </li>
                 <li><br></li>
                 <li>Copyright &copy 2017</li>

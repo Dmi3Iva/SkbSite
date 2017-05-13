@@ -10,7 +10,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="images/logo.png">
+    <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -63,11 +63,11 @@
         <div class="container">
           <div class="row">
               <div class="col-sm-2 hidden-xs">
-                <a class="logotip" href="#"><img src ="images/logo.png"></a>
+                <a class="logotip" href="#"><img src ="${contextPath}/resources/images/logo.png"></a>
               </div>
               <div class="col-sm-10">
                 <ul id="main_nav" class="nav nav-justified">
-                  <li class=" visible-xs"><a class="logotip" href="#"><img src ="images/logo-100.png"></a></li>
+                  <li class=" visible-xs"><a class="logotip" href="#"><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
                   <li class=""><a href="#">Новости</a></li>
                   <li class=""><a href="#">Оборудование</a></li>
                   <li class=""><a href="#">Проекты</a></li>
@@ -91,14 +91,14 @@
         <!--Слайды -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="images/drop1.jpg" alt="drop1">
+            <img src="${contextPath}/resources/images/drop1.jpg" alt="drop1">
             <div class="carousel-caption">
               <h3>Новости</h3>
               <p>Скандал. Юные шмодники часам стоят в очереди, чтобы забронировать оборудование в СКБ.</p>
             </div>
           </div>
           <div class="item">
-            <img src="images/drop2.jpg" alt="drop2">
+            <img src="${contextPath}/resources/images/drop2.jpg" alt="drop2">
             <div class="carousel-caption">
               <h3>Оборудование</h3>
               <p>СКБ предоставляет любое оборудование на ваш выбор</p>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="item">
-            <img src="images/drop3.jpg" alt="drop3">
+            <img src="${contextPath}/resources/images/drop3.jpg" alt="drop3">
             <div class="carousel-caption">
               <h3>Проекты</h3>
               <p>Студенты СКБ моделируют Солнечную систему.</p>
@@ -125,7 +125,7 @@
     </div>
 
 <div class="container" >
-    
+
 <!--Новости и проекты-->
   <div class="row">
     <!--Новости раздел-->
@@ -144,7 +144,7 @@
 
           <div class="row">
             <div class="col-md-6 block">
-              <img src="images/girl-w250.jpg" alt="girl" width="100%">
+              <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
             </div>
               <div class="col-md-6 block">
                 <p class="description">
@@ -169,7 +169,7 @@
 
           <div class="row">
             <div class="col-md-6 block">
-              <img src="images/girl-w250.jpg" alt="girl" width="100%">
+              <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
             </div>
               <div class="col-md-6 block">
                 <p class="description">
@@ -205,7 +205,7 @@
         </ul>
         <div class="row">
           <div class="col-xs-6 block">
-            <img src="images/girl-w250.jpg" alt="girl" width="100%">
+            <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
           </div>
             <div class="col-xs-6 block">
               <p class="description">
@@ -230,7 +230,7 @@
 
         <div class="row">
           <div class="col-xs-6 block">
-            <img src="images/girl-w250.jpg" alt="girl" width="100%">
+            <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
           </div>
             <div class="col-xs-6 block">
               <p class="description">
@@ -278,10 +278,10 @@
               <ul class="list-unstyled text-right">
                 <li>Мы в социальных сетях<li>
                 <li class="socialIcons text-right">
-                  <a href="https://vk.com"><img src="images/vk.png" alt="Vkontakte">
+                  <a href="https://vk.com"><img src="${contextPath}/resources/images/vk.png" alt="Vkontakte">
                   </a>
-                  <a href="https://instagram.com"><img src="images/instagram.png" alt="Instagram"></a>
-                  <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
+                  <a href="https://instagram.com"><img src="${contextPath}/resources/images/instagram.png" alt="Instagram"></a>
+                  <a href="https://twitter.com"><img src="${contextPath}/resources/images/twitter.png" alt="Twitter"></a>
                 </li>
                 <li><br></li>
                 <li>Copyright &copy 2017</li>
