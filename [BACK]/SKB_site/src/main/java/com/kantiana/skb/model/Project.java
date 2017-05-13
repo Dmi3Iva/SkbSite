@@ -16,6 +16,7 @@ public class Project {
     private Date dateOfLastUpdate;
     private String about;
     private Set<News> news;
+    private Set<User> members;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -96,5 +97,14 @@ public class Project {
 
     public void setNews(Set<News> news) {
         this.news = news;
+    }
+
+    @ManyToMany(mappedBy = "projects")
+    public Set<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<User> members) {
+        this.members = members;
     }
 }
