@@ -2,6 +2,7 @@ package com.kantiana.skb.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "projects")
@@ -14,6 +15,8 @@ public class Project {
     private Date dateOfStart;
     private Date dateOfLastUpdate;
     private String about;
+    private Set<News> news;
+    private Set<User> members;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,5 +88,23 @@ public class Project {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    @OneToMany(targetEntity = News.class, mappedBy = "project", cascade = CascadeType.ALL)
+    public Set<News> getNews() {
+        return news;
+    }
+
+    public void setNews(Set<News> news) {
+        this.news = news;
+    }
+
+    @ManyToMany(mappedBy = "projects")
+    public Set<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<User> members) {
+        this.members = members;
     }
 }

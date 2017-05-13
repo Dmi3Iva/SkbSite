@@ -4,7 +4,7 @@ import org.hibernate.mapping.Join;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -13,8 +13,9 @@ public class News {
     private Long id;
     private String name;
     private String content;
-    private Date dateOfCreation;
+    private Timestamp timeOfCreation;
     private User author;
+    private Project project;
     private Set<Comment> comments;
 
     @Id
@@ -41,20 +42,30 @@ public class News {
 
     public void setContent(String content) { this.content = content;}
 
-    @Column(name = "date_of_creation")
-    public Date getDateOfCreation() {
-        return dateOfCreation;
+    @Column(name = "time_of_creation")
+    public Timestamp getTimeOfCreation() {
+        return timeOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
-        this.dateOfCreation = dateOfCreation;
+    public void setTimeOfCreation(Timestamp timeOfCreation) {
+        this.timeOfCreation = timeOfCreation;
     }
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable=false)
+    @JoinColumn(name = "author_id", nullable=false)
     public User getAuthor() { return author; }
 
     public void setAuthor(User author) { this.author = author; }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
