@@ -1,11 +1,14 @@
 package com.kantiana.skb.web;
 
+import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.model.User;
+import com.kantiana.skb.service.CommentService;
 import com.kantiana.skb.service.NewsService;
 import com.kantiana.skb.service.SecurityService;
 import com.kantiana.skb.service.UserService;
 import com.kantiana.skb.validator.UserValidator;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.String;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -22,6 +26,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private CommentService commentService;
     @Autowired
     private SecurityService securityService;
     @Autowired
@@ -123,5 +129,33 @@ public class UserController {
     @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
     public String projectDetailed() {
         return "project-detailed";
+    }
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String news(Model model) {
+        List<News> newsList= newsService.getAllNews();
+        model.addAttribute("newsList", newsList);
+        return "news";
+    }
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
+    public String newsDetailed(Model model, Long newsId) {
+        News news = newsService.findById(newsId);
+        model.addAttribute("news", news);
+        return "news-detailed";
+    }
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
+    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long newsId) {
+        if (bindingResult.hasErrors()) {
+            return "news-detailed";
+        }
+        commentService.save(commentForm);
+        News news = newsService.findById(newsId);
+        model.addAttribute("news", news);
+        return "news-detailed";
     }
 }

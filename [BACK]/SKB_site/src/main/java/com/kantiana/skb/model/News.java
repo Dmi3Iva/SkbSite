@@ -1,5 +1,8 @@
 package com.kantiana.skb.model;
 
+import org.hibernate.mapping.Join;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -64,7 +67,7 @@ public class News {
         this.project = project;
     }
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Comment> getComments() {
         return comments;
     }

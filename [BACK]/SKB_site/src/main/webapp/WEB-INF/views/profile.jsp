@@ -52,12 +52,9 @@
         </div>
     </nav>
 
-
-
     <!--navbar-->
     <nav>
         <div class="masthead">
-
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2 hidden-xs">
@@ -66,7 +63,7 @@
                     <div class="col-sm-10 mx-auto">
                         <ul id="main_nav" class="nav nav-justified">
                             <li class=" visible-xs"><a class="logotip" href=""><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
-                            <li class=""><a href="#">Новости</a></li>
+                            <li class=""><a href="news.html">Новости</a></li>
                             <li class=""><a href="#">Оборудование</a></li>
                             <li class=""><a href="#">Проекты</a></li>
                             <li class=""><a href="#">Заказы</a></li>

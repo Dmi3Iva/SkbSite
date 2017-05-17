@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
 <c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
@@ -76,7 +77,7 @@
                     <div class="col-sm-10 mx-auto">
                         <ul id="main_nav" class="nav nav-justified">
                             <li class=" visible-xs"><a class="logotip" href=""><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
-                            <li class=""><a href="#">Новости</a></li>
+                            <li class=""><a href= "/news" >Новости</a></li>
                             <li class=""><a href="#">Оборудование</a></li>
                             <li class=""><a href="#">Проекты</a></li>
                             <li class=""><a href="#">Заказы</a></li>
