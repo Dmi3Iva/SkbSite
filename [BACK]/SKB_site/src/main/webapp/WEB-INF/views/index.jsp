@@ -2,7 +2,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
 <c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
@@ -16,9 +15,7 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/main.css">
+    <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
 
     <!--Незримая форма, помогающая выйти-->
     <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -26,44 +23,48 @@
     </form>
 </head>
 <body>
-<!--Left and right section -->
-    <div id="leftSide"></div>
-    <div id="rightSide"></div>
-<!--HEADER -->
-    <nav class="navbar navbar-toggleable-sm navbar-default fixed-top my_header ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarsDefault" aria-controls="navbarsExampleDefault"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </button>
-        <a class="navbar-brand pt-3 px-0" href="#">Студентческое конструкторское бюро</a>
-        <div class="collapse navbar-collapse" id="navbarsDefault">
-            <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-default navbar-toggleable-md navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Студентческое конструкторское бюро</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+            <form class="navbar-nav navbar-form  ">
+                <div class="form-group">
+                    <input type="text" placeholder="Поиск" class="form-control">
+                </div>
+                <button type="submit" class="btn btn btn-default">Найти</button>
+            </form>
+
+            <ul class="nav navbar-nav">
                 <!--Если пользователь не зарегистрирован, то в хедере выводятся кнопки "Регистрация", "Войти"-->
                 <c:if test = "${userPrincipal.name == null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a>
+                    <li>
+                        <a class="nav-link" href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-in"></span> Вход</a>
+                    <li>
+                        <a class="nav-link" href="/authorization"><span class="glyphicon glyphicon-log-in"></span> Вход </a>
                     </li>
                 </c:if>
                 <!--Иначе выводятся "Личный кабинет" и "Выйти"-->
                 <c:if test = "${userPrincipal.name != null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-home"></span> Личный кабинет</a>
+                    <li>
+                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-user"></span> Личный кабинет </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
+                    <li>
+                        <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span> Выход </a>
                     </li>
                 </c:if>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
-            </form>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!--Основная навигация-->
     <nav>
@@ -147,27 +148,32 @@
 
 
 
-    <div class="container" >
-        <div class= "row">
+<div class="container" >
+    <div class= "row">
 
-            <!--Новости и проекты-->
-            <div class="row">
 
-                <!--Новости-->
-                <div class="col-md-6" >
-                    <ul id ="news">
-                        <li><div class="smallBlueBox"></div></li>
-                        <li><h3>Новости</h3></li>
-                        <li>
-                            <div align="center" class=link>
-                                <a href="#">смотреть всё</a>
-                            </div>
-                        </li>
-                    </ul>
 
-                    <!--Новости-->
-                    <div class="block">
-                        <img src = "${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="250">
+        <!--Новости и проекты-->
+        <div class="row">
+            <!--Новости раздел-->
+            <div class="col-md-6" >
+                <ul class="titleHead">
+                    <li><div class="smallBlueBox"></div></li>
+                    <li><h3>Новости</h3></li>
+                    <li>
+                        <div align="center" class=link>
+                            <a href="#">смотреть всё</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!--Новости уровень 1-->
+
+                <div class="row">
+                    <div class="col-md-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-md-6 block">
                         <p class="description">
                             Автор:  Енот
                             09.03.2017
@@ -186,66 +192,13 @@
                             <a href="#">Подробнее...</a>
                         </p>
                     </div>
-                    <!--новотсь уровня 2-->
-                    <div class="block">
-                        <img src="${contextPath}/resources/images/enot.jpg" alt="enot">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Студенты работающие в скб решили
-                            создать киборга
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                    <!--проект1-->
-
                 </div>
 
-                <!--проекты-->
-                <div class="col-md-6" >
-                    <ul id="projects">
-                        <li><div class="smallBlueBox"></div></li>
-                        <li><h3>Проекты</h3></li>
-                        <li>
-                            <div align="center" class=link>
-                                <a href="#">смотреть всё</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="block">
-                        <img src="${contextPath}/resources/images/enot.jpg" alt="enot" >
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Студенты работающие в скб решили
-                            создать киборга
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
+                <div class="row">
+                    <div class="col-md-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
                     </div>
-                    <!--проект2-->
-                    <div class="block">
-                        <img src = "${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="250" align="left">
+                    <div class="col-md-6 block">
                         <p class="description">
                             Автор:  Енот
                             09.03.2017
@@ -261,16 +214,77 @@
                             великой депрессии, поэтому мы должны сами объявить войну...
                         </p>
                         <p class="detailes">
-                            <a href="#">  Подробнее...</a>
+                            <a href="#">Подробнее...</a>
                         </p>
                     </div>
                 </div>
-
-                <!--close row-->
             </div>
-            <!--close container-->
+
+            <div class="col-md-6">
+                <ul class="titleHead">
+                    <li><div class="smallBlueBox"></div></li>
+                    <li><h3>Проекты</h3></li>
+                    <li>
+                        <div align="center" class=link>
+                            <a href="#">смотреть всё</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-xs-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-xs-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-xs-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
+</div>
 
 
     <!--Footer -->
