@@ -10,16 +10,21 @@ import java.util.Set;
 @Entity
 @Table(name="news")
 public class News {
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "")
     private String name;
     private String content;
+
+    @Column(name = "time_of_creation")
     private Timestamp timeOfCreation;
     private User author;
     private Project project;
-    private Set<Comment> comments;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -42,7 +47,7 @@ public class News {
 
     public void setContent(String content) { this.content = content;}
 
-    @Column(name = "time_of_creation")
+
     public Timestamp getTimeOfCreation() {
         return timeOfCreation;
     }
@@ -67,12 +72,5 @@ public class News {
         this.project = project;
     }
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Comment> getComments() {
-        return comments;
-    }
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
 }

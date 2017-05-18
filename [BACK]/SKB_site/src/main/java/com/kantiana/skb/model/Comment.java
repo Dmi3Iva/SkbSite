@@ -12,6 +12,7 @@ public class Comment {
     private Timestamp timeOfCreation;
     private String content;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -22,7 +23,7 @@ public class Comment {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name="news_id", nullable=false)
     public News getNews() {
         return news;
