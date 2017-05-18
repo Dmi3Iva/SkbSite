@@ -129,7 +129,11 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
-
+        // Инициализируем неинициализированные поля
+        news.setAuthor(securityService.findLoggedUser());
+        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setProject(null); // пока null
+        newsService.save(news);
         return "redirect:/news";
     }
 
