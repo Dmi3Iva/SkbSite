@@ -1,5 +1,6 @@
 package com.kantiana.skb.service;
 
+import com.kantiana.skb.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class SecurityServiceImpl implements SecurityService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public String findLoggedInUsername() {
@@ -38,5 +41,11 @@ public class SecurityServiceImpl implements SecurityService {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             Logger.debug(String.format("Auto login %s successfully!", username));
         }
+    }
+
+    @Override
+    public User findLoggedUser() {
+        String username = findLoggedInUsername();
+        return userService.findByUsername(username);
     }
 }

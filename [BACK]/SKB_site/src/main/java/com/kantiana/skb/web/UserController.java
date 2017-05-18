@@ -107,8 +107,10 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
-        commentService.save(commentForm);
         News news = newsService.findById(newsId);
+        commentForm.setNews(news);
+        commentForm.setAuthor(securityService.findLoggedUser());
+        commentService.save(commentForm);
         model.addAttribute("news", news);
         return "news-detailed";
     }
