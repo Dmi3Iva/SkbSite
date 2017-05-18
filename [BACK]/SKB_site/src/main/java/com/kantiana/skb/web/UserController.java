@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.String;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -110,6 +111,7 @@ public class UserController {
         News news = newsService.findById(newsId);
         commentForm.setNews(news);
         commentForm.setAuthor(securityService.findLoggedUser());
+        commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         commentService.save(commentForm);
         model.addAttribute("news", news);
         return "news-detailed";

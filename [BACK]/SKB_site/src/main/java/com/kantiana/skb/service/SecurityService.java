@@ -9,6 +9,6 @@ public interface SecurityService {
 
     // Возвращает имя зарегистрированного пользователя
     public String findLoggedInUsername();
-    
+
     public void autologin(String username, String password);
 }

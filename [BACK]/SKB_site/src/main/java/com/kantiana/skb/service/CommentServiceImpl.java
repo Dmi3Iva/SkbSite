@@ -14,7 +14,6 @@ public class CommentServiceImpl implements CommentService {
     CommentRepository commentRepository;
 
     public void save(Comment comment) {
-        comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         commentRepository.save(comment);
     }
 
