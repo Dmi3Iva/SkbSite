@@ -37,7 +37,11 @@
                     <div class="smallBlueBox"></div>
                 </li>
                 <li>
-                    <h3>Добавление новости</h3></li>
+                    <h3>
+                        <c:if test="${news.id > 0}">Изменение новости</c:if>
+                        <c:if test="${empty news.id }"> Добавление новости</c:if>
+                    </h3>
+                </li>
             </ul>
         </div>
     </div>
@@ -79,7 +83,10 @@
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Добавить новость</button>
+                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
+                                    <c:if test="${news.id > 0}">Изменить новость</c:if>
+                                    <c:if test="${empty news.id }">Добавить новость</c:if>
+                                </button>
                             </div>
                         </div>
                     </div>

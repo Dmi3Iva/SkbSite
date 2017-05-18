@@ -202,8 +202,16 @@ public class UserController {
         oldNews.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         oldNews.setProject(null); // пока null
         oldNews.setContent(news.getContent());
+        oldNews.setName(news.getName());
         newsService.save(oldNews);
         return "redirect:/news";
     }
 
+
+    @RequestMapping(value = "/del-news", method = RequestMethod.GET)
+    public String editNews(Long newsId) {
+        News news = newsService.findById(newsId);
+        newsService.delete(news);
+        return "redirect:/news";
+    }
 }

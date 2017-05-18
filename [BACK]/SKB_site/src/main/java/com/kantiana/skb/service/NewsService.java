@@ -9,4 +9,10 @@ public interface NewsService {
     public List<News> getAllNews();
 
     public News findById(Long id);
+
+    public void delete(Long newsId);
+
+    public void delete(News news);
+
+
 }

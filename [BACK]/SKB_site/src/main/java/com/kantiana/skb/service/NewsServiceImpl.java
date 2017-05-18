@@ -17,6 +17,14 @@ public class NewsServiceImpl implements NewsService {
         newsRepository.save(news);
     }
 
+    public void delete(Long newsId){
+        newsRepository.delete(newsId);
+    }
+
+    public void delete(News news) {
+        newsRepository.delete(news);
+    }
+
     public List<News> getAllNews() {
         return newsRepository.findAll();
     }
