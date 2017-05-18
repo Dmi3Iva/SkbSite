@@ -100,105 +100,88 @@
       </div>
     </div>
     <!--IIMAGE 1-->
-    <div class="row">
-      <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
-    <div class="row ">
-      <div class="col-xs-12">
+    <c:if test = "${!empty news}">
+      <div class="row">
+        <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
+      <div class="row ">
+        <div class="col-xs-12">
 
-        <div class="new">
+          <div class="new">
 
-          <p class="title">
-            Енот устал писать макет этого сайта, но он не сдаётся
-          </p>
-          <p class="article">
-            Сколько же всего нас окружает интересного: друзья, телевизор, компьютер, кружки всякие, книжки, в конце концов! Даже глаза разбегаются! Бывает, и за то возьмешься и за это. Ну и что, что не все получается, вон сколько еще всего - раз это не получается,
-            попробую чего-нибудь другого. А бывает, вообще ничего не хочется! И, к сожалению, бывает намного чаще, чем наоборот. Так в чем же причина? В чем причина, что в многообразии всего, что нас окружает, мы до сих пор остаемся один на один с собой,
-            без интересов, без увлечений и, зачастую, без друзей? А может, как раз в многообразии возможностей? Когда не жаль потерять того, что уже достигнуто, потому что на место старого увлечения наверняка можно будет найти новое. Более интересное
-            и более доступное (на первый взгляд). Или дело в другом? В том, что когда первый интерес немного ослаб, ты вдруг понимаешь, что твое увлечение - это не только интересные открытия, возможность проявить себя и так далее, но и необходимость совершить
-            некоторые усилия над собой? Может быть именно из-за отсутствия этого усилия нам легче согласиться, чем спорить, если несогласен; отступиться от того, что еще вчера было дорого? Вот и получаемся мы скучными, не интересными ни себе, ни окружающим
-            человечками. Кто-то из мудрых сказал: „...бойся равнодушных, ибо только с их молчаливого согласия..." А кто такой равнодушный? Уж не тот ли, кто при первых трудностях опускает руки, уж не тот ли, кому вдруг просто стало неохота. Неохота связываться
-            с хулиганами, потому что можно получить; с чужим мнением, потому что оно может быть чиьим-то из сильных мира сего; с новым делом, потому что придется потратить свое время, свои силы... Вот так мы и молчим, когда бросают в нас необоснованные
-            обвинения, вот так мы и ссылаемся на ужасную занятость, когда товарищу необходимо помочь с уроками, подготовить дело, выпустить газету... Вот так мы и живем. Вроде бы, как все... Правда иногда становится действительно плохо, но, ведь, отогнать
-            это состояние намного проще, чем с ним бороться, и намного проще сказать: "Вот раньше было! А сейчас все не то, все разваливается!". Вот так и живем.
-          </p>
+            <p class="title">
+                ${news.name}
+            </p>
+            <p class="article">
+                ${news.content}
+            </p>
 
 
-              <p class="description">
-                Автор: Енот 09.03.2017 18:35
-              </p>
+            <p class="description">
+              Автор: ${news.author.username} ${news.timeOfCreation}
+            </p>
 
-          </ul>
-
-
-        </div>
-      </div>
-
-    </div>
-    <!--comments-->
-    <div class="row">
-      <div class="col-md-12">
-        <h3>Комментарии(3)</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-1">
-        <div class="thumbnail">
-          <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-        </div>
-        <!-- /thumbnail -->
-      </div>
-      <!-- /col-sm-1 -->
-
-      <div class="col-sm-8">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong>myusername</strong> <span class="text-muted">добавлено 5 дней назад</span>
           </div>
-          <div class="panel-body">
-            Я тут такой классный коммент оставил, все просто ахнули. Кстати некстати, у нас тут на проекте все пользуются разными версиями гит клиента, сам я сегодня перешёл на гиткратен, каждый раз, когда прога включается я вспоминаю что боюсь глубин, чем-то похоже
-            на погружение на дно
-          </div>
-          <!-- /panel-body -->
         </div>
-        <!-- /panel panel-default -->
+
       </div>
-      <!-- /col-sm-5 -->
-    </div>
-    <div class="row">
-      <div class="col-sm-1">
-        <div class="thumbnail">
-          <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+      <!--comments-->
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Комментарии()</h3>
         </div>
-        <!-- /thumbnail -->
       </div>
-      <!-- /col-sm-1 -->
-
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <div class="col-md-9">
-                <div class="widget-area no-padding blank">
-                    <div class="status-upload">
-                        <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
-                            <spring:bind path="content">
-                                <form:textarea path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
-                                <form:errors path="content"/>
-                                <%--<ul>--%>
-                                    <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>
-                                    <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>--%>
-                                    <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>--%>
-                                    <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
-                                <%--</ul>--%>
-                            </spring:bind>
-
-                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
-                        </form:form>
-                    </div><!-- Status Upload  -->
-                </div><!-- Widget Area -->
+      <%--<c:if test="${!empty comments}">--%>
+      <c:forEach items="${news.comments}" var="item">
+        <div class="row">
+          <div class="col-sm-1">
+            <div class="thumbnail">
+              <img class="img-responsive user-photo" src="${contextPath}/resources/images/${item.author.photoPath}">
             </div>
-        </c:if>
+            <!-- /thumbnail -->
+          </div>
+          <!-- /col-sm-1 -->
+
+          <div class="col-sm-8">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>${item.author.username}</strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
+              </div>
+              <div class="panel-body">
+                  ${item.content}
+              </div>
+              <!-- /panel-body -->
+            </div>
+            <!-- /panel panel-default -->
+          </div>
+          <!-- /col-sm-5 -->
+        </div>
+      </c:forEach>
+
+      <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <div class="col-md-9">
+          <div class="widget-area no-padding blank">
+            <div class="status-upload">
+              <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
+                <spring:bind path="content">
+                  <form:textarea path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
+                  <form:errors path="content"/>
+                  <%--<ul>--%>
+                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>
+                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>--%>
+                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>--%>
+                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
+                  <%--</ul>--%>
+                </spring:bind>
+
+                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
+              </form:form>
+            </div><!-- Status Upload  -->
+          </div><!-- Widget Area -->
+        </div>
+      </c:if>
 
     </c:if>
-</div>
-
+  </div>
 <!-- /container -->
 
 
