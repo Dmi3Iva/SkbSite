@@ -69,7 +69,11 @@
                             <div class="col-xs-9">
                                 <form:textarea path="content" placeholder="Содержание новости" class="form-control" ></form:textarea>
                                 <form:errors path="content"></form:errors>
+                                <c:if test="${news.id > 0}">
+                                    <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
+                                </c:if>
                             </div>
+
                         </spring:bind>
                     </div>
                     <div class="container">
@@ -79,6 +83,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
         </div>

@@ -165,9 +165,15 @@ public class UserController {
     }
 
     //Контроллер добавления новостей
-    @RequestMapping(value = "/add-news", method = RequestMethod.GET)
-    public String addNews(Model model) {
-        model.addAttribute("news", new News() );
+    //выводит страницу создания и редактирования новости
+    @RequestMapping(value = {"/add-news","/edit-news"}, method = RequestMethod.GET)
+    public String addNews(Model model, Long newsId) {
+        if(newsId!=null) {
+            News news = newsService.findById(newsId);
+            model.addAttribute("news", news);
+        }
+        else
+            model.addAttribute("news", new News() );
         return "add-news";
     }
 
@@ -184,6 +190,20 @@ public class UserController {
         return "redirect:/news";
     }
 
+    @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "add-news";
+        }
+        News oldNews= newsService.findById(news.getId());
+        if(oldNews ==null) return "redirect:/news";
+        oldNews.setAuthor(securityService.findLoggedUser());
 
+        oldNews.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        oldNews.setProject(null); // пока null
+        oldNews.setContent(news.getContent());
+        newsService.save(oldNews);
+        return "redirect:/news";
+    }
 
 }

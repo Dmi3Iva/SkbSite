@@ -36,7 +36,7 @@
             </ul>
         </div>
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='\add-news';" value="Добавить новость">
+            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
         </div>
     </div>
     <!--Новости уровень 1-->
@@ -62,6 +62,10 @@
                                         ${item.timeOfCreation}
                                 </p>
                             </li>
+                            <div class="form-group">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/del-news?newsId=${item.id}';" value="Удалить">
+                            </div>
                         </ul>
                     </div>
                 </div>
