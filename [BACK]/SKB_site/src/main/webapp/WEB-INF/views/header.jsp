@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8"%>
+<c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
 <!doctype html>
 <html>
