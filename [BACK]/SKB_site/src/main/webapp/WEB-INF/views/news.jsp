@@ -17,27 +17,6 @@
 </head>
 <body>
 
-<script type="text/javascript">
-    //Скрипт для загрузки информации о новости без обновления странцы
-    /*function InformationAboutNew(data){
-        $.ajax({
-            url: 'news/news' + $ {data},
-            type: 'GET',
-
-            success: function (data) {
-                var author = "";
-                var text ="";
-                var date="";
-                var name="";
-
-            }
-
-        })
-
-    }*/
-
-</script>
-
 <div id="leftSide">
 </div>
 <div id="rightSide">
@@ -104,11 +83,14 @@
     <!--Новости и проекты-->
     <div class="row">
         <!--Новости раздел-->
-        <div class="col-md-6" >
+        <div class="col-xs-6" >
             <ul class="titleHead">
                 <li><div class="smallBlueBox"></div></li>
                 <li><h3>Новости</h3></li>
             </ul>
+        </div>
+        <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='\add-news';" value="Добавить новость">
         </div>
     </div>
     <!--Новости уровень 1-->
