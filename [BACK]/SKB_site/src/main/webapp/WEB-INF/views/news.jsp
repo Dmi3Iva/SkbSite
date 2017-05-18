@@ -18,10 +18,10 @@
 </head>
 <body>
 
-  <div id="leftSide">
-  </div>
-  <div id="rightSide">
-  </div>
+<div id="leftSide">
+</div>
+<div id="rightSide">
+</div>
 
 
 <!--header-->
@@ -81,17 +81,20 @@
     </nav>
 
 <div class="container content">
-<!--Новости и проекты-->
-  <div class="row">
-    <!--Новости раздел-->
-      <div class="col-md-6" >
-        <ul class="titleHead">
-          <li><div class="smallBlueBox"></div></li>
-          <li><h3>Новости</h3></li>
-        </ul>
-      </div>
-  </div>
-      <!--Новости уровень 1-->
+    <!--Новости и проекты-->
+    <div class="row">
+        <!--Новости раздел-->
+        <div class="col-xs-6" >
+            <ul class="titleHead">
+                <li><div class="smallBlueBox"></div></li>
+                <li><h3>Новости</h3></li>
+            </ul>
+        </div>
+        <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='\add-news';" value="Добавить новость">
+        </div>
+    </div>
+    <!--Новости уровень 1-->
 
           <div class="row">
               <div class="col-md-8">

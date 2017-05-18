@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.String;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -144,6 +145,7 @@ public class UserController {
     public String newsDetailed(Model model, Long newsId) {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
+        model.addAttribute("commentForm", new Comment());
         return "news-detailed";
     }
 
@@ -153,9 +155,35 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
-        commentService.save(commentForm);
         News news = newsService.findById(newsId);
+        commentForm.setNews(news);
+        commentForm.setAuthor(securityService.findLoggedUser());
+        commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        commentService.save(commentForm);
         model.addAttribute("news", news);
         return "news-detailed";
     }
+
+    //Контроллер добавления новостей
+    @RequestMapping(value = "/add-news", method = RequestMethod.GET)
+    public String addNews(Model model) {
+        model.addAttribute("news", new News() );
+        return "add-news";
+    }
+
+    @RequestMapping(value = "/add-news", method = RequestMethod.POST)
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "add-news";
+        }
+        // Инициализируем неинициализированные поля
+        news.setAuthor(securityService.findLoggedUser());
+        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setProject(null); // пока null
+        newsService.save(news);
+        return "redirect:/news";
+    }
+
+
+
 }

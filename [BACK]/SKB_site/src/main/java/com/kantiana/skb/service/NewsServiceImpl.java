@@ -14,7 +14,6 @@ public class NewsServiceImpl implements NewsService {
     private NewsRepository newsRepository;
 
     public void save(News news) {
-        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         newsRepository.save(news);
     }
 
