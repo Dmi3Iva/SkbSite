@@ -1,13 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!doctype html>
-<html lang="ru">
-
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="description" content="">
@@ -16,7 +14,7 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news-detailed.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add_news.css">
 </head>
 
 <body>
@@ -96,95 +94,56 @@
                     <div class="smallBlueBox"></div>
                 </li>
                 <li>
-                    <h3>Новости</h3></li>
+                    <h3>Добавление новости</h3></li>
             </ul>
         </div>
     </div>
     <!--IIMAGE 1-->
-    <c:if test = "${!empty news}">
-        <div class="row">
-            <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
-        <div class="row ">
-            <div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
+    <div class="row ">
+        <div class="col-xs-12">
 
-                <div class="new">
-
-                    <p class="title">
-                        ${news.name}
-                    </p>
-                    <p class="article">
-                        ${news.content}
-                    </p>
-
-
-                    <p class="description">
-                        Автор: ${news.author.username} ${news.timeOfCreation}
-                    </p>
-
-                </div>
-            </div>
 
         </div>
-        <!--comments-->
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Комментарии()</h3>
-            </div>
-        </div>
-        <%--<c:if test="${!empty comments}">--%>
-            <c:forEach items="${news.comments}" var="item">
-                <div class="row">
-                    <div class="col-sm-1">
-                        <div class="thumbnail">
-                            <img class="img-responsive user-photo" src="${contextPath}/resources/images/${item.author.photoPath}">
-                        </div>
-                        <!-- /thumbnail -->
-                    </div>
-                    <!-- /col-sm-1 -->
-
-                    <div class="col-sm-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <strong>${item.author.username}</strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
-                            </div>
-                            <div class="panel-body">
-                                ${item.content}
-                            </div>
-                            <!-- /panel-body -->
-                        </div>
-                        <!-- /panel panel-default -->
-                    </div>
-                    <!-- /col-sm-5 -->
-                </div>
-            </c:forEach>
-
-
-        <div class="col-md-9">
+    </div>
+    <form:form method="POST" modelAttribute="news" >
+        <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
-                    <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
-                        <spring:bind path="content">
-                            <form:input type="textarea" path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
-                            <ul>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
-                            </ul>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="newsName">Название новости</label>
+                        <spring:bind path="name">
+                            <div class="col-xs-9">
+                                <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости"></form:input>
+                                <form:errors path="name"></form:errors>
+                            </div>
                         </spring:bind>
-                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
-                    </form:form>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="newsName">Содержание новости</label>
+                        <spring:bind path="content">
+                            <div class="col-xs-9">
+                                <form:textarea path="content" placeholder="Содержание новости" class="form-control" ></form:textarea>
+                                <form:errors path="content"></form:errors>
+                            </div>
+                        </spring:bind>
+                    </div>
+                    <div class="container">
+                        <div class="col-xs-offset-9 col-xs-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Добавить новость</button>
+                            </div>
+                        </div>
+                    </div>
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
         </div>
-    </c:if>
+    </form:form>
 </div>
 
+
 <!-- /container -->
-
-
-
-
 
 
 <!--end contant-->
@@ -229,6 +188,4 @@
 <script src="${contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
-

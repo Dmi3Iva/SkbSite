@@ -111,4 +111,23 @@ public class UserController {
         model.addAttribute("news", news);
         return "news-detailed";
     }
+
+    //Контроллер добавления новостей
+    @RequestMapping(value = "/add-news", method = RequestMethod.GET)
+    public String addNews(Model model) {
+        model.addAttribute("news", new News() );
+        return "add-news";
+    }
+
+    @RequestMapping(value = "/add-news", method = RequestMethod.POST)
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "add-news";
+        }
+
+        return "redirect:/news";
+    }
+
+
+
 }
