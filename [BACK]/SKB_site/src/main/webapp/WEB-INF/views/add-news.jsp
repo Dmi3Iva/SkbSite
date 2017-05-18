@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -37,7 +38,11 @@
                     <div class="smallBlueBox"></div>
                 </li>
                 <li>
-                    <h3>Добавление новости</h3></li>
+                    <h3>
+                        <c:if test="${news.id > 0}">Изменение новости</c:if>
+                        <c:if test="${empty news.id }"> Добавление новости</c:if>
+                    </h3>
+                </li>
             </ul>
         </div>
     </div>
@@ -69,16 +74,25 @@
                             <div class="col-xs-9">
                                 <form:textarea path="content" placeholder="Содержание новости" class="form-control" ></form:textarea>
                                 <form:errors path="content"></form:errors>
+                                <c:if test="${news.id > 0}">
+                                    <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
+                                </c:if>
                             </div>
+
                         </spring:bind>
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Добавить новость</button>
+                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
+                                    <c:if test="${news.id > 0}">Изменить новость</c:if>
+                                    <c:if test="${empty news.id }">Добавить новость</c:if>
+                                </button>
                             </div>
                         </div>
                     </div>
+
+
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
         </div>
