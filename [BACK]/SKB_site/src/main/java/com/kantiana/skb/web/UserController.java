@@ -97,6 +97,7 @@ public class UserController {
     public String newsDetailed(Model model, Long newsId) {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
+        model.addAttribute("commentForm", new Comment());
         return "news-detailed";
     }
 

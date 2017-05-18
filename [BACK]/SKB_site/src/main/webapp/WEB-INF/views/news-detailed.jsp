@@ -241,14 +241,16 @@
                 <div class="status-upload">
                     <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
                         <spring:bind path="content">
-                            <form:input type="textarea" path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
-                            <ul>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
-                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
-                            </ul>
+                            <form:textarea path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
+                            <form:errors path="content"/>
+                            <%--<ul>--%>
+                                <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>
+                                <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>--%>
+                                <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>--%>
+                                <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
+                            <%--</ul>--%>
                         </spring:bind>
+
                         <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
                     </form:form>
                 </div><!-- Status Upload  -->
