@@ -20,7 +20,7 @@
                     <ul class="list-unstyled text-right">
                         <li>Мы в социальных сетях<li>
                         <li class="socialIcons text-right">
-                            <a href="https://vk.com"><img src="${contextPath}/resources/images/vk.png" alt="Vkontakte">
+                            <a href="https://vk.com/bfu_skb"><img src="${contextPath}/resources/images/vk.png" alt="Vkontakte">
                             </a>
                             <a href="https://instagram.com"><img src="${contextPath}/resources/images/instagram.png" alt="Instagram"></a>
                             <a href="https://twitter.com"><img src="${contextPath}/resources/images/twitter.png" alt="Twitter"></a>

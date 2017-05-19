@@ -1,0 +1,12 @@
+﻿@import "main.css";
+
+.content{
+    margin-top:80px;
+}
+.text{
+    color:#333;
+}
+
+.image{
+    width: 100%;
+}

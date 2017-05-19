@@ -272,4 +272,9 @@ public class UserController {
         newsService.delete(news);
         return "redirect:/news";
     }
+
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String aboutPage() {
+        return "about";
+    }
 }
