@@ -46,6 +46,7 @@ public class Project {
         this.projectStatus = projectStatus;
     }
 
+    @Column(name = "status_percent")
     public Long getStatusPercent() {
         return statusPercent;
     }

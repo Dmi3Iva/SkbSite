@@ -10,4 +10,10 @@ public interface ProjectService {
     public Project findByName(String name);
 
     public List<Project> getAllProjects();
+
+    public Project findById(Long id);
+
+    public void delete(Project project);
+
+    public void delete(Long id );
 }

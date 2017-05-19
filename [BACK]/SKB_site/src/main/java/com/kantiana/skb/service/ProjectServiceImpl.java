@@ -20,7 +20,20 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepository.findByName(name);
     }
 
+    public Project findById(Long id) {
+        return projectRepository.findOne(id);
+    }
+
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
+    }
+
+    /*этот метод не работатает*/
+    public void delete(Project project){
+        projectRepository.delete(project);
+    }
+
+    public void delete(Long id ){
+        projectRepository.delete(id);
     }
 }

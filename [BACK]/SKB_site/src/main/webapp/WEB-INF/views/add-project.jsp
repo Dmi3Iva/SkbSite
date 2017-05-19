@@ -39,8 +39,8 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${news.id > 0}">Изменение новости</c:if>
-                        <c:if test="${empty news.id }"> Добавление новости</c:if>
+                        <c:if test="${project.id > 0}">Изменение проект</c:if>
+                        <c:if test="${empty project.id }"> Добавление проект</c:if>
                     </h3>
                 </li>
             </ul>
@@ -55,27 +55,49 @@
 
         </div>
     </div>
-    <form:form method="POST" modelAttribute="news" >
+    <form:form method="POST" modelAttribute="project" >
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
+                    <%--Название--%>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsName">Название новости</label>
+                        <label class="control-label col-xs-3" for="projectName">Название новости</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
-                                <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости"></form:input>
+                                <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название новости"></form:input>
                                 <form:errors path="name"></form:errors>
                             </div>
                         </spring:bind>
                     </div>
+                    <%--Статус проекта--%>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsName">Содержание новости</label>
-                        <spring:bind path="content">
+                        <label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>
+                        <spring:bind path="projectStatus.id">
                             <div class="col-xs-9">
-                                <form:textarea path="content" placeholder="Содержание новости" class="form-control" ></form:textarea>
-                                <form:errors path="content"></form:errors>
-                                <c:if test="${news.id > 0}">
-                                    <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
+                                <form:input type="text" path="projectStatus.id" class="form-control" id="projectStatus" placeholder="Введите название новости"></form:input>
+                                <form:errors path="name"></form:errors>
+                            </div>
+                        </spring:bind>
+                    </div>
+                    <%--Процент проекта--%>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="percent">Процент завершения</label>
+                        <spring:bind path="statusPercent">
+                            <div class="col-xs-9">
+                                <form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Введите название новости"></form:input>
+                                <form:errors path="name"></form:errors>
+                            </div>
+                        </spring:bind>
+                    </div>
+                    <%--описание--%>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="about">Содержание новости</label>
+                        <spring:bind path="about">
+                            <div class="col-xs-9">
+                                <form:textarea path="about" placeholder="Содержание новости" class="form-control" ></form:textarea>
+                                <form:errors path="about"></form:errors>
+                                <c:if test="${project.id > 0}">
+                                    <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
 
@@ -85,8 +107,8 @@
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
-                                    <c:if test="${news.id > 0}">Изменить новость</c:if>
-                                    <c:if test="${empty news.id }">Добавить новость</c:if>
+                                    <c:if test="${project.id > 0}">Изменить проект</c:if>
+                                    <c:if test="${empty project.id }">Добавить проект</c:if>
                                 </button>
                             </div>
                         </div>

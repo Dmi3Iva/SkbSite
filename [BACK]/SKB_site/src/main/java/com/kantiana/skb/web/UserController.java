@@ -2,11 +2,9 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
+import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.User;
-import com.kantiana.skb.service.CommentService;
-import com.kantiana.skb.service.NewsService;
-import com.kantiana.skb.service.SecurityService;
-import com.kantiana.skb.service.UserService;
+import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.UserValidator;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.String;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +26,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private ProjectService projectService;
     @Autowired
     private CommentService commentService;
     @Autowired
@@ -122,14 +123,74 @@ public class UserController {
         return "order-detailed";
     }
 
+    //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String projects() {
+    public String projects(Model model) {
+        List<Project> projectsList = projectService.getAllProjects();
+        model.addAttribute("projectsList",projectsList);
         return "projects";
     }
 
     @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
-    public String projectDetailed() {
+    public String projectDetailed(Model model, Long id) {
+        Project project = projectService.findById(id);
+        model.addAttribute("project", project);
         return "project-detailed";
+    }
+
+    @RequestMapping(value = {"/add-project","/edit-project"}, method = RequestMethod.GET)
+    public String addProject(Model model, Long id) {
+        if(id!=null) {
+            Project project = projectService.findById(id);
+            model.addAttribute("project", project);
+        }
+        else
+            model.addAttribute("project", new Project() );
+        return "add-project";
+    }
+
+    @RequestMapping(value = "/add-project", method = RequestMethod.POST)
+    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "add-project";
+        }
+        // Инициализируем неинициализированные поля
+//        project.setProjectStatus();
+//        project.setStatusPercent();
+        project.setCaptain(securityService.findLoggedUser());
+        project.setDateOfStart(new Date(System.currentTimeMillis()));
+        project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
+        project.setAbout(project.getAbout()); // пока null
+        project.setName(project.getName());
+        projectService.save(project);
+        return "redirect:/projects";
+    }
+
+    @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
+    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "add-project";
+        }
+        Project oldProject= projectService.findById(project.getId());
+        if(oldProject ==null) return "redirect:/project";
+        oldProject.setCaptain(securityService.findLoggedUser());
+        oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
+        oldProject.setStatusPercent(project.getStatusPercent()); // пока null
+        oldProject.setAbout(project.getAbout());
+        oldProject.setStatusPercent(project.getStatusPercent());
+        oldProject.setProjectStatus(project.getProjectStatus());
+        oldProject.setName(project.getName());
+        projectService.save(oldProject);
+        return "redirect:/projects";
+    }
+
+
+    @RequestMapping(value = "/del-project", method = RequestMethod.GET)
+    public String delProject(Long id) {
+        Project project = projectService.findById(id);
+        projectService.delete(project);
+        projectService.delete(id);
+        return "redirect:/projects";
     }
 
     //Контроллер списка новостей
@@ -140,7 +201,6 @@ public class UserController {
         return "news";
     }
 
-    //Контроллер списка новостей
     @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
     public String newsDetailed(Model model, Long newsId) {
         News news = newsService.findById(newsId);
@@ -149,7 +209,6 @@ public class UserController {
         return "news-detailed";
     }
 
-    //Контроллер списка новостей
     @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
     public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long newsId) {
         if (bindingResult.hasErrors()) {
@@ -164,7 +223,6 @@ public class UserController {
         return "news-detailed";
     }
 
-    //Контроллер добавления новостей
     //выводит страницу создания и редактирования новости
     @RequestMapping(value = {"/add-news","/edit-news"}, method = RequestMethod.GET)
     public String addNews(Model model, Long newsId) {
