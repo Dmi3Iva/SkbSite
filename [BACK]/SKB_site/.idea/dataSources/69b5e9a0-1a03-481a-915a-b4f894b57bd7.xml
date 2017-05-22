@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="skb@localhost">
-  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.0">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.2">
     <root id="1"/>
     <database id="2" parent="1" name="skb">
-      <ObjectId>32829</ObjectId>
+      <ObjectId>17197</ObjectId>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-05-18.17:15:15.528</IntrospectionTimestamp>
-      <IntrospectionStateNumber>656</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-05-22.14:49:59.504</IntrospectionTimestamp>
+      <IntrospectionStateNumber>826</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -29,432 +29,569 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
-    <sequence id="9" parent="3" name="comments_id_seq">
-      <ObjectId>33051</ObjectId>
-      <StateNumber>656</StateNumber>
+    <sequence id="9" parent="3" name="comments_for_project_id_seq">
+      <ObjectId>17628</ObjectId>
+      <StateNumber>824</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="10" parent="3" name="news_id_seq">
-      <ObjectId>33030</ObjectId>
-      <StateNumber>654</StateNumber>
+    <sequence id="10" parent="3" name="comments_id_seq">
+      <ObjectId>17670</ObjectId>
+      <StateNumber>826</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="11" parent="3" name="project_statuses_id_seq">
-      <ObjectId>32995</ObjectId>
-      <StateNumber>646</StateNumber>
+    <sequence id="11" parent="3" name="news_id_seq">
+      <ObjectId>17649</ObjectId>
+      <StateNumber>825</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="12" parent="3" name="projects_id_seq">
-      <ObjectId>33003</ObjectId>
-      <StateNumber>651</StateNumber>
+    <sequence id="12" parent="3" name="project_statuses_id_seq">
+      <ObjectId>17583</ObjectId>
+      <StateNumber>818</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="13" parent="3" name="roles_id_seq">
-      <ObjectId>32951</ObjectId>
-      <StateNumber>636</StateNumber>
+    <sequence id="13" parent="3" name="projects_id_seq">
+      <ObjectId>17591</ObjectId>
+      <StateNumber>822</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="14" parent="3" name="users_id_seq">
-      <ObjectId>32960</ObjectId>
-      <StateNumber>642</StateNumber>
+    <sequence id="14" parent="3" name="roles_id_seq">
+      <ObjectId>17539</ObjectId>
+      <StateNumber>811</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <table id="15" parent="3" name="comments">
-      <ObjectId>33053</ObjectId>
-      <StateNumber>656</StateNumber>
+    <sequence id="15" parent="3" name="users_id_seq">
+      <ObjectId>17548</ObjectId>
+      <StateNumber>816</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <table id="16" parent="3" name="comments">
+      <ObjectId>17672</ObjectId>
+      <StateNumber>826</StateNumber>
     </table>
-    <table id="16" parent="3" name="news">
-      <ObjectId>33032</ObjectId>
-      <StateNumber>656</StateNumber>
+    <table id="17" parent="3" name="comments_for_project">
+      <ObjectId>17630</ObjectId>
+      <StateNumber>824</StateNumber>
     </table>
-    <table id="17" parent="3" name="project_statuses">
-      <ObjectId>32997</ObjectId>
-      <StateNumber>651</StateNumber>
+    <table id="18" parent="3" name="news">
+      <ObjectId>17651</ObjectId>
+      <StateNumber>826</StateNumber>
     </table>
-    <table id="18" parent="3" name="projects">
-      <ObjectId>33005</ObjectId>
-      <StateNumber>654</StateNumber>
+    <table id="19" parent="3" name="project_statuses">
+      <ObjectId>17585</ObjectId>
+      <StateNumber>822</StateNumber>
     </table>
-    <table id="19" parent="3" name="roles">
-      <ObjectId>32953</ObjectId>
-      <StateNumber>644</StateNumber>
+    <table id="20" parent="3" name="projects">
+      <ObjectId>17593</ObjectId>
+      <StateNumber>825</StateNumber>
     </table>
-    <table id="20" parent="3" name="users">
-      <ObjectId>32962</ObjectId>
-      <StateNumber>656</StateNumber>
+    <table id="21" parent="3" name="projects_users">
+      <ObjectId>17615</ObjectId>
+      <StateNumber>823</StateNumber>
     </table>
-    <table id="21" parent="3" name="users_roles">
-      <ObjectId>32980</ObjectId>
-      <StateNumber>644</StateNumber>
+    <table id="22" parent="3" name="roles">
+      <ObjectId>17541</ObjectId>
+      <StateNumber>817</StateNumber>
     </table>
-    <column id="22" parent="15" name="id">
+    <table id="23" parent="3" name="users">
+      <ObjectId>17550</ObjectId>
+      <StateNumber>826</StateNumber>
+    </table>
+    <table id="24" parent="3" name="users_roles">
+      <ObjectId>17568</ObjectId>
+      <StateNumber>817</StateNumber>
+    </table>
+    <column id="25" parent="16" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>656</StateNumber>
+      <StateNumber>826</StateNumber>
+      <SequenceName>comments_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;comments_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="23" parent="15" name="news_id">
+    <column id="26" parent="16" name="news_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>656</StateNumber>
+      <StateNumber>826</StateNumber>
     </column>
-    <column id="24" parent="15" name="author_id">
+    <column id="27" parent="16" name="author_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>656</StateNumber>
+      <StateNumber>826</StateNumber>
     </column>
-    <column id="25" parent="15" name="time_of_creation">
+    <column id="28" parent="16" name="time_of_creation">
       <Position>4</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>656</StateNumber>
+      <StateNumber>826</StateNumber>
     </column>
-    <column id="26" parent="15" name="content">
+    <column id="29" parent="16" name="content">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>656</StateNumber>
+      <StateNumber>826</StateNumber>
     </column>
-    <index id="27" parent="15" name="comments_pkey">
-      <ObjectId>33060</ObjectId>
+    <index id="30" parent="16" name="comments_pkey">
+      <ObjectId>17679</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="28" parent="15" name="comments_pkey">
-      <ObjectId>33061</ObjectId>
+    <key id="31" parent="16" name="comments_pkey">
+      <ObjectId>17680</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>comments_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="29" parent="15" name="comments_news_id_fkey">
-      <ObjectId>33062</ObjectId>
+    <foreign-key id="32" parent="16" name="comments_news_id_fkey">
+      <ObjectId>17681</ObjectId>
       <ColNames>news_id</ColNames>
       <RefTableName>news</RefTableName>
       <RefKeyName>news_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="30" parent="15" name="comments_author_id_fkey">
-      <ObjectId>33067</ObjectId>
+    <foreign-key id="33" parent="16" name="comments_author_id_fkey">
+      <ObjectId>17686</ObjectId>
       <ColNames>author_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="31" parent="16" name="id">
+    <column id="34" parent="17" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>654</StateNumber>
-      <DefaultExpression>nextval(&apos;news_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>824</StateNumber>
+      <SequenceName>comments_for_project_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;comments_for_project_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="32" parent="16" name="author_id">
+    <column id="35" parent="17" name="project_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>654</StateNumber>
+      <StateNumber>824</StateNumber>
     </column>
-    <column id="33" parent="16" name="project_id">
+    <column id="36" parent="17" name="author_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>654</StateNumber>
-    </column>
-    <column id="34" parent="16" name="name">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>654</StateNumber>
+      <StateNumber>824</StateNumber>
     </column>
-    <column id="35" parent="16" name="content">
+    <column id="37" parent="17" name="time_of_creation">
+      <Position>4</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>824</StateNumber>
+    </column>
+    <column id="38" parent="17" name="content">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>654</StateNumber>
+      <StateNumber>824</StateNumber>
     </column>
-    <column id="36" parent="16" name="time_of_creation">
-      <Position>6</Position>
-      <DataType>timestamp|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>654</StateNumber>
-    </column>
-    <index id="37" parent="16" name="news_pkey">
-      <ObjectId>33039</ObjectId>
+    <index id="39" parent="17" name="comments_for_project_pkey">
+      <ObjectId>17637</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="38" parent="16" name="news_pkey">
-      <ObjectId>33040</ObjectId>
+    <key id="40" parent="17" name="comments_for_project_pkey">
+      <ObjectId>17638</ObjectId>
       <ColNames>id</ColNames>
-      <UnderlyingIndexName>news_pkey</UnderlyingIndexName>
+      <UnderlyingIndexName>comments_for_project_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="39" parent="16" name="news_author_id_fkey">
-      <ObjectId>33041</ObjectId>
-      <ColNames>author_id</ColNames>
-      <RefTableName>users</RefTableName>
-      <RefKeyName>users_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="40" parent="16" name="news_project_id_fkey">
-      <ObjectId>33046</ObjectId>
+    <foreign-key id="41" parent="17" name="comments_for_project_project_id_fkey">
+      <ObjectId>17639</ObjectId>
       <ColNames>project_id</ColNames>
       <RefTableName>projects</RefTableName>
       <RefKeyName>projects_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="41" parent="17" name="id">
+    <foreign-key id="42" parent="17" name="comments_for_project_author_id_fkey">
+      <ObjectId>17644</ObjectId>
+      <ColNames>author_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <column id="43" parent="18" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>646</StateNumber>
-      <DefaultExpression>nextval(&apos;project_statuses_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>825</StateNumber>
+      <SequenceName>news_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;news_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="42" parent="17" name="name">
+    <column id="44" parent="18" name="author_id">
       <Position>2</Position>
-      <DataType>varchar(63)|0</DataType>
+      <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>646</StateNumber>
+      <StateNumber>825</StateNumber>
     </column>
-    <index id="43" parent="17" name="project_statuses_pkey">
-      <ObjectId>33001</ObjectId>
+    <column id="45" parent="18" name="project_id">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>825</StateNumber>
+    </column>
+    <column id="46" parent="18" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>825</StateNumber>
+    </column>
+    <column id="47" parent="18" name="content">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>825</StateNumber>
+    </column>
+    <column id="48" parent="18" name="time_of_creation">
+      <Position>6</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>825</StateNumber>
+    </column>
+    <column id="49" parent="18" name="time_of_last_update">
+      <Position>7</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>825</StateNumber>
+    </column>
+    <index id="50" parent="18" name="news_pkey">
+      <ObjectId>17658</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="44" parent="17" name="project_statuses_pkey">
-      <ObjectId>33002</ObjectId>
+    <key id="51" parent="18" name="news_pkey">
+      <ObjectId>17659</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>news_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="52" parent="18" name="news_author_id_fkey">
+      <ObjectId>17660</ObjectId>
+      <ColNames>author_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <foreign-key id="53" parent="18" name="news_project_id_fkey">
+      <ObjectId>17665</ObjectId>
+      <ColNames>project_id</ColNames>
+      <RefTableName>projects</RefTableName>
+      <RefKeyName>projects_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <column id="54" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>818</StateNumber>
+      <SequenceName>project_statuses_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;project_statuses_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="55" parent="19" name="name">
+      <Position>2</Position>
+      <DataType>varchar(63)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>818</StateNumber>
+    </column>
+    <index id="56" parent="19" name="project_statuses_pkey">
+      <ObjectId>17589</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="57" parent="19" name="project_statuses_pkey">
+      <ObjectId>17590</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>project_statuses_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="45" parent="18" name="id">
+    <column id="58" parent="20" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
+      <SequenceName>projects_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;projects_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="46" parent="18" name="name">
+    <column id="59" parent="20" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
     </column>
-    <column id="47" parent="18" name="status_id">
+    <column id="60" parent="20" name="status_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="48" parent="18" name="status_percent">
+    <column id="61" parent="20" name="status_percent">
       <Position>4</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="49" parent="18" name="captain_id">
+    <column id="62" parent="20" name="captain_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
     </column>
-    <column id="50" parent="18" name="date_of_start">
+    <column id="63" parent="20" name="date_of_start">
       <Position>6</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
     </column>
-    <column id="51" parent="18" name="date_of_last_update">
+    <column id="64" parent="20" name="date_of_last_update">
       <Position>7</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
     </column>
-    <column id="52" parent="18" name="about">
+    <column id="65" parent="20" name="about">
       <Position>8</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>651</StateNumber>
+      <StateNumber>822</StateNumber>
     </column>
-    <index id="53" parent="18" name="projects_pkey">
-      <ObjectId>33015</ObjectId>
+    <index id="66" parent="20" name="projects_pkey">
+      <ObjectId>17603</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="54" parent="18" name="projects_pkey">
-      <ObjectId>33016</ObjectId>
+    <key id="67" parent="20" name="projects_pkey">
+      <ObjectId>17604</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>projects_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="55" parent="18" name="projects_status_id_fkey">
-      <ObjectId>33017</ObjectId>
+    <foreign-key id="68" parent="20" name="projects_status_id_fkey">
+      <ObjectId>17605</ObjectId>
       <ColNames>status_id</ColNames>
       <RefTableName>project_statuses</RefTableName>
       <RefKeyName>project_statuses_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="56" parent="18" name="projects_captain_id_fkey">
-      <ObjectId>33022</ObjectId>
+    <foreign-key id="69" parent="20" name="projects_captain_id_fkey">
+      <ObjectId>17610</ObjectId>
       <ColNames>captain_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <check id="57" parent="18" name="projects_status_percent_check">
-      <ObjectId>33011</ObjectId>
+    <check id="70" parent="20" name="projects_status_percent_check">
+      <ObjectId>17599</ObjectId>
       <ColNames>status_percent</ColNames>
       <Predicate>(0 &lt;= status_percent) AND (status_percent &lt;= 100)</Predicate>
     </check>
-    <column id="58" parent="19" name="id">
+    <column id="71" parent="21" name="project_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>636</StateNumber>
+      <StateNumber>823</StateNumber>
+    </column>
+    <column id="72" parent="21" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>823</StateNumber>
+    </column>
+    <foreign-key id="73" parent="21" name="projects_users_project_id_fkey">
+      <ObjectId>17618</ObjectId>
+      <ColNames>project_id</ColNames>
+      <RefTableName>projects</RefTableName>
+      <RefKeyName>projects_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <foreign-key id="74" parent="21" name="projects_users_user_id_fkey">
+      <ObjectId>17623</ObjectId>
+      <ColNames>user_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <column id="75" parent="22" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>811</StateNumber>
+      <SequenceName>roles_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;roles_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="59" parent="19" name="name">
+    <column id="76" parent="22" name="name">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
-      <StateNumber>636</StateNumber>
+      <StateNumber>811</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <index id="60" parent="19" name="roles_pkey">
-      <ObjectId>32958</ObjectId>
+    <index id="77" parent="22" name="roles_pkey">
+      <ObjectId>17546</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="61" parent="19" name="roles_pkey">
-      <ObjectId>32959</ObjectId>
+    <key id="78" parent="22" name="roles_pkey">
+      <ObjectId>17547</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>roles_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="62" parent="20" name="id">
+    <column id="79" parent="23" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
+      <SequenceName>users_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="63" parent="20" name="lastname">
+    <column id="80" parent="23" name="lastname">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="64" parent="20" name="firstname">
+    <column id="81" parent="23" name="firstname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="65" parent="20" name="middlename">
+    <column id="82" parent="23" name="middlename">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="66" parent="20" name="date_of_birth">
+    <column id="83" parent="23" name="date_of_birth">
       <Position>5</Position>
       <DataType>date|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
     </column>
-    <column id="67" parent="20" name="username">
+    <column id="84" parent="23" name="username">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="68" parent="20" name="email">
+    <column id="85" parent="23" name="email">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="69" parent="20" name="organization">
+    <column id="86" parent="23" name="organization">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="70" parent="20" name="password">
+    <column id="87" parent="23" name="password">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="71" parent="20" name="photo_path">
+    <column id="88" parent="23" name="photo_path">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="72" parent="20" name="github">
+    <column id="89" parent="23" name="github">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
     </column>
-    <column id="73" parent="20" name="contact_details">
+    <column id="90" parent="23" name="contact_details">
       <Position>12</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
     </column>
-    <column id="74" parent="20" name="about">
+    <column id="91" parent="23" name="about">
       <Position>13</Position>
       <DataType>text|0</DataType>
-      <StateNumber>642</StateNumber>
+      <StateNumber>816</StateNumber>
     </column>
-    <index id="75" parent="20" name="users_pkey">
-      <ObjectId>32978</ObjectId>
+    <index id="92" parent="23" name="users_pkey">
+      <ObjectId>17566</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="76" parent="20" name="users_pkey">
-      <ObjectId>32979</ObjectId>
+    <key id="93" parent="23" name="users_pkey">
+      <ObjectId>17567</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="77" parent="21" name="user_id">
+    <column id="94" parent="24" name="user_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>644</StateNumber>
+      <StateNumber>817</StateNumber>
     </column>
-    <column id="78" parent="21" name="role_id">
+    <column id="95" parent="24" name="role_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>644</StateNumber>
+      <StateNumber>817</StateNumber>
     </column>
-    <index id="79" parent="21" name="users_roles_pkey">
-      <ObjectId>32983</ObjectId>
+    <index id="96" parent="24" name="users_roles_pkey">
+      <ObjectId>17571</ObjectId>
       <ColNames>user_id
 role_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="80" parent="21" name="users_roles_pkey">
-      <ObjectId>32984</ObjectId>
+    <key id="97" parent="24" name="users_roles_pkey">
+      <ObjectId>17572</ObjectId>
       <ColNames>user_id
 role_id</ColNames>
       <UnderlyingIndexName>users_roles_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="81" parent="21" name="users_roles_user_id_fkey">
-      <ObjectId>32985</ObjectId>
+    <foreign-key id="98" parent="24" name="users_roles_user_id_fkey">
+      <ObjectId>17573</ObjectId>
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="82" parent="21" name="users_roles_role_id_fkey">
-      <ObjectId>32990</ObjectId>
+    <foreign-key id="99" parent="24" name="users_roles_role_id_fkey">
+      <ObjectId>17578</ObjectId>
       <ColNames>role_id</ColNames>
       <RefTableName>roles</RefTableName>
       <RefKeyName>roles_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
   </database-model>
 </dataSource>
