@@ -52,17 +52,11 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
-
-
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
-    public String uploadFilePage(){
-        return "uploadFile";
-    }
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    @ResponseBody
-    public String uploadFile(@RequestParam("file") MultipartFile file) {// имена параметров (тут - "file") - из формы JSP.
-
-        String name = null;
+//    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String uploadFile(@RequestParam("file") MultipartFile file) {// имена параметров (тут - "file") - из формы JSP.
+    public String uploadFile(MultipartFile file) {
+        String name = null,res=null;
 
         if (!file.isEmpty()) {
             try {
@@ -84,6 +78,7 @@ public class UserController {
                 {
                     uploadedFile = new File(dir.getAbsolutePath() + File.separator + a+ name);
                 }
+                res = uploadedFile.getAbsolutePath();
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
                 stream.write(bytes);
                 stream.flush();
@@ -91,13 +86,13 @@ public class UserController {
 
                 logger.info("uploaded: " + uploadedFile.getAbsolutePath());
 
-                return "You successfully uploaded file=" + name;
+                return res;
 
             } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+                return null;
             }
         } else {
-            return "You failed to upload " + name + " because the file was empty.";
+            return null;
         }
     }
 
@@ -216,13 +211,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add-project", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model) {
+    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
         // Инициализируем неинициализированные поля
 //        project.setProjectStatus();
 //        project.setStatusPercent();
+        project.setPhotoPath(uploadFile(file));
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -233,12 +229,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
-    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model) {
+    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
         Project oldProject= projectService.findById(project.getId());
         if(oldProject ==null) return "redirect:/project";
+        oldProject.setPhotoPath(uploadFile(file));
         oldProject.setCaptain(securityService.findLoggedUser());
         oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         oldProject.setStatusPercent(project.getStatusPercent()); // пока null
@@ -302,20 +299,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
         // Инициализируем неинициализированные поля
+        news.setPhotoPath(uploadFile(file));
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         news.setProject(null); // пока null
         newsService.save(news);
         return "redirect:/news";
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }

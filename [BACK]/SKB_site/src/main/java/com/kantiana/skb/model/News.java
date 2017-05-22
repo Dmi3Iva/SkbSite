@@ -14,8 +14,10 @@ public class News {
     private String name;
     private String content;
     private Timestamp timeOfCreation;
+    private Timestamp timeOfLastUpdate;
     private User author;
     private Project project;
+    private String photoPath;
     private Set<Comment> comments;
 
     @Id
@@ -74,5 +76,22 @@ public class News {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+    @Column(name="photo_path")
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    @Column(name = "time_of_last_update")
+    public void setTimeOfLastUpdate(Timestamp timeOfLastUpdate) {
+        this.timeOfLastUpdate = timeOfLastUpdate;
+    }
+
+    public Timestamp getTimeOfLastUpdate() {
+        return timeOfLastUpdate;
     }
 }

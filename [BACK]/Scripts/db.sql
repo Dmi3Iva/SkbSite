@@ -64,6 +64,7 @@ CREATE TABLE projects (
 	captain_id INT REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	date_of_start DATE NOT NULL,
 	date_of_last_update DATE NOT NULL,
+	photo_path VARCHAR(255) DEFAULT NULL,
 	about TEXT NOT NULL
 );
 
@@ -90,6 +91,7 @@ CREATE TABLE news (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
+	photo_path VARCHAR(255) DEFAULT NULL,
 	time_of_last_update TIMESTAMP NOT NULL
 );
 
