@@ -211,14 +211,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add-project", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult,@RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
         // Инициализируем неинициализированные поля
 //        project.setProjectStatus();
 //        project.setStatusPercent();
-        project.setPhotoPath(uploadFile(file));
+        if(file !=null) project.setPhotoPath(uploadFile(file));
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -229,7 +229,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
-    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }

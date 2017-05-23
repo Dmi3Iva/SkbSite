@@ -78,19 +78,21 @@ public class News {
         this.comments = comments;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
-    }
-    @Column(name="photo_path")
+
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
 
-    @Column(name = "time_of_last_update")
+    @Column(name = "photo_path")
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
     public void setTimeOfLastUpdate(Timestamp timeOfLastUpdate) {
         this.timeOfLastUpdate = timeOfLastUpdate;
     }
 
+    @Column(name = "time_of_last_update")
     public Timestamp getTimeOfLastUpdate() {
         return timeOfLastUpdate;
     }

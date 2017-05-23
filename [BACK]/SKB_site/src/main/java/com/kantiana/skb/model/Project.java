@@ -111,10 +111,11 @@ public class Project {
         this.members = members;
     }
 
+    @Column(name="photo_path")
     public String getPhotoPath() {
         return photoPath;
     }
-    @Column(name="photo_path")
+
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
