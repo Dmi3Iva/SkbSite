@@ -7,15 +7,21 @@ import com.kantiana.skb.model.User;
 import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.UserValidator;
 import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.hibernate.Hibernate;
+import org.omg.CORBA.portable.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.lang.String;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
@@ -31,9 +37,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.MediaType;
+import org.apache.commons.io.IOUtils;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 
 @Controller
 public class UserController {
@@ -51,7 +60,10 @@ public class UserController {
     private UserValidator userValidator;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
+//
+//    //send picture
 
+//
 //    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 //    @ResponseBody
 //    public String uploadFile(@RequestParam("file") MultipartFile file) {// имена параметров (тут - "file") - из формы JSP.
@@ -64,9 +76,12 @@ public class UserController {
 
                 name = file.getOriginalFilename();
 
-                String rootPath = "";
+
+                String rootPath = System.getProperty("user.dir");
                 //Директория
-                File dir = new File("image");
+//                C:\Users\FTL\Desktop\apache-tomcat-9.0.0.M17\webapps\ROOT\resources\images
+                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images");
+                //File dir = new File("C:\\Users\\FTL\\Documents\\SkbSite\\[BACK]\\SKB_site\\src\\main\\webapp\\resources\\images");
 
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -74,11 +89,15 @@ public class UserController {
 
                 File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
                 Random a= new Random();
+                res = "/resources/images/"+name;
+                String random = new String();
                 while(uploadedFile.exists())
                 {
-                    uploadedFile = new File(dir.getAbsolutePath() + File.separator + a+ name);
+                    random = String.valueOf(a.nextInt());
+                    uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
+                    res = "/resources/images/"+random +name;
                 }
-                res = uploadedFile.getAbsolutePath();
+
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
                 stream.write(bytes);
                 stream.flush();
