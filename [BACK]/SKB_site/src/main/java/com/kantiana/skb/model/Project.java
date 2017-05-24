@@ -15,6 +15,8 @@ public class Project {
     private Date dateOfStart;
     private Date dateOfLastUpdate;
     private String about;
+    private String photoPath;
+    private Set<Comment> comments;
     private Set<News> news;
     private Set<User> members;
 
@@ -107,5 +109,14 @@ public class Project {
 
     public void setMembers(Set<User> members) {
         this.members = members;
+    }
+
+    @Column(name="photo_path")
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 }

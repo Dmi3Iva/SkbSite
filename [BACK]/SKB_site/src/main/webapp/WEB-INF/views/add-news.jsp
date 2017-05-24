@@ -8,14 +8,19 @@
 
 <html>
 <head>
+    <csrf disabled="true"/>
     <meta charset="utf-8" />
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf_parameter" content="_csrf" />
+    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
+    <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
+
 </head>
 
 <body>
@@ -55,7 +60,7 @@
 
         </div>
     </div>
-    <form:form method="POST" modelAttribute="news" >
+    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data" action="/add-news?${_csrf.parameterName}=${_csrf.token}">
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
@@ -69,10 +74,10 @@
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsName">Содержание новости</label>
+                        <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
-                                <form:textarea path="content" placeholder="Содержание новости" class="form-control" ></form:textarea>
+                                <form:textarea path="content" placeholder="Содержание новости" class="form-control" id="newsContent"></form:textarea>
                                 <form:errors path="content"></form:errors>
                                 <c:if test="${news.id > 0}">
                                     <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
@@ -80,6 +85,11 @@
                             </div>
 
                         </spring:bind>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
+                        <input type="file" name="file" id="newsPic"  >
+
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
@@ -91,8 +101,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
         </div>

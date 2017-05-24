@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-xs-4 image hidden-xs hidden-sm">
-                    <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    <img src="${item.photoPath}" alt="girl" width="100%">
                 </div>
             </div>
         </c:forEach>
