@@ -16,6 +16,7 @@ public class News {
     private Timestamp timeOfCreation;
     private Timestamp timeOfLastUpdate;
     private User author;
+    private User editor;
     private Project project;
     private String photoPath;
     private Set<Comment> comments;
@@ -58,6 +59,12 @@ public class News {
     public User getAuthor() { return author; }
 
     public void setAuthor(User author) { this.author = author; }
+
+    @ManyToOne
+    @JoinColumn(name = "editor_id")
+    public User getEditor() { return editor; }
+
+    public void setEditor(User editor) { this.editor = editor; }
 
     @ManyToOne
     @JoinColumn(name = "project_id")

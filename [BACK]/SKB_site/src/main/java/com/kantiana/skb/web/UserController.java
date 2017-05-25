@@ -60,13 +60,8 @@ public class UserController {
     private UserValidator userValidator;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
-//
-//    //send picture
 
-//
-//    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String uploadFile(@RequestParam("file") MultipartFile file) {// имена параметров (тут - "file") - из формы JSP.
+    //загрузка файла(по-идее картинки)
     public String uploadFile(MultipartFile file) {
         String name = null,res=null;
 
@@ -79,9 +74,7 @@ public class UserController {
 
                 String rootPath = System.getProperty("user.dir");
                 //Директория
-//                C:\Users\FTL\Desktop\apache-tomcat-9.0.0.M17\webapps\ROOT\resources\images
-                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images");
-                //File dir = new File("C:\\Users\\FTL\\Documents\\SkbSite\\[BACK]\\SKB_site\\src\\main\\webapp\\resources\\images");
+                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images\\hosting");
 
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -89,13 +82,13 @@ public class UserController {
 
                 File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
                 Random a= new Random();
-                res = "/resources/images/"+name;
+                res = "/resources/images/hosting/"+name;
                 String random = new String();
                 while(uploadedFile.exists())
                 {
                     random = String.valueOf(a.nextInt());
                     uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
-                    res = "/resources/images/"+random +name;
+                    res = "/resources/images/hosting/"+random +name;
                 }
 
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
@@ -254,6 +247,8 @@ public class UserController {
         }
         Project oldProject= projectService.findById(project.getId());
         if(oldProject ==null) return "redirect:/project";
+
+        if(file!=null)
         oldProject.setPhotoPath(uploadFile(file));
         oldProject.setCaptain(securityService.findLoggedUser());
         oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -262,6 +257,7 @@ public class UserController {
         oldProject.setStatusPercent(project.getStatusPercent());
         oldProject.setProjectStatus(project.getProjectStatus());
         oldProject.setName(project.getName());
+
         projectService.save(oldProject);
         return "redirect:/projects";
     }
@@ -339,9 +335,10 @@ public class UserController {
         }
         News oldNews= newsService.findById(news.getId());
         if(oldNews ==null) return "redirect:/news";
-        oldNews.setAuthor(securityService.findLoggedUser());
-
-        oldNews.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        if(file.getSize()>0)
+        oldNews.setPhotoPath(uploadFile(file));
+        oldNews.setEditor(securityService.findLoggedUser());
+        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         oldNews.setProject(null); // пока null
         oldNews.setContent(news.getContent());
         oldNews.setName(news.getName());

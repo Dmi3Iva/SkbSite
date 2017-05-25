@@ -51,16 +51,10 @@
             </ul>
         </div>
     </div>
-    <!--IIMAGE 1-->
-    <div class="row">
-        <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
-    <div class="row ">
-        <div class="col-xs-12">
 
 
-        </div>
-    </div>
-    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data" action="/add-news?${_csrf.parameterName}=${_csrf.token}">
+    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data" >
+
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
@@ -94,10 +88,16 @@
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
-                                    <c:if test="${news.id > 0}">Изменить новость</c:if>
-                                    <c:if test="${empty news.id }">Добавить новость</c:if>
-                                </button>
+                                <c:if test="${ empty news.id }">
+                                    <button type="submit" formaction="/add-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Добавить новость
+                                    </button>
+                                </c:if>
+                                <c:if test="${news.id > 0}">
+                                    <button type="submit" formaction="/edit-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Изменить новость
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -105,6 +105,7 @@
             </div><!-- Widget Area -->
         </div>
     </form:form>
+
 </div>
 
 

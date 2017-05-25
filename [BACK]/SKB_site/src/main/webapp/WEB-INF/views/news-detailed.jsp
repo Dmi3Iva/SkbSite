@@ -45,7 +45,7 @@
     <!--IIMAGE 1-->
     <c:if test = "${!empty news}">
       <div class="row">
-        <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
+        <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
       <div class="row ">
         <div class="col-xs-12">
 
@@ -60,7 +60,16 @@
 
 
             <p class="description">
-              Автор: ${news.author.username} ${news.timeOfCreation}
+              Автор: ${news.author.username}<br>
+              <c:if test="${news.timeOfCreation == news.timeOfLastUpdate}">
+                ${news.timeOfCreation}
+              </c:if>
+              <c:if test="${news.timeOfCreation != news.timeOfLastUpdate}">
+                <c:if test="${news.editor.username!= news.author.username}">
+                  Редактор: ${news.editor.username} <br>
+                </c:if>
+                <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
+              </c:if>
             </p>
 
           </div>
