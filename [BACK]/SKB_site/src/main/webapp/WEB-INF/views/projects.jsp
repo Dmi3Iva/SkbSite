@@ -66,8 +66,10 @@
               </div>
 
                   <p class="description">
-                    Автор: ${item.captain.username}
-                      ${item.dateOfLastUpdate}
+                      Дата начала: ${item.dateOfStart}
+                      <c:if  test="${item.dateOfLastUpdate != item.dateOfStart} ">
+                        Последнее обновление: ${item.dateOfLastUpdate}
+                      </c:if>
                   </p>
 
               <p>Описание:</p>
@@ -84,14 +86,18 @@
             </div>
           </div>
 
-
           <div class="col-xs-4 image hidden-xs hidden-sm">
-            <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+            <img src="${item.photoPath}" alt="${item.name} Picture" width="100%">
           </div>
         </div>
       </c:forEach>
     </c:if>
-
+  <c:if test="${empty projectsList}">
+    <h1>
+      К сожалению на данный момент проектов нет<br>
+      :(
+    </h1>
+  </c:if>
 
 
 

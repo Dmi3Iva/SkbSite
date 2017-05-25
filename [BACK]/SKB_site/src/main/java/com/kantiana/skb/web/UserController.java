@@ -4,6 +4,7 @@ import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.User;
+import com.kantiana.skb.model.ProjectStatus;
 import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.UserValidator;
 import org.apache.commons.fileupload.FileUpload;
@@ -227,15 +228,15 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
-        // Инициализируем неинициализированные поля
+
 //        project.setProjectStatus();
 //        project.setStatusPercent();
-        if(file !=null) project.setPhotoPath(uploadFile(file));
+        if(file.getSize()>0) project.setPhotoPath(uploadFile(file));
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
-        project.setAbout(project.getAbout()); // пока null
-        project.setName(project.getName());
+//        project.setAbout(project.getAbout()); // пока null
+//        project.setName(project.getName());
         projectService.save(project);
         return "redirect:/projects";
     }
@@ -248,7 +249,7 @@ public class UserController {
         Project oldProject= projectService.findById(project.getId());
         if(oldProject ==null) return "redirect:/project";
 
-        if(file!=null)
+        if(file.getSize()>0)
         oldProject.setPhotoPath(uploadFile(file));
         oldProject.setCaptain(securityService.findLoggedUser());
         oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
