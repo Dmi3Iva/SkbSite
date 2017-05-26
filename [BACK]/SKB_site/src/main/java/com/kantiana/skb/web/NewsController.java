@@ -1,0 +1,116 @@
+package com.kantiana.skb.web;
+
+import com.kantiana.skb.model.Comment;
+import com.kantiana.skb.model.News;
+import com.kantiana.skb.service.CommentService;
+import com.kantiana.skb.service.NewsService;
+import com.kantiana.skb.service.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
+
+
+@Controller
+public class NewsController {
+
+    @Autowired
+    private NewsService newsService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private SecurityService securityService;
+
+    //Контроллер списка новостей
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String news(Model model) {
+        List<News> newsList= newsService.getAllNews();
+        model.addAttribute("newsList", newsList);
+        return "news";
+    }
+
+    @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
+    public String newsDetailed(Model model, Long newsId) {
+        News news = newsService.findById(newsId);
+        model.addAttribute("news", news);
+        model.addAttribute("commentForm", new Comment());
+        return "news-detailed";
+    }
+
+    @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
+    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long newsId) {
+        if (bindingResult.hasErrors()) {
+            return "news-detailed";
+        }
+        News news = newsService.findById(newsId);
+        commentForm.setNews(news);
+        commentForm.setAuthor(securityService.findLoggedUser());
+        commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        commentService.save(commentForm);
+        model.addAttribute("news", news);
+        return "news-detailed";
+    }
+
+    //выводит страницу создания и редактирования новости
+    @RequestMapping(value = {"/add-news","/edit-news"}, method = RequestMethod.GET)
+    public String addNews(Model model, Long newsId) {
+        if(newsId!=null) {
+            News news = newsService.findById(newsId);
+            model.addAttribute("news", news);
+        }
+        else
+            model.addAttribute("news", new News() );
+        return "add-news";
+    }
+
+    @RequestMapping(value = "/add-news", method = RequestMethod.POST)
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+        if (bindingResult.hasErrors()) {
+            return "add-news";
+        }
+        // Инициализируем неинициализированные поля
+        news.setPhotoPath(uploadFile(file));
+        news.setAuthor(securityService.findLoggedUser());
+        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
+        news.setProject(null); // пока null
+        newsService.save(news);
+        return "redirect:/news";
+    }
+
+    @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+        if (bindingResult.hasErrors()) {
+            return "add-news";
+        }
+        News oldNews= newsService.findById(news.getId());
+        if(oldNews ==null) return "redirect:/news";
+        if(file.getSize()>0)
+            oldNews.setPhotoPath(uploadFile(file));
+        oldNews.setEditor(securityService.findLoggedUser());
+        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
+        oldNews.setProject(null); // пока null
+        oldNews.setContent(news.getContent());
+        oldNews.setName(news.getName());
+        newsService.save(oldNews);
+        return "redirect:/news";
+    }
+
+
+    @RequestMapping(value = "/del-news", method = RequestMethod.GET)
+    public String editNews(Long newsId) {
+        News news = newsService.findById(newsId);
+        newsService.delete(news);
+        return "redirect:/news";
+    }
+}

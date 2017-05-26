@@ -4,46 +4,28 @@ import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.User;
-import com.kantiana.skb.model.ProjectStatus;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.web.WorkingWithFile;
 import com.kantiana.skb.validator.UserValidator;
 import org.apache.commons.fileupload.FileUpload;
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.hibernate.Hibernate;
-import org.omg.CORBA.portable.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.lang.String;
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.LinkedList;
 import java.util.List;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.MediaType;
-import org.apache.commons.io.IOUtils;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
+import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
 @Controller
 public class UserController {
@@ -54,60 +36,11 @@ public class UserController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private CommentService commentService;
-    @Autowired
     private SecurityService securityService;
     @Autowired
     private UserValidator userValidator;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
-
-    //загрузка файла(по-идее картинки)
-    public String uploadFile(MultipartFile file) {
-        String name = null,res=null;
-
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-
-                name = file.getOriginalFilename();
-
-
-                String rootPath = System.getProperty("user.dir");
-                //Директория
-                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images\\hosting");
-
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-
-                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
-                Random a= new Random();
-                res = "/resources/images/hosting/"+name;
-                String random = new String();
-                while(uploadedFile.exists())
-                {
-                    random = String.valueOf(a.nextInt());
-                    uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
-                    res = "/resources/images/hosting/"+random +name;
-                }
-
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
-                stream.write(bytes);
-                stream.flush();
-                stream.close();
-
-                logger.info("uploaded: " + uploadedFile.getAbsolutePath());
-
-                return res;
-
-            } catch (Exception e) {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 
     // Контроллер главной страницы
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
@@ -197,166 +130,10 @@ public class UserController {
         return "order-detailed";
     }
 
-    //контроллеры проектов
-    @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String projects(Model model) {
-        List<Project> projectsList = projectService.getAllProjects();
-        model.addAttribute("projectsList",projectsList);
-        return "projects";
-    }
-
-    @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
-    public String projectDetailed(Model model, Long id) {
-        Project project = projectService.findById(id);
-        model.addAttribute("project", project);
-        return "project-detailed";
-    }
-
-    @RequestMapping(value = {"/add-project","/edit-project"}, method = RequestMethod.GET)
-    public String addProject(Model model, Long id) {
-        if(id!=null) {
-            Project project = projectService.findById(id);
-            model.addAttribute("project", project);
-        }
-        else
-            model.addAttribute("project", new Project() );
-        return "add-project";
-    }
-
-    @RequestMapping(value = "/add-project", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult,@RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
-            return "add-project";
-        }
-
-//        project.setProjectStatus();
-//        project.setStatusPercent();
-        if(file.getSize()>0) project.setPhotoPath(uploadFile(file));
-        project.setCaptain(securityService.findLoggedUser());
-        project.setDateOfStart(new Date(System.currentTimeMillis()));
-        project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
-//        project.setAbout(project.getAbout()); // пока null
-//        project.setName(project.getName());
-        projectService.save(project);
-        return "redirect:/projects";
-    }
-
-    @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
-    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
-            return "add-project";
-        }
-        Project oldProject= projectService.findById(project.getId());
-        if(oldProject ==null) return "redirect:/project";
-
-        if(file.getSize()>0)
-        oldProject.setPhotoPath(uploadFile(file));
-        oldProject.setCaptain(securityService.findLoggedUser());
-        oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
-        oldProject.setStatusPercent(project.getStatusPercent()); // пока null
-        oldProject.setAbout(project.getAbout());
-        oldProject.setStatusPercent(project.getStatusPercent());
-        oldProject.setProjectStatus(project.getProjectStatus());
-        oldProject.setName(project.getName());
-
-        projectService.save(oldProject);
-        return "redirect:/projects";
-    }
-
-
-    @RequestMapping(value = "/del-project", method = RequestMethod.GET)
-    public String delProject(Long id) {
-        Project project = projectService.findById(id);
-        projectService.delete(project);
-        projectService.delete(id);
-        return "redirect:/projects";
-    }
-
-    //Контроллер списка новостей
-    @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public String news(Model model) {
-        List<News> newsList= newsService.getAllNews();
-        model.addAttribute("newsList", newsList);
-        return "news";
-    }
-
-    @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
-    public String newsDetailed(Model model, Long newsId) {
-        News news = newsService.findById(newsId);
-        model.addAttribute("news", news);
-        model.addAttribute("commentForm", new Comment());
-        return "news-detailed";
-    }
-
-    @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
-    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long newsId) {
-        if (bindingResult.hasErrors()) {
-            return "news-detailed";
-        }
-        News news = newsService.findById(newsId);
-        commentForm.setNews(news);
-        commentForm.setAuthor(securityService.findLoggedUser());
-        commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        commentService.save(commentForm);
-        model.addAttribute("news", news);
-        return "news-detailed";
-    }
-
-    //выводит страницу создания и редактирования новости
-    @RequestMapping(value = {"/add-news","/edit-news"}, method = RequestMethod.GET)
-    public String addNews(Model model, Long newsId) {
-        if(newsId!=null) {
-            News news = newsService.findById(newsId);
-            model.addAttribute("news", news);
-        }
-        else
-            model.addAttribute("news", new News() );
-        return "add-news";
-    }
-
-    @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
-            return "add-news";
-        }
-        // Инициализируем неинициализированные поля
-        news.setPhotoPath(uploadFile(file));
-        news.setAuthor(securityService.findLoggedUser());
-        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-        news.setProject(null); // пока null
-        newsService.save(news);
-        return "redirect:/news";
-    }
-
-    @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
-            return "add-news";
-        }
-        News oldNews= newsService.findById(news.getId());
-        if(oldNews ==null) return "redirect:/news";
-        if(file.getSize()>0)
-        oldNews.setPhotoPath(uploadFile(file));
-        oldNews.setEditor(securityService.findLoggedUser());
-        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-        oldNews.setProject(null); // пока null
-        oldNews.setContent(news.getContent());
-        oldNews.setName(news.getName());
-        newsService.save(oldNews);
-        return "redirect:/news";
-    }
-
-
-    @RequestMapping(value = "/del-news", method = RequestMethod.GET)
-    public String editNews(Long newsId) {
-        News news = newsService.findById(newsId);
-        newsService.delete(news);
-        return "redirect:/news";
-    }
-
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String aboutPage() {
         return "about";
     }
+
+
 }
