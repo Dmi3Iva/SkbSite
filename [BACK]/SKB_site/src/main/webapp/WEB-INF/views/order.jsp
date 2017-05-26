@@ -32,18 +32,16 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-xs-6" >
         <ul class="titleHead">
-          <li>
-            <div class="smallBlueBox"></div>
-          </li>
-          <li>
-            <h3>Заказы</h3></li>
+          <li><div class="smallBlueBox"></div></li>
+          <li><h3>Заказы</h3></li>
         </ul>
       </div>
+      <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-order';" value="Добавить заказ">
+      </div>
     </div>
-    <!--Новости уровень 1-->
-
 <c:if test="${!empty ordersList}">
   <c:forEach items="${ordersList}" var="item">
     <div class="row">
@@ -57,7 +55,7 @@
           </p>
           <ul class="detailes">
             <li>
-              <a href="/news-detailed?newsId=${item.id}">Подробнее...</a>
+              <a href="/order-detailed?orderId=${item.id}">Подробнее...</a>
             </li>
             <li>
               <p class="description">
@@ -74,8 +72,8 @@
               </p>
             </li>
             <div class="form-group">
-              <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
-              <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${item.id}':1/1;" value="Удалить">
+              <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
+              <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
             </div>
           </ul>
         </div>
@@ -85,7 +83,13 @@
       </div>
     </div>
   </c:forEach>
-</c:if>>
+</c:if>
+    <c:if test="${empty ordersList}">
+      <h1>
+        К сожалению заказов на данный момент нет<br>
+        :(
+      </h1>
+    </c:if>
 
   </div>
 

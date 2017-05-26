@@ -120,15 +120,15 @@ public class UserController {
         return "index-student";
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
-    public String order() {
-        return "order";
-    }
-
-    @RequestMapping(value = "/order-detailed", method = RequestMethod.GET)
-    public String orderDetailed() {
-        return "order-detailed";
-    }
+//    @RequestMapping(value = "/order", method = RequestMethod.GET)
+//    public String order() {
+//        return "order";
+//    }
+//
+//    @RequestMapping(value = "/order-detailed", method = RequestMethod.GET)
+//    public String orderDetailed() {
+//        return "order-detailed";
+//    }
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String aboutPage() {

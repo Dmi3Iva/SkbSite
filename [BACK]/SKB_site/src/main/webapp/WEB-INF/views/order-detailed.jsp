@@ -15,7 +15,7 @@
 
   <title>СКБ</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news-detailed.css">
+  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/order-detailed.css">
 </head>
 
 <body>
@@ -42,39 +42,38 @@
         </ul>
       </div>
     </div>
-    <!--IIMAGE 1-->
+    <c:if test = "${!empty order}">
     <div class="row">
-      <div class="col-xs-12 image"><img src="${contextPath}/resources/images/order.png" alt="girl" width="100%"></div></div>
+      <div class="col-xs-12 image"><img src="${order.photoPath}" alt="${order.name} Картинка" width="100%"></div></div>
     <div class="row ">
       <div class="col-xs-12">
 
         <div class="new">
 
+          <p class="title">
+            ${order.name}
+          </p>
+          <p class="article">
+            ${order.content}
+          </p>
 
 
-                    <p class="title">
-                      Сайт с личным кабинетом
-                    </p>
-                    <p class="article">
-                      Необходимо собрать рабочий проект, можно с шаблонным дизайном. Можно сделать его на готовых CMS если это вообще возможно. Требования в файле.
-                    </p>
-                    <a href="#" class="file">
-                      Ссылка тип на файл.pnh
-                    </a>
-                    <div class="names">
-                      <p>
-                        Заказчик: Александр
-                      </p>
-                      <p>Исполнитель неопределён</p>
-                    </div>
-                    <a class=detailes href="#">Подробнее...</a>
-                  </div>
-</div>
+          <p class="description">
+            Автор: ${order.author.username}<br>
+            <c:if test="${order.timeOfCreation == order.timeOfLastUpdate}">
+              ${order.timeOfCreation}
+            </c:if>
+            <c:if test="${order.timeOfCreation != order.timeOfLastUpdate}">
+              <c:if test="${order.editor.username!= order.author.username}">
+                Редактор: ${order.editor.username} <br>
+              </c:if>
+              <span class="glyphicon glyphicon-pencil"></span> Изменено ${order.timeOfLastUpdate}
+            </c:if>
+          </p>
 
         </div>
-
-
-
+      </div>
+      </c:if>
     <!--comments-->
     <div class="row">
       <div class="col-md-12">

@@ -5,11 +5,10 @@ import com.kantiana.skb.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+public class OrdersServiceImpl implements OrdersService {
     @Autowired
     private OrderRepository orderRepository;
 
@@ -25,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.delete(news);
     }
 
-    public List<Order> getAllNews() {
+    public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
