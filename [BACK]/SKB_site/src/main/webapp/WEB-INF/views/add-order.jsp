@@ -19,7 +19,7 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-order.css">
 
 </head>
 
@@ -44,8 +44,8 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${news.id > 0}">Изменение новости</c:if>
-                        <c:if test="${empty news.id }"> Добавление новости</c:if>
+                        <c:if test="${order.id > 0}">Изменение заказа</c:if>
+                        <c:if test="${empty order.id }"> Добавление заказа</c:if>
                     </h3>
                 </li>
             </ul>
@@ -53,49 +53,49 @@
     </div>
 
 
-    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data" >
+    <form:form method="POST" modelAttribute="order" enctype="multipart/form-data" >
 
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsName">Название новости</label>
+                        <label class="control-label col-xs-3" for="orderName">Название заказа</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
-                                <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости"></form:input>
+                                <form:input type="text" path="name" class="form-control" id="orderName" placeholder="Введите название заказа"></form:input>
                                 <form:errors path="name"></form:errors>
                             </div>
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
+                        <label class="control-label col-xs-3" for="orderContent">Содержание заказа</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
-                                <form:textarea path="content" placeholder="Содержание новости" class="form-control" id="newsContent"></form:textarea>
+                                <form:textarea path="content" placeholder="Содержание заказа" class="form-control" id="orderContent"></form:textarea>
                                 <form:errors path="content"></form:errors>
-                                <c:if test="${news.id > 0}">
-                                    <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
+                                <c:if test="${order.id > 0}">
+                                    <form:input  path="id"  value="${order.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
 
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                        <input type="file" name="file" id="newsPic"  >
+                        <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
+                        <input type="file" name="file" id="orderPic"  >
 
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <c:if test="${ empty news.id }">
-                                    <button type="submit" formaction="/add-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
-                                        Добавить новость
+                                <c:if test="${ empty order.id }">
+                                    <button type="submit" formaction="/add-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Добавить заказ
                                     </button>
                                 </c:if>
-                                <c:if test="${news.id > 0}">
-                                    <button type="submit" formaction="/edit-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
-                                        Изменить новость
+                                <c:if test="${order.id > 0}">
+                                    <button type="submit" formaction="/edit-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Изменить заказ
                                     </button>
                                 </c:if>
                             </div>

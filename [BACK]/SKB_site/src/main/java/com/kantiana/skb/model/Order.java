@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name="news")
-public class News {
+@Table(name="orders")
+public class Order {
     private Long id;
     private String name;
     private String content;
@@ -17,9 +17,9 @@ public class News {
     private Timestamp timeOfLastUpdate;
     private User author;
     private User editor;
-    private Project project;
     private String photoPath;
-    private Set<Comment> comments;
+//    private Project project;
+//    private Set<Comment> comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,26 +65,6 @@ public class News {
     public User getEditor() { return editor; }
 
     public void setEditor(User editor) { this.editor = editor; }
-
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;

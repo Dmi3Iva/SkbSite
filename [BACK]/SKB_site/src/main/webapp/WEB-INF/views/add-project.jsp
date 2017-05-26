@@ -46,36 +46,29 @@
             </ul>
         </div>
     </div>
-    <!--IIMAGE 1-->
-    <div class="row">
-        <div class="col-xs-12 image"><img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%"></div></div>
-    <div class="row ">
-        <div class="col-xs-12">
 
-
-        </div>
-    </div>
-    <form:form method="POST" modelAttribute="project" >
+    <form:form method="POST" modelAttribute="project" enctype="multipart/form-data" >
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
                     <%--Название--%>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="projectName">Название новости</label>
-                        <spring:bind path="name">
-                            <div class="col-xs-9">
-                                <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название новости"></form:input>
-                                <form:errors path="name"></form:errors>
-                            </div>
-                        </spring:bind>
+                            <label class="control-label col-xs-3" for="projectName">Название новости</label>
+                            <spring:bind path="name">
+                                <div class="col-xs-9">
+                                    <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название новости"></form:input>
+                                    <form:errors path="name"></form:errors>
+                                </div>
+                            </spring:bind>
                     </div>
                     <%--Статус проекта--%>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>
                         <spring:bind path="projectStatus.id">
-                            <div class="col-xs-9">
-                                <form:input type="text" path="projectStatus.id" class="form-control" id="projectStatus" placeholder="Введите название новости"></form:input>
-                                <form:errors path="name"></form:errors>
+                            <div class="col-xs-9" id="projectStatus">
+                                <form:checkbox path="projectStatus.id" value="1"/>Активен
+                                <form:checkbox path="projectStatus.id" value="2"/>Заморожен
+                                <form:checkbox path="projectStatus.id" value="3"/>Завершён
                             </div>
                         </spring:bind>
                     </div>
@@ -84,7 +77,7 @@
                         <label class="control-label col-xs-3" for="percent">Процент завершения</label>
                         <spring:bind path="statusPercent">
                             <div class="col-xs-9">
-                                <form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Введите название новости"></form:input>
+                                <form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Процент завершения"></form:input>
                                 <form:errors path="name"></form:errors>
                             </div>
                         </spring:bind>
@@ -94,22 +87,31 @@
                         <label class="control-label col-xs-3" for="about">Содержание новости</label>
                         <spring:bind path="about">
                             <div class="col-xs-9">
-                                <form:textarea path="about" placeholder="Содержание новости" class="form-control" ></form:textarea>
+                                <form:textarea path="about" id="about" placeholder="Содержание новости" class="form-control" ></form:textarea>
                                 <form:errors path="about"></form:errors>
                                 <c:if test="${project.id > 0}">
                                     <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
-
                         </spring:bind>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
+                        <input type="file" name="file" id="newsPic"  >
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
-                                    <c:if test="${project.id > 0}">Изменить проект</c:if>
-                                    <c:if test="${empty project.id }">Добавить проект</c:if>
-                                </button>
+                                <c:if test="${project.id>0}">
+                                    <button type="submit" formaction="/edit-project?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Изменить проект
+                                    </button>
+                                </c:if>
+                                <c:if test="${empty project.id}">
+                                    <button type="submit" formaction="/add-project?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Добавить проект
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
                     </div>

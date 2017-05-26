@@ -32,105 +32,64 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-xs-6" >
         <ul class="titleHead">
-          <li>
-            <div class="smallBlueBox"></div>
-          </li>
-          <li>
-            <h3>Заказы</h3></li>
+          <li><div class="smallBlueBox"></div></li>
+          <li><h3>Заказы</h3></li>
         </ul>
       </div>
-    </div>
-    <!--Новости уровень 1-->
-
-    <div class="row ">
-      <div class="lineblue">
-        <div class="col-md-8 lineblue">
-
-
-          <p class="title">
-            Сайт с личным кабинетом
-          </p>
-          <p class="article">
-            Необходимо собрать рабочий проект, можно с шаблонным дизайном. Можно сделать его на готовых CMS если это вообще возможно. Требования в файле.
-          </p>
-          <a href="#" class="file">
-            Ссылка тип на файл.pnh
-          </a>
-          <div class="names">
-            <p>
-              Заказчик: Александр
-            </p>
-            <p>Исполнитель неопределён</p>
-          </div>
-          <a class=detailes href="#">Подробнее...</a>
-        </div>
-        <div class="col-xs-4 image hidden-xs hidden-sm">
-          <img src="${contextPath}/resources/images/order.png" alt="girl" width="100%">
-        </div>
-
+      <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-order';" value="Добавить заказ">
       </div>
     </div>
-    <div class="row ">
-      <div class="lineblue">
-        <div class="col-md-8 lineblue">
-
-
+<c:if test="${!empty ordersList}">
+  <c:forEach items="${ordersList}" var="item">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="new">
           <p class="title">
-            Сайт с личным кабинетом
+              ${item.name}
           </p>
           <p class="article">
-            Необходимо собрать рабочий проект, можно с шаблонным дизайном. Можно сделать его на готовых CMS если это вообще возможно. Требования в файле.
+              ${item.content}
           </p>
-          <a href="#" class="file">
-            Ссылка тип на файл.pnh
-          </a>
-          <div class="names">
-            <p>
-              Заказчик: Александр
-            </p>
-            <p>Исполнитель неопределён</p>
-          </div>
-          <a class=detailes href="#">Подробнее...</a>
+          <ul class="detailes">
+            <li>
+              <a href="/order-detailed?orderId=${item.id}">Подробнее...</a>
+            </li>
+            <li>
+              <p class="description">
+                Автор: ${item.author.username}<br>
+                <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
+                  ${item.timeOfCreation}
+                </c:if>
+                <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
+                  <c:if test="${item.editor.username!= item.author.username}">
+                    Редактор: ${item.editor.username} <br>
+                  </c:if>
+                  <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
+                </c:if>
+              </p>
+            </li>
+            <div class="form-group">
+              <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
+              <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
+            </div>
+          </ul>
         </div>
-        <div class="col-xs-4 image hidden-xs hidden-sm">
-          <img src="${contextPath}/resources/images/order.png" alt="girl" width="100%">
-        </div>
-
+      </div>
+      <div class="col-xs-4 image hidden-xs hidden-sm">
+        <img src="${item.photoPath}" alt="girl" width="100%">
       </div>
     </div>
-
-    <div class="row ">
-      <div class="lineblue">
-        <div class="col-md-8 lineblue">
-
-
-          <p class="title">
-            Сайт с личным кабинетом
-          </p>
-          <p class="article">
-            Необходимо собрать рабочий проект, можно с шаблонным дизайном. Можно сделать его на готовых CMS если это вообще возможно. Требования в файле.
-          </p>
-          <a href="#" class="file">
-            Ссылка тип на файл.pnh
-          </a>
-          <div class="names">
-            <p>
-              Заказчик: Александр
-            </p>
-            <p>Исполнитель неопределён</p>
-          </div>
-          <a class=detailes href="#">Подробнее...</a>
-        </div>
-        <div class="col-xs-4 image hidden-xs hidden-sm">
-          <img src="${contextPath}/resources/images/order.png" alt="girl" width="100%">
-        </div>
-
-      </div>
-    </div>
-
-
+  </c:forEach>
+</c:if>
+    <c:if test="${empty ordersList}">
+      <h1>
+        К сожалению заказов на данный момент нет<br>
+        :(
+      </h1>
+    </c:if>
 
   </div>
 

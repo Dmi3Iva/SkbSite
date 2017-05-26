@@ -58,8 +58,16 @@
                             </li>
                             <li>
                                 <p class="description">
-                                    Автор: ${item.author.username}
+                                    Автор: ${item.author.username}<br>
+                                    <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
                                         ${item.timeOfCreation}
+                                    </c:if>
+                                    <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
+                                    <c:if test="${item.editor.username!= item.author.username}">
+                                        Редактор: ${item.editor.username} <br>
+                                    </c:if>
+                                        <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
+                                    </c:if>
                                 </p>
                             </li>
                             <div class="form-group">
@@ -70,12 +78,17 @@
                     </div>
                 </div>
                 <div class="col-xs-4 image hidden-xs hidden-sm">
-                    <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    <img src="${item.photoPath}" alt="girl" width="100%">
                 </div>
             </div>
         </c:forEach>
     </c:if>
-
+    <c:if test="${empty newsList}">
+        <h2>
+            К сожалению список новостей пуст <br>
+            :(
+        </h2>
+    </c:if>
 
   </div>
 
