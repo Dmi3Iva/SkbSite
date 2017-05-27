@@ -93,6 +93,13 @@ public class UserController {
         return "profile";
     }
 
+    @RequestMapping(value = "/id{id}", method = RequestMethod.GET)
+    public String profileUser(@PathVariable Long id, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
     //Контроллеры для интграции страниц
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
@@ -119,16 +126,6 @@ public class UserController {
     public String indexStudent() {
         return "index-student";
     }
-
-//    @RequestMapping(value = "/order", method = RequestMethod.GET)
-//    public String order() {
-//        return "order";
-//    }
-//
-//    @RequestMapping(value = "/order-detailed", method = RequestMethod.GET)
-//    public String orderDetailed() {
-//        return "order-detailed";
-//    }
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String aboutPage() {
