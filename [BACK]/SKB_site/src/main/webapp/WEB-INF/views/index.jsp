@@ -15,11 +15,6 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
-
-    <!--Незримая форма, помогающая выйти-->
-    <form id="logoutForm" method="POST" action="${contextPath}/logout">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
 </head>
 <body>
 <%@include file="header.jsp" %>

@@ -3,6 +3,12 @@
 
 <!doctype html>
 <html>
+<head>
+    <!--Незримая форма, помогающая выйти-->
+    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</head>
 <body>
 <nav class="navbar navbar-default navbar-toggleable-md navbar-fixed-top">
     <div class="container">
