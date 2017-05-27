@@ -4,6 +4,7 @@ import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.service.CommentService;
 import com.kantiana.skb.service.NewsService;
+import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,13 @@ public class NewsController {
 
     @Autowired
     private NewsService newsService;
+
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private ProjectService projectService;
+
     @Autowired
     private SecurityService securityService;
 
@@ -62,19 +68,21 @@ public class NewsController {
     }
 
     //выводит страницу создания и редактирования новости
-    @RequestMapping(value = {"/add-news","/edit-news"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-news", "/edit-news"}, method = RequestMethod.GET)
     public String addNews(Model model, Long newsId) {
         if(newsId!=null) {
             News news = newsService.findById(newsId);
             model.addAttribute("news", news);
         }
-        else
+        else {
             model.addAttribute("news", new News() );
+        }
+        model.addAttribute("allProjects", projectService.getAllProjects());
         return "add-news";
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
@@ -83,13 +91,14 @@ public class NewsController {
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-        news.setProject(null); // пока null
+//        news.setProject(null); // пока null
+        news.setProject(news.getProject() != null ? projectService.findById(news.getProject().getId()) : null);
         newsService.save(news);
         return "redirect:/news";
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
@@ -99,7 +108,7 @@ public class NewsController {
             oldNews.setPhotoPath(uploadFile(file));
         oldNews.setEditor(securityService.findLoggedUser());
         oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-        oldNews.setProject(null); // пока null
+        oldNews.setProject(news.getProject() != null ? projectService.findById(oldNews.getProject().getId()) : null);
         oldNews.setContent(news.getContent());
         oldNews.setName(news.getName());
         newsService.save(oldNews);

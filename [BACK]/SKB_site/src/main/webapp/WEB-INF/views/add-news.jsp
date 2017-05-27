@@ -68,6 +68,10 @@
                         </spring:bind>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-xs-3">Проект, к которому новость привязана</label>
+                        <form:select path="project.id" items="${allProjects}" itemLabel="name" itemValue="id"></form:select>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
