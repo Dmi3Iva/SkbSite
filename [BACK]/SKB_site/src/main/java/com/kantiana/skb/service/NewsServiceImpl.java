@@ -1,6 +1,7 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.News;
+import com.kantiana.skb.model.Project;
 import com.kantiana.skb.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,15 @@ public class NewsServiceImpl implements NewsService {
         return newsRepository.findAll();
     }
 
-    @Override
     public News findById(Long id) {
         return newsRepository.findById(id);
+    }
+
+    public List<News> findAllByProjectIdOrderByTimeOfCreation(Long projectId) {
+        return newsRepository.findAllByProjectIdOrderByTimeOfCreation(projectId);
+    }
+
+    public List<News> findAllByOrderByTimeOfCreation() {
+        return newsRepository.findAllByOrderByTimeOfCreation();
     }
 }

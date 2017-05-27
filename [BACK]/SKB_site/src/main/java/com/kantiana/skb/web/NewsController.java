@@ -39,14 +39,18 @@ public class NewsController {
 
     //Контроллер списка новостей
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public String news(Model model) {
-        List<News> newsList= newsService.getAllNews();
-        model.addAttribute("newsList", newsList);
+    public String news(Model model, Long projectId) {
+        if (projectId == null) {
+            model.addAttribute("newsList", newsService.findAllByOrderByTimeOfCreation());
+        }
+        else {
+            model.addAttribute("newsList", newsService.findAllByProjectIdOrderByTimeOfCreation(projectId));
+        }
         return "news";
     }
 
     @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
-    public String newsDetailed(Model model, Long newsId) {
+    public String newsDetailed(Model model, @RequestParam("newsId") Long newsId) {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
         model.addAttribute("commentForm", new Comment());
