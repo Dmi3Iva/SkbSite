@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
@@ -44,39 +45,38 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test = "${!empty news}">
-      <div class="row">
-        <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
-      <div class="row ">
-        <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
+        <div class="row ">
+            <div class="col-xs-12">
 
-          <div class="new">
+                <div class="new">
 
-            <p class="title">
-                ${news.name}
-            </p>
-            <p class="article">
-                ${news.content}
-            </p>
+                    <p class="title">
+                            ${news.name}
+                    </p>
+                    <p class="article">
+                            ${news.content}
+                    </p>
 
 
-            <p class="description">
-              Автор: ${news.author.username}<br>
-              <c:if test="${news.timeOfCreation == news.timeOfLastUpdate}">
-                ${news.timeOfCreation}
-              </c:if>
-              <c:if test="${news.timeOfCreation != news.timeOfLastUpdate}">
-                <c:if test="${news.editor.username!= news.author.username}">
-                  Редактор: ${news.editor.username} <br>
-                </c:if>
-                <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
-              </c:if>
-            </p>
+                    <p class="description">
+                        Автор: ${news.author.username}<br>
+                        <c:if test="${news.timeOfCreation == news.timeOfLastUpdate}">
+                            ${news.timeOfCreation}
+                        </c:if>
+                        <c:if test="${news.timeOfCreation != news.timeOfLastUpdate}">
+                            <c:if test="${news.editor.username!= news.author.username}">
+                                Редактор: ${news.editor.username} <br>
+                            </c:if>
+                            <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
+                        </c:if>
+                    </p>
 
-          </div>
+                </div>
+            </div>
+
         </div>
-
-      </div>
-      <!--comments-->
       <div class="row">
         <div class="col-md-12">
           <h3>Комментарии()</h3>

@@ -1,4 +1,4 @@
----------------------------------------
+﻿---------------------------------------
 --Скрипт создания структуры базы данных
 ---------------------------------------
 
@@ -11,6 +11,9 @@ DROP TABLE IF EXISTS projects_users CASCADE;
 DROP TABLE IF EXISTS comments_for_project CASCADE;
 DROP TABLE IF EXISTS news CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
+DROP TABLE IF EXISTS comments_for_order CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+
 
 CREATE TABLE roles (
 	id SERIAL NOT NULL PRIMARY KEY,
