@@ -100,16 +100,59 @@ public class UserController {
         return "profile";
     }
 
-    @RequestMapping(value = {"/profile", "/id{id}"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/id{id}", method = RequestMethod.POST)
     public String ChangeUser(@PathVariable Long id,@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
+//        User oldUser = userService.findById(id);
 
-        userService.save(user);
+        User oldUser= userService.findById(id);
+
+        oldUser.setEmail(user.getEmail());
+        oldUser.setDateOfBirth(user.getDateOfBirth());
+        oldUser.setAbout(user.getAbout());
+        oldUser.setFirstName(user.getFirstName());
+        oldUser.setLastName(user.getLastName());
+        oldUser.setMiddleName(user.getMiddleName());
+        oldUser.setContactDetails(user.getContactDetails());
+        oldUser.setGithub(user.getGithub());
+        oldUser.setPassword(user.getPassword());
+        oldUser.setOrganization(user.getOrganization());
+        oldUser.setUsername(user.getUsername());
+
+        userService.save(oldUser);
 
         if (file.getSize()>0)
-            user.setPhotoPath(uploadFile(file));
+            oldUser.setPhotoPath(uploadFile(file));
+
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String ChangeProfile(@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+        if (bindingResult.hasErrors()) {
+            return "profile";
+        }
+
+        User oldUser= securityService.findLoggedUser();
+
+        oldUser.setEmail(user.getEmail());
+        oldUser.setDateOfBirth(user.getDateOfBirth());
+        oldUser.setAbout(user.getAbout());
+        oldUser.setFirstName(user.getFirstName());
+        oldUser.setLastName(user.getLastName());
+        oldUser.setMiddleName(user.getMiddleName());
+        oldUser.setContactDetails(user.getContactDetails());
+        oldUser.setGithub(user.getGithub());
+        oldUser.setPassword(user.getPassword());
+        oldUser.setOrganization(user.getOrganization());
+        oldUser.setUsername(user.getUsername());
+
+        userService.save(oldUser);
+
+        if (file.getSize()>0)
+            oldUser.setPhotoPath(uploadFile(file));
 
         return "profile";
     }

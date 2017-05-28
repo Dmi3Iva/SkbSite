@@ -34,7 +34,7 @@
 
     <!--можно изменить себя -->
     <sec:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username}'">
-        <h2 style="color: #0d3349">AccedToChange</h2>
+        <%--<h2 style="color: #0d3349">AccedToChange</h2>--%>
     <div class="personal_information">
         <div class="container">
             <div class="row">
@@ -177,7 +177,44 @@
 
 
     <sec:authorize access=" not (hasRole('ROLE_ADMIN') or principal.username == '${user.username}')">
-        <h2 style="color: #0d3349">NOOOOOOOOOO</h2>
+        <div class="personal_information">
+            <div class="container">
+                <div class="row">
+                    <div class="personal_header col-sm-offset-3">
+                        <h1>Личная информация </h1>
+                    </div>
+                    <div class="container">
+                        <div class="col-xs-6">
+                            <img src="${user.photoPath}">
+                        </div>
+                        <div class="col-xs-6">
+                            <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
+                            <p>Дата рождения: ${user.dateOfBirth}</p>
+                            <p>Пол: мужской</p>
+                            <p>Логин: ${user.username}</p>
+                            <p>E-mail: ${user.email}</p>
+                            <p>Органицзация: ${user.organization}</p>
+                            <p>Проекты: Телеграмм, ВК</p>
+                            <p>Github: ${user.github}</p>
+                            <p>Мобильный телефон: 88005553535</p>
+                            <p>О себе: ${user.about}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary hidden-sm hidden-xs btn-lg">Загрузить новое изображение</button>
+                        <button type="submit" class="hidden-md visible-xs visible-sm btn-lg"><i class="glyphicon glyphicon-picture"></i></button>
+                    </div>
+                    <div class="btn-group col-xs-6">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Изменить пароль
+                        </button>
+                        <button onclick="document.forms['logoutForm'].submit()" class="btn btn-primary btn-lg">
+                            Выход
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </sec:authorize>
 
 
