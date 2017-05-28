@@ -11,10 +11,6 @@
   color: var(--blue);
 }
 
-.personal_information img {
-  width: 50%;
-  margin-left: 45%;
-}
 
 .personal_information button {
   margin-top: 20px;
@@ -29,5 +25,9 @@
 .load_btn {
   margin-left: 50%;
   margin-right: 5%;
+}
+
+label{
+  color: #333333;
 }
 

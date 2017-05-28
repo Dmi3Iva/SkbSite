@@ -100,31 +100,18 @@ public class UserController {
         return "profile";
     }
 
-//    @RequestMapping(value = "/id{id}", method = RequestMethod.POST)
-//    public String ChangeUser(@PathVariable Long id,@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
-//        if (bindingResult.hasErrors()) {
-//            return "/id{id}";
-//        }
-//        userService.save(user);
-//        return "/id{id}";
-//    }
-
-    @RequestMapping(value = "/edit-profile{id}", method = RequestMethod.GET)
-    public String profileUserChange(@PathVariable Long id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "edit-profile";
-    }
-
-    @RequestMapping(value = "/edit-profile{id}", method = RequestMethod.POST)
+    @RequestMapping(value = {"/profile", "/id{id}"}, method = RequestMethod.POST)
     public String ChangeUser(@PathVariable Long id,@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-            return "/id{id}";
+            return "profile";
         }
+
         userService.save(user);
-        if (file!=null)
+
+        if (file.getSize()>0)
             user.setPhotoPath(uploadFile(file));
-        return "/id{id}";
+
+        return "profile";
     }
 
     //Контроллеры для интграции страниц

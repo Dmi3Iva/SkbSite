@@ -1,6 +1,5 @@
 package com.kantiana.skb.web;
 
-import com.kantiana.skb.model.CommentForProject;
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.SecurityService;
