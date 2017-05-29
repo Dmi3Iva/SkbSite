@@ -45,6 +45,7 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test = "${!empty news}">
+        <c:set var="newsProject" value="${news.project}"/>
         <div class="row">
             <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
         <div class="row ">
@@ -54,6 +55,12 @@
 
                     <p class="title">
                             ${news.name}
+                    </p>
+                    <p>
+                        <c:if test="${newsProject != null}">
+                            Проект:
+                            <a href="/project-detailed?id=${newsProject.id}">${newsProject.name}</a>
+                        </c:if>
                     </p>
                     <p class="article">
                             ${news.content}

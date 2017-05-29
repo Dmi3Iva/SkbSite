@@ -43,11 +43,18 @@
 
     <c:if test="${!empty newsList}">
         <c:forEach items="${newsList}" var="item">
+            <c:set var="newsProject" value="${item.project}"/>
             <div class="row">
                 <div class="col-md-8">
                     <div class="new">
                         <p class="title">
                                 ${item.name}
+                        </p>
+                        <p>
+                            <c:if test="${newsProject != null}">
+                                Проект:
+                                <a href="/project-detailed?id=${newsProject.id}">${newsProject.name}</a>
+                            </c:if>
                         </p>
                         <p class="article">
                                 ${item.content}
