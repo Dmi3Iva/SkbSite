@@ -1,9 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="src" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <html>
@@ -24,33 +22,29 @@
 </head>
 <body>
 
-    <div id="leftSide">
-    </div>
-    <div id="rightSide">
-    </div>
+<div id="leftSide">
+</div>
+<div id="rightSide">
+</div>
 
 
-    <%@include file="header.jsp" %>
+<%@include file="header.jsp" %>
 
-    <!--можно изменить себя -->
-    <sec:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username}'">
-        <%--<h2 style="color: #0d3349">AccedToChange</h2>--%>
-    <div class="personal_information">
-        <div class="container">
-            <div class="row">
-                <div class="personal_header col-sm-offset-3">
-                    <h1>Личная информация </h1>
+<!-- main-->
+
+<div class="personal_information">
+    <div class="container">
+        <div class="row">
+            <div class="personal_header col-sm-offset-3">
+                <h1>Личная информация </h1>
+            </div>
+            <div class="container">
+                <div class="col-xs-6">
+                    <img src="${user.photoPath}">
                 </div>
-                <div class="container">
-                    <form:form method="POST" modelAttribute="user" class="form-horizontal" enctype="multipart/form-data" >
-                        <div class="col-md-4">
-                            <div class="image"><img src="${user.photoPath}" alt="Изображение ${user.username}"></div>
-                            <div class="form-group" >
-                                <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                                <input type="file" name="file" id="newsPic"  >
-                            </div>
-                        </div>
-                        <div class="col-md-8">
+                <div class="col-xs-6">
+                    <div class="registration-form">
+                        <form:form method="POST" modelAttribute="user" class="form-horizontal">
                             <spring:bind path="firstName">
                                 <div class="form-group">
                                     <label class="control-label col-xs-5" for="firstName">Имя</label>
@@ -135,98 +129,43 @@
                                     </div>
                                 </div>
                             </spring:bind>
-                            <spring:bind path="about">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="about">О себе</label>
-                                    <div class="col-xs-7">
-                                        <form:textarea type="text" path="about" class="form-control" id="about" placeholder=""/>
-                                        <form:errors path="about"/>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-5 col-xs-7">
+                                    <button type="submit" class="btn btn-primary btn-lg">Регистрация</button>
+                                    <!--<input type="submit" class="btn btn-primary btn-lg" value="Регистрация"> -->
+                                    <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index';" value="Назад">
                                 </div>
-                            </spring:bind>
-                            <spring:bind path="github">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="github">github</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="github" class="form-control" id="github" placeholder=""/>
-                                        <form:errors path="about"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <c:if test="${ empty id}">
-                                <div class="form-group">
-                                    <div class="col-xs-offset-5 col-xs-7">
-                                        <button type="submit" class="btn btn-primary btn-lg" formaction="/profile?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
-                                    </div>
-                                </div>
-                            </c:if>
-                            <c:if test="${not empty id}">
-                                <div class="form-group">
-                                    <div class="col-xs-offset-5 col-xs-7">
-                                        <button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
-                                    </div>
-                                </div>
-                            </c:if>
-
-                        </div>
-                    </form:form>
-                </div>
-            </div>
-        </div>
-    </sec:authorize>
-
-
-    <sec:authorize access=" not (hasRole('ROLE_ADMIN') or principal.username == '${user.username}')">
-        <div class="personal_information">
-            <div class="container">
-                <div class="row">
-                    <div class="personal_header col-sm-offset-3">
-                        <h1>Личная информация </h1>
-                    </div>
-                    <div class="container">
-                        <div class="col-xs-6">
-                            <img src="${user.photoPath}">
-                        </div>
-                        <div class="col-xs-6">
-                            <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
-                            <p>Дата рождения: ${user.dateOfBirth}</p>
-                            <p>Пол: мужской</p>
-                            <p>Логин: ${user.username}</p>
-                            <p>E-mail: ${user.email}</p>
-                            <p>Органицзация: ${user.organization}</p>
-                            <p>Проекты: Телеграмм, ВК</p>
-                            <p>Github: ${user.github}</p>
-                            <p>Мобильный телефон: 88005553535</p>
-                            <p>О себе: ${user.about}</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <button type="submit" class="btn btn-primary hidden-sm hidden-xs btn-lg">Загрузить новое изображение</button>
-                        <button type="submit" class="hidden-md visible-xs visible-sm btn-lg"><i class="glyphicon glyphicon-picture"></i></button>
-                    </div>
-                    <div class="btn-group col-xs-6">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            Изменить пароль
-                        </button>
-                        <button onclick="document.forms['logoutForm'].submit()" class="btn btn-primary btn-lg">
-                            Выход
-                        </button>
+                            </div>
+                        </form:form>
                     </div>
                 </div>
             </div>
+            <div class="col-xs-6">
+                <button type="submit" class="btn btn-primary hidden-sm hidden-xs btn-lg">Загрузить новое изображение</button>
+                <input type="file" class="btn-primary">
+                <button type="submit" class="hidden-md visible-xs visible-sm btn-lg"><i class="glyphicon glyphicon-picture"></i></button>
+            </div>
+            <div class="btn-group col-xs-6">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Изменить пароль
+                </button>
+                <button onclick="document.forms['logoutForm'].submit()" class="btn btn-primary btn-lg">
+                    Выход
+                </button>
+            </div>
         </div>
-    </sec:authorize>
+    </div>
+</div>
 
 
 
+<%@include file="footer.jsp" %>
 
-    <%@include file="footer.jsp" %>
-
-    <script src="../../resources/js/jquery.min.js"></script>
-    <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-    <script>window.jQuery</script>
-    <script src="../../resources/js/tether.min.js"></script>
-    <script src="../../resources/bootstrap/js/bootstrap.js"></script>pt>
+<script src="../../resources/js/jquery.min.js"></script>
+<script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
+<script>window.jQuery</script>
+<script src="../../resources/js/tether.min.js"></script>
+<script src="../../resources/bootstrap/js/bootstrap.js"></script>pt>
 
 </body>
 </html>
