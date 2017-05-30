@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Service
 public interface ProjectService {
     // Создает новый проект
     void saveNewProject(Project project, MultipartFile image);

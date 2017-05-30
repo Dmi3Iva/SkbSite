@@ -5,9 +5,12 @@ import com.kantiana.skb.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Date;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
+@Service
 public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
