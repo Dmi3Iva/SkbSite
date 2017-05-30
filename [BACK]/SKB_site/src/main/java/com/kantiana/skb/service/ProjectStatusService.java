@@ -12,4 +12,10 @@ public interface ProjectStatusService {
     List<ProjectStatus> findAllByOrderById();
 
     ProjectStatus findById(Long id);
+
+    ProjectStatus getStatusActive();
+
+    ProjectStatus getStatusFrozen();
+
+    ProjectStatus getStatusCompleted();
 }

@@ -11,27 +11,30 @@ public class ProjectStatusServiceImpl implements ProjectStatusService {
     @Autowired
     private ProjectStatusRepository projectStatusRepository;
 
-    private enum Status {
-        ACTIVE, FROZEN, COMPLETED
-    };
-
+    @Override
     public List<ProjectStatus> findAllByOrderById() {
         return projectStatusRepository.findAllByOrderById();
     }
 
+    @Override
     public ProjectStatus findById(Long id) {
         return projectStatusRepository.findById(id);
     }
 
+    /* ВНИМАНИЕ!!! КОСТЫЛИ!!! Смотри функции getStatus*/
+
+    @Override
     public ProjectStatus getStatusActive() {
-        return projectStatusRepository.findById(new Long(Status.ACTIVE.ordinal()));
+        return projectStatusRepository.findByName("ACTIVE"); // Статус "активен" в бд должен называться "ACTIVE"
     }
 
+    @Override
     public ProjectStatus getStatusFrozen() {
-        return projectStatusRepository.findById(2L);
+        return projectStatusRepository.findByName("FROZEN"); // Статус "заморожен" в бд должен называться "FROZEN"
     }
 
+    @Override
     public ProjectStatus getStatusCompleted() {
-        return projectStatusRepository.findById(3L);
+        return projectStatusRepository.findByName("COMPLETED"); // Статус "завершен" в бд должен называться "COMPLETED"
     }
 }

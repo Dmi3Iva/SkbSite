@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
-        project.setProjectStatus(projectStatusService.findById(projectStatusService)); // Указываем статус "Активен"
+        project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
         project.setStatusPercent(new Long(0));
         if(image.getSize() > 0) {
             project.setPhotoPath(uploadFile(image));
