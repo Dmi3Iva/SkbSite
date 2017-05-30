@@ -1,10 +1,12 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Project;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Service
 public interface ProjectService {
     // Создает новый проект
     void saveNewProject(Project project, MultipartFile image);

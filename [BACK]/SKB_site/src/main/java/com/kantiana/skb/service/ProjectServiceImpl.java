@@ -3,15 +3,11 @@ package com.kantiana.skb.service;
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.sql.Date;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
-
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
-@Service
 public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
@@ -26,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
-        project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
+//        project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
         project.setStatusPercent(new Long(0));
         if(image.getSize() > 0) {
             project.setPhotoPath(uploadFile(image));
