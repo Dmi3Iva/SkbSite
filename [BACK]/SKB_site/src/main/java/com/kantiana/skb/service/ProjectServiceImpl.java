@@ -54,7 +54,7 @@ public class ProjectServiceImpl implements ProjectService {
             if (image.getSize() > 0) {
                 oldProject.setPhotoPath(uploadFile(image));
             }
-            projectRepository.save(project);
+            projectRepository.save(oldProject);
         }
     }
 
