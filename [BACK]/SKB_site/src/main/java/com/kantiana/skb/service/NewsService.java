@@ -1,6 +1,8 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.News;
+import com.kantiana.skb.model.Project;
+
 import java.util.List;
 
 public interface NewsService {
@@ -14,5 +16,7 @@ public interface NewsService {
 
     public void delete(News news);
 
+    List<News> findAllByProjectIdOrderByTimeOfCreation(Long projectId);
 
+    List<News> findAllByOrderByTimeOfCreation();
 }
