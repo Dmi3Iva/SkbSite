@@ -38,12 +38,15 @@ public class ProjectsController {
 
     @RequestMapping(value = {"/add-project", "/edit-project"}, method = RequestMethod.GET)
     public String addProject(Model model, Long id) {
-        if(id != null) {
+        if (id != null) {
             Project project = projectService.findById(id);
             model.addAttribute("project", project);
+            model.addAttribute("isEditing", true);
         }
-        else
+        else {
             model.addAttribute("project", new Project());
+            model.addAttribute("isEditing", false);
+        }
         return "add-project";
     }
 
@@ -64,7 +67,7 @@ public class ProjectsController {
         projectService.saveUpdatedProject(project, image);
         return "redirect:/projects";
     }
-    
+
     @RequestMapping(value = "/del-project", method = RequestMethod.GET)
     public String delProject(Long id) {
         Project project = projectService.findById(id);
