@@ -39,8 +39,8 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${project.id > 0}">Изменение проект</c:if>
-                        <c:if test="${empty project.id }"> Добавление проект</c:if>
+                        <c:if test="${isEditing == true}">Изменение проекта</c:if>
+                        <c:if test="${isEditing == false}"> Добавление проекта</c:if>
                     </h3>
                 </li>
             </ul>
@@ -63,6 +63,13 @@
                     </div>
                         <c:if test="${isEditing == true}">
                             <%--Статус проекта--%>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>
+                                <div class="col-xs-9">
+                                    <form:select path="projectStatus.id" items="${allProjectStatuses}" itemValue="id" itemLabel="name" id="projectStatus"></form:select>
+                                    <form:errors path="projectStatus"></form:errors>
+                                </div>
+                            </div>
                             <%--<div class="form-group">--%>
                                 <%--<label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>--%>
                                 <%--<spring:bind path="projectStatus.id">--%>
@@ -92,7 +99,7 @@
                             <div class="col-xs-9">
                                 <form:textarea path="about" id="about" placeholder="Опишите свой проект" class="form-control" ></form:textarea>
                                 <form:errors path="about"></form:errors>
-                                <c:if test="${project.id > 0}">
+                                <c:if test="${isEditing == true}">
                                     <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
@@ -100,17 +107,19 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                        <input type="file" name="file" id="newsPic"  >
+                        <div class="col-xs-9">
+                            <input type="file" name="file" id="newsPic"></input>
+                        </div>
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <c:if test="${project.id>0}">
+                                <c:if test="${isEditing == true}">
                                     <button type="submit" formaction="/edit-project?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
                                         Изменить проект
                                     </button>
                                 </c:if>
-                                <c:if test="${empty project.id}">
+                                <c:if test="${isEditing == false}">
                                     <button type="submit" formaction="/add-project?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
                                         Добавить проект
                                     </button>

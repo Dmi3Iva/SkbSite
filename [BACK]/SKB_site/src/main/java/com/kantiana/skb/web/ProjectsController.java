@@ -1,7 +1,9 @@
 package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
+import com.kantiana.skb.repository.ProjectStatusRepository;
 import com.kantiana.skb.service.ProjectService;
+import com.kantiana.skb.service.ProjectStatusService;
 import com.kantiana.skb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ public class ProjectsController {
     private ProjectService projectService;
     @Autowired
     private SecurityService securityService;
+    @Autowired
+    private ProjectStatusService projectStatusService;
 
     //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
@@ -47,6 +51,7 @@ public class ProjectsController {
             model.addAttribute("project", new Project());
             model.addAttribute("isEditing", false);
         }
+        model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
         return "add-project";
     }
 
