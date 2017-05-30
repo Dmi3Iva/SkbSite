@@ -75,8 +75,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/del-project", method = RequestMethod.GET)
     public String delProject(Long id) {
-        Project project = projectService.findById(id);
-        projectService.delete(project);
+//        Project project = projectService.findById(id);
+//        projectService.delete(project);
         projectService.delete(id);
         return "redirect:/projects";
     }

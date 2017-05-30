@@ -50,10 +50,13 @@
               <p class="title">
                   ${project.name}
               </p>
-              <p>Команда:
-                  ${project.captain.username}
+              <p>
+                Капитан:
+                ${project.captain.username}
               </p>
-              <p>Статус проекта:{project}
+              <p>
+                Статус проекта:
+                  ${project.projectStatus.name}
               </p>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="${project.statusPercent}" aria-valuemin="0" aria-valuemax="100" style="width:${project.statusPercent}%;">
