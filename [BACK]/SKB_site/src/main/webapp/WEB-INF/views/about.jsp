@@ -25,6 +25,9 @@
 
 <%@include file="header.jsp" %>
 
+
+<h1 class="text-center">О нас</h1>
+
 <div class="container content">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-2">

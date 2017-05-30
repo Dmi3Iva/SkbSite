@@ -13,7 +13,7 @@
                         <li><a href="/equipment">Оборудование</a></li>
                         <li><a href="/projects">Проекты</a></li>
                         <li><a href="/order">Заказы</a></li>
-                        <li><a href="#">О нас</a></li>
+                        <li><a href="/about">О нас</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-6">
