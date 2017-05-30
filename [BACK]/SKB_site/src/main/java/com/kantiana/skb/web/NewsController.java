@@ -67,8 +67,9 @@ public class NewsController {
         commentForm.setAuthor(securityService.findLoggedUser());
         commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         commentService.save(commentForm);
-        model.addAttribute("news", news);
-        return "news-detailed";
+        // Нужно делать редирект вместо возвращения имени jsp,
+        // чтобы комментарий отобразился, очистился кэш и всё было хорошо.
+        return "redirect:/news-detailed?newsId=" + newsId;
     }
 
     //выводит страницу создания и редактирования новости
@@ -108,7 +109,7 @@ public class NewsController {
         }
         News oldNews= newsService.findById(news.getId());
         if(oldNews ==null) return "redirect:/news";
-        if(file.getSize()>0)
+        if(file.getSize() > 0)
             oldNews.setPhotoPath(uploadFile(file));
         oldNews.setEditor(securityService.findLoggedUser());
         oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
