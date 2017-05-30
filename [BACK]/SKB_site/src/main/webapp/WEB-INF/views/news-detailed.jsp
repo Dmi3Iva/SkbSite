@@ -90,7 +90,7 @@
         </div>
       </div>
       <%--<c:if test="${!empty comments}">--%>
-      <c:forEach items="${news.comments}" var="item">
+      <c:forEach items="${commentsForCurrentNews}" var="item">
         <div class="row">
           <div class="col-sm-1">
             <div class="thumbnail">

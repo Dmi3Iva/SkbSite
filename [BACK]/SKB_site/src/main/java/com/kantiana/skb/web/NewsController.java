@@ -53,6 +53,7 @@ public class NewsController {
     public String newsDetailed(Model model, @RequestParam("newsId") Long newsId) {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
+        model.addAttribute("commentsForCurrentNews", commentService.findAllByNewsIdOrderByTimeOfCreation(newsId));
         model.addAttribute("commentForm", new Comment());
         return "news-detailed";
     }

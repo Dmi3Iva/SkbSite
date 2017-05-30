@@ -8,4 +8,6 @@ public interface CommentService {
     public void save(Comment comment);
 
     public List<Comment> getAllComments();
+
+    List<Comment> findAllByNewsIdOrderByTimeOfCreation(Long newsId);
 }

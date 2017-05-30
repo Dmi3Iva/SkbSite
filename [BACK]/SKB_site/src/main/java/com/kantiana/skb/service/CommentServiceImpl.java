@@ -20,4 +20,8 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
+
+    public List<Comment> findAllByNewsIdOrderByTimeOfCreation(Long newsId) {
+        return commentRepository.findAllByNewsIdOrderByTimeOfCreation(newsId);
+    }
 }
