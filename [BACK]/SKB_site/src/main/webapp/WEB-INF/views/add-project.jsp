@@ -53,41 +53,41 @@
                 <div class="status-upload">
                     <%--Название--%>
                     <div class="form-group">
-                            <label class="control-label col-xs-3" for="projectName">Название новости</label>
+                            <label class="control-label col-xs-3" for="projectName">Название проекта</label>
                             <spring:bind path="name">
                                 <div class="col-xs-9">
-                                    <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название новости"></form:input>
+                                    <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название проекта"></form:input>
                                     <form:errors path="name"></form:errors>
                                 </div>
                             </spring:bind>
                     </div>
-                    <%--Статус проекта--%>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>
-                        <spring:bind path="projectStatus.id">
-                            <div class="col-xs-9" id="projectStatus">
-                                <form:checkbox path="projectStatus.id" value="1"/>Активен
-                                <form:checkbox path="projectStatus.id" value="2"/>Заморожен
-                                <form:checkbox path="projectStatus.id" value="3"/>Завершён
-                            </div>
-                        </spring:bind>
-                    </div>
-                    <%--Процент проекта--%>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3" for="percent">Процент завершения</label>
-                        <spring:bind path="statusPercent">
-                            <div class="col-xs-9">
-                                <form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Процент завершения"></form:input>
-                                <form:errors path="name"></form:errors>
-                            </div>
-                        </spring:bind>
-                    </div>
+                    <%--&lt;%&ndash;Статус проекта&ndash;%&gt;--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>--%>
+                        <%--<spring:bind path="projectStatus.id">--%>
+                            <%--<div class="col-xs-9" id="projectStatus">--%>
+                                <%--<form:checkbox path="projectStatus.id" value="1"/>Активен--%>
+                                <%--<form:checkbox path="projectStatus.id" value="2"/>Заморожен--%>
+                                <%--<form:checkbox path="projectStatus.id" value="3"/>Завершён--%>
+                            <%--</div>--%>
+                        <%--</spring:bind>--%>
+                    <%--</div>--%>
+                    <%--&lt;%&ndash;Процент проекта&ndash;%&gt;--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-xs-3" for="percent">Процент завершения</label>--%>
+                        <%--<spring:bind path="statusPercent">--%>
+                            <%--<div class="col-xs-9">--%>
+                                <%--<form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Процент завершения"></form:input>--%>
+                                <%--<form:errors path="name"></form:errors>--%>
+                            <%--</div>--%>
+                        <%--</spring:bind>--%>
+                    <%--</div>--%>
                     <%--описание--%>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="about">Содержание новости</label>
+                        <label class="control-label col-xs-3" for="about">Описание</label>
                         <spring:bind path="about">
                             <div class="col-xs-9">
-                                <form:textarea path="about" id="about" placeholder="Содержание новости" class="form-control" ></form:textarea>
+                                <form:textarea path="about" id="about" placeholder="Опишите свой проект" class="form-control" ></form:textarea>
                                 <form:errors path="about"></form:errors>
                                 <c:if test="${project.id > 0}">
                                     <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>

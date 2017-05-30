@@ -1,19 +1,24 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Project;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ProjectService {
-    public void save(Project project);
+    // Создает новый проект
+    void saveNewProject(Project project, MultipartFile image);
 
-    public Project findByName(String name);
+    // Обновляет существующий проект
+    void saveUpdatedProject(Project project, MultipartFile image);
 
-    public List<Project> getAllProjects();
+    Project findByName(String name);
 
-    public Project findById(Long id);
+    List<Project> getAllProjects();
 
-    public void delete(Project project);
+    Project findById(Long id);
 
-    public void delete(Long id );
+    void delete(Project project);
+
+    void delete(Long id );
 }
