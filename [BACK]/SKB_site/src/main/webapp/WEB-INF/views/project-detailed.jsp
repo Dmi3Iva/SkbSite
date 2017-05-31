@@ -38,7 +38,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Новости</h3></li>
+            <h3>Проект</h3></li>
         </ul>
       </div>
     </div>

@@ -32,9 +32,7 @@
 
     <%@include file="header.jsp" %>
 
-    <!--можно изменить себя -->
-    <sec:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username}'">
-        <%--<h2 style="color: #0d3349">AccedToChange</h2>--%>
+    <!-- Личная инофрмация-->
     <div class="personal_information">
         <div class="container">
             <div class="row">
@@ -42,180 +40,38 @@
                     <h1>Личная информация </h1>
                 </div>
                 <div class="container">
-                    <form:form method="POST" modelAttribute="user" class="form-horizontal" enctype="multipart/form-data" >
-                        <div class="col-md-4">
-                            <div class="image"><img src="${user.photoPath}" alt="Изображение ${user.username}"></div>
-                            <div class="form-group" >
-                                <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                                <input type="file" name="file" id="newsPic"  >
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <spring:bind path="firstName">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="firstName">Имя</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="firstName" class="form-control" id="firstName"
-                                                    placeholder="" autofocus="true"/>
-                                        <form:errors path="firstName"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="lastName">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="lastName">Фамилия</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="lastName" class="form-control" id="lastName"
-                                                    placeholder="" autofocus="true"/>
-                                        <form:errors path="lastName"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="middleName">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="middleName">Отчество</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="middleName" class="form-control" id="middleName" placeholder=""/>
-                                        <form:errors path="middleName"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="dateOfBirth">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>
-                                        <form:errors path="dateOfBirth"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="username">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5">Логин</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="username" class="form-control"
-                                                    autofocus="true" placeholder=""/>
-                                        <form:errors path="username"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="password">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5">Пароль</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="password" path="password" class="form-control" placeholder=""/>
-                                        <form:errors path="password"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="passwordConfirm">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5">Повторите пароль</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="password" path="passwordConfirm" class="form-control" placeholder=""/>
-                                        <form:errors path="passwordConfirm"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="email">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="e-mail">E-mail</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="email" class="form-control" id="e-mail" placeholder=""/>
-                                        <form:errors path="email"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="organization">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="organization">Организация</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="organization" class="form-control" id="organization" placeholder=""/>
-                                        <form:errors path="organization"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="about">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="about">О себе</label>
-                                    <div class="col-xs-7">
-                                        <form:textarea type="text" path="about" class="form-control" id="about" placeholder=""/>
-                                        <form:errors path="about"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <spring:bind path="github">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-5" for="github">github</label>
-                                    <div class="col-xs-7">
-                                        <form:input type="text" path="github" class="form-control" id="github" placeholder=""/>
-                                        <form:errors path="about"/>
-                                    </div>
-                                </div>
-                            </spring:bind>
-                            <c:if test="${ empty id}">
-                                <div class="form-group">
-                                    <div class="col-xs-offset-5 col-xs-7">
-                                        <button type="submit" class="btn btn-primary btn-lg" formaction="/profile?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
-                                    </div>
-                                </div>
-                            </c:if>
-                            <c:if test="${not empty id}">
-                                <div class="form-group">
-                                    <div class="col-xs-offset-5 col-xs-7">
-                                        <button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
-                                    </div>
-                                </div>
-                            </c:if>
-
-                        </div>
-                    </form:form>
-                </div>
-            </div>
-        </div>
-    </sec:authorize>
-
-
-    <sec:authorize access=" not (hasRole('ROLE_ADMIN') or principal.username == '${user.username}')">
-        <div class="personal_information">
-            <div class="container">
-                <div class="row">
-                    <div class="personal_header col-sm-offset-3">
-                        <h1>Личная информация </h1>
-                    </div>
-                    <div class="container">
-                        <div class="col-xs-6">
-                            <img src="${user.photoPath}">
-                        </div>
-                        <div class="col-xs-6">
-                            <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
-                            <p>Дата рождения: ${user.dateOfBirth}</p>
-                            <p>Пол: мужской</p>
-                            <p>Логин: ${user.username}</p>
-                            <p>E-mail: ${user.email}</p>
-                            <p>Органицзация: ${user.organization}</p>
-                            <p>Проекты: Телеграмм, ВК</p>
-                            <p>Github: ${user.github}</p>
-                            <p>Мобильный телефон: 88005553535</p>
-                            <p>О себе: ${user.about}</p>
-                        </div>
+                    <div class="col-xs-6">
+                        <%--<img src="${contextPath}/resources/images/hacker.jpg">--%>
+                        <img src="${user.photoPath}">
                     </div>
                     <div class="col-xs-6">
-                        <button type="submit" class="btn btn-primary hidden-sm hidden-xs btn-lg">Загрузить новое изображение</button>
-                        <button type="submit" class="hidden-md visible-xs visible-sm btn-lg"><i class="glyphicon glyphicon-picture"></i></button>
-                    </div>
-                    <div class="btn-group col-xs-6">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            Изменить пароль
-                        </button>
-                        <button onclick="document.forms['logoutForm'].submit()" class="btn btn-primary btn-lg">
-                            Выход
-                        </button>
+                        <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
+                        <p>Дата рождения: ${user.dateOfBirth}</p>
+                        <p>Пол: мужской</p>
+                        <p>Логин: ${user.username}</p>
+                        <p>E-mail: ${user.email}</p>
+                        <p>Органицзация: ${user.organization}</p>
+                        <p>Проекты: Телеграмм, ВК</p>
+                        <p>Github: ${user.github}</p>
+                        <p>Мобильный телефон: 88005553535</p>
+                        <p>О себе: ${user.about}</p>
                     </div>
                 </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username}'">
+                    <div class="btn-group col-xs-6 col-xs-offset-6">
+                        <a href="/change-profile">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Изменить данные
+                            </button>
+                        </a>
+                    </div>
+                </sec:authorize>
             </div>
         </div>
-    </sec:authorize>
+    </div>
+
+
+    <!--можно изменить себя -->
 
 
 
@@ -226,7 +82,7 @@
     <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
     <script>window.jQuery</script>
     <script src="../../resources/js/tether.min.js"></script>
-    <script src="../../resources/bootstrap/js/bootstrap.js"></script>pt>
+    <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 </body>
 </html>

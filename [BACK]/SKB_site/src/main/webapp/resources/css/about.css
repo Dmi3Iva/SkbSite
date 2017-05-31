@@ -1,5 +1,9 @@
 ﻿@import "main.css";
 
+h1{
+    color: var(--blue);
+}
+
 .content{
     margin-top:80px;
 }

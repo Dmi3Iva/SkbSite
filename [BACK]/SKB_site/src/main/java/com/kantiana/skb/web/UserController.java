@@ -69,8 +69,10 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
+        userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+
         return "redirect:/";
     }
 
@@ -126,10 +128,10 @@ public class UserController {
         if (file.getSize()>0)
             oldUser.setPhotoPath(uploadFile(file));
 
-        return "profile";
+        return "redirect:/profile";
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @RequestMapping(value = "/change-profile", method = RequestMethod.POST)
     public String ChangeProfile(@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "profile";
@@ -157,7 +159,15 @@ public class UserController {
         return "profile";
     }
 
-    //Контроллеры для интграции страниц
+    //Контроллеры для интеграции страниц
+
+    @RequestMapping(value = "/change-profile", method = RequestMethod.GET)
+    public String changeProfile(Model model) {
+        // Достаём информацию о текущем пользователе и передаём её в .jsp
+        User user = securityService.findLoggedUser();
+        model.addAttribute("user", user);
+        return "change-profile";
+    }
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment() {
