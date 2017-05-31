@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.repository.ProjectStatusRepository;
+import com.kantiana.skb.service.ProjectMembershipService;
 import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.ProjectStatusService;
 import com.kantiana.skb.service.SecurityService;
@@ -24,6 +25,8 @@ public class ProjectsController {
     private SecurityService securityService;
     @Autowired
     private ProjectStatusService projectStatusService;
+    @Autowired
+    private ProjectMembershipService projectMembershipService;
 
     //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
@@ -37,6 +40,7 @@ public class ProjectsController {
     public String projectDetailed(Model model, Long id) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
+        model.addAttribute("projectMemberships", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
         return "project-detailed";
     }
 

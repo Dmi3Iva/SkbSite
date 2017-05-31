@@ -1,0 +1,34 @@
+package com.kantiana.skb.service;
+
+import com.kantiana.skb.model.Project;
+import com.kantiana.skb.model.ProjectMembership;
+import com.kantiana.skb.repository.ProjectMembershipRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ProjectMembershipServiceImpl implements ProjectMembershipService {
+    @Autowired
+    private ProjectMembershipRepository projectMembershipRepository;
+
+    @Override
+    public ProjectMembership findById(Long id) {
+        return projectMembershipRepository.findById(id);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        projectMembershipRepository.removeById(id);
+    }
+
+    public void save(ProjectMembership projectMembership) {
+        projectMembershipRepository.save(projectMembership);
+    }
+
+    @Override
+    public List<ProjectMembership> findAllByProjectIdOrderByUserUsername(Long projectId) {
+        return projectMembershipRepository.findAllByProjectIdOrderByUserUsername(projectId);
+    }
+}

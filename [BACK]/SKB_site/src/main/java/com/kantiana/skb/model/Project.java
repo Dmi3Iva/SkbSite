@@ -18,7 +18,7 @@ public class Project {
     private String photoPath;
     private Set<Comment> comments;
     private Set<News> news;
-    private Set<User> members;
+    private Set<ProjectMembership> projectMemberships;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,15 +102,6 @@ public class Project {
         this.news = news;
     }
 
-    @ManyToMany(mappedBy = "projects")
-    public Set<User> getMembers() {
-        return members;
-    }
-
-    public void setMembers(Set<User> members) {
-        this.members = members;
-    }
-
     @Column(name="photo_path")
     public String getPhotoPath() {
         return photoPath;
@@ -118,5 +109,14 @@ public class Project {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    @OneToMany(targetEntity = ProjectMembership.class, mappedBy = "project", fetch = FetchType.EAGER)
+    public Set<ProjectMembership> getProjectMemberships() {
+        return projectMemberships;
+    }
+
+    public void setProjectMemberships(Set<ProjectMembership> projectMemberships) {
+        this.projectMemberships = projectMemberships;
     }
 }

@@ -54,6 +54,12 @@
                 Капитан:
                 ${project.captain.username}
               </p>
+                <p>
+                    Команда:
+                    <c:forEach items="${projectMemberships}" var="membership">
+                        ${membership.user.username}, 
+                    </c:forEach>
+                </p>
               <p>
                 Статус проекта:
                   ${project.projectStatus.name}
@@ -73,6 +79,7 @@
               <p class="article">
                   ${project.about}
               </p>
+
 
               <p><a href="/news?projectId=${project.id}">Новости проекта</a></p>
 

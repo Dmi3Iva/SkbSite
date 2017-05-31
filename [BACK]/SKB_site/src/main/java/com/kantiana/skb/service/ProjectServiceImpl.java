@@ -21,12 +21,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectStatusService projectStatusService;
 
+    @Autowired
+    private ProjectMembershipService projectMembershipService;
+
     public void saveNewProject(Project project, MultipartFile image) {
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
-        project.setStatusPercent(new Long(0));
+        project.setStatusPercent(0L);
         if(image.getSize() > 0) {
             project.setPhotoPath(uploadFile(image));
         }
