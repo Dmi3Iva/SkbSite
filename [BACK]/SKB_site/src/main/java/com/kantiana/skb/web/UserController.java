@@ -107,7 +107,6 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
-//        User oldUser = userService.findById(id);
 
         User oldUser= userService.findById(id);
 
@@ -119,11 +118,11 @@ public class UserController {
         oldUser.setMiddleName(user.getMiddleName());
         oldUser.setContactDetails(user.getContactDetails());
         oldUser.setGithub(user.getGithub());
-        oldUser.setPassword(user.getPassword());
+        //oldUser.setPassword(user.getPassword());
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
 
-        userService.save(oldUser);
+        userService.update(oldUser);
 
         if (file.getSize()>0)
             oldUser.setPhotoPath(uploadFile(file));

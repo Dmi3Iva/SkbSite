@@ -135,62 +135,51 @@
                                 </div>
                             </div>
                         </spring:bind>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-3">
-                            <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
+                        <div class="form-group">
+                            <div class="col-xs-3 text-center">
+                                <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
+                            </div>
+                            <div class="col-xs-9 text-center">
+                                    <%--<button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>--%>
+                                <button type="submit" class="btn btn-primary btn-md" formaction="/id${user.id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
+                            </div>
                         </div>
-                        <div class="col-xs-offset-2 col-xs-3">
-                                <%--<button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>--%>
-                            <button type="submit" class="btn btn-primary btn-md" formaction="/id${user.id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>
-                        </div>
                     </div>
-
+                </form:form>
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
                     <div class="form-group">
-                        <label class="control-label col-xs-5">Пароль</label>
+                        <label class="control-label col-xs-5 text-right">Пароль</label>
                         <div class="col-xs-7">
                             <form type="password" path="password" class="form-control" placeholder=""></form>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5">Новый пароль</label>
+                        <label class="control-label col-xs-5 text-right">Новый пароль</label>
                         <div class="col-xs-7">
                             <form type="password" class="form-control" placeholder=""></form>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5">Повторите пароль</label>
+                        <label class="control-label col-xs-5 text-right">Повторите пароль</label>
                         <div class="col-xs-7">
                             <form type="password" path="passwordConfirm" class="form-control" placeholder=""></form>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-3">
+                        <div class="col-xs-3 text-center">
                             <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
                         </div>
-                        <div class="col-xs-offset-2 col-xs-3">
-                                <%--<button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>--%>
+                        <div class="col-xs-9 text-center">
                             <button type="submit" class="btn btn-primary btn-md" formaction="/id${user.id}?${_csrf.parameterName}=${_csrf.token}">Изменить пароль</button>
                         </div>
                     </div>
-                    <form type="password" class="form-control">${user.password}</form>
-
-                <%--<div class="form-group">--%>
-                    <%--<div class="col-xs-5">--%>
-                        <%--<button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-xs-7">--%>
-                        <%--<button type="submit" class="btn btn-primary btn-lg" formaction="/id${id}?${_csrf.parameterName}=${_csrf.token}">Изменить данные</button>--%>
-                        <%--&lt;%&ndash;<form:form action="/change-profile" modelAttribute="user" class="form-horizontal" enctype="multipart/form-data">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<button type="submit" name="${_csrf.parameterName}" value="${_csrf.token}" class="btn btn-primary btn-md">Сохранить изменения</button>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</form:form>&ndash;%&gt;--%>
-                        <%--<button type="submit" name="${_csrf.parameterName}" value="${_csrf.token}" class="btn btn-primary btn-md">Сохранить изменения</button>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                </form:form>
+                    <p>${user.password}</p>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
 
     <%@include file="footer.jsp" %>
