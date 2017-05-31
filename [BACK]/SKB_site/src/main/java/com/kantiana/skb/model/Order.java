@@ -18,8 +18,7 @@ public class Order {
     private User author;
     private User editor;
     private String photoPath;
-//    private Project project;
-//    private Set<Comment> comments;
+    private Project project;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,5 +81,15 @@ public class Order {
     @Column(name = "time_of_last_update")
     public Timestamp getTimeOfLastUpdate() {
         return timeOfLastUpdate;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    public Project getProject(){
+        return project;
+    }
+
+    public void setProject(Project project){
+        this.project=project;
     }
 }

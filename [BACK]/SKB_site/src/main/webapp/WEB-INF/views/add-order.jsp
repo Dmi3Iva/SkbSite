@@ -81,6 +81,13 @@
                         </spring:bind>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-xs-3">Проект, к которому новость привязана</label>
+                        <form:select path="project.id">
+                            <form:option value="-1" selected="selected">Отсутствует</form:option>
+                            <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
+                        </form:select>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
                         <input type="file" name="file" id="orderPic"  >
 
