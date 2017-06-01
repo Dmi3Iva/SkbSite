@@ -1,7 +1,6 @@
 @import "main.css";
 
 /*Персональная информация*/
-
 .personal_information p{
   font-size: 16px;
   color: black;
@@ -10,7 +9,6 @@
 .personal_information h1{
   color: var(--blue);
 }
-
 
 .personal_information button {
   margin-top: 20px;

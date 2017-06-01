@@ -75,5 +75,9 @@
         </div>
     </div>
 </nav>
+<div id="leftSide">
+</div>
+<div id="rightSide">
+</div>
 </body>
 </html>

@@ -22,10 +22,6 @@ body{
 	}
 }
 
-.row {
-	margin-top: 0px;
-}
-
 @media screen and (max-width: 767px){
 	body{
 		margin-top: 75px;
@@ -98,17 +94,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 	padding-top: 25px;
 }
 
-.masthead{
-	margin-bottom: 10px;
-}
-
-.masthead ul li{
-	padding-right: 0;
-	padding-left: 0;
-	margin: 0 10px;
-
-}
-
 .masthead li a{
 	font-size: 20px;
 }
@@ -150,7 +135,6 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 	#main_nav li a{
 		text-align: center;
 		margin: auto;
-/*may*/
 		padding-left: 50px;
 	}
 }

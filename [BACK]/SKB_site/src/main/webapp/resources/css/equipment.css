@@ -1,5 +1,5 @@
 @import "main.css";
-
+/*
 .item .col-xs-6{
   background-color: var(--blue);
   margin: 15px auto;
@@ -48,7 +48,7 @@
 }
 
 
-/**/
+/**//*
 .titleHead{
   background-color: var(--blue);
   color:var(--white);
@@ -94,7 +94,7 @@ ul.titleHead li:nth-child(3){
   background-color: #3095ff;
 }
 
-/*форма ссылки*/
+/*форма ссылки*//*
 .titleHead div a{
   color:var(--white);
   padding: 4px 10px;

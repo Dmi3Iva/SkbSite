@@ -1,26 +1,14 @@
 @import "main.css";
-.content {
-  color: #333;
-  margin-bottom: 40px;
-}
-
-.row {
-  margin-top: 40px;
-}
 
 .blue-box {
   background-color: var(--blue-btn);
 }
-
-
 /*Заголовок*/
-
 .titleHead {
   background-color: var(--blue);
   color: var(--white);
   width: 70%;
 }
-
 .titleHead div {
   float: right;
 }
@@ -54,10 +42,7 @@ ul.titleHead li:nth-child(2) {
   width: 15px;
   background-color: #3095ff;
 }
-
-
 /*блок новостей или проектов*/
-
 .image {
   text-align: center;
 }
@@ -98,15 +83,6 @@ ul.titleHead li:nth-child(2) {
 .block .detailes a {
   text-decoration: none;
 }
-
-
-/*.new {
-  border-left: 5px solid var(--blue);
-  padding-left: 15px;
-}*/
-
-
-/*commetns box*/
 
 .widget-area {
   background-color: #fff;

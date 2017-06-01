@@ -5,7 +5,6 @@
     margin: 1% 10%;
     width: 80%;
     background-color: var(--blue);
-    /*height: 350px;*/
 }
 
 #carousel img {
@@ -17,88 +16,7 @@
 #carousel p {
     margin: auto;
 }
-
-/*Контент*/
-#blockBook .link a,#blockBook.link a:hover,#blockBook .link a:focus,
-#events .link a,#events .link a:hover,#events .link a:focus{
-    color:var(--white);
-    padding: 10px 5px;
-    margin-top: 10px;
-    border-radius: 26px;
-    background-color: #3095ff;
-    box-sizing:border-box;
-    white-space: nowrap;
-    text-decoration: none;
-}
-
-#blockBook .link a:hover,#events .link a:hover{
-    background-color: var(--blue-btn-action);
-}
-
-#blockBook{
-    background-image: url("images/Photo/IMG_0019.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 300px;
-}
-
-#blockBook p{
-    padding: 10px;
-}
-
-#blockBook,#blockBook .col-md-8{
-    background-color: var(--blue);
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.row{
-    margin-top: 10px;
-}
-
-#bookbtn {
-    padding: 0;
-    /*color:var(--white);*/
-}
-
-#bookbtn p{
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-
-}
-
-#bookbtn .link{
-    padding-bottom:10px;
-}
-
-#events{
-    height: 300px;
-    background-color: var(--blue);
-    padding: 10px;
-}
-@media screen and (max-width: 1199px)
-{
-    #events{
-        height: 221.281px;
-    }
-}
-
-@media screen and (max-width: 991px)
-{
-    #events{
-        height: auto;
-        margin-top: 10px;
-        width: 100%;
-    }
-}
-
-.blue-box{
-    background-color: var(--blue-btn);
-
-}
-
-/*Новости и проекты*/
+/*!*Новости и проекты*!*/
 .titleHead{
     background-color: var(--blue);
     color:var(--white);
