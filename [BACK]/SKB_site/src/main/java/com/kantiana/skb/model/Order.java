@@ -83,8 +83,8 @@ public class Order {
         return timeOfLastUpdate;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id")
+    @OneToOne
+    @PrimaryKeyJoinColumn
     public Project getProject(){
         return project;
     }

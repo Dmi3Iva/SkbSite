@@ -120,7 +120,7 @@ public class Project {
         this.photoPath = photoPath;
     }
 
-    @OneToOne(mappedBy = "projects")
+    @OneToOne(mappedBy = "project")
     public Order getOrder() {
         return order;
     }
