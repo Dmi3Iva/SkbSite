@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <form:form method="POST" modelAttribute="project" enctype="multipart/form-data" >
+    <form:form method="POST" modelAttribute="project" enctype="multipart/form-data">
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
@@ -133,6 +133,17 @@
             </div><!-- Widget Area -->
         </div>
     </form:form>
+    <c:if test="${isEditing == true}">
+        <div>
+            <p>Команда:</p>
+            <c:forEach items="${projectMembers}" var="membership">
+                <p>${membership.user.username} <a href="/del-member?projectMembershipId=${membership.id}">Удалить</a></p>
+            </c:forEach>
+            <%--<form:form method="POST" modelAttribute="newMemberForm">--%>
+
+            <%--</form:form>--%>
+        </div>
+    </c:if>
 </div>
 
 

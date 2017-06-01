@@ -1,6 +1,7 @@
 package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
+import com.kantiana.skb.model.ProjectMembership;
 import com.kantiana.skb.repository.ProjectStatusRepository;
 import com.kantiana.skb.service.ProjectMembershipService;
 import com.kantiana.skb.service.ProjectService;
@@ -37,7 +38,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
-    public String projectDetailed(Model model, Long id) {
+    public String projectDetailed(Model model, @RequestParam("id") Long id) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
         model.addAttribute("projectMemberships", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
@@ -49,6 +50,7 @@ public class ProjectsController {
         if (id != null) {
             Project project = projectService.findById(id);
             model.addAttribute("project", project);
+            model.addAttribute("projectMembers", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
             model.addAttribute("isEditing", true);
         }
         else {
@@ -83,5 +85,18 @@ public class ProjectsController {
 //        projectService.delete(project);
         projectService.delete(id);
         return "redirect:/projects";
+    }
+
+    @RequestMapping(value = "/add-member", method = RequestMethod.POST)
+    public String addMember(@ModelAttribute("membershipForm") ProjectMembership membershipForm, BindingResult bindingResult) {
+        projectMembershipService.save(membershipForm);
+        return "redirect:/project-detailed?id=" + membershipForm.getProject().getId();
+    }
+
+    @RequestMapping(value = "/del-member", method = RequestMethod.GET)
+    public String delMember(@RequestParam("projectMembershipId") Long projectMembershipId) {
+        Long projectId = projectMembershipService.findById(projectMembershipId).getProject().getId();
+        projectMembershipService.removeById(projectMembershipId);
+        return "redirect:/project-detailed?id=" + projectId;
     }
 }
