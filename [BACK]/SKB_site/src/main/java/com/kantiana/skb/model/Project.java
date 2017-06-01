@@ -16,9 +16,9 @@ public class Project {
     private Date dateOfLastUpdate;
     private String about;
     private String photoPath;
-    private Set<Comment> comments;
     private Set<News> news;
     private Set<User> members;
+    private Order order;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -118,5 +118,14 @@ public class Project {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    @OneToOne(mappedBy = "project")
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order){
+        this.order = order;
     }
 }

@@ -20,7 +20,9 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-order.css">
-
+    <%--TinyMCE Cloud deployment--%>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 
 <body>
@@ -79,6 +81,13 @@
                             </div>
 
                         </spring:bind>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Проект, к которому привязан заказ</label>
+                        <form:select path="project.id">
+                            <form:option value="-1" selected="selected">Отсутствует</form:option>
+                            <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
+                        </form:select>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>

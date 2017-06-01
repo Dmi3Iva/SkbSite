@@ -17,7 +17,8 @@
         <spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
         <hibernate.version>5.2.8.Final</hibernate.version>
         <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
-        <postgre.version>9.4.1212.jre7</postgre.version>
+        <!--<postgre.version>9.4.1212.jre7</postgre.version>-->
+        <postgre.version>42.1.1</postgre.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <jstl.version>1.2</jstl.version>
         <junit.version>3.8.1</junit.version>
