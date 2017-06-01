@@ -51,14 +51,15 @@
           <p class="article">
             ${order.content}
           </p>
-            <c:if test="${!empty item.project}">
-                <a href="/project-detailed?projectId=${item.project.id}">${item.project.name}</a>
-            </c:if>
+          <c:if test="${!empty order.project}">
+            <a href="/project-detailed?id=${order.project.id}">${order.project.name}</a>
+          </c:if>
           <p class="description">
             Автор: ${order.author.username}<br>
             <c:if test="${order.timeOfCreation == order.timeOfLastUpdate}">
               ${order.timeOfCreation}
             </c:if>
+
             <c:if test="${order.timeOfCreation != order.timeOfLastUpdate}">
               <c:if test="${order.editor.username!= order.author.username}">
                 Редактор: ${order.editor.username} <br>

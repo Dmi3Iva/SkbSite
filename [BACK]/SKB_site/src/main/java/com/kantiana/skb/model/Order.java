@@ -84,7 +84,7 @@ public class Order {
     }
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "project_id")
     public Project getProject(){
         return project;
     }
