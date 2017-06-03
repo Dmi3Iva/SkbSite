@@ -28,7 +28,7 @@
   <%@include file="header.jsp" %>
 
 <!-- main-->
-<div class="container">
+<div class="container" id="content">
 
   <div class="row">
     <div class="col-xs-9" >

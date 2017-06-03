@@ -16,52 +16,54 @@
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
 </head>
 
-<body>
+
     <%@include file="header.jsp" %>
 
-              <!-- main-->
 
-<div  class="carousel slide">
-<!--Индикаторы слайдов -->
-<ol class="carousel-indicators">
-  <li class="active" data-target="#carousel" data-slide-to="0"></li>
-  <li data-target="#carousel" data-slide-to="1"></li>
-  <li data-target="#carousel" data-slide-to="2"></li>
-</ol>
+<div id="content">
+    <!-- main-->
+    <div id="carousel" class="carousel slide ">
+        <!--Индикаторы слайдов -->
+        <ol class="carousel-indicators">
+            <li class="active" data-target="#carousel" data-slide-to="0"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+        </ol>
 
-<!--Слайды -->
-<div class="carousel-inner">
-  <div class="item active">
-    <img src="${contextPath}/resources/images/drop1.jpg" width="50%" alt="drop1">
-      <div class="carousel-caption">
-        <h3>СКБ ньюз</h3>
-        <p>Скандал. Юные шмодники часам стоят в очереди, чтобы забронировать оборудование в СКБ.</p>
-      </div>
+        <!--Слайды -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="${contextPath}/resources/images/drop1.jpg" width="50%" alt="drop1">
+                <div class="carousel-caption">
+                    <h3>СКБ ньюз</h3>
+                    <p>Скандал. Юные шмодники часам стоят в очереди, чтобы забронировать оборудование в СКБ.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="${contextPath}/resources/images/drop2.jpg" width="50%" alt="drop2">
+                <div class="carousel-caption">
+                    <h3>СКБ ньюз</h3>
+                    <p>Делают, они это, разумеется не для себя, а для перепродажи.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="${contextPath}/resources/images/drop3.jpg" width="50%" alt="drop3">
+                <div class="carousel-caption">
+                    <h3>СКБ ньюз</h3>
+                    <p>Будьте бдительный и бронируйте быстрей. Или пишите ботов.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Стрелки переключения между вкладками-->
+        <a href="#carousel" class="left carousel-control" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="#carousel" class="right carousel-control" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
     </div>
-    <div class="item">
-      <img src="${contextPath}/resources/images/drop2.jpg" width="50%" alt="drop2">
-        <div class="carousel-caption">
-          <h3>СКБ ньюз</h3>
-          <p>Делают, они это, разумеется не для себя, а для перепродажи.</p>
-        </div>
-      </div>
-      <div class="item">
-        <img src="${contextPath}/resources/images/drop3.jpg" width="50%" alt="drop3">
-          <div class="carousel-caption">
-            <h3>СКБ ньюз</h3>
-            <p>Будьте бдительный и бронируйте быстрей. Или пишите ботов.</p>
-          </div>
-        </div>
-      </div>
-
-      <!--Стрелки переключения между вкладками-->
-      <a href="#carousel" class="left carousel-control" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a href="#carousel" class="right carousel-control" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
-</div>
 
 <div class="container">
     <!--Новости и проекты-->
@@ -77,7 +79,7 @@
             </li>
             <li>
               <div align="center" class=link>
-                <a href="#">смотреть всё</a>
+                <a href="/news">смотреть всё</a>
               </div>
             </li>
           </ul>
@@ -93,7 +95,7 @@
             </li>
             <li>
               <div align="center" class=link>
-                <a href="#">смотреть всё</a>
+                <a href="/projects">смотреть всё</a>
               </div>
             </li>
           </ul>
@@ -147,6 +149,7 @@
     </div>
     </div>
 </div>
+</div>
 
 
 
@@ -155,11 +158,32 @@
     <%@include file="footer.jsp" %>
 
                         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../resources/js/jquery.min.js"></script>
-<script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-<script>window.jQuery</script>
-<script src="../../resources/js/tether.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $('#main_nav li a').click(function () {
+            $('#content').load("equipment #content");
+        })
+    })
+
+//    function showNewContent() {
+//        $('#content').show('normal');
+//    }
+//    $(document).ready(function () {
+////        $('#main_nav li a').click(
+//            $.ajax({
+//                url: "equipment",
+//                cache: false,
+//                success: function (data) {
+//                    alert($(data).find('#content'));
+//                    $('#content').load("equipment",$(data).find('#content'));
+//                }
+//            })
+////        )
+//    })
+</script>
 </body>
 </html>

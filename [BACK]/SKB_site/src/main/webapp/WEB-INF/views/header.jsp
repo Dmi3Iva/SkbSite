@@ -65,7 +65,7 @@
                     <ul id="main_nav" class="nav nav-justified">
                         <li class=" visible-xs"><a class="logotip" href=""><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
                         <li class=""><a href= "/news" >Новости</a></li>
-                        <li class=""><a href="/equipment">Оборудование</a></li>
+                        <li class=""><a href="#">Оборудование</a></li>
                         <li class=""><a href="/projects">Проекты</a></li>
                         <li class=""><a href="/order">Заказы</a></li>
                         <li class=""><a href="/about">О нас</a></li>

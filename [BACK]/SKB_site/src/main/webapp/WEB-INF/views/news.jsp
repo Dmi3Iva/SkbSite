@@ -25,7 +25,7 @@
 
 <%@include file="header.jsp" %>
 
-<div class="container content">
+<div class="container content" id="content">
     <!--Новости и проекты-->
     <div class="row">
         <!--Новости раздел-->
@@ -102,12 +102,22 @@
 
   <%@include file="footer.jsp" %>
 
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../../resources/bootstrap/js/bootstrap.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#main_nav li a').click(function () {
+            alert("ты нажал на кнопкуы");
+//            $.ajax(
+//                url: $('#main_nav li a').text
+//            )
+            $('#content').load("equipment #content");
+        })
+    })
+</script>
 </body>
 
 </html>
