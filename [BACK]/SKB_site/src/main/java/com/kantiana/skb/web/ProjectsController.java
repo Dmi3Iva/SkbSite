@@ -2,11 +2,9 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.ProjectMembership;
+import com.kantiana.skb.model.User;
 import com.kantiana.skb.repository.ProjectStatusRepository;
-import com.kantiana.skb.service.ProjectMembershipService;
-import com.kantiana.skb.service.ProjectService;
-import com.kantiana.skb.service.ProjectStatusService;
-import com.kantiana.skb.service.SecurityService;
+import com.kantiana.skb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +26,8 @@ public class ProjectsController {
     private ProjectStatusService projectStatusService;
     @Autowired
     private ProjectMembershipService projectMembershipService;
+    @Autowired
+    private UserService userService;
 
     //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
@@ -50,7 +50,9 @@ public class ProjectsController {
         if (id != null) {
             Project project = projectService.findById(id);
             model.addAttribute("project", project);
-            model.addAttribute("projectMembers", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
+            model.addAttribute("projectMemberships", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
+            model.addAttribute("deletedProjectMembership", new ProjectMembership());
+            model.addAttribute("newProjectMembership", new ProjectMembership());
             model.addAttribute("isEditing", true);
         }
         else {
@@ -81,22 +83,24 @@ public class ProjectsController {
 
     @RequestMapping(value = "/del-project", method = RequestMethod.GET)
     public String delProject(Long id) {
-//        Project project = projectService.findById(id);
-//        projectService.delete(project);
         projectService.delete(id);
         return "redirect:/projects";
     }
 
-    @RequestMapping(value = "/add-member", method = RequestMethod.POST)
-    public String addMember(@ModelAttribute("membershipForm") ProjectMembership membershipForm, BindingResult bindingResult) {
-        projectMembershipService.save(membershipForm);
-        return "redirect:/project-detailed?id=" + membershipForm.getProject().getId();
+    //:TODO Метод должен быть POST
+    @RequestMapping(value = "add-membership", method = RequestMethod.POST)
+    public String addMembership(Long projectId, Long newMemberId) {
+        ProjectMembership newProjectMembership = new ProjectMembership();
+        newProjectMembership.setProject(projectService.findById(projectId));
+        newProjectMembership.setUser(userService.findById(newMemberId));
+        projectMembershipService.save(newProjectMembership);
+        return "redirect:/project-detailed?id=" + projectId;
     }
 
-    @RequestMapping(value = "/del-member", method = RequestMethod.GET)
-    public String delMember(@RequestParam("projectMembershipId") Long projectMembershipId) {
-        Long projectId = projectMembershipService.findById(projectMembershipId).getProject().getId();
-        projectMembershipService.removeById(projectMembershipId);
+    //:TODO Метод должен быть DELETE
+    @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
+    public String deleteMembership(Long projectId, Long deletedProjectMembershipId) {
+        projectMembershipService.removeById(deletedProjectMembershipId);
         return "redirect:/project-detailed?id=" + projectId;
     }
 }

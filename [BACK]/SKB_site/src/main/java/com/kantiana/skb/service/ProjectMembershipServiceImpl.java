@@ -13,22 +13,25 @@ public class ProjectMembershipServiceImpl implements ProjectMembershipService {
     @Autowired
     private ProjectMembershipRepository projectMembershipRepository;
 
+    // Отображение
     @Override
     public ProjectMembership findById(Long id) {
         return projectMembershipRepository.findById(id);
     }
 
     @Override
+    public List<ProjectMembership> findAllByProjectIdOrderByUserUsername(Long projectId) {
+        return projectMembershipRepository.findAllByProjectIdOrderByUserUsername(projectId);
+    }
+
+    // Удаление
+    @Override
     public void removeById(Long id) {
         projectMembershipRepository.removeById(id);
     }
 
+    // Сохранение
     public void save(ProjectMembership projectMembership) {
         projectMembershipRepository.save(projectMembership);
-    }
-
-    @Override
-    public List<ProjectMembership> findAllByProjectIdOrderByUserUsername(Long projectId) {
-        return projectMembershipRepository.findAllByProjectIdOrderByUserUsername(projectId);
     }
 }

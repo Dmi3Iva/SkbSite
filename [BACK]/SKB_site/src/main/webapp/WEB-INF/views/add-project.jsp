@@ -135,12 +135,27 @@
     </form:form>
     <c:if test="${isEditing == true}">
         <div>
-            <p>Команда:</p>
-            <c:forEach items="${projectMembers}" var="membership">
-                <p>${membership.user.username} <a href="/del-member?projectMembershipId=${membership.id}">Удалить</a></p>
-            </c:forEach>
-            <%--<form:form method="POST" modelAttribute="newMemberForm">--%>
-
+            <p>Удали кого-нибудь</p>
+            <form method="POST" action="/delete-membership">
+                <input type="hidden" name = "projectId" value="${project.id}"/>
+                <select name="deletedProjectMembershipId">
+                    <c:forEach items="${projectMemberships}" var="pm">
+                        <option value="${pm.id}">${pm.user.username}</option>
+                    </c:forEach>
+                </select>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button type="submit">Удалить</button>
+            </form>
+                <%--<form method="POST" action="/add-membership">--%>
+                    <%--<input type="hidden" name="projectId" value="${project.id}">--%>
+                    <%--<select name="newMemberId">--%>
+                        <%--<c:forEach--%>
+                    <%--</select>--%>
+                <%--</form>--%>
+            <%--</form:form>--%>
+            <%--<form:form method="GET" modelAttribute="newProjectMembership">--%>
+                <%--<form:select path="newProjectMembership.id" items="" itemValue="id" itemLabel="user.username"/>--%>
+                <%--<form:button type="submit">Добавить</form:button>--%>
             <%--</form:form>--%>
         </div>
     </c:if>
