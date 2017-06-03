@@ -53,7 +53,7 @@
                         <p>Органицзация: ${user.organization}</p>
                         <p>Проекты: Телеграмм, ВК</p>
                         <p>Github: ${user.github}</p>
-                        <p>Мобильный телефон: 88005553535</p>
+                        <p>Контактные данные: ${user.contactDetails}</p>
                         <p>О себе: ${user.about}</p>
                     </div>
                 </div>
