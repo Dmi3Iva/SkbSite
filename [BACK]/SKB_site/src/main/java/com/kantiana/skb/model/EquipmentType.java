@@ -3,6 +3,7 @@ package com.kantiana.skb.model;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "equipment_type")
@@ -12,6 +13,7 @@ public class EquipmentType {
     private String about;
     private String features;
     private String photoPath;
+    private Set<Equipment> equipmentSet;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,11 @@ public class EquipmentType {
         return photoPath;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    public Set<Equipment> getEquipmentSet() {
+        return equipmentSet;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,5 +61,9 @@ public class EquipmentType {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    public void setEquipmentSet(Set<Equipment> equipmentSet) {
+        this.equipmentSet = equipmentSet;
     }
 }

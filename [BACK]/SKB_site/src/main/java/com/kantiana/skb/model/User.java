@@ -28,6 +28,8 @@ public class User {
     private Set<Project> projects;
     private boolean customer;
 
+    private Booking booking;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -200,5 +202,14 @@ public class User {
 
     public void setCustomer(boolean customer) {
         this.customer = customer;
+    }
+
+    @OneToOne
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }

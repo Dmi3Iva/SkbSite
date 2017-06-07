@@ -18,10 +18,14 @@ public class Booking {
         return id;
     }
 
+    @OneToOne
+    @JoinColumn(name = "equipment_id")
     public Equipment getEquipment() {
         return equipment;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }

@@ -1,8 +1,5 @@
 package com.kantiana.skb.model;
 
-import org.hibernate.mapping.Join;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
