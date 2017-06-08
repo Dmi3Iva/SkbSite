@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
-    List<Equipment> findAllByEquipmentIdOrderByTimeOfCreation(Long equipmentId);
+    public Equipment findById(Long id);
 }
