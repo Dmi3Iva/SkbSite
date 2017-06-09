@@ -50,18 +50,24 @@
   </c:if>
 
   <c:if test="${!empty equipmentTypeList}">
-    <c:forEach items="equipmentTypeList" var="item">
+    <c:forEach items="${equipmentTypeList}" var="item">
   <div class="row">
     <div class="col-xs-4" >
       <div class="item">
         <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images/microcontrollers/1.jpg" alt="" width=100%></div>
           <div class="col-xs-6 hidden-xs">
-            <p>Ardruino Titan</p>
+              <img src="${item.photoPath}" alt="${item.name}Picture" width=100%>
+              <div class="form-group">
+                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-equipment-type?id=${item.id}';" value="Редактировать">
+                  <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить модель?'))?self.location.href='/del-equipment-type?id=${item.id}':1/1;" value="Удалить">
+              </div>
+          </div>
+          <div class="col-xs-6 hidden-xs">
+            <p>${item.name}</p>
           </div>
 
           <div class="col-xs-12 visible-xs">
-            <p>Ardruino Titan</p>
+            <p>${item.name}</p>
           </div>
         </a>
       </div>
