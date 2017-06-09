@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Booking {
     private Long id;
     private Equipment equipment;
-    private User user;
+    private Request request;
     private Timestamp begin;
     private Timestamp end;
 
@@ -24,16 +24,17 @@ public class Booking {
         return equipment;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    public User getUser() {
-        return user;
+    @ManyToOne
+    @JoinColumn(name = "request_id")
+    public Request getRequest() {
+        return request;
     }
 
     @Column(name = "time_of_begin")
     public Timestamp getBegin() {
         return begin;
     }
+
     @Column(name = "time_of_end")
     public Timestamp getEnd() {
         return end;
@@ -47,8 +48,8 @@ public class Booking {
         this.equipment = equipment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRequest(Request request) {
+        this.request = request;
     }
 
     public void setBegin(Timestamp begin) {

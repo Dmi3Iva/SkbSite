@@ -28,7 +28,7 @@ public class User {
     private Set<Project> projects;
     private boolean customer;
 
-    private Booking booking;
+    private Set<Request> requestList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -204,12 +204,12 @@ public class User {
         this.customer = customer;
     }
 
-    @OneToOne
-    public Booking getBooking() {
-        return booking;
+    @OneToMany(targetEntity = Request.class, mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<Request> getRequestList() {
+        return requestList;
     }
 
-    public void setBooking(Booking booking) {
-        this.booking = booking;
+    public void setRequestList(Request request) {
+        this.requestList = requestList;
     }
 }
