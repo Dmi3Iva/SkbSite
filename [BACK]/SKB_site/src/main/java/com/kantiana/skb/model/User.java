@@ -200,4 +200,9 @@ public class User {
     public void setCustomer(boolean customer) {
         this.customer = customer;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof User && ((User)obj).getId() == getId();
+    }
 }

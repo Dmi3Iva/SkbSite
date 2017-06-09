@@ -12,6 +12,7 @@ public interface ProjectService {
 
     // Обновляет существующий проект
     void saveUpdatedProject(Project project, MultipartFile image);
+    void saveUpdatedProject(Project project);
 
     Project findByName(String name);
 

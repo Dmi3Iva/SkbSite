@@ -135,7 +135,7 @@
     </form:form>
     <c:if test="${isEditing == true}">
         <div>
-            <p>Удали кого-нибудь</p>
+            <p>Удали кого-нибудь из проекта</p>
             <form method="POST" action="/delete-membership">
                 <input type="hidden" name = "projectId" value="${project.id}"/>
                 <select name="deletedProjectMembershipId">
@@ -146,7 +146,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type="submit">Удалить</button>
             </form>
-            <p>Добавь кого-нибудь</p>
+            <p>Добавь кого-нибудь в проект</p>
             <form method="POST" action="/add-membership">
                 <p><input type="hidden" name="projectId" value="${project.id}"></p>
                 <p><select name="newMemberId">

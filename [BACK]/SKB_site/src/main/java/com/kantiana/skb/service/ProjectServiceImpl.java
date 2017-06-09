@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
         project.setStatusPercent(0L);
-        if(image.getSize() > 0) {
+        if(image != null && image.getSize() > 0) {
             project.setPhotoPath(uploadFile(image));
         }
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -58,11 +58,15 @@ public class ProjectServiceImpl implements ProjectService {
             if (project.getStatusPercent() != null) {
                 oldProject.setStatusPercent(project.getStatusPercent());
             }
-            if (image.getSize() > 0) {
+            if (image != null && image.getSize() > 0) {
                 oldProject.setPhotoPath(uploadFile(image));
             }
             projectRepository.save(oldProject);
         }
+    }
+
+    public void saveUpdatedProject(Project project) {
+        saveNewProject(project, null);
     }
 
     public Project findByName(String name) {

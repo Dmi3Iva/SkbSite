@@ -101,7 +101,15 @@ public class ProjectsController {
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
     public String deleteMembership(Long projectId, Long deletedProjectMembershipId) {
-        projectMembershipService.removeById(deletedProjectMembershipId);
+        ProjectMembership projectMembership = projectMembershipService.findById(deletedProjectMembershipId);
+//        if (projectMembership != null) {
+//            // Если удаляем капитана, то у проекта не будет капитана
+//            if (projectMembership.getProject().getCaptain().getId() == projectMembership.getUser().getId()) {
+//                projectMembership.getProject().setCaptain(null);
+//                projectService.saveUpdatedProject(projectMembership.getProject());
+//            }
+            projectMembershipService.removeById(deletedProjectMembershipId);
+//        }
         return "redirect:/edit-project?id=" + projectId;
     }
 }
