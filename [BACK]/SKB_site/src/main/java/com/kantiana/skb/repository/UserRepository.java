@@ -10,6 +10,6 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
-    @Query("SELECT u FROM User u WHERE u.id NOT IN (SELECT pm.user.id FROM ProjectMembership pm WHERE pm.project.id = ?0)")
+    @Query("SELECT u FROM User u WHERE u.id NOT IN (SELECT pm.user.id FROM ProjectMembership pm WHERE pm.project.id = ?1)")
     List<User> findWhoIsNotInProject(Long projectId);
 }
