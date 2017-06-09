@@ -1,5 +1,8 @@
 @import "main.css";
 
+h1{
+  color:#333;
+}
 .item .col-xs-6{
   background-color: var(--blue);
   margin: 15px auto;

@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -37,7 +38,38 @@
         <li><h3>Оборудование</h3></li>
       </ul>
     </div>
+    <div class="col-xs-3">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
+    </div>
   </div>
+
+  <c:if test="${empty equipmentTypeList}">
+    <h1>
+      К сожалению на данный момент оборудования нет<br>
+      :(</h1>
+  </c:if>
+
+  <c:if test="${!empty equipmentTypeList}">
+    <c:forEach items="equipmentTypeList" var="item">
+  <div class="row">
+    <div class="col-xs-4" >
+      <div class="item">
+        <a href="#">
+          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images/microcontrollers/1.jpg" alt="" width=100%></div>
+          <div class="col-xs-6 hidden-xs">
+            <p>Ardruino Titan</p>
+          </div>
+
+          <div class="col-xs-12 visible-xs">
+            <p>Ardruino Titan</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  </c:forEach>
+  </c:if>
+
 
   <div class="row">
     <div class="col-xs-4" >

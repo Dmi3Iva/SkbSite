@@ -23,6 +23,18 @@ public class EquipmentController {
         return "equipment";
     }
 
+    @RequestMapping(value = "/add-equipment-type", method = RequestMethod.GET)
+    public  String equipmentTypeAddGet(Model model, Long equipmentTypeId)
+    {
+        model.addAttribute("equipmentType", new EquipmentType());
+        return "add-equipment-type";
+    }
+//
+//    @RequestMapping(value = "/add-equipment-type", method = RequestMethod.GET)
+//    public  String equipmentTypeAddPost(Model model)
+//    {
+//        return "add-equipment-type";
+//    }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking() {
