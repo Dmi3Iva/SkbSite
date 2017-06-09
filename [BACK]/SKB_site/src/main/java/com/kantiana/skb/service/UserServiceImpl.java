@@ -43,12 +43,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    public String encodePassword(String password){
-        password = bCryptPasswordEncoder.encode(password);
-
-        return password;
-    }
-
     public void update(User user){
         userRepository.save(user);
     }

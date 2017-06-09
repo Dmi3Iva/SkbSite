@@ -9,8 +9,6 @@ public interface UserService {
 
     public void update(User user);
 
-    public String encodePassword(String password);
-
     public User findByUsername(String username);
 
     public List<User> getAllUsers();

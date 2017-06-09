@@ -41,7 +41,6 @@
                 </div>
                 <div class="container">
                     <div class="col-xs-6">
-                        <%--<img src="${contextPath}/resources/images/hacker.jpg">--%>
                         <img src="${user.photoPath}">
                     </div>
                     <div class="col-xs-6">

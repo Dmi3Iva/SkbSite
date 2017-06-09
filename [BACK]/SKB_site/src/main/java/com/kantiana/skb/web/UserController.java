@@ -83,7 +83,7 @@ public class UserController {
     }
 
     // Контроллер личного кабинета
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile{id}", method = RequestMethod.GET)
     public String profile(Model model) {
         // Достаём информацию о текущем пользователе и передаём её в .jsp
         String username = securityService.findLoggedInUsername();
@@ -120,12 +120,12 @@ public class UserController {
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
 
-        userService.update(oldUser);
-
         if (file.getSize()>0)
             oldUser.setPhotoPath(uploadFile(file));
 
-        return "redirect:/profile";
+        userService.update(oldUser);
+
+        return "redirect:/profile{id}";
     }
 
     // Контроллер изменения пароля пользователя
@@ -148,7 +148,7 @@ public class UserController {
 //        }
 
         User currentUser = securityService.findLoggedUser();
-        currentPassword = userService.encodePassword(currentPassword);
+        //currentPassword = userService.encodePassword(currentPassword);
 
         if (currentPassword == currentUser.getPassword()){
             if (newPassword == confirmNewPassword){
