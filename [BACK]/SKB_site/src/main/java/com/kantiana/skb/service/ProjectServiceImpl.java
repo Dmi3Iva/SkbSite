@@ -1,6 +1,7 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Project;
+import com.kantiana.skb.model.ProjectMembership;
 import com.kantiana.skb.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Date;
@@ -35,6 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         projectRepository.save(project);
+        projectMembershipService.save(project, project.getCaptain());
     }
 
     public void saveUpdatedProject(Project project, MultipartFile image) {

@@ -82,26 +82,26 @@ public class ProjectsController {
         return "redirect:/projects";
     }
 
+    //:TODO Метод должен быть DELETE или на крайний случай POST
     @RequestMapping(value = "/del-project", method = RequestMethod.GET)
     public String delProject(Long id) {
         projectService.delete(id);
         return "redirect:/projects";
     }
 
-    //:TODO Метод должен быть POST
     @RequestMapping(value = "add-membership", method = RequestMethod.POST)
     public String addMembership(Long projectId, Long newMemberId) {
         ProjectMembership newProjectMembership = new ProjectMembership();
         newProjectMembership.setProject(projectService.findById(projectId));
         newProjectMembership.setUser(userService.findById(newMemberId));
         projectMembershipService.save(newProjectMembership);
-        return "redirect:/project-detailed?id=" + projectId;
+        return "redirect:/edit-project?id=" + projectId;
     }
 
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
     public String deleteMembership(Long projectId, Long deletedProjectMembershipId) {
         projectMembershipService.removeById(deletedProjectMembershipId);
-        return "redirect:/project-detailed?id=" + projectId;
+        return "redirect:/edit-project?id=" + projectId;
     }
 }
