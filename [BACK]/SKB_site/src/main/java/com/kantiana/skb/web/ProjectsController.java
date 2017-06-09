@@ -41,18 +41,19 @@ public class ProjectsController {
     public String projectDetailed(Model model, @RequestParam("id") Long id) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
-        model.addAttribute("projectMemberships", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
+        model.addAttribute("projectMemberships", projectMembershipService.findWhoIsProjectMember(id));
         return "project-detailed";
     }
 
     @RequestMapping(value = {"/add-project", "/edit-project"}, method = RequestMethod.GET)
     public String addProject(Model model, Long id) {
-        if (id != null) {
+        boolean isEditing = (id != null);
+        if (isEditing) {
             Project project = projectService.findById(id);
             model.addAttribute("project", project);
-            model.addAttribute("projectMemberships", projectMembershipService.findAllByProjectIdOrderByUserUsername(id));
+            model.addAttribute("projectMemberships", projectMembershipService.findWhoIsProjectMember(id));
             model.addAttribute("deletedProjectMembership", new ProjectMembership());
-            model.addAttribute("newProjectMembership", new ProjectMembership());
+            model.addAttribute("nonProjectMembers", userService.findWhoIsNotInProject(id));
             model.addAttribute("isEditing", true);
         }
         else {

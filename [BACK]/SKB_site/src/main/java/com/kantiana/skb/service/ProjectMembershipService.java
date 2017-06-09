@@ -9,7 +9,7 @@ public interface ProjectMembershipService {
 
     void removeById(Long id);
 
-    List<ProjectMembership> findAllByProjectIdOrderByUserUsername(Long projectId);
+    List<ProjectMembership> findWhoIsProjectMember(Long projectId);
 
     void save(ProjectMembership projectMembership);
 }

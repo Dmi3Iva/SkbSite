@@ -135,24 +135,26 @@
     </form:form>
     <c:if test="${isEditing == true}">
         <div>
-            <p>Удали кого-нибудь</p>
-            <form method="POST" action="/delete-membership">
-                <input type="hidden" name = "projectId" value="${project.id}"/>
-                <select name="deletedProjectMembershipId">
-                    <c:forEach items="${projectMemberships}" var="pm">
-                        <option value="${pm.id}">${pm.user.username}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <button type="submit">Удалить</button>
-            </form>
-                <%--<form method="POST" action="/add-membership">--%>
-                    <%--<input type="hidden" name="projectId" value="${project.id}">--%>
-                    <%--<select name="newMemberId">--%>
-                        <%--<c:forEach--%>
-                    <%--</select>--%>
-                <%--</form>--%>
-            <%--</form:form>--%>
+            <%--<p>Удали кого-нибудь</p>--%>
+            <%--<form method="POST" action="/delete-membership">--%>
+                <%--<input type="hidden" name = "projectId" value="${project.id}"/>--%>
+                <%--<select name="deletedProjectMembershipId">--%>
+                    <%--<c:forEach items="${projectMemberships}" var="pm">--%>
+                        <%--<option value="${pm.id}">${pm.user.username}</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</select>--%>
+                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+                <%--<button type="submit">Удалить</button>--%>
+            <%--</form>--%>
+            <%--<p>Добавь кого-нибудь</p>--%>
+            <%--<form method="POST" action="/add-membership">--%>
+                <%--<input type="hidden" name="projectId" value="${project.id}">--%>
+                <%--<select name="newMemberId">--%>
+                    <%--<c:forEach items="${nonProjectMembers}" var="nonMember">--%>
+                        <%--<option value="${nonMember.id}">${nonMember.username}</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</select>--%>
+            <%--</form>--%>
             <%--<form:form method="GET" modelAttribute="newProjectMembership">--%>
                 <%--<form:select path="newProjectMembership.id" items="" itemValue="id" itemLabel="user.username"/>--%>
                 <%--<form:button type="submit">Добавить</form:button>--%>

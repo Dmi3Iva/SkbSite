@@ -44,6 +44,7 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test="${!empty project}">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
         <div class="row">
           <div class="col-md-8">
             <div class="new">

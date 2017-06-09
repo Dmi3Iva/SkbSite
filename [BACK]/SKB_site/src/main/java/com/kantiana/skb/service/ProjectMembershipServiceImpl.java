@@ -20,7 +20,7 @@ public class ProjectMembershipServiceImpl implements ProjectMembershipService {
     }
 
     @Override
-    public List<ProjectMembership> findAllByProjectIdOrderByUserUsername(Long projectId) {
+    public List<ProjectMembership> findWhoIsProjectMember(Long projectId) {
         return projectMembershipRepository.findAllByProjectIdOrderByUserUsername(projectId);
     }
 
