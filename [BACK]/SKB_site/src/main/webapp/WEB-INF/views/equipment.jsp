@@ -54,7 +54,7 @@
   <div class="row">
     <div class="col-xs-4" >
       <div class="item">
-        <a href="#">
+        <a href="/equipment-type-detailed?id=${item.id}">
           <div class="col-xs-6 hidden-xs">
               <img src="${item.photoPath}" alt="${item.name}Picture" width=100%>
               <div class="form-group">

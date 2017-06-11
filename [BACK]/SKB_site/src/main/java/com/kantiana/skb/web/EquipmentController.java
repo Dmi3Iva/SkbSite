@@ -84,6 +84,13 @@ public class EquipmentController {
         return "redirect:/equipment";
     }
 
+    @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
+    public String newsDetailed( Long id,Model model) {
+        EquipmentType equipmentType = equipmentTypeService.findById(id);
+        model.addAttribute("equipmentType",equipmentType);
+        return "equipment-type-detailed";
+    }
+
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking() {
         return "equipment-booking";
