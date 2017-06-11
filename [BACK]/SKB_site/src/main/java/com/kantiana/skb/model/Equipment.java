@@ -20,12 +20,13 @@ public class Equipment {
         return id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = EquipmentType.class)
+    @ManyToOne
     @JoinColumn(name = "equipment_type_id")
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
 
+    @Column(name = "unique_number")
     public String getUniqueNumber() {
         return uniqueNumber;
     }

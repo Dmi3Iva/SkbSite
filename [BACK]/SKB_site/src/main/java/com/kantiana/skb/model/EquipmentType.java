@@ -38,7 +38,7 @@ public class EquipmentType {
         return photoPath;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL)
     public Set<Equipment> getEquipmentSet() {
         return equipmentSet;
     }
