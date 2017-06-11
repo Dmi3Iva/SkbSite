@@ -19,7 +19,7 @@
 
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-order.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
     <%--TinyMCE Cloud deployment--%>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
@@ -46,8 +46,8 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${order.id > 0}">Изменение заказа</c:if>
-                        <c:if test="${empty order.id }"> Добавление заказа</c:if>
+                        <c:if test="${equipmentType.id > 0}">Изменение модели</c:if>
+                        <c:if test="${empty equipmentType.id }"> Добавление модели</c:if>
                     </h3>
                 </li>
             </ul>
@@ -55,56 +55,60 @@
     </div>
 
 
-    <form:form method="POST" modelAttribute="order" enctype="multipart/form-data" >
+    <form:form method="POST" modelAttribute="equipmentType" enctype="multipart/form-data" >
 
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="orderName">Название заказа</label>
+                        <label class="control-label col-xs-3" for="equipmentTypeName">Название модели</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
-                                <form:input type="text" path="name" class="form-control" id="orderName" placeholder="Введите название заказа"></form:input>
+                                <form:input type="text" path="name" class="form-control" id="equipmentTypeName" placeholder="Введите название модели"></form:input>
                                 <form:errors path="name"></form:errors>
                             </div>
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="orderContent">Содержание заказа</label>
-                        <spring:bind path="content">
+                        <label class="control-label col-xs-3" for="equipmentTypeAbout">Описание модели</label>
+                        <spring:bind path="about">
                             <div class="col-xs-9">
-                                <form:textarea path="content" placeholder="Содержание заказа" class="form-control" id="orderContent"></form:textarea>
-                                <form:errors path="content"></form:errors>
-                                <c:if test="${order.id > 0}">
-                                    <form:input  path="id"  value="${order.id}" cssStyle="visibility: hidden"></form:input>
+                                <form:textarea path="about" placeholder="Описание модели" class="form-control" id="equipmentTypeAbout"></form:textarea>
+                                <form:errors path="about"></form:errors>
+                                <c:if test="${equipmentType.id > 0}">
+                                    <form:input  path="id"  value="${equipmentType.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
-
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Проект, к которому привязан заказ</label>
-                        <form:select path="project.id">
-                            <form:option value="-1" selected="selected">Отсутствует</form:option>
-                            <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
-                        </form:select>
+                        <label class="control-label col-xs-3" for="equipmentTypeFeatures">Характеристики модели</label>
+                        <spring:bind path="features">
+                            <div class="col-xs-9">
+                                <form:textarea path="features" placeholder="Характеристики модели" class="form-control" id="equipmentTypeFeatures"></form:textarea>
+                                <form:errors path="features"></form:errors>
+                                <c:if test="${equipmentType.id > 0}">
+                                    <form:input  path="id"  value="${equipmentType.id}" cssStyle="visibility: hidden"></form:input>
+                                </c:if>
+                            </div>
+                        </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
-                        <input type="file" name="file" id="orderPic"  >
+                        <label class="control-label col-xs-3" for="equipmentTypePic">Загрузите картинку</label>
+                        <input type="file" name="file" id="equipmentTypePic"  >
 
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <c:if test="${ empty order.id }">
-                                    <button type="submit" formaction="/add-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
-                                        Добавить заказ
+                                <c:if test="${ empty equipmentType.id }">
+                                    <button type="submit" formaction="/add-equipment-type?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Добавить модель
                                     </button>
                                 </c:if>
-                                <c:if test="${order.id > 0}">
-                                    <button type="submit" formaction="/edit-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
-                                        Изменить заказ
+                                <c:if test="${equipmentType.id > 0}">
+                                    <button type="submit" formaction="/edit-equipment-type?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                        Изменить модель
                                     </button>
                                 </c:if>
                             </div>

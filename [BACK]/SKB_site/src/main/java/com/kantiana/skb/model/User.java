@@ -26,6 +26,7 @@ public class User {
     private Set<Comment> comments;
     private Set<Project> ownProjects;
     private Set<Project> projects;
+    private Set<Request> requestList;
     private boolean customer;
 
     @Id
@@ -200,5 +201,14 @@ public class User {
 
     public void setCustomer(boolean customer) {
         this.customer = customer;
+    }
+
+    @OneToMany(targetEntity = Request.class, mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<Request> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(Set<Request> requestList) {
+        this.requestList = requestList;
     }
 }

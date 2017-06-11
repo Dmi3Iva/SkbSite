@@ -1,11 +1,7 @@
 package com.kantiana.skb.model;
 
-import org.hibernate.mapping.Join;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 @Entity
 @Table(name="orders")
@@ -18,8 +14,7 @@ public class Order {
     private User author;
     private User editor;
     private String photoPath;
-//    private Project project;
-//    private Set<Comment> comments;
+    private Project project;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,5 +77,15 @@ public class Order {
     @Column(name = "time_of_last_update")
     public Timestamp getTimeOfLastUpdate() {
         return timeOfLastUpdate;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "project_id")
+    public Project getProject(){
+        return project;
+    }
+
+    public void setProject(Project project){
+        this.project=project;
     }
 }

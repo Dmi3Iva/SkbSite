@@ -53,6 +53,9 @@
           <p class="article">
               ${item.content}
           </p>
+          <c:if test="${!empty item.project}">
+            <a href="/project-detailed?id=${item.project.id}">${item.project.name}</a>
+          </c:if>
           <ul class="detailes">
             <li>
               <a href="/order-detailed?orderId=${item.id}">Подробнее...</a>

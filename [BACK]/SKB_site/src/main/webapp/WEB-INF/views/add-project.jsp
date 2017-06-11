@@ -16,6 +16,9 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
+    <%--TinyMCE Cloud deployment--%>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 
 <body>

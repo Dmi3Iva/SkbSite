@@ -3,6 +3,7 @@ package com.kantiana.skb.web;
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.Order;
 import com.kantiana.skb.service.OrdersService;
+import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,10 @@ public class OrdersController {
 
     @Autowired
     private OrdersService ordersService;
-
     @Autowired
     private SecurityService securityService;
+    @Autowired
+    private ProjectService projectService;
 
     //Контроллер списка новостей
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -40,7 +42,6 @@ public class OrdersController {
     public String orderDetailed(Model model, Long orderId) {
         Order order = ordersService.findById(orderId);
         model.addAttribute("order", order);
-        model.addAttribute("commentForm", new Comment());
         return "order-detailed";
     }
 
@@ -63,6 +64,7 @@ public class OrdersController {
         }
         else
             model.addAttribute("order", new Order() );
+        model.addAttribute("allProjects", projectService.getAllProjects());
         return "add-order";
     }
 
@@ -76,6 +78,7 @@ public class OrdersController {
         order.setAuthor(securityService.findLoggedUser());
         order.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         order.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
+        order.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
         ordersService.save(order);
         return "redirect:/order";
     }
@@ -93,6 +96,7 @@ public class OrdersController {
         oldOrder.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         oldOrder.setContent(order.getContent());
         oldOrder.setName(order.getName());
+        oldOrder.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
         ordersService.save(oldOrder);
         return "redirect:/order";
     }

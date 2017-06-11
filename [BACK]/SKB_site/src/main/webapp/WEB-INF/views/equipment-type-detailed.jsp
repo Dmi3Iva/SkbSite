@@ -39,23 +39,20 @@
       </ul>
     </div>
   </div>
-
+  <c:if test="${!empty equipmentType}">
   <div class="row ">
     <div class="col-md-6 ">
       <div class = "titleName my-auto">
-        <h4 class= "my-auto">Arduino Titan</h4>
+        <h4 class= "my-auto">${equipmentType.name}</h4>
       </div>
       <div class="image">
-        <img src="${contextPath}/resources/images/microcontrollers/1.jpg" alt="Микроконтроллер1">
+        <img src="${equipmentType.photoPath}" alt="Микроконтроллер1">
       </div>
 
     </div>
     <div class="col-md-6">
       <h5>Описание</h5>
-      <p>MKRFOX1200 is a powerful board that combines the functionality
-         of the Zero and SigFox connectivity. It is the ideal solution
-          for makerswanting to design IoT projects with minimal previous
-           experience innetworking having a low power device.</p>
+      ${equipmentType.about}
       <button type="button" class="btn btn-primary btn-lg btn-block">
         Добавить к бронированию
       </button>
@@ -64,32 +61,21 @@
 
 </div>
 
-<div class="container">
-  <div class="rows">
-    <div class="col-md-6">
-      <h4>Характеристики</h4>
+  <div class="container">
+    <div class="rows">
+      <div class="col-md-6">
+        <h4>Характеристики</h4>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="col-md-8">
+          ${equipmentType.features}
+      </div>
     </div>
   </div>
-  <div class="rows">
-    <div class="col-md-8">
-      <ul id="micro_detailed">
-        <li>Микроконтроллер									ATmega328</li>
-        <li>Рабочее напряжение   								5 В</li>
-        <li>Входное напряжение (рекомендуемое)			7-12 В</li>
-        <li>Входное напряжение (предельное)				6-20 В</li>
-        <li>Цифровые Входы/Выходы						14</li>
-        <li>Аналоговые входы									6</li>
-        <li>Постоянный ток через вход/выход				40 мА</li>
-        <li>Постоянный ток для вывода 3.3 В				50 мА</li>
-        <li>Флеш-память                                                       	32 Кб (ATmega328) </li>
-        <li>ОЗУ                                                                         	2 Кб (ATmega328)</li>
-        <li>EEPROM												1 Кб (ATmega328)</li>
-        <li>Тактовая частота									16 МГц</li>
-      </ul>
-    </div>
-  </div>
-</div>
 
+  </c:if>
+  
 <div class="container">
 
   <div class="row">
