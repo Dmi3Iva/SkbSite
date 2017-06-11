@@ -30,10 +30,18 @@ public class EquipmentController {
         return "equipment";
     }
 
-    @RequestMapping(value = "/add-equipment-type", method = RequestMethod.GET)
-    public  String equipmentTypeAddGet(Model model, Long equipmentTypeId)
+    @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
+    public  String equipmentTypeAddGet(Model model, Long id)
     {
-        model.addAttribute("equipmentType", new EquipmentType());
+        if(id != null)
+        {
+            EquipmentType equipmentType = equipmentTypeService.findById(id);
+            model.addAttribute("equipmentType", equipmentType);
+        }
+        else
+        {
+            model.addAttribute("equipmentType", new EquipmentType());
+        }
         return "add-equipment-type";
     }
 
@@ -47,6 +55,26 @@ public class EquipmentController {
         if (file.getSize()>0)
             equipmentType.setPhotoPath(uploadFile(file));
         equipmentTypeService.save(equipmentType);
+        return "redirect:/equipment";
+    }
+
+    @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
+    public  String equipmentTypeEditPost(@ModelAttribute("equipmnetType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    {
+        if(bindingResult.hasErrors())
+        {
+            return "add-equipment-type";
+        }
+        EquipmentType et= equipmentTypeService.findById(equipmentType.getId());
+        if(et == null) return "redirect:/equipment";
+        et.setAbout(equipmentType.getAbout());
+        et.setEquipmentSet(equipmentType.getEquipmentSet());
+        et.setFeatures(equipmentType.getFeatures());
+        et.setName(equipmentType.getName());
+
+        if (file.getSize()>0)
+            et.setPhotoPath(uploadFile(file));
+        equipmentTypeService.save(et);
         return "redirect:/equipment";
     }
 
