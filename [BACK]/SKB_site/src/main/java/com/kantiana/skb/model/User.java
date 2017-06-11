@@ -26,9 +26,8 @@ public class User {
     private Set<Comment> comments;
     private Set<Project> ownProjects;
     private Set<Project> projects;
-    private boolean customer;
-
     private Set<Request> requestList;
+    private boolean customer;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -209,7 +208,7 @@ public class User {
         return requestList;
     }
 
-    public void setRequestList(Request request) {
+    public void setRequestList(Set<Request> requestList) {
         this.requestList = requestList;
     }
 }
