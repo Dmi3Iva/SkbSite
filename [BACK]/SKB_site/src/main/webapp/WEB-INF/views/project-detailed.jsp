@@ -32,13 +32,14 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-md-8">
         <ul class="titleHead">
           <li>
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Проект "${project.name}"</h3></li>
+            <h3>Проект "${project.name}"</h3>
+          </li>
         </ul>
       </div>
     </div>
@@ -46,7 +47,11 @@
     <c:if test="${!empty project}">
       <div class="form-group">
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
-        <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))?self.location.href='/del-project?id=${item.id}':1/1;" value="Удалить">
+        <form method="POST" action="/delete-project" class="btn">
+          <input type="hidden" value="${project.id}" name="projectId"/>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
+        </form>
       </div>
         <div class="row">
           <div class="col-md-8">

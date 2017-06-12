@@ -81,10 +81,10 @@ public class ProjectsController {
         return "redirect:/projects";
     }
 
-    //:TODO Метод должен быть DELETE или на крайний случай POST
-    @RequestMapping(value = "/del-project", method = RequestMethod.GET)
-    public String delProject(Long id) {
-        projectService.delete(id);
+    //:TODO Метод должен быть DELETE
+    @RequestMapping(value = "/delete-project", method = RequestMethod.POST)
+    public String deleteProject(Long projectId) {
+        projectService.delete(projectId);
         return "redirect:/projects";
     }
 

@@ -38,11 +38,17 @@ public class ProjectMembershipServiceImpl implements ProjectMembershipService {
     // Удаление
     @Override
     public void removeById(Long id) {
+        if (id == null) {
+            return;
+        }
         projectMembershipRepository.removeById(id);
     }
 
     @Override
     public void remove(Long projectId, Long memberId) {
+        if (projectId == null || memberId == null) {
+            return;
+        }
         projectMembershipRepository.removeByProjectIdAndUserId(projectId, memberId);
     }
 
