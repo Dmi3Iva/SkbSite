@@ -91,16 +91,26 @@
         </c:forEach>
     </c:if>
     <c:if test="${empty newsList}">
-        <h2>
-            К сожалению список новостей пуст <br>
-            :(
-        </h2>
+        <div class="empty-list">
+            <h2>
+                К сожалению список новостей пуст <br>
+                :(
+            </h2>
+        </div>
     </c:if>
 
   </div>
+    <c:if test="${empty newsList}">
+        <div class="empty-news-list">
+            <h2>
+                К сожалению список новостей пуст <br>
+                :(
+            </h2>
+        </div>
+    </c:if>
 
 
-  <%@include file="footer.jsp" %>
+<%@include file="footer.jsp" %>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

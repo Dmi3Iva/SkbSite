@@ -115,3 +115,9 @@ font-size:12px;
 .names{
   padding-top: 20px;
 }
+
+/*Если на странице мало контента, то футер все равно будет внизу*/
+.empty-orders-list {
+    height: 100%;
+    padding-bottom: 15%;
+}

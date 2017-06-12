@@ -32,13 +32,13 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-xs-9" >
+    <div class="col-xs-6" >
       <ul class="titleHead">
         <li><div class="smallBlueBox"></div></li>
         <li><h3>Оборудование</h3></li>
       </ul>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
     </div>
   </div>

@@ -32,7 +32,7 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-xs-6">
         <ul class="titleHead">
           <li>
             <div class="smallBlueBox"></div>
@@ -93,10 +93,12 @@
       </c:forEach>
     </c:if>
   <c:if test="${empty projectsList}">
-    <h1>
-      К сожалению на данный момент проектов нет<br>
-      :(
-    </h1>
+    <div class="empty-projects-list">
+      <h1>
+        К сожалению на данный момент проектов нет<br>
+        :(
+      </h1>
+    </div>
   </c:if>
 
 
