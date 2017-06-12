@@ -39,7 +39,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Новости</h3></li>
+            <h3>Новость "${news.name}"</h3></li>
         </ul>
       </div>
     </div>

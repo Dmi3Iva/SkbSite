@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page pageEncoding="UTF-8"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -32,7 +33,12 @@
         <div class="col-xs-6" >
             <ul class="titleHead">
                 <li><div class="smallBlueBox"></div></li>
-                <li><h3>Новости</h3></li>
+                <li><h3>
+                    Новости
+                    <c:if test="${!empty project}">
+                        проекта <a href="/project-detailed?id=${project.id}">"${project.name}"</a>
+                    </c:if>
+                </h3></li>
             </ul>
         </div>
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
@@ -48,7 +54,7 @@
                 <div class="col-md-8">
                     <div class="new">
                         <p class="title">
-                                ${item.name}
+                            <a href="/news-detailed?newsId=${item.id}">${item.name}</a>
                         </p>
                         <p>
                             <c:if test="${newsProject != null}">
@@ -70,7 +76,7 @@
                                         ${item.timeOfCreation}
                                     </c:if>
                                     <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
-                                    <c:if test="${item.editor.username!= item.author.username}">
+                                    <c:if test="${item.editor.username != item.author.username}">
                                         Редактор: ${item.editor.username} <br>
                                     </c:if>
                                         <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
