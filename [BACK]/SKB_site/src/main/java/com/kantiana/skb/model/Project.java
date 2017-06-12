@@ -17,7 +17,6 @@ public class Project {
     private String about;
     private String photoPath;
     private Set<News> news;
-    private Set<User> members;
     private Order order;
     private Set<ProjectMembership> projectMemberships;
 

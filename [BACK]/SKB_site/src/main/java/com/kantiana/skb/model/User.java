@@ -25,7 +25,6 @@ public class User {
     private Set<Role> roles;
     private Set<Comment> comments;
     private Set<Project> ownProjects;
-    private Set<Project> projects;
     private Set<Request> requestList;
     private Set<ProjectMembership> projectMemberships;
     private boolean customer;
