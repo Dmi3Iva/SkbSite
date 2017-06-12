@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Equipment;
 import com.kantiana.skb.model.EquipmentType;
+import com.kantiana.skb.service.EquipmentService;
 import com.kantiana.skb.service.EquipmentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 public class EquipmentController {
     @Autowired
     private EquipmentTypeService equipmentTypeService;
+    @Autowired
+    private EquipmentService equipmentService;
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment(Model model)
@@ -88,7 +91,20 @@ public class EquipmentController {
     public String newsDetailed( Long id,Model model) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
         model.addAttribute("equipmentType",equipmentType);
+        model.addAttribute("equipment", new Equipment());
         return "equipment-type-detailed";
+    }
+
+    @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult,Long id)
+    {
+        if(bindingResult.hasErrors())
+        {
+            return "redirect:/equipment-type-detailed?id="+id;
+        }
+        equipment.setEquipmentType(equipmentTypeService.findById(id));
+        equipmentService.save(equipment);
+        return "redirect:/equipment-type-detailed?id="+id;
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)

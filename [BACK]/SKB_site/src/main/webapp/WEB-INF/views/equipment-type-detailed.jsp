@@ -74,63 +74,26 @@
     </div>
   </div>
 
-  </c:if>
+    <form:form method="POST" modelAttribute="equipment" action="/equipment-type-detailed">
+      <div class="form-group">
+        <label class="control-label col-xs-3" for="equipmentNumber">Добавить новую модель</label>
+        <spring:bind path="uniqueNumber">
+          <div class="col-xs-9">
+            <form:textarea path="uniqueNumber" placeholder="номер модели" class="form-control" id="equipmentNumber"></form:textarea>
+            <form:errors path="uniqueNumber"></form:errors>
+            <c:if test="${equipmentType.id > 0}">
+              <form:input  path="id"  value="${equipmentType.id}" cssStyle="visibility: hidden"></form:input>
+            </c:if>
+          </div>
+        </spring:bind>
+      </div>
+      <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Добавить</button>
+    </form:form>
+
+
   
-<div class="container">
+  </c:if>
 
-  <div class="row">
-    <div class="col-xs-5" >
-      <h4>Смотрите так же</h4>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-4" >
-      <div class="item">
-        <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\1.jpg" alt="" width=100%></div>
-          <div class="col-xs-6 hidden-xs">
-            <p>Ardruino Titan</p>
-          </div>
-
-          <div class="col-xs-12 visible-xs">
-            <p>Ardruino Titan</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="item">
-        <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\2.jpg" alt="" width=100%></div>
-          <div class="col-xs-6 hidden-xs">
-            <p>Ardruino MKR1000</p>
-          </div>
-          <div class="col-xs-12 visible-xs">
-            <p>
-            Ardruino MKR1000
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="item">
-        <a href="#">
-          <div class="col-xs-6 hidden-xs"><img src="${contextPath}/resources/images\microcontrollers\3.jpg" alt="" width=100%></div>
-          <div class="col-xs-6 hidden-xs">
-            <p>Ardruino MKRFOX1200</p>
-          </div>
-          <div class="col-xs-12 visible-xs">
-            <p>Ardruino MKRFOX1200</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--end main-->
   <%@include file="footer.jsp" %>
 
 
