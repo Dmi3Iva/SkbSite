@@ -41,7 +41,7 @@ public class ProjectsController {
     public String projectDetailed(Model model, @RequestParam("id") Long id) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
-        model.addAttribute("projectMemberships", projectMembershipService.findProjectMembers(id));
+        model.addAttribute("projectTeam", projectMembershipService.findProjectMembers(id));
         return "project-detailed";
     }
 

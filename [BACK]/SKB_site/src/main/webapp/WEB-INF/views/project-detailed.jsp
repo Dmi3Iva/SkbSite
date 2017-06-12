@@ -57,8 +57,8 @@
               </p>
                 <p>
                     Команда:
-                    <c:forEach items="${projectMemberships}" var="membership">
-                        ${membership.user.username},
+                    <c:forEach items="${projectMembers}" var="member">
+                        ${member.username},
                     </c:forEach>
                 </p>
               <p>
