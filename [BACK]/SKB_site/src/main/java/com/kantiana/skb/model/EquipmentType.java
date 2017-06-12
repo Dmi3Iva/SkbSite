@@ -3,6 +3,7 @@ package com.kantiana.skb.model;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Set;
 
 @Entity
@@ -38,7 +39,7 @@ public class EquipmentType {
         return photoPath;
     }
 
-    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     public Set<Equipment> getEquipmentSet() {
         return equipmentSet;
     }

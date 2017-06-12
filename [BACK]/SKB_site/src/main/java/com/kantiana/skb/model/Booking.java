@@ -24,7 +24,7 @@ public class Booking {
         return equipment;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "request_id")
     public Request getRequest() {
         return request;

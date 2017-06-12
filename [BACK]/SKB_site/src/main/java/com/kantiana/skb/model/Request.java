@@ -1,6 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Request {
         return user;
     }
 
-    @OneToMany(targetEntity = Booking.class, mappedBy = "request", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Booking.class, mappedBy = "request", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public Set<Booking> getBookingSet() {
         return bookingSet;
     }

@@ -1,7 +1,8 @@
 package com.kantiana.skb.service;
 
-/**
- * Created by dikla on 09.06.2017.
- */
+import com.kantiana.skb.model.Request;
+
+
 public interface RequestService {
+    public void save(Request request);
 }
