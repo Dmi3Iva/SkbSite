@@ -75,8 +75,28 @@
       <file leaf-file-name="EquipmentController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/EquipmentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="106" column="8" lean-forward="false" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
+            <state relative-caret-position="332">
+              <caret line="103" column="61" lean-forward="false" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="news-detailed.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/news-detailed.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="732">
+              <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/NewsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-17">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -97,11 +117,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EquipmentTypeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/EquipmentTypeService.java">
+      <file leaf-file-name="EquipmentType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/EquipmentType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="128">
+              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Equipment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Equipment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Request.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Request.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Booking.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Booking.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="equipment-type-detailed.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="85" column="12" lean-forward="true" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -120,68 +180,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EquipmentTypeServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/EquipmentTypeServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="equipment-type-detailed.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="89" column="28" lean-forward="false" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news-detailed.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/news-detailed.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2210">
-              <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EquipmentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/EquipmentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/CommentServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/CommentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="GradleLocalSettings">
@@ -194,9 +192,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/EquipmentService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/kantiana/skb/service/EquipmentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/EquipmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp" />
       </list>
     </option>
   </component>
@@ -510,6 +508,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SKB_site" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SKB_site" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1080,12 +1108,12 @@
       <option name="presentableId" value="Default" />
       <updated>1497271638692</updated>
       <workItem from="1497271681986" duration="1862000" />
-      <workItem from="1497274104423" duration="3716000" />
+      <workItem from="1497274104423" duration="5205000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5578000" />
+    <option name="totallyTimeSpent" value="7067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1099,7 +1127,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21695095" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22068231" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1171,7 +1199,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1220,30 +1248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/NewsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-301">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Equipment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/EquipmentType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/repository/ProjectRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1288,22 +1292,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="86" column="40" lean-forward="true" selection-start-line="85" selection-start-column="32" selection-end-line="87" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/news-detailed.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="89" column="28" lean-forward="false" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1361,10 +1349,206 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://DATABASE/69b5e9a0-1a03-481a-915a-b4f894b57bd7.SCHEMA:skb.public">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>69b5e9a0-1a03-481a-915a-b4f894b57bd7.SCHEMA:skb.public</OriginalElement>
+          <nodes>
+            <node x="287.99999999999994" y="753.5">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects_users</node>
+            <node x="599.7354166666667" y="955.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.comments</node>
+            <node x="477.99999999999994" y="676.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.news</node>
+            <node x="168.99999999999994" y="397.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects</node>
+            <node x="0.0" y="676.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.orders</node>
+            <node x="559.9560140754958" y="-25.704414587332053">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users</node>
+            <node x="764.0" y="474.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.request</node>
+            <node x="930.7354166666667" y="720.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.booking</node>
+            <node x="950.7696737044146" y="394.1737044145873">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users_roles</node>
+            <node x="1127.0" y="463.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.equipment</node>
+            <node x="1297.641074856046" y="177.9654510556622">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.equipment_type</node>
+            <node x="130.60833333333323" y="121.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.project_statuses</node>
+            <node x="962.0" y="121.0">69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.roles</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.orders" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects">
+              <point x="88.33333333333331" y="-114.5" />
+              <point x="220.83333333333331" y="656.0" />
+              <point x="213.16666666666663" y="656.0" />
+              <point x="-88.33333333333331" y="114.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.orders" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="0.0" y="-114.5" />
+              <point x="132.5" y="656.0" />
+              <point x="116.35833333333312" y="656.0" />
+              <point x="116.35833333333312" y="357.0" />
+              <point x="533.9166666666666" y="357.0" />
+              <point x="-115.0" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects_users" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="42.5" y="-37.0" />
+              <point x="415.49999999999994" y="656.0" />
+              <point x="444.49999999999994" y="656.0" />
+              <point x="444.49999999999994" y="377.0" />
+              <point x="610.5833333333334" y="377.0" />
+              <point x="-38.33333333333326" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.request" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="0.0" y="-37.5" />
+              <point x="826.5" y="377.0" />
+              <point x="763.9166666666666" y="377.0" />
+              <point x="115.0" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.comments" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.news">
+              <point x="-46.25" y="-70.5" />
+              <point x="645.9854166666667" y="930.0" />
+              <point x="610.5" y="930.0" />
+              <point x="0.0" y="114.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.project_statuses">
+              <point x="-66.25" y="-114.5" />
+              <point x="235.24999999999994" y="337.0" />
+              <point x="193.10833333333323" y="337.0" />
+              <point x="0.0" y="37.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users_roles" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="-38.5" y="-37.0" />
+              <point x="916.440499040307" y="377.7101727447217" />
+              <point x="895.4285028790788" y="360.573896353167" />
+              <point x="153.33333333333337" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects_users" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects">
+              <point x="-42.5" y="-37.0" />
+              <point x="330.49999999999994" y="656.0" />
+              <point x="301.49999999999994" y="656.0" />
+              <point x="0.0" y="114.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.booking" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.request">
+              <point x="-46.25" y="-70.5" />
+              <point x="976.9854166666667" y="656.0" />
+              <point x="826.5" y="656.0" />
+              <point x="0.0" y="37.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.comments" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="46.25" y="-70.5" />
+              <point x="738.4854166666667" y="930.0" />
+              <point x="753.5" y="930.0" />
+              <point x="753.5" y="377.0" />
+              <point x="725.5833333333334" y="377.0" />
+              <point x="76.66666666666674" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.booking" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.equipment">
+              <point x="46.25" y="-70.5" />
+              <point x="1069.4854166666667" y="656.0" />
+              <point x="1199.5" y="656.0" />
+              <point x="0.0" y="48.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.news" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects">
+              <point x="-88.33333333333326" y="-114.5" />
+              <point x="522.1666666666667" y="646.0" />
+              <point x="389.83333333333326" y="646.0" />
+              <point x="88.33333333333331" y="114.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users_roles" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.roles">
+              <point x="38.5" y="-37.0" />
+              <point x="0.0" y="37.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.equipment" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.equipment_type">
+              <point x="0.0" y="-48.5" />
+              <point x="0.0" y="70.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.projects" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="66.25" y="-114.5" />
+              <point x="367.74999999999994" y="367.0" />
+              <point x="572.25" y="367.0" />
+              <point x="-76.66666666666663" y="158.5" />
+            </edge>
+            <edge source="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.news" target="69b5e9a0-1a03-481a-915a-b4f894b57bd7.TABLE:skb.public.users">
+              <point x="0.0" y="-114.5" />
+              <point x="610.5" y="656.0" />
+              <point x="633.8770833333333" y="656.0" />
+              <point x="633.8770833333333" y="377.0" />
+              <point x="648.9166666666666" y="377.0" />
+              <point x="0.0" y="158.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9336917562724013" x="888.0441458733205" y="304.0441458733206" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Equipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/News.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/EquipmentType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/model/Booking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/news-detailed.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/NewsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kantiana/skb/web/EquipmentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="106" column="8" lean-forward="false" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
+        <state relative-caret-position="332">
+          <caret line="103" column="61" lean-forward="false" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/equipment-type-detailed.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="85" column="12" lean-forward="true" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
           <folding />
         </state>
       </provider>

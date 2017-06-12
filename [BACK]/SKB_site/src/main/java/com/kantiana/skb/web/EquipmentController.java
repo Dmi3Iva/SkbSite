@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -95,16 +92,16 @@ public class EquipmentController {
         return "equipment-type-detailed";
     }
 
-    @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult,Long id)
+    @RequestMapping(value = "/equipment-type-detailed{idType}", method = RequestMethod.POST)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType)
     {
         if(bindingResult.hasErrors())
         {
-            return "redirect:/equipment-type-detailed?id="+id;
+            return "redirect:/equipment-type-detailed?id="+idType;
         }
-        equipment.setEquipmentType(equipmentTypeService.findById(id));
+        equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        return "redirect:/equipment-type-detailed?id="+id;
+        return "redirect:/equipment-type-detailed?id="+idType;
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)

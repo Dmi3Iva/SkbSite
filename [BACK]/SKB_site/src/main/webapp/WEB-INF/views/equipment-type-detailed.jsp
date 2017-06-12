@@ -74,16 +74,13 @@
     </div>
   </div>
 
-    <form:form method="POST" modelAttribute="equipment" action="/equipment-type-detailed">
+    <form:form method="POST" modelAttribute="equipment" action="/equipment-type-detailed${equipmentType.id}">
       <div class="form-group">
         <label class="control-label col-xs-3" for="equipmentNumber">Добавить новую модель</label>
         <spring:bind path="uniqueNumber">
           <div class="col-xs-9">
             <form:textarea path="uniqueNumber" placeholder="номер модели" class="form-control" id="equipmentNumber"></form:textarea>
             <form:errors path="uniqueNumber"></form:errors>
-            <c:if test="${equipmentType.id > 0}">
-              <form:input  path="id"  value="${equipmentType.id}" cssStyle="visibility: hidden"></form:input>
-            </c:if>
           </div>
         </spring:bind>
       </div>
