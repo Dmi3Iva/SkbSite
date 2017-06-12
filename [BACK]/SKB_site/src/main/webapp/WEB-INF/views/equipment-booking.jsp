@@ -11,6 +11,7 @@
   <meta charset="utf-8" />
   <meta name="description" content="">
   <meta name="author" content="">
+
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
   <title>СКБ</title>
@@ -138,6 +139,49 @@
   </div>
 
 
+  <!--мой вариант -->
+  <div class="forFont">
+    <div class="container" >
+      <div class="row">
+        <div class="text-center">
+          Выберите дату бронирования
+        </div>
+        <div class="col-xs-offset-1 col-xs-5">
+          День: <input type="date">
+        </div>
+        <div class="col-xs-offset-1 col-xs-5">
+          Время:
+          <select multiple size="5">
+            <option>8.30-9.00</option>
+            <option>9.00-9.30</option>
+            <option>9.30-10.00</option>
+            <option>10.00-10.30</option>
+            <option>10.30-11.00</option>
+            <option>11.00-11.30</option>
+            <option>11.30-12.00</option>
+            <option>12.00-12.30</option>
+            <option>12.30-13.00</option>
+            <option>13.00-13.30</option>
+            <option>13.30-14.00</option>
+            <option>14.00-14.30</option>
+            <option>14.30-15.00</option>
+            <option>15.00-15.30</option>
+            <option>15.30-16.00</option>
+            <option>16.00-16.30</option>
+            <option>16.30-17.00</option>
+            <option>17.00-17.30</option>
+            <option>17.30-18.00</option>
+            <option>18.00-18.30</option>
+
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-offset-8 col-xs-4">
+        <button type="button" class="btn btn-default btn-md">Забронировать</button>
+      </div>
+    </div>
+  </div>
+
 
 
 
@@ -212,6 +256,8 @@
     ctx.fillStyle = "#7F0000";
     ctx.fillRect(100, 0, 700, 200);
   </script>
+
+
 
 </body>
 

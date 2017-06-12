@@ -18,6 +18,11 @@ thead{
   color:var(--white);
 }
 
+.forFont {
+  color: black;
+  font-style: italic;
+}
+
 .input-group-addon, .input-group-btn{
   width: auto;
 }
