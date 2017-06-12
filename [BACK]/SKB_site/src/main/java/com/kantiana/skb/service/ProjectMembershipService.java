@@ -10,8 +10,11 @@ public interface ProjectMembershipService {
     ProjectMembership findById(Long id);
 
     void removeById(Long id);
+    void remove(Long projectId, Long memberId);
 
-    List<ProjectMembership> findWhoIsProjectMember(Long projectId);
+    List<User> findProjectMembers(Long projectId);
+    List<User> findProjectMembersExceptCaptain(Long projectId);
+    List<User> findNonProjectMembers(Long projectId);
 
     void save(ProjectMembership projectMembership);
 

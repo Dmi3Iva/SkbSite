@@ -21,14 +21,29 @@ public class ProjectMembershipServiceImpl implements ProjectMembershipService {
     }
 
     @Override
-    public List<ProjectMembership> findWhoIsProjectMember(Long projectId) {
-        return projectMembershipRepository.findAllByProjectIdOrderByUserUsername(projectId);
+    public List<User> findProjectMembers(Long projectId) {
+        return projectMembershipRepository.findProjectMembers(projectId);
+    }
+
+    @Override
+    public List<User> findProjectMembersExceptCaptain(Long projectId) {
+        return projectMembershipRepository.findProjectMembersExceptCaptain(projectId);
+    }
+
+    @Override
+    public List<User> findNonProjectMembers(Long projectId) {
+        return projectMembershipRepository.findNonProjectMembers(projectId);
     }
 
     // Удаление
     @Override
     public void removeById(Long id) {
         projectMembershipRepository.removeById(id);
+    }
+
+    @Override
+    public void remove(Long projectId, Long memberId) {
+        projectMembershipRepository.removeByProjectIdAndUserId(projectId, memberId);
     }
 
     // Сохранение

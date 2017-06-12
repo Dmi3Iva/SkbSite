@@ -203,6 +203,6 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof User && ((User)obj).getId() == getId();
+        return (obj instanceof User) && ((User)obj).getId() == getId();
     }
 }

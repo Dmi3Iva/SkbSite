@@ -41,7 +41,7 @@ public class ProjectsController {
     public String projectDetailed(Model model, @RequestParam("id") Long id) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
-        model.addAttribute("projectMemberships", projectMembershipService.findWhoIsProjectMember(id));
+        model.addAttribute("projectMemberships", projectMembershipService.findProjectMembers(id));
         return "project-detailed";
     }
 
@@ -51,9 +51,8 @@ public class ProjectsController {
         if (isEditing) {
             Project project = projectService.findById(id);
             model.addAttribute("project", project);
-            model.addAttribute("projectMemberships", projectMembershipService.findWhoIsProjectMember(id));
-            model.addAttribute("deletedProjectMembership", new ProjectMembership());
-            model.addAttribute("nonProjectMembers", userService.findWhoIsNotInProject(id));
+            model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(id));
+            model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(id));
             model.addAttribute("isEditing", true);
         }
         else {
@@ -100,16 +99,8 @@ public class ProjectsController {
 
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
-    public String deleteMembership(Long projectId, Long deletedProjectMembershipId) {
-        ProjectMembership projectMembership = projectMembershipService.findById(deletedProjectMembershipId);
-//        if (projectMembership != null) {
-//            // Если удаляем капитана, то у проекта не будет капитана
-//            if (projectMembership.getProject().getCaptain().getId() == projectMembership.getUser().getId()) {
-//                projectMembership.getProject().setCaptain(null);
-//                projectService.saveUpdatedProject(projectMembership.getProject());
-//            }
-            projectMembershipService.removeById(deletedProjectMembershipId);
-//        }
+    public String deleteMembership(Long projectId, Long memberId) {
+        projectMembershipService.remove(projectId, memberId);
         return "redirect:/edit-project?id=" + projectId;
     }
 }

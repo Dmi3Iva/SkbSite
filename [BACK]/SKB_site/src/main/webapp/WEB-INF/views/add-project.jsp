@@ -51,6 +51,9 @@
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
+                    <c:if test="${isEditing == true}">
+                        <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>
+                    </c:if>
                     <%--Название--%>
                     <div class="form-group">
                             <label class="control-label col-xs-3" for="projectName">Название проекта</label>
@@ -70,16 +73,6 @@
                                     <form:errors path="projectStatus"></form:errors>
                                 </div>
                             </div>
-                            <%--<div class="form-group">--%>
-                                <%--<label class="control-label col-xs-3" for="projectStatus">Статус проекта</label>--%>
-                                <%--<spring:bind path="projectStatus.id">--%>
-                                    <%--<div class="col-xs-9" id="projectStatus">--%>
-                                        <%--<form:checkbox path="projectStatus.id" value="1"/>Активен--%>
-                                        <%--<form:checkbox path="projectStatus.id" value="2"/>Заморожен--%>
-                                        <%--<form:checkbox path="projectStatus.id" value="3"/>Завершён--%>
-                                    <%--</div>--%>
-                                <%--</spring:bind>--%>
-                            <%--</div>--%>
                             <%--Процент проекта--%>
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="percent">Процент завершения</label>
@@ -99,16 +92,13 @@
                             <div class="col-xs-9">
                                 <form:textarea path="about" id="about" placeholder="Опишите свой проект" class="form-control" ></form:textarea>
                                 <form:errors path="about"></form:errors>
-                                <c:if test="${isEditing == true}">
-                                    <form:input  path="id"  value="${project.id}" cssStyle="visibility: hidden"></form:input>
-                                </c:if>
                             </div>
                         </spring:bind>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
                         <div class="col-xs-9">
-                            <input type="file" name="file" id="newsPic"></input>
+                            <input type="file" name="file" id="newsPic">
                         </div>
                     </div>
                     <div class="container">
@@ -136,27 +126,27 @@
     <c:if test="${isEditing == true}">
         <div>
             <p>Удали кого-нибудь из проекта</p>
-            <form method="POST" action="/delete-membership">
-                <input type="hidden" name = "projectId" value="${project.id}"/>
-                <select name="deletedProjectMembershipId">
-                    <c:forEach items="${projectMemberships}" var="pm">
-                        <option value="${pm.id}">${pm.user.username}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <button type="submit">Удалить</button>
-            </form>
-            <p>Добавь кого-нибудь в проект</p>
-            <form method="POST" action="/add-membership">
-                <p><input type="hidden" name="projectId" value="${project.id}"></p>
-                <p><select name="newMemberId">
-                    <c:forEach items="${nonProjectMembers}" var="nonMember">
-                        <option value="${nonMember.id}">${nonMember.username}</option>
-                    </c:forEach>
-                </select></p>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <p><button type="submit">Добавить</button></p>
-            </form>
+            <%--<form method="POST" action="/delete-membership">--%>
+                <%--<input type="hidden" name = "projectId" value="${project.id}"/>--%>
+                <%--<select name="memberId">--%>
+                    <%--<c:forEach items="${projectTeamExceptCaptain}" var="member">--%>
+                        <%--<option value="${member.id}">${member.username}</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</select>--%>
+                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+                <%--<button type="submit">Удалить</button>--%>
+            <%--</form>--%>
+            <%--<p>Добавь кого-нибудь в проект</p>--%>
+            <%--<form method="POST" action="/add-membership">--%>
+                <%--<p><input type="hidden" name="projectId" value="${project.id}"></p>--%>
+                <%--<p><select name="newMemberId">--%>
+                    <%--<c:forEach items="${nonProjectMembers}" var="nonMember">--%>
+                        <%--<option value="${nonMember.id}">${nonMember.username}</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</select></p>--%>
+                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+                <%--<p><button type="submit">Добавить</button></p>--%>
+            <%--</form>--%>
         </div>
     </c:if>
 </div>

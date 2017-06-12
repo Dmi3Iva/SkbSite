@@ -12,6 +12,4 @@ public interface UserService {
     List<User> getAllUsers();
 
     User findById(Long id);
-
-    List<User> findWhoIsNotInProject(Long projectId);
 }

@@ -51,9 +51,4 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-
-    @Override
-    public List<User> findWhoIsNotInProject(Long projectId) {
-        return userRepository.findWhoIsNotInProject(projectId);
-    }
 }
