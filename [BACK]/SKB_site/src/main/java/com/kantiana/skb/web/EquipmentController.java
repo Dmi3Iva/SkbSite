@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -137,11 +138,13 @@ public class EquipmentController {
         if (equipment ==null)
             return "equipment-booking";
         booking.setEquipment(equipment);
-        bookingService.save(booking);
         Request request = new Request();
-        Set<Booking> bookings = null; bookings.add(booking);
+        Set<Booking> bookings = new HashSet<Booking>();
+        bookings.add(booking);
         request.setBookingSet(bookings);
         request.setUser(securityService.findLoggedUser());
+        booking.setRequest(request);
+        bookingService.save(booking);
         requestService.save(request);
         return "equipment-booking";
     }
