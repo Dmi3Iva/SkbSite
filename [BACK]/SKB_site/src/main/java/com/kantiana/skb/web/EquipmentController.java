@@ -1,9 +1,7 @@
 package com.kantiana.skb.web;
 
-import com.kantiana.skb.model.Equipment;
-import com.kantiana.skb.model.EquipmentType;
-import com.kantiana.skb.service.EquipmentService;
-import com.kantiana.skb.service.EquipmentTypeService;
+import com.kantiana.skb.model.*;
+import com.kantiana.skb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -21,6 +22,12 @@ public class EquipmentController {
     private EquipmentTypeService equipmentTypeService;
     @Autowired
     private EquipmentService equipmentService;
+    @Autowired
+    private BookingService bookingService;
+    @Autowired
+    private SecurityService securityService;
+    @Autowired
+    private RequestService requestService;
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment(Model model)
@@ -105,7 +112,37 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking() {
+    public String equipmentBooking(Model model, Long idType) {
+        model.addAttribute("easyTime",new EasyTime());
+
+        return "equipment-booking";
+    }
+
+    @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
+    public String equipmentBookingPost(Model model, Long idType, @ModelAttribute EasyTime easyTime) {
+        Booking booking= new Booking();
+        easyTime.makeSecond();
+        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
+        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
+        EquipmentType equipmentType = equipmentTypeService.findById(idType);
+        Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
+        Equipment equipment = null;
+        for (Equipment e:equipmentSet
+             ) {
+            if(e.getBooking()==null) {
+                equipment = e;
+                break;
+            }
+        }
+        if (equipment ==null)
+            return "equipment-booking";
+        booking.setEquipment(equipment);
+        bookingService.save(booking);
+        Request request = new Request();
+        Set<Booking> bookings = null; bookings.add(booking);
+        request.setBookingSet(bookings);
+        request.setUser(securityService.findLoggedUser());
+        requestService.save(request);
         return "equipment-booking";
     }
 
