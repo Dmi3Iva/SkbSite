@@ -59,13 +59,13 @@
             </li>
             <li>
               <p class="description">
-                Автор: ${item.author.username}<br>
+                Автор: <a href="/id${item.author.id}">${item.author.username}</a><br>
                 <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
                   ${item.timeOfCreation}
                 </c:if>
                 <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
                   <c:if test="${item.editor.username!= item.author.username}">
-                    Редактор: ${item.editor.username} <br>
+                    Редактор: <a href="/id${item.editor.id}">${item.editor.username}</a> <br>
                   </c:if>
                   <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
                 </c:if>

@@ -83,19 +83,25 @@ public class UserController {
     }
 
     // Контроллер личного кабинета
-    @RequestMapping(value = "/profile{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         // Достаём информацию о текущем пользователе и передаём её в .jsp
         String username = securityService.findLoggedInUsername();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("logUser", user);
         return "profile";
     }
 
+    //контроллер для просмотра личного кабинета другого пользователя
     @RequestMapping(value = "/id{id}", method = RequestMethod.GET)
     public String profileUser(@PathVariable Long id, Model model) {
         User user = userService.findById(id);
+        String username = securityService.findLoggedInUsername();
+        User logUser = userService.findByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("logUser", logUser);
+
         return "profile";
     }
 
@@ -116,7 +122,6 @@ public class UserController {
         oldUser.setMiddleName(user.getMiddleName());
         oldUser.setContactDetails(user.getContactDetails());
         oldUser.setGithub(user.getGithub());
-        //oldUser.setPassword(user.getPassword());
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
 
@@ -125,7 +130,7 @@ public class UserController {
 
         userService.update(oldUser);
 
-        return "redirect:/profile{id}";
+        return "redirect:/profile";
     }
 
     // Контроллер изменения пароля пользователя
