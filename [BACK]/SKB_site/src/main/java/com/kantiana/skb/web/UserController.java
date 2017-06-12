@@ -186,35 +186,6 @@ public class UserController {
         return "change-profile";
     }
 
-    @RequestMapping(value = "/equipment", method = RequestMethod.GET)
-    public String equipment() {
-        return "equipment";
-    }
-
-    @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking() {
-        return "equipment-booking";
-    }
-
-    @RequestMapping(value = "/equipment-item", method = RequestMethod.GET)
-    public String equipmentItem() {
-        return "equipment-item";
-    }
-
-    @RequestMapping(value = "/index-order", method = RequestMethod.GET)
-    public String indexOrder() {
-        return "index-order";
-    }
-
-    @RequestMapping(value = "/index-student", method = RequestMethod.GET)
-    public String indexStudent() {
-        return "index-student";
-    }
-
-    @RequestMapping(value = "/about", method = RequestMethod.GET)
-    public String aboutPage() {
-        return "about";
-    }
 
 
 }
