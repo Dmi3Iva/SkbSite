@@ -157,40 +157,39 @@
                 </form:form>
 
                 <%--замена пароля, пока она не работает--%>
-                <%--<form method="POST" action="/change-password">--%>
-                    <%--<div class="col-md-9 col-md-offset-3">--%>
-                        <%--<div class="form-group">--%>
-                            <%--<label class="control-label col-xs-5 text-right">Старый пароль</label>--%>
-                            <%--<div class="col-xs-7">--%>
-                                <%--<input type="text" name="currentPassword">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="form-group">--%>
-                            <%--<label class="control-label col-xs-5 text-right">Новый пароль</label>--%>
-                            <%--<div class="col-xs-7">--%>
-                                <%--<input type="text" name="newPassword">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="form-group">--%>
-                            <%--<label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>--%>
-                            <%--<div class="col-xs-7">--%>
-                                <%--<input type="text" name="confrimNewPassword">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-md-9 col-md-offset-3">--%>
-                        <%--<div class="form-group">--%>
-                            <%--<div class="col-xs-3 text-center">--%>
-                                <%--<button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-xs-9 text-center">--%>
-                                <%--<button type="submit" class="btn btn-primary btn-md" formaction="/change-password?${_csrf.parameterName}=${_csrf.token}">Изменить пароль</button>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<p class="alert-danger">${error}</p>--%>
-                        <%--<p>${user.password}</p>--%>
-                    <%--</div>--%>
-                <%--</form>--%>
+                <form method="POST" action="/change-password">
+                    <div class="col-md-9 col-md-offset-3">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 text-right">Старый пароль</label>
+                            <div class="col-xs-7">
+                                <input type="password" name="currentPassword" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 text-right">Новый пароль</label>
+                            <div class="col-xs-7">
+                                <input type="password" name="newPassword" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>
+                            <div class="col-xs-7">
+                                <input type="password" name="confirmNewPassword" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        <div class="form-group">
+                            <div class="col-xs-3 text-center">
+                                <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
+                            </div>
+                            <div class="col-xs-9 text-center">
+                                <button type="submit" class="btn btn-primary btn-md" formaction="/change-password?${_csrf.parameterName}=${_csrf.token}">Изменить пароль</button>
+                            </div>
+                        </div>
+                        <p class="alert-danger">${error}</p>
+                    </div>
+                </form>
 
                 <%--<form:form method="POST" modelAttribute="passwordChange" class="form-horizontal" >--%>
                     <%--<spring:bind path="currentPassword">--%>
