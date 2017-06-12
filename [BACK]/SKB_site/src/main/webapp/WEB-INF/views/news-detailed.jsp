@@ -68,13 +68,13 @@
 
 
                     <p class="description">
-                        Автор: ${news.author.username}<br>
+                        Автор: <a href="/id${news.author.id}">${news.author.username}</a><br>
                         <c:if test="${news.timeOfCreation == news.timeOfLastUpdate}">
                             ${news.timeOfCreation}
                         </c:if>
                         <c:if test="${news.timeOfCreation != news.timeOfLastUpdate}">
                             <c:if test="${news.editor.username!= news.author.username}">
-                                Редактор: ${news.editor.username} <br>
+                                Редактор: <a href="/id${news.author.id}">${news.editor.username}</a> <br>
                             </c:if>
                             <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
                         </c:if>
@@ -103,7 +103,7 @@
           <div class="col-sm-8">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <strong>${item.author.username}</strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
+                  <strong><a href="/id${item.author.id}">${item.author.username}</a></strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
               </div>
               <div class="panel-body">
                   ${item.content}

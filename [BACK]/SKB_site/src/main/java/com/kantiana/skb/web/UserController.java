@@ -1,9 +1,6 @@
 package com.kantiana.skb.web;
 
-import com.kantiana.skb.model.Comment;
-import com.kantiana.skb.model.News;
-import com.kantiana.skb.model.Project;
-import com.kantiana.skb.model.User;
+import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import com.kantiana.skb.web.WorkingWithFile;
 import com.kantiana.skb.validator.UserValidator;
@@ -92,22 +89,28 @@ public class UserController {
         String username = securityService.findLoggedInUsername();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("logUser", user);
         return "profile";
     }
 
+    //контроллер для просмотра личного кабинета другого пользователя
     @RequestMapping(value = "/id{id}", method = RequestMethod.GET)
     public String profileUser(@PathVariable Long id, Model model) {
         User user = userService.findById(id);
+        String username = securityService.findLoggedInUsername();
+        User logUser = userService.findByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("logUser", logUser);
+
         return "profile";
     }
 
-    @RequestMapping(value = "/id{id}", method = RequestMethod.POST)
+    // Контроллер редактирования информации в личном кабинете пользователя
+    @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
     public String ChangeUser(@PathVariable Long id,@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
-//        User oldUser = userService.findById(id);
 
         User oldUser= userService.findById(id);
 
@@ -119,44 +122,56 @@ public class UserController {
         oldUser.setMiddleName(user.getMiddleName());
         oldUser.setContactDetails(user.getContactDetails());
         oldUser.setGithub(user.getGithub());
-        oldUser.setPassword(user.getPassword());
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
 
-        userService.save(oldUser);
-
         if (file.getSize()>0)
             oldUser.setPhotoPath(uploadFile(file));
+
+        userService.update(oldUser);
 
         return "redirect:/profile";
     }
 
-    @RequestMapping(value = "/change-profile", method = RequestMethod.POST)
-    public String ChangeProfile(@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
-            return "profile";
+    // Контроллер изменения пароля пользователя
+    @RequestMapping(value = "/change-password", method = RequestMethod.POST)
+    public String changePassword(String currentPassword, String newPassword, String confirmNewPassword){
+
+//        if (currentPassword == null){
+//            model.addAttribute("errors", "Введите свой пароль");
+//            return "change-profile";
+//        }
+//
+//        if (newPassword == null){
+//            model.addAttribute("errors", "Введите новый пароль");
+//            return "change-profile";
+//        }
+//
+//        if (confirmNewPassword == null){
+//            model.addAttribute("errors", "Подтвердите новый пароль");
+//            return "change-profile";
+//        }
+
+        User currentUser = securityService.findLoggedUser();
+        //currentPassword = userService.encodePassword(currentPassword);
+
+        if (currentPassword == currentUser.getPassword()){
+            if (newPassword == confirmNewPassword){
+                currentUser.setPassword(newPassword);
+                userService.update(currentUser);
+                return "redirect:/profile";
+            }
+            else {
+                //model.addAttribute("errors", "Новый пароль не подтвержден");
+                return "change-profile";
+            }
+        }
+        else{
+            //model.addAttribute("errors", "Введен неверный текущий пароль");
+            return "redirect:/change-profile";
         }
 
-        User oldUser= securityService.findLoggedUser();
-
-        oldUser.setEmail(user.getEmail());
-        oldUser.setDateOfBirth(user.getDateOfBirth());
-        oldUser.setAbout(user.getAbout());
-        oldUser.setFirstName(user.getFirstName());
-        oldUser.setLastName(user.getLastName());
-        oldUser.setMiddleName(user.getMiddleName());
-        oldUser.setContactDetails(user.getContactDetails());
-        oldUser.setGithub(user.getGithub());
-        oldUser.setPassword(user.getPassword());
-        oldUser.setOrganization(user.getOrganization());
-        oldUser.setUsername(user.getUsername());
-
-        userService.save(oldUser);
-
-        if (file.getSize()>0)
-            oldUser.setPhotoPath(uploadFile(file));
-
-        return "profile";
+        //return "redirect:/profile";
     }
 
     //Контроллеры для интеграции страниц
@@ -166,6 +181,8 @@ public class UserController {
         // Достаём информацию о текущем пользователе и передаём её в .jsp
         User user = securityService.findLoggedUser();
         model.addAttribute("user", user);
+        model.addAttribute("passwordChange", new PasswordChange());
+        model.addAttribute("error", new String());
         return "change-profile";
     }
 

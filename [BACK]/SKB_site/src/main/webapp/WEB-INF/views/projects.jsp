@@ -55,8 +55,8 @@
               <p class="title">
                   ${item.name}
               </p>
-              <p>Команда:
-                ${item.captain.username}
+              <p>Капитан команды:
+                <a href="/id${item.captain.id}">${item.captain.username}</a>
               </p>
               <p>Статус проекта:</p>
               <div class="progress">
