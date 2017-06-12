@@ -17,6 +17,12 @@
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
 </head>
 <body>
+
+<div id="leftSide">
+</div>
+<div id="rightSide">
+</div>
+
 <%@include file="header.jsp" %>
 
     <!-- main-->
