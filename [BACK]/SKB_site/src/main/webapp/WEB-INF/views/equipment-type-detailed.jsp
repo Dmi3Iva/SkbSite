@@ -24,55 +24,55 @@
   <div id="rightSide">
   </div>
 
-
   <%@include file="header.jsp" %>
 
-
-<!-- main-->
-<div class="container">
-
-  <div class="row">
-    <div class="col-xs-9" >
-      <ul class="titleHead">
-        <li><div class="smallBlueBox"></div></li>
-        <li><h3>Оборудование</h3></li>
-      </ul>
-    </div>
-  </div>
-  <c:if test="${!empty equipmentType}">
-  <div class="row ">
-    <div class="col-md-6 ">
-      <div class = "titleName my-auto">
-        <h4 class= "my-auto">${equipmentType.name}</h4>
-      </div>
-      <div class="image">
-        <img src="${equipmentType.photoPath}" alt="Микроконтроллер1">
-      </div>
-
-    </div>
-    <div class="col-md-6">
-      <h5>Описание</h5>
-      ${equipmentType.about}
-      <button type="button" class="btn btn-primary btn-lg btn-block">
-        Добавить к бронированию
-      </button>
-    </div>
-  </div>
-
-</div>
-
+  <!-- main-->
   <div class="container">
-    <div class="rows">
+
+    <div class="row">
+      <div class="col-xs-9" >
+        <ul class="titleHead">
+          <li><div class="smallBlueBox"></div></li>
+          <li><h3>Оборудование</h3></li>
+        </ul>
+      </div>
+    </div>
+    <c:if test="${!empty equipmentType}">
+    <div class="row ">
+      <div class="col-md-6 ">
+        <div class = "titleName my-auto">
+          <h4 class= "my-auto">${equipmentType.name}</h4>
+        </div>
+        <div class="image">
+          <img src="${equipmentType.photoPath}" alt="Микроконтроллер1">
+        </div>
+
+      </div>
       <div class="col-md-6">
-        <h4>Характеристики</h4>
+        <h5>Описание</h5>
+        ${equipmentType.about}
+        <a href="/equipment-booking">
+          <button type="button" class="btn btn-primary btn-lg btn-block">
+            Добавить к бронированию
+          </button>
+        </a>
       </div>
     </div>
-    <div class="rows">
-      <div class="col-md-8">
-          ${equipmentType.features}
-      </div>
-    </div>
+
   </div>
+
+    <div class="container">
+      <div class="rows">
+        <div class="col-md-6">
+          <h4>Характеристики</h4>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="col-md-8">
+            ${equipmentType.features}
+        </div>
+      </div>
+    </div>
 
     <form:form method="POST" modelAttribute="equipment" action="/equipment-type-detailed${equipmentType.id}">
       <div class="form-group">
