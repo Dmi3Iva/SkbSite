@@ -105,7 +105,7 @@ public class UserController {
 
     // Контроллер редактирования информации в личном кабинете пользователя
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
-    public String ChangeUser(@PathVariable Long id,@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+    public String ChangeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
@@ -150,40 +150,52 @@ public class UserController {
 //            return "change-profile";
 //        }
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User currentUser = securityService.findLoggedUser();
-        //currentPassword = userService.encodePassword(currentPassword);
 
-        if (currentPassword == currentUser.getPassword()){
-            if (newPassword == confirmNewPassword){
-                currentUser.setPassword(newPassword);
-                userService.update(currentUser);
-                return "redirect:/profile";
-            }
-            else {
-                //model.addAttribute("errors", "Новый пароль не подтвержден");
-                return "change-profile";
-            }
+        //TODO: Сделать вывод ошибок
+        if (currentPassword == null || newPassword == null || confirmNewPassword == null) {
+            // Если писать return "change-profile", то будет ругаться spring-bind в jsp
+            return "redirect:/change-profile";
         }
-        else{
-            //model.addAttribute("errors", "Введен неверный текущий пароль");
+        if (!passwordEncoder.matches(currentPassword, currentUser.getPassword())) {
+            return "redirect:/change-profile";
+        }
+        if (!newPassword.equals(confirmNewPassword)) {
             return "redirect:/change-profile";
         }
 
-        //return "redirect:/profile";
+        currentUser.setPassword(passwordEncoder.encode(newPassword));
+        userService.update(currentUser);
+
+//        if (currentPassword == currentUser.getPassword()){
+//            if (newPassword == confirmNewPassword){
+//                currentUser.setPassword(newPassword);
+//                userService.update(currentUser);
+//                return "redirect:/profile";
+//            }
+//            else {
+//                //model.addAttribute("errors", "Новый пароль не подтвержден");
+//                return "change-profile";
+//            }
+//        }
+//        else{
+//            //model.addAttribute("errors", "Введен неверный текущий пароль");
+//            return "redirect:/change-profile";
+//        }
+
+        return "redirect:/profile";
     }
 
     //Контроллеры для интеграции страниц
 
     @RequestMapping(value = "/change-profile", method = RequestMethod.GET)
     public String changeProfile(Model model) {
-        // Достаём информацию о текущем пользователе и передаём её в .jsp
         User user = securityService.findLoggedUser();
         model.addAttribute("user", user);
         model.addAttribute("passwordChange", new PasswordChange());
         model.addAttribute("error", new String());
         return "change-profile";
     }
-
-
 
 }
