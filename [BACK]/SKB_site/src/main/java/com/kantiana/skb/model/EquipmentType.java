@@ -39,8 +39,7 @@ public class EquipmentType {
         return photoPath;
     }
 
-    @Transactional
-    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     public Set<Equipment> getEquipmentSet() {
         return equipmentSet;
     }
