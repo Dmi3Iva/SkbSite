@@ -44,9 +44,12 @@
   </div>
 
   <c:if test="${empty equipmentTypeList}">
-    <h1>
-      К сожалению на данный момент оборудования нет<br>
-      :(</h1>
+    <div class="empty-equipment-list">
+      <h1>
+        К сожалению на данный момент оборудования нет<br>
+        :(
+      </h1>
+    </div>
   </c:if>
 
   <c:if test="${!empty equipmentTypeList}">
@@ -75,7 +78,6 @@
   </div>
   </c:forEach>
   </c:if>
-
 </div>
 <!--end main-->
 

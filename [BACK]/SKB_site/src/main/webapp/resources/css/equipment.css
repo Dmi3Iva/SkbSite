@@ -12,7 +12,7 @@ h1{
 
 .col-xs-12{
   background-color: var(--blue);
-  margin: 15px auto;
+  margin: 0px auto;
   padding-left: 0;
 }
 
@@ -113,3 +113,10 @@ ul.titleHead li:nth-child(3){
 input {
   color: #000;
 }
+
+/*Если на странице мало контента, то футер все равно будет внизу*/
+.empty-equipment-list {
+  height: 100%;
+  padding-bottom: 15%;
+}
+
