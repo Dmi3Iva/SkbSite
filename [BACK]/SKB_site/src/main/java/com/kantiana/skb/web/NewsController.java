@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
+import com.kantiana.skb.model.Project;
 import com.kantiana.skb.service.CommentService;
 import com.kantiana.skb.service.NewsService;
 import com.kantiana.skb.service.ProjectService;
@@ -40,10 +41,12 @@ public class NewsController {
     //Контроллер списка новостей
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String news(Model model, Long projectId) {
-        if (projectId == null) {
+        Project project = projectService.findById(projectId);
+        if (projectId == null || project == null) {
             model.addAttribute("newsList", newsService.findAllByOrderByTimeOfCreation());
         }
         else {
+            model.addAttribute("project", project);
             model.addAttribute("newsList", newsService.findAllByProjectIdOrderByTimeOfCreation(projectId));
         }
         return "news";
@@ -76,12 +79,12 @@ public class NewsController {
     //выводит страницу создания и редактирования новости
     @RequestMapping(value = {"/add-news", "/edit-news"}, method = RequestMethod.GET)
     public String addNews(Model model, Long newsId) {
-        if(newsId!=null) {
+        if (newsId != null) {
             News news = newsService.findById(newsId);
             model.addAttribute("news", news);
         }
         else {
-            model.addAttribute("news", new News() );
+            model.addAttribute("news", new News());
         }
         model.addAttribute("allProjects", projectService.getAllProjects());
         return "add-news";

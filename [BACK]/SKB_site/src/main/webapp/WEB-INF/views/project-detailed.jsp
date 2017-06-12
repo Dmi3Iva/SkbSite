@@ -32,18 +32,27 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-md-8">
         <ul class="titleHead">
           <li>
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Проект</h3></li>
+            <h3>Проект "${project.name}"</h3>
+          </li>
         </ul>
       </div>
     </div>
     <!--IIMAGE 1-->
     <c:if test="${!empty project}">
+      <div class="form-group">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
+        <form method="POST" action="/delete-project" class="btn">
+          <input type="hidden" value="${project.id}" name="projectId"/>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
+        </form>
+      </div>
         <div class="row">
           <div class="col-md-8">
             <div class="new">
@@ -53,7 +62,15 @@
               <p>Капитан команды:
                 <a href="/id${project.captain.id}">${project.captain.username}</a>
               </p>
-              <p>Статус проекта:{project}
+                <p>
+                    Команда:
+                    <c:forEach items="${projectTeam}" var="member">
+                        ${member.username},
+                    </c:forEach>
+                </p>
+              <p>
+                Статус проекта:
+                  ${project.projectStatus.name}
               </p>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="${project.statusPercent}" aria-valuemin="0" aria-valuemax="100" style="width:${project.statusPercent}%;">
@@ -71,13 +88,11 @@
                   ${project.about}
               </p>
 
+
               <p><a href="/news?projectId=${project.id}">Новости проекта</a></p>
 
             </div>
           </div>
-
-
-
 
           <div class="col-xs-4 image hidden-xs hidden-sm">
             <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
@@ -85,107 +100,6 @@
         </div>
 
     </c:if>
-
-    <!--comments-->
-    <%--<div class="row">--%>
-      <%--<div class="col-md-12">--%>
-        <%--<h3>Комментарии(3)</h3>--%>
-      <%--</div>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-      <%--<div class="col-sm-1">--%>
-        <%--<div class="thumbnail">--%>
-          <%--<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">--%>
-        <%--</div>--%>
-        <%--<!-- /thumbnail -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-1 -->--%>
-
-      <%--<div class="col-sm-8">--%>
-        <%--<div class="panel panel-default">--%>
-          <%--<div class="panel-heading">--%>
-            <%--<strong>myusername</strong> <span class="text-muted">добавлено 5 дней назад</span>--%>
-          <%--</div>--%>
-          <%--<div class="panel-body">--%>
-            <%--Я тут такой классный коммент оставил, все просто ахнули. Кстати некстати, у нас тут на проекте все пользуются разными версиями гит клиента, сам я сегодня перешёл на гиткратен, каждый раз, когда прога включается я вспоминаю что боюсь глубин, чем-то похоже--%>
-            <%--на погружение на дно--%>
-          <%--</div>--%>
-          <%--<!-- /panel-body -->--%>
-        <%--</div>--%>
-        <%--<!-- /panel panel-default -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-5 -->--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-      <%--<div class="col-sm-1">--%>
-        <%--<div class="thumbnail">--%>
-          <%--<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">--%>
-        <%--</div>--%>
-        <%--<!-- /thumbnail -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-1 -->--%>
-
-      <%--<div class="col-sm-8">--%>
-        <%--<div class="panel panel-default">--%>
-          <%--<div class="panel-heading">--%>
-            <%--<strong>myusername</strong> <span class="text-muted">добавлено 5 дней назад</span>--%>
-          <%--</div>--%>
-          <%--<div class="panel-body">--%>
-            <%--Я тут такой классный коммент оставил, все просто ахнули. Кстати некстати, у нас тут на проекте все пользуются разными версиями гит клиента, сам я сегодня перешёл на гиткратен, каждый раз, когда прога включается я вспоминаю что боюсь глубин, чем-то похоже--%>
-            <%--на погружение на дно--%>
-          <%--</div>--%>
-          <%--<!-- /panel-body -->--%>
-        <%--</div>--%>
-        <%--<!-- /panel panel-default -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-5 -->--%>
-    <%--</div>--%>
-
-    <%--<div class="row">--%>
-      <%--<div class="col-sm-1">--%>
-        <%--<div class="thumbnail">--%>
-          <%--<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">--%>
-        <%--</div>--%>
-        <%--<!-- /thumbnail -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-1 -->--%>
-
-      <%--<div class="col-sm-8">--%>
-        <%--<div class="panel panel-default">--%>
-          <%--<div class="panel-heading">--%>
-            <%--<strong>myusername</strong> <span class="text-muted">добавлено 5 дней назад</span>--%>
-          <%--</div>--%>
-          <%--<div class="panel-body">--%>
-            <%--Я тут такой классный коммент оставил, все просто ахнули. Кстати некстати, у нас тут на проекте все пользуются разными версиями гит клиента, сам я сегодня перешёл на гиткратен, каждый раз, когда прога включается я вспоминаю что боюсь глубин, чем-то похоже--%>
-            <%--на погружение на дно--%>
-          <%--</div>--%>
-          <%--<!-- /panel-body -->--%>
-        <%--</div>--%>
-        <%--<!-- /panel panel-default -->--%>
-      <%--</div>--%>
-      <%--<!-- /col-sm-5 -->--%>
-    <%--</div>--%>
-    <%--<!-- /row -->--%>
-
-    <%--<div class="col-md-9">--%>
-               <%--<div class="widget-area no-padding blank">--%>
-               <%--<div class="status-upload">--%>
-                 <%--<form>--%>
-                   <%--<textarea placeholder="Пожалуйста, ничего не пиши сюда" ></textarea>--%>
-                   <%--<ul>--%>
-                     <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>
-                     <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>--%>
-                     <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>--%>
-                     <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
-                   <%--</ul>--%>
-                   <%--<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>--%>
-                 <%--</form>--%>
-               <%--</div><!-- Status Upload  -->--%>
-             <%--</div><!-- Widget Area -->--%>
-           <%--</div>--%>
-
-   <%--</div>--%>
-
 
 <!-- /container -->
 

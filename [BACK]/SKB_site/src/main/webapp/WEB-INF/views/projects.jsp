@@ -48,46 +48,50 @@
     <!--Новости уровень 1-->
 
     <c:if test="${!empty projectsList}">
-      <c:forEach items="${projectsList}" var="item">
+      <c:forEach items="${projectsList}" var="project">
         <div class="row">
           <div class="col-md-8">
             <div class="new">
               <p class="title">
-                  ${item.name}
+                <a href="/project-detailed?id=${project.id}">${project.name}</a>
               </p>
               <p>Капитан команды:
-                <a href="/id${item.captain.id}">${item.captain.username}</a>
+                <a href="/id${project.captain.id}">${project.captain.username}</a>
               </p>
-              <p>Статус проекта:</p>
+              <p>Статус проекта: ${project.projectStatus.name}</p>
               <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="${item.statusPercent}" aria-valuemin="0" aria-valuemax="100" style="width: ${item.statusPercent}%;">
-                  ${item.statusPercent}
+                <div class="progress-bar" role="progressbar" aria-valuenow="${project.statusPercent}" aria-valuemin="0" aria-valuemax="100" style="width: ${project.statusPercent}%;">
+                  ${project.statusPercent}
                 </div>
               </div>
 
                   <p class="description">
-                      Дата начала: ${item.dateOfStart}
-                      <c:if  test="${item.dateOfLastUpdate != item.dateOfStart} ">
-                        Последнее обновление: ${item.dateOfLastUpdate}
+                      Дата начала: ${project.dateOfStart}
+                      <c:if  test="${project.dateOfLastUpdate != project.dateOfStart} ">
+                        Последнее обновление: ${project.dateOfLastUpdate}
                       </c:if>
                   </p>
 
               <p>Описание:</p>
 
               <p class="article">
-                ${item.about}
+                ${project.about}
               </p>
-                  <a href="/project-detailed?id=${item.id}">Подробнее...</a>
+                  <a href="/project-detailed?id=${project.id}">Подробнее...</a>
                 <div class="form-group">
-                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${item.id}';" value="Редактировать">
-                  <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))?self.location.href='/del-project?id=${item.id}':1/1;" value="Удалить">
+                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
+                  <form method="POST" action="/delete-project" class="btn">
+                    <input type="hidden" value="${project.id}" name="projectId"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
+                  </form>
                 </div>
               </ul>
             </div>
           </div>
 
           <div class="col-xs-4 image hidden-xs hidden-sm">
-            <img src="${item.photoPath}" alt="${item.name} Picture" width="100%">
+            <img src="${project.photoPath}" alt="${project.name} Picture" width="100%">
           </div>
         </div>
       </c:forEach>

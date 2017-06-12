@@ -19,6 +19,7 @@ public class Project {
     private Set<News> news;
     private Set<User> members;
     private Order order;
+    private Set<ProjectMembership> projectMemberships;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,15 +103,6 @@ public class Project {
         this.news = news;
     }
 
-    @ManyToMany(mappedBy = "projects")
-    public Set<User> getMembers() {
-        return members;
-    }
-
-    public void setMembers(Set<User> members) {
-        this.members = members;
-    }
-
     @Column(name="photo_path")
     public String getPhotoPath() {
         return photoPath;
@@ -125,7 +117,16 @@ public class Project {
         return order;
     }
 
-    public void setOrder(Order order){
+    public void setOrder(Order order) {
         this.order = order;
+    }
+
+    @OneToMany(targetEntity = ProjectMembership.class, mappedBy = "project", fetch = FetchType.EAGER)
+    public Set<ProjectMembership> getProjectMemberships() {
+        return projectMemberships;
+    }
+
+    public void setProjectMemberships(Set<ProjectMembership> projectMemberships) {
+        this.projectMemberships = projectMemberships;
     }
 }

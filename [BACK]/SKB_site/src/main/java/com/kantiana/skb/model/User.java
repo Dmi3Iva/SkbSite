@@ -27,6 +27,7 @@ public class User {
     private Set<Project> ownProjects;
     private Set<Project> projects;
     private Set<Request> requestList;
+    private Set<ProjectMembership> projectMemberships;
     private boolean customer;
 
     @Id
@@ -184,14 +185,13 @@ public class User {
         this.ownProjects = ownProjects;
     }
 
-    @ManyToMany
-    @JoinTable(name = "projects_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
-    public Set<Project> getProjects() {
-        return projects;
+    @OneToMany(targetEntity = ProjectMembership.class, mappedBy = "user", fetch = FetchType.EAGER)
+    public Set<ProjectMembership> getProjectMemberships() {
+        return projectMemberships;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setProjectMemberships(Set<ProjectMembership> projectMemberships) {
+        this.projectMemberships = projectMemberships;
     }
 
     @Transient
@@ -210,5 +210,10 @@ public class User {
 
     public void setRequestList(Set<Request> requestList) {
         this.requestList = requestList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof User) && ((User)obj).getId() == getId();
     }
 }

@@ -5,11 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--Размер загружаемой фотографии-->
-        <property name="maxUploadSize" value="200000000000000" />
-    </bean>
-
     <import resource="appconfig-mvc.xml"/>
     <import resource="appconfig-data.xml"/>
     <import resource="appconfig-security.xml"/>
@@ -19,5 +14,10 @@
     <context:component-scan base-package="com.kantiana.skb.*"/>
 
     <context:property-placeholder location="application.properties"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--Размер загружаемой фотографии-->
+        <property name="maxUploadSize" value="200000000000000" />
+    </bean>
 
 </beans>
