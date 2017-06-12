@@ -147,6 +147,18 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p><button type="submit">Добавить</button></p>
             </form>
+            <p>Поменяй капитана</p>
+            <form method="POST" action="/change-captain">
+                <p><input type="hidden" name="projectId" value="${project.id}"></p>
+                <p><select name="captainId">
+                    <option value="${project.captain.id}" selected="selected">${project.captain.username}</option>
+                    <c:forEach items="${projectTeamExceptCaptain}" var="member">
+                        <option value="${member.id}">${member.username}</option>
+                    </c:forEach>
+                </select></p>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <p><button type="submit">Изменить капитана</button></p>
+            </form>
         </div>
     </c:if>
 </div>

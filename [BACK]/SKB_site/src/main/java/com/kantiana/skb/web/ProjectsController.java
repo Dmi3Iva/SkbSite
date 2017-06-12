@@ -103,4 +103,15 @@ public class ProjectsController {
         projectMembershipService.remove(projectId, memberId);
         return "redirect:/edit-project?id=" + projectId;
     }
+
+    @RequestMapping(value = "/change-captain", method = RequestMethod.POST)
+    public String changeCaptain(Long projectId, Long captainId) {
+        Project project = projectService.findById(projectId);
+        User captain = userService.findById(captainId);
+        if (project != null && captain != null) {
+            project.setCaptain(captain);
+            projectService.saveUpdatedProject(project);
+        }
+        return "redirect:/edit-project?id=" + projectId;
+    }
 }

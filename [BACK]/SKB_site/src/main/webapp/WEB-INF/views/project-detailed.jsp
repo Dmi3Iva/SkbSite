@@ -45,7 +45,7 @@
     <!--IIMAGE 1-->
     <c:if test="${!empty project}">
       <div class="form-group">
-        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${item.id}';" value="Редактировать">
+        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
         <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))?self.location.href='/del-project?id=${item.id}':1/1;" value="Удалить">
       </div>
         <div class="row">

@@ -66,7 +66,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     public void saveUpdatedProject(Project project) {
-        saveNewProject(project, null);
+        saveUpdatedProject(project, null);
     }
 
     public Project findByName(String name) {
