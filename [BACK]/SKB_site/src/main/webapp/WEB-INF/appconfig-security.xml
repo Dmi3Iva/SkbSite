@@ -17,6 +17,7 @@
         <intercept-url pattern="/profile" access="isAuthenticated()"/>
         <intercept-url pattern="/add-project" access="isAuthenticated()"/>
         <intercept-url pattern="/add-news" access="isAuthenticated()"/>
+        <intercept-url pattern="/add-order" access="isAuthenticated()"/>
     </http>
 
     <authentication-manager alias="authenticationManager">

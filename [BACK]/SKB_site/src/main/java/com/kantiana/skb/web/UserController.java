@@ -6,6 +6,7 @@ import com.kantiana.skb.web.WorkingWithFile;
 import com.kantiana.skb.validator.UserValidator;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -85,9 +86,7 @@ public class UserController {
     // Контроллер личного кабинета
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
-        // Достаём информацию о текущем пользователе и передаём её в .jsp
-        String username = securityService.findLoggedInUsername();
-        User user = userService.findByUsername(username);
+        User user = securityService.findLoggedUser();
         model.addAttribute("user", user);
         model.addAttribute("logUser", user);
         return "profile";
@@ -97,8 +96,7 @@ public class UserController {
     @RequestMapping(value = "/id{id}", method = RequestMethod.GET)
     public String profileUser(@PathVariable Long id, Model model) {
         User user = userService.findById(id);
-        String username = securityService.findLoggedInUsername();
-        User logUser = userService.findByUsername(username);
+        User logUser = securityService.findLoggedUser();
         model.addAttribute("user", user);
         model.addAttribute("logUser", logUser);
 
