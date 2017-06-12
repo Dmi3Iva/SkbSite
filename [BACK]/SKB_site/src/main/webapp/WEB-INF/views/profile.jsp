@@ -41,7 +41,6 @@
                 </div>
                 <div class="container">
                     <div class="col-xs-6">
-                        <%--<img src="${contextPath}/resources/images/hacker.jpg">--%>
                         <img src="${user.photoPath}">
                     </div>
                     <div class="col-xs-6">
@@ -53,12 +52,17 @@
                         <p>Органицзация: ${user.organization}</p>
                         <p>Проекты: Телеграмм, ВК</p>
                         <p>Github: ${user.github}</p>
-                        <p>Мобильный телефон: 88005553535</p>
+                        <p>Контактные данные: ${user.contactDetails}</p>
                         <p>О себе: ${user.about}</p>
                     </div>
                 </div>
-                <sec:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username}'">
-                    <div class="btn-group col-xs-6 col-xs-offset-6">
+                <div class="btn-group col-xs-6">
+                    <button type="submit" class="btn btn-primary btn-lg" onclick="window.history.back()">
+                        Назад
+                    </button>
+                </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or '${user.username}' == '${logUser.username}'">
+                    <div class="btn-group col-xs-6">
                         <a href="/change-profile">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 Изменить данные

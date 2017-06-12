@@ -65,7 +65,7 @@
                             </li>
                             <li>
                                 <p class="description">
-                                    Автор: ${item.author.username}<br>
+                                    Автор: <a href="/id${item.author.id}">${item.author.username}</a><br>
                                     <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
                                         ${item.timeOfCreation}
                                     </c:if>

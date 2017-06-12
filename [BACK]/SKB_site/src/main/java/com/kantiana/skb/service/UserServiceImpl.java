@@ -43,6 +43,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    public void update(User user){
+        userRepository.save(user);
+    }
+
     public User findById(Long id){
         return userRepository.findOne(id);
     }

@@ -50,8 +50,8 @@
               <p class="title">
                   ${project.name}
               </p>
-              <p>Команда:
-                  ${project.captain.username}
+              <p>Капитан команды:
+                <a href="/id${project.captain.id}">${project.captain.username}</a>
               </p>
               <p>Статус проекта:{project}
               </p>
@@ -62,7 +62,7 @@
               </div>
 
               <p class="description">
-                Автор: ${project.captain.username}
+                Автор: <a href="/id${project.captain.id}">${project.captain.username}</a>
                   ${project.dateOfLastUpdate}
               </p>
 

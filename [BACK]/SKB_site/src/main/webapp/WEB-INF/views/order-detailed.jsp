@@ -55,14 +55,14 @@
             <a href="/project-detailed?id=${order.project.id}">${order.project.name}</a>
           </c:if>
           <p class="description">
-            Автор: ${order.author.username}<br>
+            Автор: <a href="/id${order.author.id}">${order.author.username}</a><br>
             <c:if test="${order.timeOfCreation == order.timeOfLastUpdate}">
               ${order.timeOfCreation}
             </c:if>
 
             <c:if test="${order.timeOfCreation != order.timeOfLastUpdate}">
               <c:if test="${order.editor.username!= order.author.username}">
-                Редактор: ${order.editor.username} <br>
+                Редактор: <a href="/id${order.editor.id}">${order.editor.username}</a> <br>
               </c:if>
               <span class="glyphicon glyphicon-pencil"></span> Изменено ${order.timeOfLastUpdate}
             </c:if>
