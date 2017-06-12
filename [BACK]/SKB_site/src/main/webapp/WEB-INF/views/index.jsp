@@ -85,7 +85,7 @@
                     <li><h3>Новости</h3></li>
                     <li>
                         <div align="center" class=link>
-                            <a href="#">смотреть всё</a>
+                            <a href="/news">смотреть всё</a>
                         </div>
                     </li>
                 </ul>
@@ -149,7 +149,7 @@
                     <li><h3>Проекты</h3></li>
                     <li>
                         <div align="center" class=link>
-                            <a href="#">смотреть всё</a>
+                            <a href="/projects">смотреть всё</a>
                         </div>
                     </li>
                 </ul>
