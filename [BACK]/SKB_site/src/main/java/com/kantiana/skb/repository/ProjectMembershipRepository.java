@@ -25,7 +25,7 @@ public interface ProjectMembershipRepository extends JpaRepository<ProjectMember
     List<User> findProjectMembers(Long projectId);
 
     @Query("SELECT pm.user FROM ProjectMembership pm " +
-            "WHERE (pm.project = ?1 AND pm.user.id <> pm.project.captain.id) " +
+            "WHERE (pm.project.id = ?1 AND pm.user.id <> pm.project.captain.id) " +
             "ORDER BY pm.user.username")
     List<User> findProjectMembersExceptCaptain(Long projectId);
 

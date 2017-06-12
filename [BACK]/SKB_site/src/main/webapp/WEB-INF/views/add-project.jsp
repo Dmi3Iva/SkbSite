@@ -39,7 +39,7 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${isEditing == true}">Изменение проекта</c:if>
+                        <c:if test="${isEditing == true}">Изменение проекта <a href="/project-detailed?id=${project.id}">${project.name}</a></c:if>
                         <c:if test="${isEditing == false}"> Добавление проекта</c:if>
                     </h3>
                 </li>
@@ -126,27 +126,27 @@
     <c:if test="${isEditing == true}">
         <div>
             <p>Удали кого-нибудь из проекта</p>
-            <%--<form method="POST" action="/delete-membership">--%>
-                <%--<input type="hidden" name = "projectId" value="${project.id}"/>--%>
-                <%--<select name="memberId">--%>
-                    <%--<c:forEach items="${projectTeamExceptCaptain}" var="member">--%>
-                        <%--<option value="${member.id}">${member.username}</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</select>--%>
-                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                <%--<button type="submit">Удалить</button>--%>
-            <%--</form>--%>
-            <%--<p>Добавь кого-нибудь в проект</p>--%>
-            <%--<form method="POST" action="/add-membership">--%>
-                <%--<p><input type="hidden" name="projectId" value="${project.id}"></p>--%>
-                <%--<p><select name="newMemberId">--%>
-                    <%--<c:forEach items="${nonProjectMembers}" var="nonMember">--%>
-                        <%--<option value="${nonMember.id}">${nonMember.username}</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</select></p>--%>
-                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                <%--<p><button type="submit">Добавить</button></p>--%>
-            <%--</form>--%>
+            <form method="POST" action="/delete-membership">
+                <input type="hidden" name = "projectId" value="${project.id}"/>
+                <select name="memberId">
+                    <c:forEach items="${projectTeamExceptCaptain}" var="member">
+                        <option value="${member.id}">${member.username}</option>
+                    </c:forEach>
+                </select>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button type="submit">Удалить</button>
+            </form>
+            <p>Добавь кого-нибудь в проект</p>
+            <form method="POST" action="/add-membership">
+                <p><input type="hidden" name="projectId" value="${project.id}"></p>
+                <p><select name="newMemberId">
+                    <c:forEach items="${nonProjectMembers}" var="nonMember">
+                        <option value="${nonMember.id}">${nonMember.username}</option>
+                    </c:forEach>
+                </select></p>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <p><button type="submit">Добавить</button></p>
+            </form>
         </div>
     </c:if>
 </div>

@@ -57,7 +57,7 @@
               </p>
                 <p>
                     Команда:
-                    <c:forEach items="${projectMembers}" var="member">
+                    <c:forEach items="${projectTeam}" var="member">
                         ${member.username},
                     </c:forEach>
                 </p>
