@@ -69,143 +69,6 @@
         </a>
     </div>
 
-
-
-<div class="container" >
-    <div class= "row">
-        <!--Новости и проекты-->
-        <div class="row">
-            <!--Новости раздел-->
-            <div class="col-md-6" >
-                <ul class="titleHead">
-                    <li><div class="smallBlueBox"></div></li>
-                    <li><h3>Новости</h3></li>
-                    <li>
-                        <div align="center" class=link>
-                            <a href="/news">смотреть всё</a>
-                        </div>
-                    </li>
-                </ul>
-
-                <!--Новости уровень 1-->
-
-                <div class="row">
-                    <div class="col-md-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-md-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-md-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <ul class="titleHead">
-                    <li><div class="smallBlueBox"></div></li>
-                    <li><h3>Проекты</h3></li>
-                    <li>
-                        <div align="center" class=link>
-                            <a href="/projects">смотреть всё</a>
-                        </div>
-                    </li>
-                </ul>
-                <div class="row">
-                    <div class="col-xs-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-xs-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-xs-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container" >
     <div class= "row">
         <!--Новости и проекты-->
@@ -247,61 +110,9 @@
                                 </p>
                             </div>
                         </div>
-
-
                     </c:forEach>
                 </c:if>
-                <!--Новости уровень 1-->
 
-                <div class="row">
-                    <div class="col-md-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-md-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-md-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
             </div>
 
             <div class="col-md-6">
@@ -314,57 +125,30 @@
                         </div>
                     </li>
                 </ul>
-                <div class="row">
-                    <div class="col-xs-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-xs-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-6 block">
-                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
-                    </div>
-                    <div class="col-xs-6 block">
-                        <p class="description">
-                            Автор:  Енот
-                            09.03.2017
-                            18:35
-                        </p>
-                        <p class = "title">
-                            Енот устал писать макет этого сайта,
-                            но он не сдаётся
-                        </p>
-                        <p class="article">
-                            Отрывок из книжки Енотика
-                            На долю нашего поколения не досталось великой войны или
-                            великой депрессии, поэтому мы должны сами объявить войну...
-                        </p>
-                        <p class="detailes">
-                            <a href="#">Подробнее...</a>
-                        </p>
-                    </div>
-                </div>
-
-
+                <c:if test="${!empty projects}">
+                    <c:forEach items="${projects}" var="item">
+                        <div class="row">
+                            <div class="col-md-6 block">
+                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                            </div>
+                            <div class="col-md-6 block">
+                                <p class="description">
+                                    Капитан:  <a href="/id${item.captain.id}">${item.captain.username}</a><br>
+                                        ${item.dateOfStart}
+                                </p>
+                                <p class = "title">
+                                    <a href="/project-detailed?id=${item.id}">${item.name}</a>
+                                </p>
+                                <p class="article">
+                                        ${item.about}
+                                </p>
+                                <p class="detailes">
+                                    <a href="/project-detailed?id=${item.id}">Подробнее...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:if>
             </div>
         </div>
     </div>

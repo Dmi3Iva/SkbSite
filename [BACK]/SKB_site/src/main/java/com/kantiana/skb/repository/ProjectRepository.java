@@ -13,4 +13,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findAllByOrderByName();
 
+    @Query ("SELECT n FROM Project n ORDER BY n.dateOfStart DESC")
+    List<Project> findTop();
 }
