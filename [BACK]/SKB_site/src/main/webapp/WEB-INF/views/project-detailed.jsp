@@ -100,6 +100,7 @@
         </div>
 
     </c:if>
+  </div>
 
 <!-- /container -->
 

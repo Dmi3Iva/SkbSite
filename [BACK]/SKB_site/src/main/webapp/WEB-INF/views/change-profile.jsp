@@ -156,7 +156,6 @@
                     </div>
                 </form:form>
 
-                <%--замена пароля, пока она не работает--%>
                 <form method="POST" action="/change-password">
                     <div class="col-md-9 col-md-offset-3">
                         <div class="form-group">

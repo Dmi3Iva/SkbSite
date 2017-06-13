@@ -94,6 +94,7 @@
                     <img src="${item.photoPath}" alt="girl" width="100%">
                 </div>
             </div>
+            <br>
         </c:forEach>
     </c:if>
     <c:if test="${empty newsList}">

@@ -128,21 +128,21 @@
     </form:form>
     <c:if test="${isEditing == true}">
         <div>
-            <p>Удали кого-нибудь из проекта</p>
             <form method="POST" action="/delete-membership">
                 <input type="hidden" name = "projectId" value="${project.id}"/>
-                <select name="memberId">
+                <label for="memberForDelete">Удали кого-нибудь из проекта</label>
+                <p><select id="memberForDelete" name="memberId">
                     <c:forEach items="${projectTeamExceptCaptain}" var="member">
                         <option value="${member.id}">${member.username}</option>
                     </c:forEach>
-                </select>
+                </select></p>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type="submit">Удалить</button>
             </form>
-            <p>Добавь кого-нибудь в проект</p>
             <form method="POST" action="/add-membership">
                 <p><input type="hidden" name="projectId" value="${project.id}"></p>
-                <p><select name="newMemberId">
+                <label for="newMember">Добавь кого-нибудь в проект</label>
+                <p><select id="newMember" name="newMemberId">
                     <c:forEach items="${nonProjectMembers}" var="nonMember">
                         <option value="${nonMember.id}">${nonMember.username}</option>
                     </c:forEach>
@@ -150,10 +150,10 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p><button type="submit">Добавить</button></p>
             </form>
-            <p>Поменяй капитана</p>
             <form method="POST" action="/change-captain">
                 <p><input type="hidden" name="projectId" value="${project.id}"></p>
-                <p><select name="captainId">
+                <label for="captain">Поменяй капитана</label>
+                <p><select id="captain" name="captainId">
                     <option value="${project.captain.id}" selected="selected">${project.captain.username}</option>
                     <c:forEach items="${projectTeamExceptCaptain}" var="member">
                         <option value="${member.id}">${member.username}</option>
