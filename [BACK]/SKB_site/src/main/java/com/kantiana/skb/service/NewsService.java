@@ -19,4 +19,6 @@ public interface NewsService {
     List<News> findAllByProjectIdOrderByTimeOfCreation(Long projectId);
 
     List<News> findAllByOrderByTimeOfCreation();
+
+    List<News> findTop(int number);
 }

@@ -205,3 +205,11 @@ ul.titleHead li:nth-child(3){
 .block .detailes a{
     text-decoration: none;
 }
+
+.article {
+    color: #333;
+}
+
+.block a {
+    text-decoration: none;
+}

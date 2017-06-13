@@ -73,9 +73,6 @@
 
 <div class="container" >
     <div class= "row">
-
-
-
         <!--Новости и проекты-->
         <div class="row">
             <!--Новости раздел-->
@@ -90,6 +87,170 @@
                     </li>
                 </ul>
 
+                <!--Новости уровень 1-->
+
+                <div class="row">
+                    <div class="col-md-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-md-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-md-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="titleHead">
+                    <li><div class="smallBlueBox"></div></li>
+                    <li><h3>Проекты</h3></li>
+                    <li>
+                        <div align="center" class=link>
+                            <a href="/projects">смотреть всё</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-xs-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-xs-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 block">
+                        <img src="${contextPath}/resources/images/girl-w250.jpg" alt="girl" width="100%">
+                    </div>
+                    <div class="col-xs-6 block">
+                        <p class="description">
+                            Автор:  Енот
+                            09.03.2017
+                            18:35
+                        </p>
+                        <p class = "title">
+                            Енот устал писать макет этого сайта,
+                            но он не сдаётся
+                        </p>
+                        <p class="article">
+                            Отрывок из книжки Енотика
+                            На долю нашего поколения не досталось великой войны или
+                            великой депрессии, поэтому мы должны сами объявить войну...
+                        </p>
+                        <p class="detailes">
+                            <a href="#">Подробнее...</a>
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" >
+    <div class= "row">
+        <!--Новости и проекты-->
+        <div class="row">
+            <!--Новости раздел-->
+            <div class="col-md-6" >
+                <ul class="titleHead">
+                    <li><div class="smallBlueBox"></div></li>
+                    <li><h3>Новости</h3></li>
+                    <li>
+                        <div align="center" class=link>
+                            <a href="/news">смотреть всё</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <c:if test="${!empty news}">
+                    <c:forEach items="${news}" var="item">
+                        <div class="row">
+                            <div class="col-md-6 block">
+                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                            </div>
+                            <div class="col-md-6 block">
+                                <p class="description">
+                                    Автор:  <a href="/id${item.author.id}">${item.author.username}</a><br>
+                                    ${item.timeOfCreation} <br>
+                                    <c:if test="${item.project != null}">
+                                        Проект: <a href="/project-detailed?id=${item.project.id}">${item.project.name}</a>
+                                    </c:if>
+                                </p>
+                                <p class = "title">
+                                    <a href="/news-detailed?newsId=${item.id}">${item.name}</a>
+                                </p>
+                                <p class="article">
+                                    ${item.content}
+                                </p>
+                                <p class="detailes">
+                                    <a href="/news-detailed?newsId=${item.id}">Подробнее...</a>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </c:forEach>
+                </c:if>
                 <!--Новости уровень 1-->
 
                 <div class="row">

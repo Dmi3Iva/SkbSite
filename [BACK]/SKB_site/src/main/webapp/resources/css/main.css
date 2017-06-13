@@ -13,7 +13,6 @@
 body{
 	font-family:"Roboto Light",sans-serif;
 	margin-top: 75px;
-	color:var(--white);
 }
 
 @media screen and (max-width: 991px){

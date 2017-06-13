@@ -12,4 +12,5 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     Project findById(Long id);
 
     List<Project> findAllByOrderByName();
+
 }
