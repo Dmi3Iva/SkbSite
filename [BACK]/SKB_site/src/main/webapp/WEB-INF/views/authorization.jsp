@@ -43,11 +43,12 @@
                         <!--Какая-то защита от кросс-доменных запросов-->
                         <input type="hidden" name="$ {_csrf.parameterName}" value="$ {_csrf.token}"/>
                         <div class="form-group">
-                            <div class=" col-xs-offset-3 col-xs-2">
+                            <div class=" col-xs-offset-2 col-xs-2">
                                 <button type="submit" class="btn btn-primary btn-lg text-right">Войти</button>
                             </div>
-                            <div class="col-xs-5">
+                            <div class="col-xs-7">
                                 <input type="submit" class="btn btn-back btn-lg" value="Забыли пароль">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/registration';" value="Регистрация"/>
                                 <input type="button" class="btn btn-back btn-lg" onClick="history.go(-1);return true;" value="Назад">
                             </div>
                         </div>
