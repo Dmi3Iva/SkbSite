@@ -89,7 +89,7 @@
                     <c:forEach items="${news}" var="item">
                         <div class="row">
                             <div class="col-md-6 block">
-                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                                <img src="${item.photoPath}" alt="news${item.id}" width="100%">
                             </div>
                             <div class="col-md-6 block">
                                 <p class="description">
@@ -129,7 +129,7 @@
                     <c:forEach items="${projects}" var="item">
                         <div class="row">
                             <div class="col-md-6 block">
-                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                                <img src="${item.photoPath}" alt="news${item.id}" width="100%">
                             </div>
                             <div class="col-md-6 block">
                                 <p class="description">
@@ -139,9 +139,9 @@
                                 <p class = "title">
                                     <a href="/project-detailed?id=${item.id}">${item.name}</a>
                                 </p>
-                                <p class="article">
+                                <div class="article">
                                         ${item.about}
-                                </p>
+                                </div>
                                 <p class="detailes">
                                     <a href="/project-detailed?id=${item.id}">Подробнее...</a>
                                 </p>
@@ -163,6 +163,9 @@
 <script>window.jQuery</script>
 <script src="../../resources/js/tether.min.js"></script>
 <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+
+<script>
+</script>
 
 </body>
 </html>
