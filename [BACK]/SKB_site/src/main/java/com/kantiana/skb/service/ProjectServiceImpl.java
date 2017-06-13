@@ -90,4 +90,12 @@ public class ProjectServiceImpl implements ProjectService {
     public void delete(Long id){
         projectRepository.delete(id);
     }
+
+    public List<Project> findTop(int number) {
+        List<Project> topList = projectRepository.findTop();
+        while (number < topList.size()){
+            topList.remove(number);
+        }
+        return topList;
+    }
 }

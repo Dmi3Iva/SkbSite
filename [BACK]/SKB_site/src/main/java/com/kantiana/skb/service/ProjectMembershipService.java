@@ -16,6 +16,8 @@ public interface ProjectMembershipService {
     List<User> findProjectMembersExceptCaptain(Long projectId);
     List<User> findNonProjectMembers(Long projectId);
 
+    List<Project> findProjectsWhereUserIsMember(Long userId);
+
     void save(ProjectMembership projectMembership);
 
     void save(Project project, User member);

@@ -50,7 +50,13 @@
                         <p>Логин: ${user.username}</p>
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
-                        <p>Проекты: Телеграмм, ВК</p>
+                        <p>
+                            Проекты:
+                            <c:forEach items="${userProjects}" var="project">
+                                <a href="/project-detailed?id=${project.id}">${project.name}</a>
+                                ,
+                            </c:forEach>
+                        </p>
                         <p>Github: ${user.github}</p>
                         <p>Контактные данные: ${user.contactDetails}</p>
                         <p>О себе: ${user.about}</p>

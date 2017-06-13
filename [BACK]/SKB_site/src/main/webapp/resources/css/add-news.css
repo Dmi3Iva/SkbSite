@@ -49,6 +49,15 @@ ul.titleHead li:nth-child(2) {
   vertical-align: top;
 }
 
+.titleHead li a{
+  color: var(--white);
+  text-decoration: none;
+}
+
+.titleHead li a:hover{
+  color: #333;
+}
+
 .smallBlueBox {
   height: 70px;
   width: 15px;

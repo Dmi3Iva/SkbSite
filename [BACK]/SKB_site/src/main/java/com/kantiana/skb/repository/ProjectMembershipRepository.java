@@ -1,5 +1,6 @@
 package com.kantiana.skb.repository;
 
+import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.ProjectMembership;
 import com.kantiana.skb.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,8 @@ public interface ProjectMembershipRepository extends JpaRepository<ProjectMember
             "(SELECT pm.user.id FROM ProjectMembership pm WHERE pm.project.id = ?1) " +
             "ORDER BY u.username")
     List<User> findNonProjectMembers(Long projectId);
+
+    @Query("SELECT pm.project FROM ProjectMembership pm W" +
+            "HERE pm.user.id = ?1 ORDER BY pm.project.name")
+    List<Project> findProjectsWhereUserIsMember(Long userId);
 }

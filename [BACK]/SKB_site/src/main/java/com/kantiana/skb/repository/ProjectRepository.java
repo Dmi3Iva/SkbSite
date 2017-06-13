@@ -2,6 +2,7 @@ package com.kantiana.skb.repository;
 
 import com.kantiana.skb.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -11,4 +12,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     Project findById(Long id);
 
     List<Project> findAllByOrderByName();
+
+    @Query ("SELECT n FROM Project n ORDER BY n.dateOfStart DESC")
+    List<Project> findTop();
 }

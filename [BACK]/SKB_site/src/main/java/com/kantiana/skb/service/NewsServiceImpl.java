@@ -41,4 +41,13 @@ public class NewsServiceImpl implements NewsService {
     public List<News> findAllByOrderByTimeOfCreation() {
         return newsRepository.findAllByOrderByTimeOfCreation();
     }
+
+    @Override
+    public List<News> findTop(int number) {
+        List<News> topList = newsRepository.findTop();
+        while (number < topList.size()){
+            topList.remove(number);
+        }
+        return topList;
+    }
 }

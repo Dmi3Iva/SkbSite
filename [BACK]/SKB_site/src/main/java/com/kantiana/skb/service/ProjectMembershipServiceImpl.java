@@ -35,6 +35,11 @@ public class ProjectMembershipServiceImpl implements ProjectMembershipService {
         return projectMembershipRepository.findNonProjectMembers(projectId);
     }
 
+    @Override
+    public List<Project> findProjectsWhereUserIsMember(Long userId) {
+        return projectMembershipRepository.findProjectsWhereUserIsMember(userId);
+    }
+
     // Удаление
     @Override
     public void removeById(Long id) {

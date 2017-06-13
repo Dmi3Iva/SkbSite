@@ -37,6 +37,8 @@ public class UserController {
     private SecurityService securityService;
     @Autowired
     private UserValidator userValidator;
+    @Autowired
+    private ProjectMembershipService projectMembershipService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -44,8 +46,10 @@ public class UserController {
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model, String logout) {
         // Передаём в index.jsp все новости
-        List<News> news = newsService.getAllNews();
+        List<News> news = newsService.findTop(2);
         model.addAttribute("news", news);
+        List<Project> projects = projectService.getAllProjects();
+        model.addAttribute("projects", projects);
         // Если пользователь вышел сообщаем ему об этом
         if (logout != null) {
             model.addAttribute("logoutMessage", "Вы успешно вышли");
@@ -87,8 +91,12 @@ public class UserController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         User user = securityService.findLoggedUser();
+        if (user == null) {
+            return "redirect:/";
+        }
         model.addAttribute("user", user);
         model.addAttribute("logUser", user);
+        model.addAttribute("userProjects", projectMembershipService.findProjectsWhereUserIsMember(user.getId()));
         return "profile";
     }
 
@@ -99,7 +107,7 @@ public class UserController {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("user", user);
         model.addAttribute("logUser", logUser);
-
+        model.addAttribute("userProjects", projectMembershipService.findProjectsWhereUserIsMember(user.getId()));
         return "profile";
     }
 

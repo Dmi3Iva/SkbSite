@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${isEditing == true}">Изменение проекта <a href="/project-detailed?id=${project.id}">${project.name}</a></c:if>
+                        <c:if test="${isEditing == true}">Изменение проекта <a href="/project-detailed?id=${project.id}">"${project.name}"</a></c:if>
                         <c:if test="${isEditing == false}"> Добавление проекта</c:if>
                     </h3>
                 </li>
