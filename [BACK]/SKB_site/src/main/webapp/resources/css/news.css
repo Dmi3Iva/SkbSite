@@ -5,7 +5,7 @@
   margin-bottom: 40px;
 }
 .row{
-  margin-top: 40px;
+  margin-top: 0px;
 
 }
 .blue-box{
@@ -113,4 +113,10 @@ font-size:12px;
 .new{
   border-left: 5px solid var(--blue);
   padding-left: 15px;
+}
+
+/*Если на странице мало контента, то футер все равно будет внизу*/
+.empty-news-list {
+    height: 100%;
+    padding-bottom: 5%;
 }

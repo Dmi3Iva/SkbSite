@@ -120,7 +120,7 @@
                             <div class="col-xs-offset-5 col-xs-7">
                                 <button type="submit" class="btn btn-primary btn-lg">Регистрация</button>
                                 <!--<input type="submit" class="btn btn-primary btn-lg" value="Регистрация"> -->
-                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/index';" value="Назад">
+                                <input type="button" class="btn btn-back btn-lg" onClick="history.go(-1);return true;" value="Назад">
                             </div>
                         </div>
                     </form:form>

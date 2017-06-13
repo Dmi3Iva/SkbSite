@@ -18,6 +18,10 @@
     margin: auto;
 }
 
+.item a {
+    text-decoration: none;
+}
+
 /*Контент*/
 #blockBook .link a,#blockBook.link a:hover,#blockBook .link a:focus,
 #events .link a,#events .link a:hover,#events .link a:focus{
@@ -53,7 +57,7 @@
 }
 
 .row{
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 #bookbtn {

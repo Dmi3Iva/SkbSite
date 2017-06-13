@@ -25,10 +25,19 @@
 
 <%@include file="header.jsp" %>
 
-
-<h1 class="text-center">О нас</h1>
-
 <div class="container content">
+    <div class="row">
+        <!--Новости раздел-->
+        <div class="col-xs-6" >
+            <ul class="titleHead">
+                <li><div class="smallBlueBox"></div></li>
+                <li><h3>О нас</h3></li>
+            </ul>
+        </div>
+        <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='#';" value="Редактировать">
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-2">
             <div class="text">
@@ -54,15 +63,15 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-2">
+        <div class="col-sm-8 col-sm-offset-2">
             <div class="text">
                 <p>Так получилось, что такой важной площадки на данный момент не имеется и созданием её занялись  студенты, для них это курсовая. В процессе разработки ими были исследованы следующие программные компоненты, языки вёрстки, языки программирования и фреймворки: Jetty(сервер), Java, Spring, html, css, javaScript, jsp, postgreSQL. Также разработка имела в виду под собой работу приложения с использованием распараллеливания процессов, которая осуществлена с помощью java и фреймворка spring.
                 </p>
             </div>
         </div>
-        <div class="col-sm-4">
-            <img class="image" src="../../resources/images/Photo/IMG_0012.JPG">
-        </div>
+        <%--<div class="col-sm-4">--%>
+            <%--<img class="image" src="../../resources/images/Photo/IMG_0012.JPG">--%>
+        <%--</div>--%>
 
     </div>
 

@@ -4,9 +4,6 @@ h1{
     color: var(--blue);
 }
 
-.content{
-    margin-top:80px;
-}
 .text{
     color:#333;
 }
@@ -14,4 +11,70 @@ h1{
 .image{
     width: 100%;
     margin-bottom: 15px;
+}
+
+.content {
+}
+
+/**/
+.titleHead{
+    background-color: var(--blue);
+    color: var(--white);
+    width:70%;
+}
+
+.titleHead div{
+    float:right;
+}
+
+ul.titleHead li{
+    display: inline-block;
+    white-space:nowrap;
+    padding: 0px;
+}
+
+ul.titleHead{
+    padding: 0px;
+    width: 100%;
+    height: 70px;
+}
+ul.titleHead li:first-child{
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+}
+
+ul.titleHead li:nth-child(2){
+    padding: 0px 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+ul.titleHead li:nth-child(3){
+    margin-top: 25px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.smallBlueBox{
+    height: 70px;
+    width: 15px;
+    background-color: #3095ff;
+}
+
+/*форма ссылки*/
+.titleHead div a{
+    color:black;
+    padding: 4px 10px;
+    border-radius: 26px;
+    background-color: #3095ff;
+    text-decoration: none;
+}
+
+.titleHead div a:hover{
+    background-color: var(--blue-btn-action);
+}
+
+input {
+    color: #000;
 }

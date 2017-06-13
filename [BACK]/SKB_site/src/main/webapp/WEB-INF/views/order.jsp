@@ -88,10 +88,12 @@
   </c:forEach>
 </c:if>
     <c:if test="${empty ordersList}">
-      <h1>
-        К сожалению заказов на данный момент нет<br>
-        :(
-      </h1>
+      <div class="empty-orders-list">
+        <h1>
+          К сожалению заказов на данный момент нет<br>
+          :(
+        </h1>
+      </div>
     </c:if>
 
   </div>
