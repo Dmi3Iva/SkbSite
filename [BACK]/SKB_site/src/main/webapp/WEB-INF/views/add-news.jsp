@@ -46,17 +46,29 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${news.id > 0}">Изменение новости</c:if>
-                        <c:if test="${empty news.id }"> Добавление новости</c:if>
+                        <c:if test="${news.id > 0}">
+                            Изменение новости
+                        </c:if>
+                        <c:if test="${empty news.id}">
+                            Добавление новости
+                        </c:if>
                     </h3>
                 </li>
             </ul>
         </div>
     </div>
 
+    <c:if test="${news.id > 0}">
+        Изменение новости
+    </c:if>
+    <c:if test="${empty news.id}">
+        Добавление новости
+    </c:if>
+    <c:if test="${news.project != null}">
+        проекта <a href="/project-detailed?id=${news.project.id}">${news.project.name}</a>
+    </c:if>
 
-    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data" >
-
+    <form:form method="POST" modelAttribute="news" enctype="multipart/form-data">
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
@@ -71,11 +83,16 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3">Проект, к которому новость привязана</label>
-                        <form:select path="project.id">
-                            <form:option value="-1" selected="selected">Отсутствует</form:option>
-                            <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
-                        </form:select>
-                        <%--<form:select path="project.id" items="${allProjects}" itemLabel="name" itemValue="id"></form:select>--%>
+                        <c:if test="${news.project != null}">
+                            <a href="/project-detailed?id=${news.project.id}">${news.project.name}</a>
+                            <form:input path="project.id" value="${news.project.id}" cssStyle="visibility: hidden"/>
+                        </c:if>
+                        <c:if test="${news.project == null}">
+                            <form:select path="project.id">
+                                <form:option value="-1" selected="selected">Отсутствует</form:option>
+                                <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
+                            </form:select>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
@@ -98,7 +115,7 @@
                     <div class="container">
                         <div class="col-xs-offset-9 col-xs-3">
                             <div class="form-group">
-                                <c:if test="${ empty news.id }">
+                                <c:if test="${empty news.id}">
                                     <button type="submit" formaction="/add-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
                                         Добавить новость
                                     </button>

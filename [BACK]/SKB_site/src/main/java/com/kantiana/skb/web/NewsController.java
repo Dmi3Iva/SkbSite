@@ -71,11 +71,14 @@ public class NewsController {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
+
+        //TODO: Доделать функцию сохранения комментариев
         News news = newsService.findById(newsId);
         commentForm.setNews(news);
         commentForm.setAuthor(securityService.findLoggedUser());
         commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         commentService.save(commentForm);
+
         // Нужно делать редирект вместо возвращения имени jsp,
         // чтобы комментарий отобразился, очистился кэш и всё было хорошо.
         return "redirect:/news-detailed?newsId=" + newsId;
@@ -86,21 +89,25 @@ public class NewsController {
     //-----------------------------------------
     @RequestMapping(value = "/add-news", method = RequestMethod.GET)
     public String addNews(Model model, Long projectId) {
-        model.addAttribute("news", new News());
+        News news = new News();
         if (projectId == null) {
             model.addAttribute("allProjects", projectService.getAllProjects());
         } else {
-            model.addAttribute("project", projectService.findById(projectId));
+            Project project = projectService.findById(projectId);
+            news.setProject(project);
         }
+        model.addAttribute("news", news);
         return "add-news";
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, Long projectId, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-            return "add-news";
+            return "/add-news" + (projectId != null ? "?projectId" + projectId : "");
         }
+
         // Инициализируем неинициализированные поля
+        //TODO: Доделать функцию сохранения новостей
         news.setPhotoPath(uploadFile(file));
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
@@ -108,6 +115,7 @@ public class NewsController {
 //        news.setProject(null); // пока null
         news.setProject(news.getProject() != null ? projectService.findById(news.getProject().getId()) : null);
         newsService.save(news);
+
         return "redirect:/news";
     }
 
@@ -129,6 +137,8 @@ public class NewsController {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
+
+        //TODO: Сделать функцию обновления новости
         News oldNews= newsService.findById(news.getId());
         if(oldNews ==null) return "redirect:/news";
         if(file.getSize() > 0)
@@ -139,12 +149,14 @@ public class NewsController {
         oldNews.setContent(news.getContent());
         oldNews.setName(news.getName());
         newsService.save(oldNews);
+
         return "redirect:/news";
     }
 
     //-----------------------------------------
     //      УДАЛЕНИЕ НОВОСТЕЙ
     //-----------------------------------------
+    //TODO: Метод должен быть DELETE или POST на крайний случай
     @RequestMapping(value = "/del-news", method = RequestMethod.GET)
     public String editNews(Long newsId) {
         News news = newsService.findById(newsId);

@@ -42,7 +42,12 @@
             </ul>
         </div>
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
+            <c:if test="${project != null}">
+                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news?projectId=${project.id}';" value="Добавить новость">
+            </c:if>
+            <c:if test="${project == null}">
+                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
+            </c:if>
         </div>
     </div>
     <!--Новости уровень 1-->
