@@ -38,9 +38,11 @@
         <li><h3>Оборудование</h3></li>
       </ul>
     </div>
-    <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+    <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+      <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
-    </div>
+      </div>
+    </sec:authorize>
   </div>
 
   <c:if test="${empty equipmentTypeList}">

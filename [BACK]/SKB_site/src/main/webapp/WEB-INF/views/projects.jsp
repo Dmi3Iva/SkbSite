@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
@@ -41,9 +42,11 @@
             <h3>Проекты</h3></li>
         </ul>
       </div>
+      <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
             <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-project';" value="Добавить проект">
         </div>
+      </sec:authorize>
     </div>
     <!--Новости уровень 1-->
 

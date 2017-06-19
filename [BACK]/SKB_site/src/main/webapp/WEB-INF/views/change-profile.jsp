@@ -33,7 +33,7 @@
 <%@include file="header.jsp" %>
 
 <!--можно изменить себя -->
-    <%--<h2 style="color: #0d3349">AccedToChange</h2>--%> 
+    <%--<h2 style="color: #0d3349">AccedToChange</h2>--%>
 <div class="personal_information">
     <div class="container">
         <div class="row">

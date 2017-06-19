@@ -32,6 +32,8 @@ public class ProjectsController {
     //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
     public String projects(Model model) {
+        User logUser = securityService.findLoggedUser();
+        model.addAttribute("logUser", logUser);
         List<Project> projectsList = projectService.getAllProjects();
         model.addAttribute("projectsList",projectsList);
         return "projects";

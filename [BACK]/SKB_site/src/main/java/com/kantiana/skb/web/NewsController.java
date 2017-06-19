@@ -3,10 +3,8 @@ package com.kantiana.skb.web;
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.model.Project;
-import com.kantiana.skb.service.CommentService;
-import com.kantiana.skb.service.NewsService;
-import com.kantiana.skb.service.ProjectService;
-import com.kantiana.skb.service.SecurityService;
+import com.kantiana.skb.model.User;
+import com.kantiana.skb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,8 @@ import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
 @Controller
 public class NewsController {
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private NewsService newsService;
@@ -41,6 +41,8 @@ public class NewsController {
     //Контроллер списка новостей
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String news(Model model, Long projectId) {
+        User logUser = securityService.findLoggedUser();
+        model.addAttribute("logUser", logUser);
         Project project = projectService.findById(projectId);
         if (projectId == null || project == null) {
             model.addAttribute("newsList", newsService.findAllByOrderByTimeOfCreation());

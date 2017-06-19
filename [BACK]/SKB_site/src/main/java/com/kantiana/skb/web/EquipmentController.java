@@ -33,6 +33,8 @@ public class EquipmentController {
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment(Model model)
     {
+        User logUser = securityService.findLoggedUser();
+        model.addAttribute("logUser", logUser);
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
         return "equipment";

@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.Order;
+import com.kantiana.skb.model.User;
 import com.kantiana.skb.service.OrdersService;
 import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.SecurityService;
@@ -33,6 +34,8 @@ public class OrdersController {
     //Контроллер списка новостей
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public String order(Model model) {
+        User logUser = securityService.findLoggedUser();
+        model.addAttribute("logUser", logUser);
         List<Order> ordersList= ordersService.getAllOrders();
         model.addAttribute("ordersList", ordersList);
         return "order";
