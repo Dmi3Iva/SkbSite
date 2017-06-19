@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="col-xs-4 image hidden-xs hidden-sm">
-                    <img src="${item.photoPath}" alt="girl" width="100%">
+                    <img src="${item.photoPath}" alt="${item.name}" width="100%">
                 </div>
             </div>
             <br>
