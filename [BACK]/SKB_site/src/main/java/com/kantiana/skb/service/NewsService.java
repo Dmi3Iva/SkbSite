@@ -2,19 +2,22 @@ package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.News;
 import com.kantiana.skb.model.Project;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface NewsService {
-    public void save(News news);
+    void save(News news);
 
-    public List<News> getAllNews();
+    void save(News news, String photoPath);
 
-    public News findById(Long id);
+    List<News> getAllNews();
 
-    public void delete(Long newsId);
+    News findById(Long id);
 
-    public void delete(News news);
+    void delete(Long newsId);
+
+    void delete(News news);
 
     List<News> findAllByProjectIdOrderByTimeOfCreation(Long projectId);
 

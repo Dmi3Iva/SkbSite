@@ -89,7 +89,7 @@
                         </c:if>
                         <c:if test="${news.project == null}">
                             <form:select path="project.id">
-                                <form:option value="-1" selected="selected">Отсутствует</form:option>
+                                <form:option value="null" selected="selected">Отсутствует</form:option>
                                 <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
                             </form:select>
                         </c:if>

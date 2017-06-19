@@ -92,21 +92,12 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, Long projectId, @RequestParam("file") MultipartFile file) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, Long projectId, @RequestParam("file") MultipartFile image) {
         if (bindingResult.hasErrors()) {
             return "/add-news" + (projectId != null ? "?projectId" + projectId : "");
         }
-
-        // Инициализируем неинициализированные поля
-        //TODO: Доделать функцию сохранения новостей
-        news.setPhotoPath(uploadFile(file));
-        news.setAuthor(securityService.findLoggedUser());
-        news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-//        news.setProject(null); // пока null
-        news.setProject(news.getProject() != null ? projectService.findById(news.getProject().getId()) : null);
-        newsService.save(news);
-
+        String photoPath = uploadFile(image);
+        newsService.save(news, photoPath);
         return "redirect:/news";
     }
 
