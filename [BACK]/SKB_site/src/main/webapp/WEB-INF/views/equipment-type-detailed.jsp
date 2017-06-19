@@ -75,18 +75,7 @@
       </div>
     </div>
 
-    <form:form method="POST" modelAttribute="equipment" action="/equipment-type-detailed${equipmentType.id}">
-      <div class="form-group">
-        <label class="control-label col-xs-3" for="equipmentNumber">Добавить новую модель</label>
-        <spring:bind path="uniqueNumber">
-          <div class="col-xs-9">
-            <form:textarea path="uniqueNumber" placeholder="номер модели" class="form-control" id="equipmentNumber"></form:textarea>
-            <form:errors path="uniqueNumber"></form:errors>
-          </div>
-        </spring:bind>
-      </div>
-      <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Добавить</button>
-    </form:form>
+
 
 
   
