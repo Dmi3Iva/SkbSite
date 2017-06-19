@@ -71,17 +71,8 @@ public class NewsController {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
-
-        //TODO: Доделать функцию сохранения комментариев
-        News news = newsService.findById(newsId);
-        commentForm.setNews(news);
-        commentForm.setAuthor(securityService.findLoggedUser());
-        commentForm.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        commentService.save(commentForm);
-
-        // Нужно делать редирект вместо возвращения имени jsp,
-        // чтобы комментарий отобразился, очистился кэш и всё было хорошо.
-        return "redirect:/news-detailed?newsId=" + newsId;
+        commentService.save(commentForm, newsId);
+        return "redirect:/news-detailed?newsId=" + newsId; // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
     }
 
     //-----------------------------------------

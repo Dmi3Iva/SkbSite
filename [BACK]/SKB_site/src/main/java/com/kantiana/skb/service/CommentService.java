@@ -1,13 +1,16 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Comment;
+import com.kantiana.skb.model.News;
 
 import java.util.List;
 
 public interface CommentService {
-    public void save(Comment comment);
+    void save(Comment comment);
 
-    public List<Comment> getAllComments();
+    void save(Comment comment, Long newsId);
+
+    List<Comment> getAllComments();
 
     List<Comment> findAllByNewsIdOrderByTimeOfCreation(Long newsId);
 }
