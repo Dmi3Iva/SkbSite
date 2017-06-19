@@ -42,10 +42,14 @@
                         <td>${item.id}</td>
                         <td>${item.uniqueNumber}</td>
                         <td>
-                            <input type="button" class="btn btn-default" onClick="self.location.href='/equipment-table-${equipmentType.id}';" value="Редактировать UN"/>
+                            <form:form method="post" action="/edit-equipment-${item.id}">
+                                <button type="submit" class="btn btn-default" onClick="( prompt('Введите новый UN для ${item.uniqueNumber}.') ;" value="Редактировать UN"/>
+                            </form:form>
                         </td>
                         <td>
-                            <input type="button" class="btn btn-default"  onClick="self.location.href='/equipment-table-${equipmentType.id}';" value="Удалить"/>
+                            <form:form method="post" action="/del-equipment-${item.id}">
+                                <input type="button" class="btn btn-default" onClick="(confirm('Вы уверены что хотите удалить ${item.uniqueNumber}?'))" value="Удалить"/>
+                            </form:form>
                         </td>
                     </tr>
                 </c:forEach>
