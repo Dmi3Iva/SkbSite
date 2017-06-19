@@ -96,6 +96,7 @@
             </div>
             <br>
         </c:forEach>
+
     </c:if>
     <c:if test="${empty newsList}">
         <div class="empty-list">
@@ -106,18 +107,16 @@
         </div>
     </c:if>
 
-  </div>
-    <c:if test="${empty newsList}">
-        <div class="empty-news-list">
-            <h2>
-                К сожалению список новостей пуст <br>
-                :(
-            </h2>
-        </div>
-    </c:if>
+</div>
 
-
-<%@include file="footer.jsp" %>
+<c:choose>
+    <c:when test="${empty newsList}">
+        <%@include file="footer_absolute.jsp"%>
+    </c:when>
+    <c:when test="${!empty newsList}">
+        <%@include file="footer.jsp"%>
+    </c:when>
+</c:choose>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

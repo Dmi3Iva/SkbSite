@@ -44,12 +44,10 @@
   </div>
 
   <c:if test="${empty equipmentTypeList}">
-    <div class="empty-equipment-list">
       <h1>
         К сожалению на данный момент оборудования нет<br>
         :(
       </h1>
-    </div>
   </c:if>
 
   <c:if test="${!empty equipmentTypeList}">
@@ -79,9 +77,17 @@
   </c:forEach>
   </c:if>
 </div>
+
+<c:choose>
+  <c:when test="${empty equipmentTypeList}">
+      <%@include file="footer_absolute.jsp"%>
+  </c:when>
+  <c:when test="${!empty equipmentTypeList}">
+      <%@include file="footer.jsp"%>
+  </c:when>
+</c:choose>
 <!--end main-->
 
-  <%@include file="footer.jsp" %>
 
     <script src="../../resources/js/jquery.min.js"></script>
     <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

@@ -88,17 +88,21 @@
   </c:forEach>
 </c:if>
     <c:if test="${empty ordersList}">
-      <div class="empty-orders-list">
         <h1>
           К сожалению заказов на данный момент нет<br>
           :(
         </h1>
-      </div>
     </c:if>
+</div>
 
-  </div>
-
-  <%@include file="footer.jsp" %>
+<c:choose>
+  <c:when test="${empty ordersList}">
+    <%@include file="footer_absolute.jsp"%>
+  </c:when>
+  <c:when test="${!empty ordersList}">
+    <%@include file="footer.jsp"%>
+  </c:when>
+</c:choose>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
