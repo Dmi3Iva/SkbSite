@@ -42,13 +42,13 @@
                         <td>${item.id}</td>
                         <td>${item.uniqueNumber}</td>
                         <td>
-                            <form:form method="post" action="/edit-equipment-${item.id}">
-                                <button type="submit" class="btn btn-default" onClick="( prompt('Введите новый UN для ${item.uniqueNumber}.') ;" value="Редактировать UN"/>
+                            <form:form method="post" action="/edit-equipment-${item.id}" modelAttribute="equipment">
+                                <form:input type="submit" class="btn btn-default" onClick="( prompt('Введите новый UN для ${item.uniqueNumber}.') )" value="Редактировать UN" path="uniqueNumber"/>
                             </form:form>
                         </td>
                         <td>
                             <form:form method="post" action="/del-equipment-${item.id}">
-                                <input type="button" class="btn btn-default" onClick="(confirm('Вы уверены что хотите удалить ${item.uniqueNumber}?'))" value="Удалить"/>
+                                <input type="submit" class="btn btn-default" onClick="(confirm('Вы уверены что хотите удалить устройство ${item.uniqueNumber}?'))" value="Удалить" />
                             </form:form>
                         </td>
                     </tr>
