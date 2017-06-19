@@ -126,7 +126,7 @@
             <div class="status-upload">
               <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
                 <spring:bind path="content">
-                  <form:textarea path="content" placeholder="Пожалуйста, ничего не пиши сюда"/>
+                  <form:textarea path="content" placeholder="Ваш комментарий"/>
                   <form:errors path="content"/>
                   <%--<ul>--%>
                   <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>

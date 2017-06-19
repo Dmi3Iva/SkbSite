@@ -1,7 +1,11 @@
 <%@page pageEncoding="UTF-8"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!doctype html>
 <html>
+<head>
+    <link href="${contextPath}/resources/css/footer.css" rel="stylesheet">
+</head>
 <body>
 <footer class="footer_navbar">
     <div class="container">
