@@ -33,7 +33,7 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-md-8">
         <ul class="titleHead">
           <li>
             <div class="smallBlueBox"></div>
