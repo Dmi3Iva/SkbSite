@@ -90,7 +90,11 @@
                             </li>
                             <div class="form-group">
                                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
-                                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${item.id}':1/1;" value="Удалить">
+                                <form method="POST" action="/delete-news" class="btn">
+                                    <input type="hidden" value="${item.id}" name="newsId"/>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
+                                </form>
                             </div>
                         </ul>
                     </div>

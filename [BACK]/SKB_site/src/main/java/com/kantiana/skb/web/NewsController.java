@@ -147,11 +147,10 @@ public class NewsController {
     //-----------------------------------------
     //      УДАЛЕНИЕ НОВОСТЕЙ
     //-----------------------------------------
-    //TODO: Метод должен быть DELETE или POST на крайний случай
-    @RequestMapping(value = "/del-news", method = RequestMethod.GET)
-    public String editNews(Long newsId) {
-        News news = newsService.findById(newsId);
-        newsService.delete(news);
+    //TODO: Метод должен быть DELETE
+    @RequestMapping(value = "/delete-news", method = RequestMethod.POST)
+    public String deleteNews(Long newsId) {
+        newsService.delete(newsId);
         return "redirect:/news";
     }
 }
