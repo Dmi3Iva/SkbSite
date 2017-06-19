@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -45,10 +46,12 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test = "${!empty news}">
-        <div class="form-group">
-            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
-            <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${news.id}':1/1;" value="Удалить">
-        </div>
+        <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+            <div class="form-group">
+                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
+                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${news.id}':1/1;" value="Удалить">
+            </div>
+        </sec:authorize>
         <c:set var="newsProject" value="${news.project}"/>
         <div class="row">
             <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
@@ -90,7 +93,7 @@
         </div>
       <div class="row">
         <div class="col-md-12">
-          <h3>Комментарии()</h3>
+          <h3>Комментарии(${commentsForCurrentNews.size()})</h3>
         </div>
       </div>
       <%--<c:if test="${!empty comments}">--%>
@@ -124,7 +127,7 @@
         <div class="col-md-9">
           <div class="widget-area no-padding blank">
             <div class="status-upload">
-              <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
+              <se method="POST" modelAttribute="commentForm" class="form-horizontal">
                 <spring:bind path="content">
                   <form:textarea path="content" placeholder="Ваш комментарий"/>
                   <form:errors path="content"/>
@@ -135,9 +138,7 @@
                   <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
                   <%--</ul>--%>
                 </spring:bind>
-
                 <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
-              </form:form>
             </div><!-- Status Upload  -->
           </div><!-- Widget Area -->
         </div>

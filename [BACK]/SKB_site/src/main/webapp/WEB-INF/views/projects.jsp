@@ -81,6 +81,7 @@
                 ${project.about}
               </p>
                   <a href="/project-detailed?id=${project.id}">Подробнее...</a>
+              <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
                 <div class="form-group">
                   <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
                   <form method="POST" action="/delete-project" class="btn">
@@ -89,6 +90,7 @@
                     <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
                   </form>
                 </div>
+              </sec:authorize>
               </ul>
             </div>
           </div>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
@@ -45,14 +46,16 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test="${!empty project}">
-      <div class="form-group">
-        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
-        <form method="POST" action="/delete-project" class="btn">
-          <input type="hidden" value="${project.id}" name="projectId"/>
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-          <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
-        </form>
-      </div>
+      <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+        <div class="form-group">
+          <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
+          <form method="POST" action="/delete-project" class="btn">
+            <input type="hidden" value="${project.id}" name="projectId"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
+          </form>
+        </div>
+      </sec:authorize>
         <div class="row">
           <div class="col-md-8">
             <div class="new">

@@ -77,15 +77,17 @@
                 </c:if>
               </p>
             </li>
-            <div class="form-group">
-              <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
-              <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
-            </div>
+            <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+              <div class="form-group">
+                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
+                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
+              </div>
+            </sec:authorize>
           </ul>
         </div>
       </div>
       <div class="col-xs-4 image hidden-xs hidden-sm">
-        <img src="${item.photoPath}" alt="girl" width="100%">
+        <img src="${item.photoPath}" alt="${item.name}Picture" width="100%">
       </div>
     </div>
   </c:forEach>
