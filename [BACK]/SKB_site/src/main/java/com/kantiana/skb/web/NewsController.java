@@ -46,8 +46,7 @@ public class NewsController {
         Project project = projectService.findById(projectId);
         if (projectId == null || project == null) {
             model.addAttribute("newsList", newsService.findAllByOrderByTimeOfCreation());
-        }
-        else {
+        } else {
             model.addAttribute("project", project);
             model.addAttribute("newsList", newsService.findAllByProjectIdOrderByTimeOfCreation(projectId));
         }
@@ -96,8 +95,7 @@ public class NewsController {
         if (bindingResult.hasErrors()) {
             return "/add-news" + (projectId != null ? "?projectId" + projectId : "");
         }
-        String photoPath = uploadFile(image);
-        newsService.save(news, photoPath);
+        newsService.save(news, image);
         return "redirect:/news";
     }
 
@@ -115,23 +113,11 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
-
-        //TODO: Сделать функцию обновления новости
-        News oldNews= newsService.findById(news.getId());
-        if(oldNews ==null) return "redirect:/news";
-        if(file.getSize() > 0)
-            oldNews.setPhotoPath(uploadFile(file));
-        oldNews.setEditor(securityService.findLoggedUser());
-        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
-        oldNews.setProject(news.getProject() != null ? projectService.findById(oldNews.getProject().getId()) : null);
-        oldNews.setContent(news.getContent());
-        oldNews.setName(news.getName());
-        newsService.save(oldNews);
-
+        newsService.update(news, image);
         return "redirect:/news";
     }
 

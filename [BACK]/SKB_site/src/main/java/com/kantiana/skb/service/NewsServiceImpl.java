@@ -24,12 +24,30 @@ public class NewsServiceImpl implements NewsService {
         newsRepository.save(news);
     }
 
-    public void save(News news, String photoPath) {
+    public void save(News news, MultipartFile image) {
+        String photoPath = uploadFile(image);
         news.setPhotoPath(photoPath);
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         save(news);
+    }
+
+    @Override
+    public void update(News news, MultipartFile image) {
+        News oldNews= findById(news.getId());
+        if(oldNews == null) {
+            return;
+        }
+        if (image.getSize() > 0) {
+            String photoPath = uploadFile(image);
+            oldNews.setPhotoPath(photoPath);
+        }
+        oldNews.setEditor(securityService.findLoggedUser());
+        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
+        oldNews.setName(news.getName());
+        oldNews.setContent(news.getContent());
+        save(oldNews);
     }
 
     public void delete(Long newsId){
