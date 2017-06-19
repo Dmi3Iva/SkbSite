@@ -17,6 +17,7 @@ public class WorkingWithFile {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
+
     static public void  UploadFile(){
     }
 
@@ -32,7 +33,7 @@ public class WorkingWithFile {
 
                 String rootPath = System.getProperty("user.dir");
                 //Директория
-                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images\\hosting");
+                File dir = new File(rootPath+"\\..\\webapps\\ROOT\\resources\\images\\");
 
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -40,13 +41,13 @@ public class WorkingWithFile {
 
                 File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
                 Random a= new Random();
-                res = "/resources/images/hosting/"+name;
+                res = "/resources/images/"+name;
                 String random = new String();
                 while(uploadedFile.exists())
                 {
                     random = String.valueOf(a.nextInt());
                     uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
-                    res = "/resources/images/hosting/"+random +name;
+                    res = "/resources/images/"+random +name;
                 }
 
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
@@ -54,7 +55,8 @@ public class WorkingWithFile {
                 stream.flush();
                 stream.close();
 
-                logger.info("uploaded: " + uploadedFile.getAbsolutePath());
+                logger.info("uploaded: " + uploadedFile.getAbsolutePath()+'\n'+"uploaded-cath:"+uploadedFile.getCanonicalPath());
+
 
                 return res;
 

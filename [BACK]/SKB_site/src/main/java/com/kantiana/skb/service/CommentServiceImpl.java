@@ -1,6 +1,7 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Comment;
+import com.kantiana.skb.model.News;
 import com.kantiana.skb.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,27 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
+    @Autowired
+    private NewsService newsService;
+    @Autowired
+    private SecurityService securityService;
+
 
     public void save(Comment comment) {
         commentRepository.save(comment);
+    }
+
+    @Override
+    public void save(Comment comment, Long newsId) {
+        News news = newsService.findById(newsId);
+        if (news == null) {
+            return;
+        }
+        comment.setNews(news);
+        comment.setAuthor(securityService.findLoggedUser());
+        comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        save(comment);
     }
 
     public List<Comment> getAllComments() {

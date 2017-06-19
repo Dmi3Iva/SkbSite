@@ -43,7 +43,7 @@
                 </div>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == project.captain.username}'">
                     <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-                        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
+                        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news?projectId=${project.id}';" value="Добавить новость">
                     </div>
                 </sec:authorize>
             </c:when>
@@ -105,7 +105,11 @@
                             <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == item.author.username}'">
                                 <div class="form-group">
                                     <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
-                                    <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${item.id}':1/1;" value="Удалить">
+                                    <form method="POST" action="/delete-news" class="btn">
+                                        <input type="hidden" value="${item.id}" name="newsId"/>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
+                                    </form>
                                 </div>
                             </sec:authorize>
                         </ul>

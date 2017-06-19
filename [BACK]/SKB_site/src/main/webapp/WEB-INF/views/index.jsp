@@ -139,9 +139,9 @@
                                 <p class = "title">
                                     <a href="/project-detailed?id=${item.id}">${item.name}</a>
                                 </p>
-                                <p class="article">
+                                <div class="article">
                                         ${item.about}
-                                </p>
+                                </div>
                                 <p class="detailes">
                                     <a href="/project-detailed?id=${item.id}">Подробнее...</a>
                                 </p>
@@ -163,6 +163,9 @@
 <script>window.jQuery</script>
 <script src="../../resources/js/tether.min.js"></script>
 <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+
+<script>
+</script>
 
 </body>
 </html>

@@ -34,7 +34,7 @@
     <!--Новости и проекты-->
     <div class="row">
       <!--Новости раздел-->
-      <div class="col-md-6">
+      <div class="col-md-8">
         <ul class="titleHead">
           <li>
             <div class="smallBlueBox"></div>
@@ -49,7 +49,11 @@
         <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
             <div class="form-group">
                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
-                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${news.id}':1/1;" value="Удалить">
+                <form method="POST" action="/delete-news" class="btn">
+                    <input type="hidden" value="${news.id}" name="newsId"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
+                </form>
             </div>
         </sec:authorize>
         <c:set var="newsProject" value="${news.project}"/>
