@@ -89,7 +89,7 @@
                     <c:forEach items="${news}" var="item">
                         <div class="row">
                             <div class="col-md-6 block">
-                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                                <img src="${item.photoPath}" alt="new${item.id}" width="100%">
                             </div>
                             <div class="col-md-6 block">
                                 <p class="description">
@@ -129,7 +129,7 @@
                     <c:forEach items="${projects}" var="item">
                         <div class="row">
                             <div class="col-md-6 block">
-                                <img src="${contextPath}/resources/images/girl-w250.jpg" alt="news${item.id}" width="100%">
+                                <img src="${item.photoPath}" alt="project${item.id}" width="100%">
                             </div>
                             <div class="col-md-6 block">
                                 <p class="description">

@@ -42,6 +42,8 @@ public class ProjectsController {
     @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
     public String projectDetailed(Model model, @RequestParam("id") Long id) {
         Project project = projectService.findById(id);
+        User logUser = securityService.findLoggedUser();
+        model.addAttribute("logUser", logUser);
         model.addAttribute("project", project);
         model.addAttribute("projectTeam", projectMembershipService.findProjectMembers(id));
         return "project-detailed";

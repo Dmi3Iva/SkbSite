@@ -127,7 +127,7 @@
         <div class="col-md-9">
           <div class="widget-area no-padding blank">
             <div class="status-upload">
-              <se method="POST" modelAttribute="commentForm" class="form-horizontal">
+              <form:form method="POST" modelAttribute="commentForm" class="form-horizontal">
                 <spring:bind path="content">
                   <form:textarea path="content" placeholder="Ваш комментарий"/>
                   <form:errors path="content"/>
@@ -139,6 +139,7 @@
                   <%--</ul>--%>
                 </spring:bind>
                 <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
+              </form:form>
             </div><!-- Status Upload  -->
           </div><!-- Widget Area -->
         </div>

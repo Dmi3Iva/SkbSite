@@ -46,7 +46,7 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test="${!empty project}">
-      <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or '${project.captain.username == logUser.username}'">
         <div class="form-group">
           <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
           <form method="POST" action="/delete-project" class="btn">

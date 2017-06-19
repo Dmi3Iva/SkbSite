@@ -36,7 +36,7 @@
                 <li><h3>О нас</h3></li>
             </ul>
         </div>
-        <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
             <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='#';" value="Редактировать">
         </div>

@@ -31,22 +31,38 @@
     <!--Новости и проекты-->
     <div class="row">
         <!--Новости раздел-->
-        <div class="col-xs-6" >
-            <ul class="titleHead">
-                <li><div class="smallBlueBox"></div></li>
-                <li><h3>
-                    Новости
-                    <c:if test="${!empty project}">
-                        проекта <a href="/project-detailed?id=${project.id}">"${project.name}"</a>
-                    </c:if>
-                </h3></li>
-            </ul>
-        </div>
-        <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
-            <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
-            </div>
-        </sec:authorize>
+        <c:choose>
+            <c:when test="${!empty project}">
+                <div class="col-xs-6" >
+                    <ul class="titleHead">
+                        <li><div class="smallBlueBox"></div></li>
+                        <li><h3>
+                            Новости проекта <a href="/project-detailed?id=${project.id}">"${project.name}"</a>
+                        </h3></li>
+                    </ul>
+                </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == project.captain.username}'">
+                    <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+                        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
+                    </div>
+                </sec:authorize>
+            </c:when>
+            <c:when test="${empty project}">
+                <div class="col-xs-6" >
+                    <ul class="titleHead">
+                        <li><div class="smallBlueBox"></div></li>
+                        <li><h3>
+                            Новости
+                        </h3></li>
+                    </ul>
+                </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+                    <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+                        <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
+                    </div>
+                </sec:authorize>
+            </c:when>
+        </c:choose>
     </div>
     <!--Новости уровень 1-->
 
@@ -86,7 +102,7 @@
                                     </c:if>
                                 </p>
                             </li>
-                            <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+                            <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == item.author.username}'">
                                 <div class="form-group">
                                     <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
                                     <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-news?newsId=${item.id}':1/1;" value="Удалить">
