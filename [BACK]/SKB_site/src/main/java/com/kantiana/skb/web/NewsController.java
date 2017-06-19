@@ -38,7 +38,9 @@ public class NewsController {
     @Autowired
     private SecurityService securityService;
 
-    //Контроллер списка новостей
+    //-----------------------------------------
+    //      ВСЕ НОВОСТИ
+    //-----------------------------------------
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String news(Model model, Long projectId) {
         Project project = projectService.findById(projectId);
@@ -52,6 +54,9 @@ public class NewsController {
         return "news";
     }
 
+    //-----------------------------------------
+    //      КОНКРЕТНАЯ НОВОСТЬ
+    //-----------------------------------------
     @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
     public String newsDetailed(Model model, @RequestParam("newsId") Long newsId) {
         News news = newsService.findById(newsId);
@@ -76,17 +81,17 @@ public class NewsController {
         return "redirect:/news-detailed?newsId=" + newsId;
     }
 
-    //выводит страницу создания и редактирования новости
-    @RequestMapping(value = {"/add-news", "/edit-news"}, method = RequestMethod.GET)
-    public String addNews(Model model, Long newsId) {
-        if (newsId != null) {
-            News news = newsService.findById(newsId);
-            model.addAttribute("news", news);
+    //-----------------------------------------
+    //      ДОБАВЛЕНИЕ НОВОСТЕЙ
+    //-----------------------------------------
+    @RequestMapping(value = "/add-news", method = RequestMethod.GET)
+    public String addNews(Model model, Long projectId) {
+        model.addAttribute("news", new News());
+        if (projectId == null) {
+            model.addAttribute("allProjects", projectService.getAllProjects());
+        } else {
+            model.addAttribute("project", projectService.findById(projectId));
         }
-        else {
-            model.addAttribute("news", new News());
-        }
-        model.addAttribute("allProjects", projectService.getAllProjects());
         return "add-news";
     }
 
@@ -104,6 +109,19 @@ public class NewsController {
         news.setProject(news.getProject() != null ? projectService.findById(news.getProject().getId()) : null);
         newsService.save(news);
         return "redirect:/news";
+    }
+
+    //-----------------------------------------
+    //      РЕДАКТИРОВАНИЕ НОВОСТЕЙ
+    //-----------------------------------------
+    @RequestMapping(value = "/edit-news", method = RequestMethod.GET)
+    public String editNews(Model model, Long newsId) {
+        News news = newsService.findById(newsId);
+        model.addAttribute("news", news);
+        if (news.getProject() == null) {
+            model.addAttribute("allProjects", projectService.getAllProjects());
+        }
+        return "add-news";
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
@@ -124,7 +142,9 @@ public class NewsController {
         return "redirect:/news";
     }
 
-
+    //-----------------------------------------
+    //      УДАЛЕНИЕ НОВОСТЕЙ
+    //-----------------------------------------
     @RequestMapping(value = "/del-news", method = RequestMethod.GET)
     public String editNews(Long newsId) {
         News news = newsService.findById(newsId);
