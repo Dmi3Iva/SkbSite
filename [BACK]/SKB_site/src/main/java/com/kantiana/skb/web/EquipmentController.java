@@ -150,17 +150,27 @@ public class EquipmentController {
         return "equipment-booking";
     }
 
-    @RequestMapping(value = "/equipment-item", method = RequestMethod.GET)
-    public String equipmentItem() {
-        return "equipment-item";
-    }
-
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
     public String equipmentTable(@PathVariable Long idType, Model model) {
         EquipmentType equipmentType = equipmentTypeService.findById(idType);
         model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
+        model.addAttribute("equipmentItem", new Equipment());
+        model.addAttribute("equipmentDelete", new Equipment());
         return "equipment-table";
+    }
+
+    @RequestMapping(value = "/edit-equipment-table", method = RequestMethod.POST)
+    public String editEquipmentTable(@ModelAttribute Equipment equipmentItem) {
+        equipmentService.save(equipmentItem);
+        return "redirect://equipment-table-"+equipmentItem.getEquipmentType().getId();
+    }
+
+    @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
+    public String delEquipmentTable(@ModelAttribute Equipment equipmentDelete) {
+        Long idType = equipmentDelete.getEquipmentType().getId();
+        equipmentService.deleteById(equipmentDelete.getId());
+        return "redirect://equipment-table-"+idType;
     }
 }

@@ -42,13 +42,26 @@
                         <td>${item.id}</td>
                         <td>${item.uniqueNumber}</td>
                         <td>
-                            <form:form method="post" action="/edit-equipment-${item.id}" modelAttribute="equipment">
-                                <form:input type="submit" class="btn btn-default" onClick="( prompt('Введите новый UN для ${item.uniqueNumber}.') )" value="Редактировать UN" path="uniqueNumber"/>
+                            <form:form method="post" modelAttribute="equipmentItem" class="form-inline" action="/edit-equipment-table">
+                                <div class="form-group">
+                                    <label for="editEquipmentName">Изменить UN устройства</label>
+                                    <spring:bind path="uniqueNumber">
+                                        <form:hidden path="equipmentType" value = "${equipmentType.id}"/>
+                                        <form:hidden path="id" value = "${item.id}"/>
+                                        <form:input type = "text" path="uniqueNumber" placeholder="идентификационый номер" class="form-control" id="editEquipmentName"></form:input>
+                                        <form:errors path="uniqueNumber"></form:errors>
+                                    </spring:bind>
+                                    <button type="submit" class="btn btn-success">Изменить UN</button>
+                                </div>
                             </form:form>
                         </td>
                         <td>
-                            <form:form method="post" action="/del-equipment-${item.id}">
-                                <input type="submit" class="btn btn-default" onClick="(confirm('Вы уверены что хотите удалить устройство ${item.uniqueNumber}?'))" value="Удалить" />
+                            <form:form method="post" class="form-inline" action="/del-equipment-table" modelAttribute="equipmentDelete">
+                                <div class="form-group">
+                                    <form:hidden path="equipmentType" value="${equipmentType}" />
+                                    <form:hidden path="id" value ="${item.id}" />
+                                    <button type="submit" class="btn btn-deafault">Удалить устройство</button>
+                                </div>
                             </form:form>
                         </td>
                     </tr>
@@ -66,7 +79,7 @@
                         <form:input type = "text" path="uniqueNumber" placeholder="идентификационый номер модели" class="form-control" id="equipmentNumber"></form:input>
                         <form:errors path="uniqueNumber"></form:errors>
                 </spring:bind>
-                <button type="submit" class="btn btn-success green">Добавить новое устройство</button>
+                <button type="submit" class="btn btn-primary">Добавить новое устройство</button>
             </div>
 
         </form:form>

@@ -21,4 +21,11 @@ public class EquipmentServiceImpl implements EquipmentService {
         return equipmentRepository.findAllByEquipmentTypeIdOrderById(equipmentTypeId);
     }
 
+    public Equipment findById(Long id){
+        return equipmentRepository.findById(id);
+    }
+
+    public void deleteById(Long id){
+        equipmentRepository.delete(id);
+    }
 }

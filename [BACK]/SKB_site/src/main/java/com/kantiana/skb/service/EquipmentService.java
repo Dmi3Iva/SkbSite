@@ -8,4 +8,8 @@ public interface EquipmentService {
     public void save(Equipment equipment);
 
     List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
+
+    public Equipment findById(Long id);
+
+    public void deleteById(Long id);
 }
