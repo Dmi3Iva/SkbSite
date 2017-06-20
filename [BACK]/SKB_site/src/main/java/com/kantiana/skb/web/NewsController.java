@@ -1,9 +1,6 @@
 package com.kantiana.skb.web;
 
-import com.kantiana.skb.model.Comment;
-import com.kantiana.skb.model.News;
-import com.kantiana.skb.model.Project;
-import com.kantiana.skb.model.User;
+import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -87,6 +84,19 @@ public class NewsController {
         } else {
             Project project = projectService.findById(projectId);
             news.setProject(project);
+            //для борьбы с незаконным доступом
+            User logUser = securityService.findLoggedUser();
+            User captain = project.getCaptain();
+            Boolean admin = false;
+            for (Role i: logUser.getRoles()){
+                if (i.getName().equals("ROLE_ADMIN")){
+                    admin = true;
+                    break;
+                }
+            }
+            if (logUser.getId() != captain.getId() && !admin){
+                return "redirect:/error403";
+            }
         }
         model.addAttribute("news", news);
         return "add-news";
@@ -108,6 +118,23 @@ public class NewsController {
     public String editNews(Model model, Long newsId) {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
+        //для борьбы с незаконным доступом
+        User logUser = securityService.findLoggedUser();
+        User author = news.getAuthor();
+        //Если новость привязана к проекту, то автором будет создатель проекта
+        if (news.getProject() != null) {
+            author = news.getProject().getCaptain();
+        }
+        Boolean admin = false;
+        for (Role i: logUser.getRoles()){
+            if (i.getName().equals("ROLE_ADMIN")){
+                admin = true;
+                break;
+            }
+        }
+        if (logUser.getId() != author.getId() && !admin){
+            return "redirect:/error403";
+        }
         if (news.getProject() == null) {
             model.addAttribute("allProjects", projectService.getAllProjects());
         }
