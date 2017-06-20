@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ import java.util.Set;
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
 @Controller
+@SessionAttributes("basket")
 public class EquipmentController {
     @Autowired
     private EquipmentTypeService equipmentTypeService;
@@ -31,15 +33,19 @@ public class EquipmentController {
     @Autowired
     private RequestService requestService;
 
+
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment(Model model)
     {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
+
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
+
         return "equipment";
     }
+
 
     @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
@@ -57,7 +63,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/add-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeAddPost(@ModelAttribute("equipmnetType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
     {
         if(bindingResult.hasErrors())
         {
@@ -70,7 +76,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeEditPost(@ModelAttribute("equipmnetType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
     {
         if(bindingResult.hasErrors())
         {
@@ -96,15 +102,23 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
-    public String newsDetailed( Long id,Model model) {
+    public String equipmentDetailed( Long id,Model model,@ModelAttribute("basket") Set<EquipmentType> basket, @ModelAttribute EquipmentType equipmentToBasket) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
+        if(basket ==null) basket = new HashSet<EquipmentType>();
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
+        model.addAttribute("equipmentToBasket", equipmentToBasket);
+        return "equipment-type-detailed";
+    }
+
+    @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
+    public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        basket.add(equipmentTypeService.findById(id));
         return "equipment-type-detailed";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request)
     {
         if(bindingResult.hasErrors())
         {
@@ -116,9 +130,9 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType) {
+    public String equipmentBooking(Model model, Long idType,@ModelAttribute Set<EquipmentType> basket) {
         model.addAttribute("easyTime",new EasyTime());
-
+        model.addAttribute("basket", basket);
         return "equipment-booking";
     }
 

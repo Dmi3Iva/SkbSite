@@ -55,11 +55,11 @@
       <div class="col-md-6">
         <h5>Описание</h5>
         ${equipmentType.about}
-        <a href="/equipment-booking?idType=${equipmentType.id}">
-          <button type="button" class="btn btn-primary btn-lg btn-block">
+        <form:form  action="/equipment-type-detailed">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
             Добавить к бронированию
           </button>
-        </a>
+        </form:form>
       </div>
     </div>
 

@@ -51,6 +51,19 @@
 
 
 
+
+<c:if test="${!empty basket}">
+  <c:forEach items="${basket}" var="item">
+    <div class="row">
+      <div class="col-xs-6">
+        <h2>${item.name}</h2>
+      </div>
+    </div>
+  </c:forEach>
+</c:if>
+      <c:if test="${empty basket}">
+          <h1>EMPTY</h1>
+      </c:if>
   <!--мой вариант -->
   <div class="forFont">
     <div class="container" >

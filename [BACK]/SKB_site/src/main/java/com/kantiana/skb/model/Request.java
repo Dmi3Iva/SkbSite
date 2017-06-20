@@ -39,4 +39,5 @@ public class Request {
     public void setBookingSet(Set<Booking> bookingSet) {
         this.bookingSet = bookingSet;
     }
+
 }
