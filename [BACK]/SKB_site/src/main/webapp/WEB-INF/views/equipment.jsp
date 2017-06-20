@@ -53,6 +53,11 @@
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
       </div>
     </sec:authorize>
+      <div class="col-xs-3">
+          <a class="btn btn-lg btn-primary" href="/equipment-booking">
+              Корзина <span class="badge">2</span>
+          </a>
+      </div>
   </div>
 
   <c:if test="${empty equipmentTypeList}">

@@ -38,7 +38,7 @@
         </ul>
       </div>
       <div class="col-xs-3">
-        <a href="/equipment-table-${equipmentType.id}" class="btn btn-default" role="button">Просмотреть список устройств. Всего(${equipmentType.equipmentSet.size()})</a>
+        <a href="/equipment-table-${equipmentType.id}" class="btn btn-primary" role="button">Просмотреть список устройств <span class="badge">${equipmentType.equipmentSet.size()}</span></a>
       </div>
     </div>
     <c:if test="${!empty equipmentType}">
