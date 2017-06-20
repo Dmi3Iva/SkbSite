@@ -113,13 +113,23 @@
 
           <div class="col-sm-8">
             <div class="panel panel-default">
-              <div class="panel-heading">
-                  <strong><a href="/id${item.author.id}">${item.author.username}</a></strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
-              </div>
+                <div class="panel-heading">
+                    <strong><a href="/id${item.author.id}">${item.author.username}</a></strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
+                </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.id == item.author.id}'">
+                    <div class="form-group">
+                        <form method="POST" action="/delete-comment" class="btn">
+                            <input type="hidden" value="${news.id}" name="newsId"/>
+                            <input type="hidden" value="${item.id}" name="commentId"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
+                        </form>
+                    </div>
+                </sec:authorize>
               <div class="panel-body">
                   ${item.content}
               </div>
-              <!-- /panel-body -->
+                <!-- /panel-body -->
             </div>
             <!-- /panel panel-default -->
           </div>

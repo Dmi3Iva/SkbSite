@@ -73,7 +73,7 @@ public class News {
         this.project = project;
     }
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Comment> getComments() {
         return comments;
     }

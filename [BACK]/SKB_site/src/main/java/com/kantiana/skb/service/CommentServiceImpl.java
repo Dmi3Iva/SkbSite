@@ -18,6 +18,10 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private SecurityService securityService;
 
+    @Override
+    public Comment findById(Long newsId) {
+        return commentRepository.findById(newsId);
+    }
 
     public void save(Comment comment) {
         commentRepository.save(comment);
@@ -33,6 +37,11 @@ public class CommentServiceImpl implements CommentService {
         comment.setAuthor(securityService.findLoggedUser());
         comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         save(comment);
+    }
+
+    @Override
+    public void delete(Long commentId) {
+        commentRepository.delete(commentId);
     }
 
     public List<Comment> getAllComments() {

@@ -10,6 +10,10 @@ public interface CommentService {
 
     void save(Comment comment, Long newsId);
 
+    Comment findById(Long newsId);
+
+    void delete(Long commentId);
+
     List<Comment> getAllComments();
 
     List<Comment> findAllByNewsIdOrderByTimeOfCreation(Long newsId);
