@@ -73,7 +73,7 @@ public class News {
         this.project = project;
     }
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Comment.class, mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Поставил LAZY => заработало удаление
     public Set<Comment> getComments() {
         return comments;
     }
