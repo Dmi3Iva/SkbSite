@@ -37,6 +37,9 @@
           <li><h3>Оборудование</h3></li>
         </ul>
       </div>
+      <div class="col-xs-3">
+        <a href="/equipment-table-${equipmentType.id}" class="btn btn-default" role="button">Просмотреть список устройств. Всего(${equipmentType.equipmentSet.size()})</a>
+      </div>
     </div>
     <c:if test="${!empty equipmentType}">
     <div class="row ">
