@@ -55,11 +55,17 @@
       <div class="col-md-6">
         <h5>Описание</h5>
         ${equipmentType.about}
-        <form:form  action="/equipment-type-detailed">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">
-            Добавить к бронированию
-          </button>
-        </form:form>
+        <form action="equipment-type-detailed" method="post">
+          <input type="hidden" name="id" value="${equipmentType.id}"/>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
+        </form>
+        <%--<form:form  action="/equipment-type-detailed">--%>
+          <%--<form:hidden path="id" />--%>
+          <%--<button type="submit" class="btn btn-primary btn-lg btn-block">--%>
+            <%--Добавить к бронированию--%>
+          <%--</button>--%>
+        <%--</form:form>--%>
       </div>
     </div>
 
