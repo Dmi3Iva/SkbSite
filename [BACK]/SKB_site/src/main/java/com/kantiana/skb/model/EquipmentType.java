@@ -39,7 +39,7 @@ public class EquipmentType {
         return photoPath;
     }
 
-    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Equipment.class, mappedBy = "equipmentType",cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     public Set<Equipment> getEquipmentSet() {
         return equipmentSet;
     }
