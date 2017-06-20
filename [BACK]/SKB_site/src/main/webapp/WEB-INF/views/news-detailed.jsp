@@ -135,12 +135,6 @@
                 <spring:bind path="content">
                   <form:textarea path="content" placeholder="Ваш комментарий"/>
                   <form:errors path="content"/>
-                  <%--<ul>--%>
-                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>--%>
-                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>--%>
-                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>--%>
-                  <%--<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>--%>
-                  <%--</ul>--%>
                 </spring:bind>
                 <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
               </form:form>

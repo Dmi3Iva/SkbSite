@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -102,16 +103,16 @@ public class EquipmentController {
         return "equipment-type-detailed";
     }
 
-    @RequestMapping(value = "/equipment-type-detailed{idType}", method = RequestMethod.POST)
+    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
     public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType)
     {
         if(bindingResult.hasErrors())
         {
-            return "redirect:/equipment-type-detailed?id="+idType;
+            return "redirect:/equipment-table-"+ idType;
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        return "redirect:/equipment-type-detailed?id="+idType;
+        return "redirect:/equipment-table-{idType}";
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
@@ -151,8 +152,29 @@ public class EquipmentController {
         return "equipment-booking";
     }
 
-    @RequestMapping(value = "/equipment-item", method = RequestMethod.GET)
-    public String equipmentItem() {
-        return "equipment-item";
+    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
+    public String equipmentTable(@PathVariable Long idType, Model model) {
+        EquipmentType equipmentType = equipmentTypeService.findById(idType);
+        model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
+        model.addAttribute("equipmentType",equipmentType);
+        model.addAttribute("equipment", new Equipment());
+        model.addAttribute("equipmentItem", new Equipment());
+        model.addAttribute("equipmentDelete", new Equipment());
+        return "equipment-table";
+    }
+
+    @RequestMapping(value = "/edit-equipment-table", method = RequestMethod.POST)
+    public String editEquipmentTable(Long idEquip, String uniqueNumber) {
+        Equipment equipment = equipmentService.findById(idEquip);
+        equipment.setUniqueNumber(uniqueNumber);
+        equipmentService.save(equipment);
+        return "redirect://equipment-table-"+equipment.getEquipmentType().getId();
+    }
+
+    @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
+    public String delEquipmentTable(Long idEquip) {
+        Long idType = equipmentService.findById(idEquip).getEquipmentType().getId();
+        equipmentService.deleteById(idEquip);
+        return "redirect://equipment-table-"+idType;
     }
 }
