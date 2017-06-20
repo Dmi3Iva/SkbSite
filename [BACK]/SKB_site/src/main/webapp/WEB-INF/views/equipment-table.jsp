@@ -82,9 +82,9 @@
 
     <div class="row">
         <div class="col-xs-2">
-            <button type="button" class="btn btn-default" >
+            <a role="button" class="btn btn-default" href="/equipment-type-detailed?id=${equipmentType.id}">
                 Назад
-            </button>
+            </a>
         </div>
     </div>
 </main>

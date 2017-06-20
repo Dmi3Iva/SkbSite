@@ -158,8 +158,6 @@ public class EquipmentController {
         model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
-        model.addAttribute("equipmentItem", new Equipment());
-        model.addAttribute("equipmentDelete", new Equipment());
         return "equipment-table";
     }
 
