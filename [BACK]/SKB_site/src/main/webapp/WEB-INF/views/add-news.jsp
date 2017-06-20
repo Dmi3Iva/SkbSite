@@ -82,19 +82,6 @@
                         </spring:bind>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Проект, к которому новость привязана</label>
-                        <c:if test="${news.project != null}">
-                            <a href="/project-detailed?id=${news.project.id}">${news.project.name}</a>
-                            <form:input path="project.id" value="${news.project.id}" cssStyle="visibility: hidden"/>
-                        </c:if>
-                        <c:if test="${news.project == null}">
-                            <form:select path="project.id">
-                                <form:option value="null" selected="selected">Отсутствует</form:option>
-                                <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
-                            </form:select>
-                        </c:if>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">

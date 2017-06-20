@@ -20,16 +20,31 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private SecurityService securityService;
 
+    private boolean isLegalProjectId(Long projectId) {
+        return projectId > 0;
+    }
+
+    @Override
     public void save(News news) {
+        if (news == null) {
+            return;
+        }
+        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
+        if (news.getProject() != null && !isLegalProjectId(news.getProject().getId())) {
+            news.setProject(null);
+        }
         newsRepository.save(news);
     }
 
+    @Override
     public void save(News news, MultipartFile image) {
+        if (news == null) {
+            return;
+        }
         String photoPath = uploadFile(image);
         news.setPhotoPath(photoPath);
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        news.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         save(news);
     }
 
@@ -39,12 +54,11 @@ public class NewsServiceImpl implements NewsService {
         if(oldNews == null) {
             return;
         }
-        if (image.getSize() > 0) {
+        if (image != null && image.getSize() > 0) {
             String photoPath = uploadFile(image);
             oldNews.setPhotoPath(photoPath);
         }
         oldNews.setEditor(securityService.findLoggedUser());
-        oldNews.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         oldNews.setName(news.getName());
         oldNews.setContent(news.getContent());
         save(oldNews);
