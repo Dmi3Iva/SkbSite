@@ -53,9 +53,12 @@
 
 
 <c:if test="${!empty basket}">
+    <h1>NOT EMPTY</h1>
   <c:forEach items="${basket}" var="item">
     <div class="row">
       <div class="col-xs-6">
+          <h2>nea</h2>
+          <h2>${item.id}</h2>
         <h2>${item.name}</h2>
       </div>
     </div>

@@ -33,6 +33,10 @@ public class EquipmentController {
     @Autowired
     private RequestService requestService;
 
+    @ModelAttribute("basket")
+    public Set<EquipmentType> createBasket(){
+        return new HashSet<EquipmentType>();
+    }
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
     public String equipment(Model model)
@@ -107,6 +111,8 @@ public class EquipmentController {
         if(basket ==null) basket = new HashSet<EquipmentType>();
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
+        if(!model.containsAttribute("basket"))
+            model.addAttribute("basket", new HashSet<EquipmentType>());
         model.addAttribute("equipmentToBasket", equipmentToBasket);
         return "equipment-type-detailed";
     }
@@ -130,9 +136,10 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType,@ModelAttribute Set<EquipmentType> basket) {
+    public String equipmentBooking(Model model, Long idType,@ModelAttribute("basket") Set<EquipmentType> basket) {
         model.addAttribute("easyTime",new EasyTime());
-        model.addAttribute("basket", basket);
+        if(!model.containsAttribute("basket"))
+            model.addAttribute("basket", new HashSet<EquipmentType>());
         return "equipment-booking";
     }
 
