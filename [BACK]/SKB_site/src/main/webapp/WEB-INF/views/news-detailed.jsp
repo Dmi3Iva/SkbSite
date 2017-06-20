@@ -46,7 +46,7 @@
     </div>
     <!--IIMAGE 1-->
     <c:if test = "${!empty news}">
-        <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+        <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == news.author.username}'">
             <div class="form-group">
                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
                 <form method="POST" action="/delete-news" class="btn">
