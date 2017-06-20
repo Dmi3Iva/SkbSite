@@ -73,6 +73,15 @@
                                 <%--</div>--%>
                             <%--</div>--%>
                         <%--</spring:bind>--%>
+                        <spring:bind path="customer">
+                            <div class="form-check">
+                                <label class="control-label col-xs-5">Заказчик</label>
+                                <label class="control-label form-check-label col-xs-7 text-left">
+                                    <form:checkbox path="customer" class="control-label"/>
+                                    <form:errors path="customer"/>
+                                </label>
+                            </div>
+                        </spring:bind>
                         <spring:bind path="username">
                             <div class="form-group">
                                 <label class="control-label col-xs-5">Логин</label>

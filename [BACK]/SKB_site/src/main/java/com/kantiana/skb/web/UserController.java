@@ -71,6 +71,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
+
         userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
