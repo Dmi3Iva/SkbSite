@@ -26,6 +26,6 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     public void deleteById(Long id){
-        equipmentRepository.delete(id);
+        equipmentRepository.deleteById(id);
     }
 }

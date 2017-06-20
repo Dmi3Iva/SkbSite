@@ -162,15 +162,17 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/edit-equipment-table", method = RequestMethod.POST)
-    public String editEquipmentTable(@ModelAttribute Equipment equipmentItem) {
-        equipmentService.save(equipmentItem);
-        return "redirect://equipment-table-"+equipmentItem.getEquipmentType().getId();
+    public String editEquipmentTable(Long idEquip, String uniqueNumber) {
+        Equipment equipment = equipmentService.findById(idEquip);
+        equipment.setUniqueNumber(uniqueNumber);
+        equipmentService.save(equipment);
+        return "redirect://equipment-table-"+equipment.getEquipmentType().getId();
     }
 
     @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
-    public String delEquipmentTable(@ModelAttribute Equipment equipmentDelete) {
-        Long idType = equipmentDelete.getEquipmentType().getId();
-        equipmentService.deleteById(equipmentDelete.getId());
+    public String delEquipmentTable(Long idEquip) {
+        Long idType = equipmentService.findById(idEquip).getEquipmentType().getId();
+        equipmentService.deleteById(idEquip);
         return "redirect://equipment-table-"+idType;
     }
 }

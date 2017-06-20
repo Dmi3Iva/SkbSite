@@ -42,27 +42,23 @@
                         <td>${item.id}</td>
                         <td>${item.uniqueNumber}</td>
                         <td>
-                            <form:form method="post" modelAttribute="equipmentItem" class="form-inline" action="/edit-equipment-table">
+                            <form action="/edit-equipment-table" method="post" name="equipmentEdit" class="form-inline">
                                 <div class="form-group">
-                                    <label for="editEquipmentName">Изменить UN устройства</label>
-                                    <spring:bind path="uniqueNumber">
-                                        <form:hidden path="equipmentType" value = "${equipmentType.id}"/>
-                                        <form:hidden path="id" value = "${item.id}"/>
-                                        <form:input type = "text" path="uniqueNumber" placeholder="идентификационый номер" class="form-control" id="editEquipmentName"></form:input>
-                                        <form:errors path="uniqueNumber"></form:errors>
-                                    </spring:bind>
+                                    <input type="hidden" name="idEquip" value="${item.id}"/>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="text" class="form-control" name="uniqueNumber">
                                     <button type="submit" class="btn btn-success">Изменить UN</button>
                                 </div>
-                            </form:form>
+                            </form>
                         </td>
                         <td>
-                            <form:form method="post" class="form-inline" action="/del-equipment-table" modelAttribute="equipmentDelete">
+                            <form action="/del-equipment-table" method="post" name="equipmentDelete" class="form-inline">
                                 <div class="form-group">
-                                    <form:hidden path="equipmentType" value="${equipmentType}" />
-                                    <form:hidden path="id" value ="${item.id}" />
-                                    <button type="submit" class="btn btn-deafault">Удалить устройство</button>
+                                    <input type="hidden" name="idEquip" value="${item.id}"/>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-default">Удалить устройство</button>
                                 </div>
-                            </form:form>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
