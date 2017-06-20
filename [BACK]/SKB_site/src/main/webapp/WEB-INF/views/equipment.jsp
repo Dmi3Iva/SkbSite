@@ -55,7 +55,10 @@
     </sec:authorize>
       <div class="col-xs-3">
           <a class="btn btn-lg btn-primary" href="/equipment-booking">
-              Корзина <span class="badge">2</span>
+              Корзина <span class="badge">
+                <c:if test="${empty basket}">0</c:if>
+              <c:if test="${!empty basket}">${basket.size()}</c:if>
+                </span>
           </a>
       </div>
   </div>

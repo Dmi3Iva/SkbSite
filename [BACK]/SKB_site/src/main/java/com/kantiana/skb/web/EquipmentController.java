@@ -39,13 +39,16 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
-    public String equipment(Model model)
+    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket )
     {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
 
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
+
+        if(!model.containsAttribute("basket"))
+            model.addAttribute("basket", new HashSet<EquipmentType>());
 
         return "equipment";
     }
@@ -119,6 +122,10 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
     public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+
+        for(EquipmentType e : basket){
+            if(e.getId()== id )return "equipment-type-detailed";
+        }
         basket.add(equipmentTypeService.findById(id));
         return "equipment-type-detailed";
     }
