@@ -71,8 +71,8 @@ public class NewsController {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
-        commentService.save(commentForm, newsId);
-        return "redirect:/news-detailed?id=" + newsId; // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
+        commentService.save(commentForm, id);
+        return "redirect:/news-detailed?id=" + id; // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
     }
 
     //TODO: Метод должен быть DELETE
@@ -112,12 +112,12 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, Long projectId, @RequestParam("file") MultipartFile image) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
         if (bindingResult.hasErrors()) {
-            return "/add-news" + (projectId != null ? "?projectId" + projectId : "");
+            return "/add-news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
         }
         newsService.save(news, image);
-        return "redirect:/news";
+        return "redirect:/news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
     //-----------------------------------------
@@ -153,10 +153,10 @@ public class NewsController {
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
     public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
         if (bindingResult.hasErrors()) {
-            return "add-news";
+            return "add-news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
         }
         newsService.update(news, image);
-        return "redirect:/news";
+        return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
     //-----------------------------------------
