@@ -81,6 +81,9 @@
                             </div>
                         </spring:bind>
                     </div>
+                    <c:if test="${news.project != null}">
+                        <form:input path="project.id" value="${news.project.id}" cssStyle="visibility: hidden"/>
+                    </c:if>
                     <div class="form-group content-shell">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
