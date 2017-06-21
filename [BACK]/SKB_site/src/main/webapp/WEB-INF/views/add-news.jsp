@@ -72,8 +72,8 @@
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
-                    <div class="form-group">
-                        <label class="control-label col-xs-3" for="newsName">Название новости</label>
+                    <div class="form-group content-shell">
+                        <label class="control-label col-xs-3 " for="newsName">Название новости</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
                                 <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости"></form:input>
@@ -81,26 +81,25 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group content-shell">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
                                 <form:textarea path="content" placeholder="Содержание новости" class="form-control" id="newsContent"></form:textarea>
                                 <form:errors path="content"></form:errors>
                                 <c:if test="${news.id > 0}">
-                                    <form:input  path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
+                                    <form:input class="form-control" path="id"  value="${news.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
-
                         </spring:bind>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group content-shell">
                         <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                        <input type="file" name="file" id="newsPic"  >
+                        <input class="col-xs-9" type="file" name="file" id="newsPic"  >
 
                     </div>
                     <div class="container">
-                        <div class="col-xs-offset-9 col-xs-3">
+                        <div class="col-xs-offset-6 col-xs-6 col-md-offset-8 col-md-4 col-sm-offset-7 col-sm-5">
                             <div class="form-group">
                                 <c:if test="${empty news.id}">
                                     <button type="submit" formaction="/add-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
@@ -108,7 +107,7 @@
                                     </button>
                                 </c:if>
                                 <c:if test="${news.id > 0}">
-                                    <button type="submit" formaction="/edit-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                    <button type="submit" formaction="/edit-news?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green btn-sm"><i class="fa fa-share"></i>
                                         Изменить новость
                                     </button>
                                 </c:if>
@@ -121,7 +120,6 @@
     </form:form>
 
 </div>
-
 
 <!-- /container -->
 

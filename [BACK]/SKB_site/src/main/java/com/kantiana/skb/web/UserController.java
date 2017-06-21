@@ -4,6 +4,7 @@ import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import com.kantiana.skb.web.WorkingWithFile;
 import com.kantiana.skb.validator.UserValidator;
+import com.sun.org.apache.regexp.internal.RE;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -147,6 +148,10 @@ public class UserController {
     // Контроллер изменения пароля пользователя
     @RequestMapping(value = "/change-password", method = RequestMethod.POST)
     public String changePassword(String currentPassword, String newPassword, String confirmNewPassword){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74b84ea4d4d8c2ede3bdcabf02323d8ec3995efe
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User currentUser = securityService.findLoggedUser();
 
@@ -198,5 +203,11 @@ public class UserController {
         userService.update(user);
         mailService.sendNewPassword(username, newPassword, user.getEmail());
         return "redirect:/authorization?success";
+    }
+
+    //Контроллер для страницы с ошибкой доступа
+    @RequestMapping(value = "/error403", method = RequestMethod.GET)
+    public String error403(){
+        return "error403";
     }
 }

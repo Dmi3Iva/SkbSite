@@ -2,10 +2,13 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.ProjectMembership;
+import com.kantiana.skb.model.Role;
 import com.kantiana.skb.model.User;
+import com.kantiana.skb.repository.ProjectRepository;
 import com.kantiana.skb.repository.ProjectStatusRepository;
 import com.kantiana.skb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,7 +52,7 @@ public class ProjectsController {
         return "project-detailed";
     }
 
-    @RequestMapping(value = {"/add-project", "/edit-project"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-project"}, method = RequestMethod.GET)
     public String addProject(Model model, Long id) {
         boolean isEditing = (id != null);
         if (isEditing) {
@@ -63,6 +66,38 @@ public class ProjectsController {
             model.addAttribute("project", new Project());
             model.addAttribute("isEditing", false);
         }
+        model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
+        return "add-project";
+    }
+
+    @RequestMapping(value = {"/edit-project"}, method = RequestMethod.GET)
+    public String editProject(Model model, Long id) {
+        boolean isEditing = (id != null);
+        if (isEditing) {
+            Project project = projectService.findById(id);
+            model.addAttribute("project", project);
+            model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(id));
+            model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(id));
+            model.addAttribute("isEditing", true);
+            //для борьбы с незаконным доступом
+            User logUser = securityService.findLoggedUser();
+            User author = project.getCaptain();
+            Boolean admin = false;
+            for (Role i: logUser.getRoles()){
+                if (i.getName().equals("ROLE_ADMIN")){
+                    admin = true;
+                    break;
+                }
+            }
+            if (logUser.getId() != author.getId() && !admin){
+                return "redirect:/error403";
+            }
+        }
+        else {
+            model.addAttribute("project", new Project());
+            model.addAttribute("isEditing", false);
+        }
+
         model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
         return "add-project";
     }

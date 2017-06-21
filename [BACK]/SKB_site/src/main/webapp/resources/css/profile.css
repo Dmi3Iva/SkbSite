@@ -2,6 +2,10 @@
 
 /*Персональная информация*/
 
+.personal_information {
+  padding-bottom: 20px;
+}
+
 .personal_information p{
   font-size: 16px;
   color: black;

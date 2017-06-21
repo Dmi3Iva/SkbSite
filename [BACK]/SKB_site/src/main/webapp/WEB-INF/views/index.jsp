@@ -154,7 +154,6 @@
     </div>
 </div>
 
-
 <%@include file="footer.jsp" %>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
