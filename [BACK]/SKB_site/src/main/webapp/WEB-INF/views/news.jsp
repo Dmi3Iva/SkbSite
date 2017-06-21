@@ -92,12 +92,12 @@
                                 <p class="description">
                                     Автор: <a href="/id${item.author.id}">${item.author.username}</a><br>
                                     <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
-                                        ${item.timeOfCreation}
+                                        Добавлено ${item.timeOfCreation}
                                     </c:if>
                                     <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
-                                    <c:if test="${item.editor.username != item.author.username}">
-                                        Редактор: ${item.editor.username} <br>
-                                    </c:if>
+                                        <c:if test="${item.editor.username != item.author.username}">
+                                            Редактор: ${item.editor.username} <br>
+                                        </c:if>
                                         <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
                                     </c:if>
                                 </p>
@@ -133,14 +133,7 @@
 
 </div>
 
-<c:choose>
-    <c:when test="${empty newsList}">
-        <%@include file="footer_absolute.jsp"%>
-    </c:when>
-    <c:when test="${!empty newsList}">
-        <%@include file="footer.jsp"%>
-    </c:when>
-</c:choose>
+<%@include file="footer.jsp"%>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

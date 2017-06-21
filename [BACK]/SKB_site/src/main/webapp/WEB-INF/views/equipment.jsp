@@ -93,28 +93,15 @@
 
 </div>
 
-<c:choose>
-  <c:when test="${empty equipmentTypeList}">
-      <%@include file="footer_absolute.jsp"%>
-  </c:when>
-  <c:when test="${!empty equipmentTypeList}">
-      <%@include file="footer.jsp"%>
-  </c:when>
-</c:choose>
-<!--end main-->
+<%@include file="footer.jsp"%>
 
+  <!--end main-->
 
 
   <script type="text/javascript">
-      //      $('.itemEquipment:nth-child(3n)').add('.itemEquipment:nth-child(3n+2)').add('.itemEquipment:nth-child(2)').removeClass('row');
-      //      $('.itemEquipment:nth-child(3n)');
       var $c = $('.itemsEq');
       while($c.children('div:not(.row)').length)
       $c.children('div:not(.row):lt(3)').wrapAll('<div class="row">');
-//
-//      $(".itemsEq:nth-child(n<3)").wrapAll('<div class="row">');
-        //      $('.itemEquipment:nth-child(1), .itemEquipment:nth-child(2), .itemEquipment:nth-child(3)').wrapAll('<div class="row">');
-        //      $('.itemEquipment:nth-child(1+3n), .itemEquipment:nth-child(2+3n), .itemEquipment:nth-child(3+3n)').wrapAll('<div class="row">');
   </script>
 </body>
 

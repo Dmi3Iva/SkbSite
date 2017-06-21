@@ -55,13 +55,13 @@
                                 </div>
                             </div>
                         </spring:bind>
-                        <spring:bind path="dateOfBirth">
-                            <div class="form-group">
-                                <label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>
-                                <div class="col-xs-7">
-                                    <form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>
-                                    <form:errors path="dateOfBirth"/>
-                                </div>
+                        <spring:bind path="customer">
+                            <div class="form-check">
+                                <label class="control-label col-xs-5">Заказчик</label>
+                                <label class="control-label form-check-label col-xs-7 text-left">
+                                    <form:checkbox path="customer" class="control-label"/>
+                                    <form:errors path="customer"/>
+                                </label>
                             </div>
                         </spring:bind>
                         <spring:bind path="username">

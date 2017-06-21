@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Comment;
 import com.kantiana.skb.model.Order;
+import com.kantiana.skb.model.Role;
 import com.kantiana.skb.model.User;
 import com.kantiana.skb.service.OrdersService;
 import com.kantiana.skb.service.ProjectService;
@@ -59,11 +60,36 @@ public class OrdersController {
     }
 
     //выводит страницу создания и редактирования новости
-    @RequestMapping(value = {"/add-order","/edit-order"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-order"}, method = RequestMethod.GET)
     public String addOrder(Model model, Long orderId) {
         if(orderId!=null) {
             Order order = ordersService.findById(orderId);
             model.addAttribute("order", order);
+        }
+        else
+            model.addAttribute("order", new Order() );
+        model.addAttribute("allProjects", projectService.getAllProjects());
+        return "add-order";
+    }
+
+    @RequestMapping(value = {"/edit-order"}, method = RequestMethod.GET)
+    public String editOrder(Model model, Long orderId) {
+        if(orderId!=null) {
+            Order order = ordersService.findById(orderId);
+            model.addAttribute("order", order);
+            //для борьбы с незаконным доступом
+            User logUser = securityService.findLoggedUser();
+            User author = order.getAuthor();
+            Boolean admin = false;
+            for (Role i: logUser.getRoles()){
+                if (i.getName().equals("ROLE_ADMIN")){
+                    admin = true;
+                    break;
+                }
+            }
+            if (logUser.getId() != author.getId() && !admin){
+                return "redirect:/error403";
+            }
         }
         else
             model.addAttribute("order", new Order() );

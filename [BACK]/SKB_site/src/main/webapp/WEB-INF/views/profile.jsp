@@ -46,12 +46,19 @@
                     <div class="col-xs-6">
                         <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
                         <p>Дата рождения: ${user.dateOfBirth}</p>
-                        <p>Пол: мужской</p>
+                        <p>Пол: </p>
                         <p>Логин: ${user.username}</p>
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
-                        <p>
-                            Проекты:
+                        <p>Статус:
+                            <c:if test="${user.customer == true}">
+                                Заказчик
+                            </c:if>
+                            <c:if test="${user.customer == false}">
+                                Обычный пользователь
+                            </c:if>
+                        </p>
+                        <p>Проекты:
                             <c:forEach items="${userProjects}" var="project">
                                 <a href="/project-detailed?id=${project.id}">${project.name}</a>
                                 ,
@@ -80,11 +87,7 @@
         </div>
     </div>
 
-
     <!--можно изменить себя -->
-
-
-
 
     <%@include file="footer.jsp" %>
 
