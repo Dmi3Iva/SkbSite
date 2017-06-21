@@ -120,9 +120,7 @@
 
 </div>
 
-
 <!-- /container -->
-
 
 <!--end contant-->
 <%@include file="footer.jsp" %>

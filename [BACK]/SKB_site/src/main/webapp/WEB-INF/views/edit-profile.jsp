@@ -27,9 +27,7 @@
 <div id="rightSide">
 </div>
 
-
 <%@include file="header.jsp" %>
-
 <!-- main-->
 
 <div class="personal_information">
@@ -156,7 +154,6 @@
         </div>
     </div>
 </div>
-
 
 
 <%@include file="footer.jsp" %>

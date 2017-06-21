@@ -165,9 +165,7 @@
     </c:if>
 </div>
 
-
 <!-- /container -->
-
 
 <!--end contant-->
 <%@include file="footer.jsp" %>

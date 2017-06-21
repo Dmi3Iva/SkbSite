@@ -93,15 +93,6 @@
 
 </div>
 
-<%--<c:choose>--%>
-  <%--<c:when test="${empty equipmentTypeList}">--%>
-      <%--<%@include file="footer_absolute.jsp"%>--%>
-  <%--</c:when>--%>
-  <%--<c:when test="${!empty equipmentTypeList}">--%>
-      <%--<%@include file="footer.jsp"%>--%>
-  <%--</c:when>--%>
-<%--</c:choose>--%>
-
 <%@include file="footer.jsp"%>
 
   <!--end main-->

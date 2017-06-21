@@ -109,14 +109,7 @@
   </c:if>
 </div>
 
-<c:choose>
-  <c:when test="${empty projectsList}">
-    <%@include file="footer_absolute.jsp"%>
-  </c:when>
-  <c:when test="${!empty projectsList}">
-    <%@include file="footer.jsp"%>
-  </c:when>
-</c:choose>
+  <%@include file="footer.jsp"%>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

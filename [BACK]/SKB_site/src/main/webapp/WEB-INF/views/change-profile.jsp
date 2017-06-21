@@ -29,7 +29,6 @@
 <div id="rightSide">
 </div>
 
-
 <%@include file="header.jsp" %>
 
 <!--можно изменить себя -->
@@ -244,7 +243,6 @@
         </div>
     </div>
 </div>
-
 
     <%@include file="footer.jsp" %>
 
