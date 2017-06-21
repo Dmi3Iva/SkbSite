@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -54,5 +55,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public String generatePassword() {
+        Random random = new Random();
+        String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder password = new StringBuilder();
+        int idx, passwordLength = 10;
+        char c;
+        for (int i = 0; i < passwordLength; ++i) {
+            idx = random.nextInt(alphabet.length());
+            c = alphabet.charAt(idx);
+            password.append(c);
+        }
+        return password.toString();
     }
 }
