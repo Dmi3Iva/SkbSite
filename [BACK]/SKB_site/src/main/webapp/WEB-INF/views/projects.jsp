@@ -91,7 +91,6 @@
                   </form>
                 </div>
               </sec:authorize>
-              </ul>
             </div>
           </div>
 

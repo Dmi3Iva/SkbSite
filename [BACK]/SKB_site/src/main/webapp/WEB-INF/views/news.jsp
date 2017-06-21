@@ -119,7 +119,6 @@
                     <img src="${item.photoPath}" alt="${item.name}picture" width="100%">
                 </div>
             </div>
-            <br>
         </c:forEach>
 
     </c:if>
