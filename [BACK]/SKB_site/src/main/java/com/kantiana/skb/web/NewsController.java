@@ -56,7 +56,7 @@ public class NewsController {
     //      КОНКРЕТНАЯ НОВОСТЬ
     //-----------------------------------------
     @RequestMapping(value = "/news-detailed", method = RequestMethod.GET)
-    public String newsDetailed(Model model, @RequestParam("id") Long newsId) {
+    public String newsDetailed(Model model, @RequestParam("newsId") Long newsId) {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
         News news = newsService.findById(newsId);
@@ -67,19 +67,19 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
-    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long newsId) {
+    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "news-detailed";
         }
-        commentService.save(commentForm, id);
-        return "redirect:/news-detailed?id=" + id; // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
+        commentService.save(commentForm);
+        return "redirect:/news-detailed?newsId=" + commentForm.getNews().getId(); // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
     }
 
     //TODO: Метод должен быть DELETE
     @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
     public String editComment(Long newsId, Long commentId) {
         commentService.delete(commentId);
-        return "redirect:/news-detailed?id=" + newsId;
+        return "redirect:/news-detailed?newsId=" + newsId;
     }
 
     //-----------------------------------------

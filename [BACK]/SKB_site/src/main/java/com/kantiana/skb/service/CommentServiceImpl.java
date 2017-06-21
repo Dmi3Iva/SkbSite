@@ -23,20 +23,11 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findById(newsId);
     }
 
-    public void save(Comment comment) {
-        commentRepository.save(comment);
-    }
-
     @Override
-    public void save(Comment comment, Long newsId) {
-        News news = newsService.findById(newsId);
-        if (news == null) {
-            return;
-        }
-        comment.setNews(news);
+    public void save(Comment comment) {
         comment.setAuthor(securityService.findLoggedUser());
         comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        save(comment);
+        commentRepository.save(comment);
     }
 
     @Override

@@ -73,7 +73,7 @@
                 <div class="col-md-8">
                     <div class="new">
                         <p class="title">
-                            <a href="/news-detailed?id=${item.id}">${item.name}</a>
+                            <a href="/news-detailed?newsId=${item.id}">${item.name}</a>
                         </p>
                         <p>
                             <c:if test="${newsProject != null}">
@@ -86,7 +86,7 @@
                         </p>
                         <ul class="detailes">
                             <li>
-                                <a href="/news-detailed?id=${item.id}">Подробнее...</a>
+                                <a href="/news-detailed?newsId=${item.id}">Подробнее...</a>
                             </li>
                             <li>
                                 <p class="description">

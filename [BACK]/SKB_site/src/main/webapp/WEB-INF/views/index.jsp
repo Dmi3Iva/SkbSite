@@ -100,13 +100,13 @@
                                     </c:if>
                                 </p>
                                 <p class = "title">
-                                    <a href="/news-detailed?id=${item.id}">${item.name}</a>
+                                    <a href="/news-detailed?newsId=${item.id}">${item.name}</a>
                                 </p>
                                 <p class="article">
                                     ${item.content}
                                 </p>
                                 <p class="detailes">
-                                    <a href="/news-detailed?id=${item.id}">Подробнее...</a>
+                                    <a href="/news-detailed?newsId=${item.id}">Подробнее...</a>
                                 </p>
                             </div>
                         </div>

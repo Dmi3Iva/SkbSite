@@ -137,7 +137,7 @@
         </div>
       </c:forEach>
 
-      <c:if test="${pageContext.request.userPrincipal.name != null}">
+    <sec:authorize access="isAuthenticated()">
         <div class="col-md-9">
           <div class="widget-area no-padding blank">
             <div class="status-upload">
@@ -146,12 +146,15 @@
                   <form:textarea path="content" placeholder="Ваш комментарий"/>
                   <form:errors path="content"/>
                 </spring:bind>
+                <spring:bind path="news.id">
+                    <form:input path="news.id" value="${news.id}" cssStyle="visibility: hidden"/>
+                </spring:bind>
                 <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
               </form:form>
             </div><!-- Status Upload  -->
           </div><!-- Widget Area -->
         </div>
-      </c:if>
+    </sec:authorize>
 
     </c:if>
   </div>

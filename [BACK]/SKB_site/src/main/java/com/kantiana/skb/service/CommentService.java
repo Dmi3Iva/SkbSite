@@ -8,8 +8,6 @@ import java.util.List;
 public interface CommentService {
     void save(Comment comment);
 
-    void save(Comment comment, Long newsId);
-
     Comment findById(Long newsId);
 
     void delete(Long commentId);
