@@ -49,67 +49,84 @@
     </div>
 
 
-
-
-
-<c:if test="${!empty basket}">
-    <h1>NOT EMPTY</h1>
-  <c:forEach items="${basket}" var="item">
     <div class="row">
-      <div class="col-xs-6">
-          <h2>nea</h2>
-          <h2>${item.id}</h2>
-        <h2>${item.name}</h2>
+      <div class="col-md-6">
+        <c:if test="${!empty basket}">
+          <h1>В вашей корзине:</h1>
+
+          <c:forEach items="${basket}" var="item">
+            <div class="row">
+
+                  <div class="col-xs-4">
+                    <label>${item.name} </label>
+                  </div>
+                  <div class="col-xs-1">
+                    <button>-</button>
+                  </div>
+                  <div class="col-xs-2">
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="col-xs-1">
+                    <button>+</button>
+                  </div>
+
+              </div>
+
+          </c:forEach>
+        </c:if>
+        <c:if test="${empty basket}">
+          <h1>Ваша корзина пуста</h1>
+        </c:if>
+      </div>
+
+
+      <div class="col-md-6">
+        <form:form method="POST"  modelAttribute="easyTime">
+          <div class="row">
+          <div class="form-group">
+            <label class="control-label col-xs-3" >Введите начало бронирования</label>
+            <spring:bind path="begin">
+              <div class="col-xs-9">
+                <form:input type = "datetime-local" path="begin" />
+                <form:errors path="begin"/>
+              </div>
+            </spring:bind>
+          </div>
+          </div>
+          <div class="row">
+          <div class="form-group">
+            <label class="control-label col-xs-3" >Введите конец бронирования</label>
+            <spring:bind path="end">
+              <div class="col-xs-9">
+                <form:input type = "datetime-local" path="end" />
+                <form:errors path="end"/>
+              </div>
+            </spring:bind>
+          </div>
+          </div>
+          <div class="col-xs-offset-8 col-xs-4">
+            <button type="submit" class="btn btn-default btn-md">Забронировать</button>
+          </div>
+        </form:form>
       </div>
     </div>
-  </c:forEach>
-</c:if>
-      <c:if test="${empty basket}">
-          <h1>EMPTY</h1>
-      </c:if>
+
   <!--мой вариант -->
   <div class="forFont">
     <div class="container" >
-      <form:form method="POST"  modelAttribute="easyTime">
 
-        <div class="form-group">
-          <label class="control-label col-xs-3" >Введите начало бронирования</label>
-          <spring:bind path="begin">
-            <div class="col-xs-9">
-              <form:input type = "datetime-local" path="begin" />
-              <form:errors path="begin"/>
-            </div>
-          </spring:bind>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-xs-3" >Введите конец бронирования</label>
-          <spring:bind path="end">
-          <div class="col-xs-9">
-            <form:input type = "datetime-local" path="end" />
-            <form:errors path="end"/>
-          </div>
-          </spring:bind>
-        </div>
-        <div class="col-xs-offset-8 col-xs-4">
-          <button type="submit" class="btn btn-default btn-md">Забронировать</button>
-        </div>
-        </form:form>
   </div>
   </div>
   </div>
-
-
-
-
   <!--end main-->
 
   <%@include file="footer.jsp" %>
 
-    <script src="../../resources/js/jquery.min.js"></script>
-    <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-    <script>window.jQuery</script>
-    <script src="../../resources/js/tether.min.js"></script>
-    <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+  <script src="../../resources/js/jquery.min.js"></script>
+  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
+  <script>window.jQuery</script>
+  <script src="../../resources/js/tether.min.js"></script>
+  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 
 

@@ -124,10 +124,10 @@ public class EquipmentController {
     public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
 
         for(EquipmentType e : basket){
-            if(e.getId()== id )return "equipment-type-detailed";
+            if(e.getId()== id )return "redirect:/equipment-type-detailed?id="+id;
         }
         basket.add(equipmentTypeService.findById(id));
-        return "equipment-type-detailed";
+        return "redirect:/equipment-type-detailed?id="+id;
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
@@ -139,7 +139,7 @@ public class EquipmentController {
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        return "redirect:/equipment-table-{idType}";
+        return "equipment";
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
@@ -159,8 +159,7 @@ public class EquipmentController {
         EquipmentType equipmentType = equipmentTypeService.findById(idType);
         Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
         Equipment equipment = null;
-        for (Equipment e:equipmentSet
-             ) {
+        for (Equipment e:equipmentSet) {
             if(e.getBooking()==null) {
                 equipment = e;
                 break;
