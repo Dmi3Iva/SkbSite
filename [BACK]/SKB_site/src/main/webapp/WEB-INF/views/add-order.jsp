@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -81,15 +82,17 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <div class="form-group order-shell-project">
-                        <label class="control-label col-xs-3">Проект, реализующий заказ</label>
-                        <div class="col-xs-9">
-                            <form:select path="project.id">
-                                <form:option value="-1" selected="selected">Отсутствует</form:option>
-                                <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
-                            </form:select>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <div class="form-group order-shell-project">
+                            <label class="control-label col-xs-3">Проект, реализующий заказ</label>
+                            <div class="col-xs-9">
+                                <form:select path="project.id">
+                                    <form:option value="-1" selected="selected">Отсутствует</form:option>
+                                    <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
+                                </form:select>
+                            </div>
                         </div>
-                    </div>
+                    </sec:authorize>
                     <div class="form-group order-shell">
                         <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
                         <input class="col-xs-9" type="file" name="file" id="orderPic"  >
