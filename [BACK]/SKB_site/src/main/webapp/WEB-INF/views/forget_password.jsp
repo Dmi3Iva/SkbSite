@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>Авторизация</title>
+    <title>Забыли пароль</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
@@ -25,45 +25,17 @@
         <div class=" col-md-10 col-xs-12">
             <div class="registration-form">
                 <h1>Забыли пароль</h1>
-
                 <form method="POST">
+                    <p class="alert-danger">${error}</p>
                     <label for="username" class="control-label col-xs-5">Имя пользователя</label>
                     <div class="col-xs-5">
                         <input type="text" name="username" id="username" class="form-control"/>
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <div class="col-xs-offset-3">
+                    <div class="col-xs-offset-1">
                         <button type="submit" class="btn btn-back btn-lg">Получить новый пароль</button>
                     </div>
                 </form>
-                <%--<form:form method="POST" action="${contextPath}/login" class="form-horizontal">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<!--Ошибка некрасиво выводится-->--%>
-                        <%--<p class="alert-danger">${error}</p>--%>
-                        <%--<label class="control-label col-xs-5">Логин</label>--%>
-                        <%--<div class="col-xs-5">--%>
-                            <%--<input name="username" type="text" class="form-control" autofocus="true"/>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="control-label col-xs-5">Пароль</label>--%>
-                        <%--<div class="col-xs-5">--%>
-                            <%--<input name="password" type="password" class="form-control"/>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<!--Какая-то защита от кросс-доменных запросов-->--%>
-                    <%--<input type="hidden" name="$ {_csrf.parameterName}" value="$ {_csrf.token}"/>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<div class=" col-xs-offset-2 col-xs-2">--%>
-                            <%--<button type="submit" class="btn btn-primary btn-lg text-right">Войти</button>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-xs-7">--%>
-                            <%--<input type="submit" class="btn btn-back btn-lg" value="Забыли пароль">--%>
-                            <%--<input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/registration';" value="Регистрация"/>--%>
-                            <%--<input type="button" class="btn btn-back btn-lg" onClick="history.go(-1);return true;" value="Назад">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</form:form>--%>
             </div>
         </div>
     </div>

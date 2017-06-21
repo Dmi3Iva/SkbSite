@@ -13,11 +13,12 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private SimpleMailMessage templateMessage;
 
+    //TODO: Текст письма хранить в отдельном файле, откуда он читается при вызове данной функции
     @Override
-    public void sendNewPassword(String newPassword, String to) {
+    public void sendNewPassword(String username, String newPassword, String email) {
         SimpleMailMessage message = new SimpleMailMessage(templateMessage);
-        message.setTo(to);
-        message.setSubject("Сайт СКБ, новый пароль");
+        message.setTo(email);
+        message.setSubject("Сайт СКБ, новый пароль для пользователя " + username);
         message.setText("Ваш новый пароль: " + newPassword);
         mailSender.send(message);
     }

@@ -28,6 +28,7 @@
                     <form:form method="POST" action="${contextPath}/login" class="form-horizontal">
                         <div class="form-group">
                             <!--Ошибка некрасиво выводится-->
+                            <p class="alert-success">${success}</p>
                             <p class="alert-danger">${error}</p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">

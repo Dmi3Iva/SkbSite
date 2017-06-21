@@ -22,7 +22,6 @@
     <!--Шаблон письма-->
     <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
         <property name="from" value="${mail.from}"/>
-        <property name="subject" value="Mail subject"/>
     </bean>
 
 </beans>

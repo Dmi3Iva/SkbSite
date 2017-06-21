@@ -79,11 +79,15 @@ public class UserController {
         return "redirect:/";
     }
 
+    //TODO: Сообщения об ошибках и другие не должны быть в коде
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
-    public String authorization(Model model, String error) {
+    public String authorization(Model model, String success, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
+        }
+        if (success != null) {
+            model.addAttribute("success", "Письмо с новым паролем отправлено на Вашу почту");
         }
         return "authorization";
     }
@@ -175,7 +179,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
-    public String forgetPassword(Model model) {
+    public String forgetPassword(Model model, String error) {
+        if (error != null) {
+            model.addAttribute("error", "Пользователя с таким именем не существует.");
+        }
         return "forget_password";
     }
 
@@ -183,13 +190,13 @@ public class UserController {
     public String forgetPassword(String username) {
         User user = userService.findByUsername(username);
         if (user == null) {
-            return "forget_password";
+            return "redirect:/forget-password?error";
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String newPassword = userService.generatePassword();
         user.setPassword(passwordEncoder.encode(newPassword));
         userService.update(user);
-        mailService.sendNewPassword(newPassword, user.getEmail());
-        return "redirect:/authorization";
+        mailService.sendNewPassword(username, newPassword, user.getEmail());
+        return "redirect:/authorization?success";
     }
 }
