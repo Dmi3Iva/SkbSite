@@ -7,7 +7,7 @@
     <link href="${contextPath}/resources/css/footer.css" rel="stylesheet">
 </head>
 <body>
-<footer class="footer_navbar">
+<footer class="footer_navbar footer">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
