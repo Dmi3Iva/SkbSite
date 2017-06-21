@@ -55,24 +55,6 @@
                                 </div>
                             </div>
                         </spring:bind>
-                        <%--<spring:bind path="dateOfBirth">--%>
-                            <%--<div class="form-group">--%>
-                                <%--<label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>--%>
-                                <%--<div class="col-xs-7">--%>
-                                    <%--<form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>--%>
-                                    <%--<form:errors path="dateOfBirth"/>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</spring:bind>--%>
-                        <%--<spring:bind path="dateOfBirth">--%>
-                            <%--<div class="form-group">--%>
-                                <%--<label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>--%>
-                                <%--<div class="col-xs-7">--%>
-                                    <%--<form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>--%>
-                                    <%--<form:errors path="dateOfBirth"/>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</spring:bind>--%>
                         <spring:bind path="customer">
                             <div class="form-check">
                                 <label class="control-label col-xs-5">Заказчик</label>

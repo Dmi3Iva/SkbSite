@@ -51,10 +51,10 @@
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
                         <p>Статус:
-                            <c:if test="${!empty user.customer}">
+                            <c:if test="${user.customer == true}">
                                 Заказчик
                             </c:if>
-                            <c:if test="${empty user.customer}">
+                            <c:if test="${user.customer == false}">
                                 Обычный пользователь
                             </c:if>
                         </p>
@@ -87,11 +87,7 @@
         </div>
     </div>
 
-
     <!--можно изменить себя -->
-
-
-
 
     <%@include file="footer.jsp" %>
 
