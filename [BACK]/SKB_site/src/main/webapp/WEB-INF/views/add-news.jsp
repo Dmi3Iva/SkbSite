@@ -72,7 +72,7 @@
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
-                    <div class="form-group news-name">
+                    <div class="form-group content-shell">
                         <label class="control-label col-xs-3 " for="newsName">Название новости</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
@@ -81,7 +81,7 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group content-shell">
                         <label class="control-label col-xs-3" for="newsContent">Содержание новости</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
@@ -93,7 +93,7 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group content-shell">
                         <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
                         <input class="col-xs-9" type="file" name="file" id="newsPic"  >
 
