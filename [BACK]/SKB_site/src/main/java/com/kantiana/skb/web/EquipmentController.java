@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
@@ -143,10 +144,23 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType,@ModelAttribute("basket") Set<EquipmentType> basket) {
+    public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
+                                   @ModelAttribute("equipmentTypeCount") EquipmentTypeCount equipmentTypeCount) {
         model.addAttribute("easyTime",new EasyTime());
         if(!model.containsAttribute("basket"))
             model.addAttribute("basket", new HashSet<EquipmentType>());
+
+        if( equipmentTypeCount == null )
+        {
+            for(EquipmentType e : basket)
+            equipmentTypeCount.add(e.getId(),1L);
+        }
+        if( equipmentTypeCount.getId().size() == 0){
+            for(EquipmentType e : basket)
+                equipmentTypeCount.add(e.getId(),1L);
+        }
+        model.addAttribute("equipmentTypeCount",equipmentTypeCount);
+
         return "equipment-booking";
     }
 

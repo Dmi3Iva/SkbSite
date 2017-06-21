@@ -51,12 +51,13 @@
 
     <div class="row">
       <div class="col-md-6">
+
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
+          <form method="post">
 
           <c:forEach items="${basket}" var="item">
             <div class="row">
-
                   <div class="col-xs-4">
                     <label>${item.name} </label>
                   </div>
@@ -64,16 +65,17 @@
                     <button>-</button>
                   </div>
                   <div class="col-xs-2">
-                    <input type="text" class="form-control">
+                    <input type="hidden" name="equipmentTypeCount.id[${item.id}]" />
+                    <input type="number" class="form-control" name="equipmentTypeCount.count[${item.id}]" value="1" placeholder="${equipmentTypeCount.count[item.id]}"/>
                   </div>
                   <div class="col-xs-1">
                     <button>+</button>
                   </div>
-
               </div>
-
           </c:forEach>
+          </form>
         </c:if>
+
         <c:if test="${empty basket}">
           <h1>Ваша корзина пуста</h1>
         </c:if>
@@ -81,34 +83,44 @@
 
 
       <div class="col-md-6">
-        <form:form method="POST"  modelAttribute="easyTime">
-          <div class="row">
-          <div class="form-group">
-            <label class="control-label col-xs-3" >Введите начало бронирования</label>
-            <spring:bind path="begin">
-              <div class="col-xs-9">
-                <form:input type = "datetime-local" path="begin" />
-                <form:errors path="begin"/>
-              </div>
-            </spring:bind>
+        <div class="row">
+          <div class="text-center">
+            Выберите дату бронирования
           </div>
+          <div class="col-xs-offset-1 col-xs-5">
+            День: <input type="date">
           </div>
-          <div class="row">
-          <div class="form-group">
-            <label class="control-label col-xs-3" >Введите конец бронирования</label>
-            <spring:bind path="end">
-              <div class="col-xs-9">
-                <form:input type = "datetime-local" path="end" />
-                <form:errors path="end"/>
-              </div>
-            </spring:bind>
+          <div class="col-xs-offset-1 col-xs-5">
+            Время:
+            <select multiple size="20">
+              <option>8.30-9.00</option>
+              <option>9.00-9.30</option>
+              <option>9.30-10.00</option>
+              <option>10.00-10.30</option>
+              <option>10.30-11.00</option>
+              <option>11.00-11.30</option>
+              <option>11.30-12.00</option>
+              <option>12.00-12.30</option>
+              <option>12.30-13.00</option>
+              <option>13.00-13.30</option>
+              <option>13.30-14.00</option>
+              <option>14.00-14.30</option>
+              <option>14.30-15.00</option>
+              <option>15.00-15.30</option>
+              <option>15.30-16.00</option>
+              <option>16.00-16.30</option>
+              <option>16.30-17.00</option>
+              <option>17.00-17.30</option>
+              <option>17.30-18.00</option>
+              <option>18.00-18.30</option>
+            </select>
           </div>
-          </div>
-          <div class="col-xs-offset-8 col-xs-4">
-            <button type="submit" class="btn btn-default btn-md">Забронировать</button>
-          </div>
-        </form:form>
+        </div>
+        <div class="col-xs-offset-8 col-xs-4">
+          <button type="button" class="btn btn-default btn-md">Забронировать</button>
+        </div>
       </div>
+    </div>
     </div>
 
   <!--мой вариант -->
