@@ -39,6 +39,8 @@ public class UserController {
     private UserValidator userValidator;
     @Autowired
     private ProjectMembershipService projectMembershipService;
+    @Autowired
+    private MailService mailService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -74,15 +76,18 @@ public class UserController {
         userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/";
     }
 
+    //TODO: Сообщения об ошибках и другие не должны быть в коде
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
-    public String authorization(Model model, String error) {
+    public String authorization(Model model, String success, String error) {
         if (error != null) {
             model.addAttribute("error", "Ваше имя и пароль не действительны.");
+        }
+        if (success != null) {
+            model.addAttribute("success", "Письмо с новым паролем отправлено на Вашу почту");
         }
         return "authorization";
     }
@@ -142,22 +147,6 @@ public class UserController {
     // Контроллер изменения пароля пользователя
     @RequestMapping(value = "/change-password", method = RequestMethod.POST)
     public String changePassword(String currentPassword, String newPassword, String confirmNewPassword){
-
-//        if (currentPassword == null){
-//            model.addAttribute("errors", "Введите свой пароль");
-//            return "change-profile";
-//        }
-//
-//        if (newPassword == null){
-//            model.addAttribute("errors", "Введите новый пароль");
-//            return "change-profile";
-//        }
-//
-//        if (confirmNewPassword == null){
-//            model.addAttribute("errors", "Подтвердите новый пароль");
-//            return "change-profile";
-//        }
-
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User currentUser = securityService.findLoggedUser();
 
@@ -176,22 +165,6 @@ public class UserController {
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userService.update(currentUser);
 
-//        if (currentPassword == currentUser.getPassword()){
-//            if (newPassword == confirmNewPassword){
-//                currentUser.setPassword(newPassword);
-//                userService.update(currentUser);
-//                return "redirect:/profile";
-//            }
-//            else {
-//                //model.addAttribute("errors", "Новый пароль не подтвержден");
-//                return "change-profile";
-//            }
-//        }
-//        else{
-//            //model.addAttribute("errors", "Введен неверный текущий пароль");
-//            return "redirect:/change-profile";
-//        }
-
         return "redirect:/profile";
     }
 
@@ -201,9 +174,29 @@ public class UserController {
     public String changeProfile(Model model) {
         User user = securityService.findLoggedUser();
         model.addAttribute("user", user);
-        model.addAttribute("passwordChange", new PasswordChange());
         model.addAttribute("error", new String());
         return "change-profile";
     }
 
+    @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
+    public String forgetPassword(Model model, String error) {
+        if (error != null) {
+            model.addAttribute("error", "Пользователя с таким именем не существует.");
+        }
+        return "forget_password";
+    }
+
+    @RequestMapping(value = "/forget-password", method = RequestMethod.POST)
+    public String forgetPassword(String username) {
+        User user = userService.findByUsername(username);
+        if (user == null) {
+            return "redirect:/forget-password?error";
+        }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String newPassword = userService.generatePassword();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userService.update(user);
+        mailService.sendNewPassword(username, newPassword, user.getEmail());
+        return "redirect:/authorization?success";
+    }
 }

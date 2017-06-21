@@ -12,7 +12,8 @@
         <form-login login-page="/authorization" default-target-url="/"
                     authentication-failure-url="/authorization?error"
                     username-parameter="username"
-                    password-parameter="password"/>
+                    password-parameter="password"
+        />
         <logout logout-success-url="/index?logout"/>
         <intercept-url pattern="/profile" access="isAuthenticated()"/>
         <intercept-url pattern="/add-project" access="isAuthenticated()"/>

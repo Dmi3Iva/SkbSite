@@ -28,6 +28,7 @@
                     <form:form method="POST" action="${contextPath}/login" class="form-horizontal">
                         <div class="form-group">
                             <!--Ошибка некрасиво выводится-->
+                            <p class="alert-success">${success}</p>
                             <p class="alert-danger">${error}</p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">
@@ -47,7 +48,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg text-right">Войти</button>
                             </div>
                             <div class="col-xs-7">
-                                <input type="submit" class="btn btn-back btn-lg" value="Забыли пароль">
+                                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/forget-password';" value="Забыли пароль">
                                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/registration';" value="Регистрация"/>
                                 <input type="button" class="btn btn-back btn-lg" onClick="history.go(-1);return true;" value="Назад">
                             </div>

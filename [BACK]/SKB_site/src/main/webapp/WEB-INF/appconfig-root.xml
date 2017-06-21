@@ -8,13 +8,14 @@
     <import resource="appconfig-mvc.xml"/>
     <import resource="appconfig-data.xml"/>
     <import resource="appconfig-security.xml"/>
+    <import resource="appconfig-mail.xml"/>
 
-    <!--Бин для работы загрузки файлов-->
     <!-- Scans within the base package of the application for @Component classes to configure as beans -->
     <context:component-scan base-package="com.kantiana.skb.*"/>
 
     <context:property-placeholder location="application.properties"/>
 
+    <!--Бин для работы загрузки файлов-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--Размер загружаемой фотографии-->
         <property name="maxUploadSize" value="200000000000000" />
