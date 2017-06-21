@@ -148,10 +148,6 @@ public class UserController {
     // Контроллер изменения пароля пользователя
     @RequestMapping(value = "/change-password", method = RequestMethod.POST)
     public String changePassword(String currentPassword, String newPassword, String confirmNewPassword){
-<<<<<<< HEAD
-=======
-
->>>>>>> 74b84ea4d4d8c2ede3bdcabf02323d8ec3995efe
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User currentUser = securityService.findLoggedUser();
 
