@@ -108,6 +108,7 @@
             <version>${commons-dbcp.version}</version>
         </dependency>
 
+        <!--Модульное тестирование-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
