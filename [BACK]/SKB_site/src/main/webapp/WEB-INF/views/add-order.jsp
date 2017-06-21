@@ -60,7 +60,7 @@
         <div class="col-xs-12">
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
-                    <div class="form-group">
+                    <div class="form-group order-shell">
                         <label class="control-label col-xs-3" for="orderName">Название заказа</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
@@ -69,7 +69,7 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group order-shell">
                         <label class="control-label col-xs-3" for="orderContent">Содержание заказа</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
@@ -79,31 +79,31 @@
                                     <form:input  path="id"  value="${order.id}" cssStyle="visibility: hidden"></form:input>
                                 </c:if>
                             </div>
-
                         </spring:bind>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Проект, к которому привязан заказ</label>
-                        <form:select path="project.id">
-                            <form:option value="-1" selected="selected">Отсутствует</form:option>
-                            <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
-                        </form:select>
+                    <div class="form-group order-shell-project">
+                        <label class="control-label col-xs-3">Проект, реализующий заказ</label>
+                        <div class="col-xs-9">
+                            <form:select path="project.id">
+                                <form:option value="-1" selected="selected">Отсутствует</form:option>
+                                <form:options items="${allProjects}" itemLabel="name" itemValue="id"></form:options>
+                            </form:select>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group order-shell">
                         <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
-                        <input type="file" name="file" id="orderPic"  >
-
+                        <input class="col-xs-9" type="file" name="file" id="orderPic"  >
                     </div>
                     <div class="container">
-                        <div class="col-xs-offset-9 col-xs-3">
+                        <div class="col-xs-offset-6 col-xs-6 col-md-offset-8 col-md-4 col-sm-offset-7 col-sm-5">
                             <div class="form-group">
                                 <c:if test="${ empty order.id }">
-                                    <button type="submit" formaction="/add-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                    <button type="submit"  formaction="/add-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green btn-sm"><i class="fa fa-share"></i>
                                         Добавить заказ
                                     </button>
                                 </c:if>
                                 <c:if test="${order.id > 0}">
-                                    <button type="submit" formaction="/edit-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green"><i class="fa fa-share"></i>
+                                    <button type="submit" formaction="/edit-order?${_csrf.parameterName}=${_csrf.token}" class="btn btn-success green btn-sm"><i class="fa fa-share"></i>
                                         Изменить заказ
                                     </button>
                                 </c:if>
