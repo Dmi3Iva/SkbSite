@@ -6,7 +6,7 @@ import java.util.*;
 
 public class RequestEquipment {
 
-    private Vector<EquipmentTypeCount> equipmentTypeCount;
+    private List<EquipmentTypeCount> equipmentTypeCount;
     private Date date;
     private Map<String,Long> time;
 
@@ -17,7 +17,7 @@ public class RequestEquipment {
         this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
     }
 
-    public Vector<EquipmentTypeCount> getEquipmentTypeCount() {
+    public List<EquipmentTypeCount> getEquipmentTypeCount() {
         return equipmentTypeCount;
     }
 

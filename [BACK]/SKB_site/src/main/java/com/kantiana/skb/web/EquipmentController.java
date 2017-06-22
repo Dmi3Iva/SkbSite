@@ -146,7 +146,7 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
-                                   @ModelAttribute("equipmentTypeCount") EquipmentTypeCount equipmentTypeCount, @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
+                                   @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
         if(requestEquipment == null)
         {
             requestEquipment = new RequestEquipment();
@@ -164,9 +164,9 @@ public class EquipmentController {
         {
             model.addAttribute("requestEquipment", requestEquipment);
         }
-
-        RequestEquipment timeList = new RequestEquipment();
-        model.addAttribute("timeList", timeList);
+//
+//        RequestEquipment timeList = new RequestEquipment();
+//        model.addAttribute("timeList", timeList);
 //        model.addAttribute("easyTime",new EasyTime());
 //        if(!model.containsAttribute("basket"))
 //            model.addAttribute("basket", new HashSet<EquipmentType>());

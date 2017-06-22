@@ -61,9 +61,9 @@
 
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
-          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="post" varstatus ="i" begin="0">
+          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="post" >
 
-          <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item">
+          <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item" varStatus="status">
             <div class="row">
                   <div class="col-xs-4">
                     <label>${item.id} </label>
@@ -72,8 +72,8 @@
                     <button>-</button>
                   </div>
                   <div class="col-xs-2">
-                    <form:hidden path="equipmentTypeCount[i].id"></form:hidden>
-                    <form:input class = "form-control" path="equipmentTypeCount[i].count"></form:input>
+                    <form:hidden path="equipmentTypeCount[${status.index}].id"></form:hidden>
+                    <form:input class = "form-control" path="equipmentTypeCount[${status.index}].count"></form:input>
                   </div>
                   <div class="col-xs-1">
                     <button>+</button>
