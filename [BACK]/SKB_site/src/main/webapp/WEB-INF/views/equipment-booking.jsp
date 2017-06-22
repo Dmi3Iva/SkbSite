@@ -93,20 +93,23 @@
           <div class="text-center">
             Выберите дату бронирования
           </div>
-          <div class="col-xs-offset-1 col-xs-5">
+
+
+          <div class=" col-xs-5">
             <label for="Date">Выберите день</label>
             <div id="Date">
-              <form:input path="date"></form:input>
+              <form:input type = "text" class = "form-control" path="date"></form:input>
               <div></div>
             </div>
           </div>
-          <div class="col-xs-offset-1 col-xs-5">
+
+
+          <div class="col-xs-5">
             Время:
-            <form:select multiple = "true" path="time" size="20" class="form-control">
-                <form:options items ="${timeList}"></form:options>
+            <form:select multiple = "true" path="time" items="${time}" size="20" class="form-control">
+
             </form:select>
             <select  size="20">
-
             </select>
           </div>
         </div>
@@ -133,7 +136,8 @@
   <script src="../../resources/js/tether.min.js"></script>
   <script src="../../resources/bootstrap/js/bootstrap.js"></script>
   <script>
-      $('#Date div').datepicker({
+      $('#Date input').datepicker({
+
           maxViewMode: 2,
           todayBtn: "linked",
           clearBtn: true,
