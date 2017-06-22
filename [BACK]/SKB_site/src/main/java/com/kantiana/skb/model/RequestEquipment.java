@@ -18,6 +18,13 @@ public class RequestEquipment {
         this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
     }
 
+    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, Date date, List<String> timeChoose, List<String> timeList) {
+        this.equipmentTypeCount = equipmentTypeCount;
+        this.date = date;
+        this.timeChoose = timeChoose;
+        this.timeList = timeList;
+    }
+
     public List<EquipmentTypeCount> getEquipmentTypeCount() {
         return equipmentTypeCount;
     }

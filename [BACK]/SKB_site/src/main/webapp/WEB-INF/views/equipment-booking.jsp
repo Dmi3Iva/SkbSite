@@ -62,7 +62,7 @@
 
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
-          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="POST" >
+          <form:form modelAttribute="requestEquipment" action="/equipment-booking?${_csrf.parameterName}=${_csrf.token}" method="POST" >
 
           <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item" varStatus="status">
             <div class="row">
@@ -110,9 +110,7 @@
           </div>
         </div>
         <div class="col-xs-offset-8 col-xs-4">
-          <input type="submit">
-          <form:button class="btn btn-default btn-md">Заброни</form:button>
-          <button type="submit" class="btn btn-default btn-md">Забронировать</button>
+          <form:button class="btn btn-default btn-md">Забронировать</form:button>
         </div>
       </div>
     </div>
