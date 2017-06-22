@@ -3,6 +3,7 @@ package com.kantiana.skb.web;
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -145,21 +146,41 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
-                                   @ModelAttribute("equipmentTypeCount") EquipmentTypeCount equipmentTypeCount) {
-        model.addAttribute("easyTime",new EasyTime());
-        if(!model.containsAttribute("basket"))
-            model.addAttribute("basket", new HashSet<EquipmentType>());
+                                   @ModelAttribute("equipmentTypeCount") EquipmentTypeCount equipmentTypeCount, @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
+        if(requestEquipment == null)
+        {
+            requestEquipment = new RequestEquipment();
+        }
 
-        if( equipmentTypeCount == null )
+        if(requestEquipment.getSize() == 0)
         {
             for(EquipmentType e : basket)
-            equipmentTypeCount.add(e.getId(),1L);
+            {
+                requestEquipment.add(e.getId(),1L);
+            }
         }
-        if( equipmentTypeCount.getId().size() == 0){
-            for(EquipmentType e : basket)
-                equipmentTypeCount.add(e.getId(),1L);
+
+        if(!model.containsAttribute("requestEquipment"))
+        {
+            model.addAttribute("requestEquipment", requestEquipment);
         }
-        model.addAttribute("equipmentTypeCount",equipmentTypeCount);
+
+        RequestEquipment timeList = new RequestEquipment();
+        model.addAttribute("timeList", timeList);
+//        model.addAttribute("easyTime",new EasyTime());
+//        if(!model.containsAttribute("basket"))
+//            model.addAttribute("basket", new HashSet<EquipmentType>());
+//
+//        if( equipmentTypeCount == null )
+//        {
+//            for(EquipmentType e : basket)
+//            equipmentTypeCount.add(e.getId(),1L);
+//        }
+//        if( equipmentTypeCount.getId().size() == 0){
+//            for(EquipmentType e : basket)
+//                equipmentTypeCount.add(e.getId(),1L);
+//        }
+//        model.addAttribute("equipmentTypeCount",equipmentTypeCount);
 
         return "equipment-booking";
     }

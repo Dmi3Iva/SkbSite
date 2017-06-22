@@ -18,6 +18,10 @@
   <title>СКБ</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment_booking.css">
+  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap-datepicker/css/bootstrap-datepicker.css">
+  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
+  <script src="${contextPath}/resources/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="${contextPath}/resources/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>
 
   <!--datetime css-->
   <link href="${contextPath}/resources/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
@@ -51,22 +55,25 @@
 
     <div class="row">
       <div class="col-md-6">
+        <c:if test="${empty basket}">
+          <h1>Ваша корзина пуста</h1>
+        </c:if>
 
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
-          <form method="post">
+          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="post" varstatus ="i" begin="0">
 
-          <c:forEach items="${basket}" var="item">
+          <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item">
             <div class="row">
                   <div class="col-xs-4">
-                    <label>${item.name} </label>
+                    <label>${item.id} </label>
                   </div>
                   <div class="col-xs-1">
                     <button>-</button>
                   </div>
                   <div class="col-xs-2">
-                    <input type="hidden" name="equipmentTypeCount.id[${item.id}]" />
-                    <input type="number" class="form-control" name="equipmentTypeCount.count[${item.id}]" value="1" placeholder="${equipmentTypeCount.count[item.id]}"/>
+                    <form:hidden path="equipmentTypeCount[i].id"></form:hidden>
+                    <form:input class = "form-control" path="equipmentTypeCount[i].count"></form:input>
                   </div>
                   <div class="col-xs-1">
                     <button>+</button>
@@ -74,11 +81,9 @@
               </div>
           </c:forEach>
           </form>
-        </c:if>
 
-        <c:if test="${empty basket}">
-          <h1>Ваша корзина пуста</h1>
-        </c:if>
+
+
       </div>
 
 
@@ -88,41 +93,31 @@
             Выберите дату бронирования
           </div>
           <div class="col-xs-offset-1 col-xs-5">
-            День: <input type="date">
+            <label for="Date">Выберите день</label>
+            <div id="Date">
+              <form:input path="date"></form:input>
+              <div></div>
+            </div>
           </div>
           <div class="col-xs-offset-1 col-xs-5">
             Время:
-            <select multiple size="20">
-              <option>8.30-9.00</option>
-              <option>9.00-9.30</option>
-              <option>9.30-10.00</option>
-              <option>10.00-10.30</option>
-              <option>10.30-11.00</option>
-              <option>11.00-11.30</option>
-              <option>11.30-12.00</option>
-              <option>12.00-12.30</option>
-              <option>12.30-13.00</option>
-              <option>13.00-13.30</option>
-              <option>13.30-14.00</option>
-              <option>14.00-14.30</option>
-              <option>14.30-15.00</option>
-              <option>15.00-15.30</option>
-              <option>15.30-16.00</option>
-              <option>16.00-16.30</option>
-              <option>16.30-17.00</option>
-              <option>17.00-17.30</option>
-              <option>17.30-18.00</option>
-              <option>18.00-18.30</option>
+            <form:select multiple = "true" path="time" size="20" class="form-control">
+                <form:options items ="${timeList}"></form:options>
+            </form:select>
+            <select  size="20">
+
             </select>
           </div>
         </div>
         <div class="col-xs-offset-8 col-xs-4">
-          <button type="button" class="btn btn-default btn-md">Забронировать</button>
+          <button type="button" id="submitRequest"class="btn btn-default btn-md">Забронировать</button>
         </div>
       </div>
     </div>
     </div>
 
+    </form:form>
+  </c:if>
   <!--мой вариант -->
   <div class="forFont">
     <div class="container" >
@@ -134,11 +129,22 @@
 
   <%@include file="footer.jsp" %>
 
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
   <script>window.jQuery</script>
   <script src="../../resources/js/tether.min.js"></script>
   <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+  <script>
+      $('#Date div').datepicker({
+          maxViewMode: 2,
+          todayBtn: "linked",
+          clearBtn: true,
+          language: "ru",
+          daysOfWeekDisabled: "0",
+          todayHighlight: true
+      });
+      $('#submitRequest').click(function () {
+
+      })
+  </script>
 
 
 

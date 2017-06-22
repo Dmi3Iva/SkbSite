@@ -4,42 +4,37 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class EquipmentTypeCount {
-    Vector<Long> id;
-    Vector<Long> count;
+    Long id;
+    Long count;
 
     public EquipmentTypeCount() {
-        this.id = new Vector<Long>();
-        this.count = new Vector<Long>();
+        this.id = -1L;
+        this.count = 1L;
     }
 
-    public EquipmentTypeCount(Vector<Long> id, Vector<Long> count) {
+    public EquipmentTypeCount(Long id, Long count) {
         this.id = id;
         this.count = count;
     }
 
-    public void add(Long id, Long count)
-    {
-        if(this.id==null)
-            this.id = new Vector<Long>();
-        if(this.count==null)
-            this.count = new Vector<Long>();
-        this.id.add(id);
-        this.count.add(count);
-
-    }
-    public Vector<Long> getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Vector<Long> id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Vector<Long> getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Vector<Long> count) {
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void add(Long idType,Long count){
+        this.id = idType;
         this.count = count;
     }
 }
