@@ -92,7 +92,7 @@
                                 <p class="description">
                                     Автор: <a href="/id${item.author.id}">${item.author.username}</a><br>
                                     <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
-                                        Добавлено ${item.timeOfCreation}
+                                        <span class="glyphicon glyphicon-plus"></span>Добавлено ${item.timeOfCreation}
                                     </c:if>
                                     <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
                                         <c:if test="${item.editor.username != item.author.username}">
