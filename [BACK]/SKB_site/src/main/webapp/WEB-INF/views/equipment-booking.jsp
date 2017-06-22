@@ -1,3 +1,4 @@
+<%@ page import="com.kantiana.skb.model.EquipmentType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -65,21 +66,21 @@
 
           <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item" varStatus="status">
             <div class="row">
-                  <div class="col-xs-4">
-                    <label>${item.id} </label>
-                  </div>
-                  <div class="col-xs-1">
-                    <button>-</button>
-                  </div>
-                  <div class="col-xs-2">
-                    <form:hidden path="equipmentTypeCount[${status.index}].id"></form:hidden>
-                    <form:input class = "form-control" path="equipmentTypeCount[${status.index}].count"></form:input>
-                  </div>
-                  <div class="col-xs-1">
-                    <button>+</button>
-                  </div>
+                    <div class="col-xs-4">
+                      <label>${item.name} </label>
+                    </div>
+                    <div class="col-xs-1">
+                      <button>-</button>
+                    </div>
+                    <div class="col-xs-2">
+                      <form:hidden path="equipmentTypeCount[${status.index}].id"></form:hidden>
+                      <form:input class = "form-control" path="equipmentTypeCount[${status.index}].count"></form:input>
+                    </div>
+                    <div class="col-xs-1">
+                      <button>+</button>
+                    </div>
               </div>
-          </c:forEach>
+            </c:forEach>
           </form>
 
 
@@ -115,7 +116,6 @@
       </div>
     </div>
     </div>
-
     </form:form>
   </c:if>
   <!--мой вариант -->

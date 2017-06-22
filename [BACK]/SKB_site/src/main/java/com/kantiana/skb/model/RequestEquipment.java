@@ -1,6 +1,5 @@
 package com.kantiana.skb.model;
 
-
 import javax.validation.OverridesAttribute;
 import java.util.*;
 
@@ -45,8 +44,8 @@ public class RequestEquipment {
         return this.equipmentTypeCount.size();
     }
 
-    public void add(Long idType, Long count){
-        this.equipmentTypeCount.add(new EquipmentTypeCount(idType,count));
+    public void add(Long idType, Long count, String name){
+        this.equipmentTypeCount.add(new EquipmentTypeCount(idType,count, name));
     }
 
     public void makeTime(){

@@ -156,7 +156,7 @@ public class EquipmentController {
         {
             for(EquipmentType e : basket)
             {
-                requestEquipment.add(e.getId(),1L);
+                requestEquipment.add(e.getId(),1L, e.getName());
             }
         }
 
@@ -164,6 +164,7 @@ public class EquipmentController {
         {
             model.addAttribute("requestEquipment", requestEquipment);
         }
+
 //
 //        RequestEquipment timeList = new RequestEquipment();
 //        model.addAttribute("timeList", timeList);
