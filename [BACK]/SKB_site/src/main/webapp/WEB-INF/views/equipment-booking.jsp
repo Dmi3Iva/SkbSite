@@ -62,7 +62,7 @@
 
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
-          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="post" >
+          <form:form modelAttribute="requestEquipment" action="/equipment-booking" method="POST" >
 
           <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item" varStatus="status">
             <div class="row">
@@ -81,7 +81,7 @@
                     </div>
               </div>
             </c:forEach>
-          </form>
+
 
 
 
@@ -102,19 +102,17 @@
               <div></div>
             </div>
           </div>
-
-
           <div class="col-xs-5">
             Время:
-            <form:select multiple = "true" path="time" items="${time}" size="20" class="form-control">
-
+            <form:select multiple = "true" path="timeChoose" class="form-control">
+              <form:options items="${RequestEquipment.timeList}"></form:options>
             </form:select>
-            <select  size="20">
-            </select>
           </div>
         </div>
         <div class="col-xs-offset-8 col-xs-4">
-          <button type="button" id="submitRequest"class="btn btn-default btn-md">Забронировать</button>
+          <input type="submit">
+          <form:button class="btn btn-default btn-md">Заброни</form:button>
+          <button type="submit" class="btn btn-default btn-md">Забронировать</button>
         </div>
       </div>
     </div>
@@ -145,9 +143,6 @@
           daysOfWeekDisabled: "0",
           todayHighlight: true
       });
-      $('#submitRequest').click(function () {
-
-      })
   </script>
 
 

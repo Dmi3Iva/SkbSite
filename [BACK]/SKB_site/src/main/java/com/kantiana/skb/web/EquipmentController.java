@@ -11,13 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.management.openmbean.ArrayType;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -187,32 +185,34 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, Long idType, @ModelAttribute EasyTime easyTime) {
-        Booking booking= new Booking();
-        easyTime.makeSecond();
-        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
-        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
-        EquipmentType equipmentType = equipmentTypeService.findById(idType);
-        Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
-        Equipment equipment = null;
-        for (Equipment e:equipmentSet) {
-            if(e.getBooking()==null) {
-                equipment = e;
-                break;
-            }
-        }
-        if (equipment ==null)
-            return "equipment-booking";
-        booking.setEquipment(equipment);
-        Request request = new Request();
-        Set<Booking> bookings = new HashSet<Booking>();
-        bookings.add(booking);
-        request.setBookingSet(bookings);
-        request.setUser(securityService.findLoggedUser());
-        booking.setRequest(request);
-        bookingService.save(booking);
-        requestService.save(request);
-        return "equipment-booking";
+    public String equipmentBookingPost(Model model, Long idType, @ModelAttribute RequestEquipment requestEquipment) {
+        Set<Booking> bookingSet= new HashSet<Booking>();
+
+        //        Booking booking= new Booking();
+//        easyTime.makeSecond();
+//        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
+//        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
+//        EquipmentType equipmentType = equipmentTypeService.findById(idType);
+//        Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
+//        Equipment equipment = null;
+//        for (Equipment e:equipmentSet) {
+//            if(e.getBooking()==null) {
+//                equipment = e;
+//                break;
+//            }
+//        }
+//        if (equipment ==null)
+//            return "equipment-booking";
+//        booking.setEquipment(equipment);
+//        Request request = new Request();
+//        Set<Booking> bookings = new HashSet<Booking>();
+//        bookings.add(booking);
+//        request.setBookingSet(bookings);
+//        request.setUser(securityService.findLoggedUser());
+//        booking.setRequest(request);
+//        bookingService.save(booking);
+//        requestService.save(request);
+        return "equipment";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
