@@ -43,62 +43,44 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/project-detailed", method = RequestMethod.GET)
-    public String projectDetailed(Model model, @RequestParam("id") Long id) {
-        Project project = projectService.findById(id);
+    public String projectDetailed(Model model, @RequestParam("projectId") Long projectId) {
+        Project project = projectService.findById(projectId);
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
         model.addAttribute("project", project);
-        model.addAttribute("projectTeam", projectMembershipService.findProjectMembers(id));
+        model.addAttribute("projectTeam", projectMembershipService.findProjectMembers(projectId));
         return "project-detailed";
     }
 
-    @RequestMapping(value = {"/add-project"}, method = RequestMethod.GET)
-    public String addProject(Model model, Long id) {
-        boolean isEditing = (id != null);
-        if (isEditing) {
-            Project project = projectService.findById(id);
-            model.addAttribute("project", project);
-            model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(id));
-            model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(id));
-            model.addAttribute("isEditing", true);
-        }
-        else {
-            model.addAttribute("project", new Project());
-            model.addAttribute("isEditing", false);
-        }
+    @RequestMapping(value = "/add-project", method = RequestMethod.GET)
+    public String addProject(Model model) {
+        model.addAttribute("project", new Project());
+        model.addAttribute("isEditing", false);
         model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
         return "add-project";
     }
 
-    @RequestMapping(value = {"/edit-project"}, method = RequestMethod.GET)
-    public String editProject(Model model, Long id) {
-        boolean isEditing = (id != null);
-        if (isEditing) {
-            Project project = projectService.findById(id);
-            model.addAttribute("project", project);
-            model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(id));
-            model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(id));
-            model.addAttribute("isEditing", true);
-            //для борьбы с незаконным доступом
-            User logUser = securityService.findLoggedUser();
-            User author = project.getCaptain();
-            Boolean admin = false;
-            for (Role i: logUser.getRoles()){
-                if (i.getName().equals("ROLE_ADMIN")){
-                    admin = true;
-                    break;
-                }
-            }
-            if (logUser.getId() != author.getId() && !admin){
-                return "redirect:/error403";
-            }
-        }
-        else {
-            model.addAttribute("project", new Project());
-            model.addAttribute("isEditing", false);
-        }
-
+    @RequestMapping(value = "/edit-project", method = RequestMethod.GET)
+    public String editProject(Model model, Long projectId) {
+        Project project = projectService.findById(projectId);
+        model.addAttribute("project", project);
+        model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(projectId));
+        model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(projectId));
+        model.addAttribute("isEditing", true);
         model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
+        //для борьбы с незаконным доступом
+        User logUser = securityService.findLoggedUser();
+        User author = project.getCaptain();
+        Boolean admin = false;
+        for (Role i: logUser.getRoles()){
+            if (i.getName().equals("ROLE_ADMIN")){
+                admin = true;
+                break;
+            }
+        }
+        if (logUser.getId() != author.getId() && !admin){
+            return "redirect:/error403";
+        }
         return "add-project";
     }
 
@@ -133,14 +115,14 @@ public class ProjectsController {
         newProjectMembership.setProject(projectService.findById(projectId));
         newProjectMembership.setUser(userService.findById(newMemberId));
         projectMembershipService.save(newProjectMembership);
-        return "redirect:/edit-project?id=" + projectId;
+        return "redirect:/edit-project?projectId=" + projectId;
     }
 
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
     public String deleteMembership(Long projectId, Long memberId) {
         projectMembershipService.remove(projectId, memberId);
-        return "redirect:/edit-project?id=" + projectId;
+        return "redirect:/edit-project?projectId=" + projectId;
     }
 
     @RequestMapping(value = "/change-captain", method = RequestMethod.POST)
@@ -151,6 +133,6 @@ public class ProjectsController {
             project.setCaptain(captain);
             projectService.saveUpdatedProject(project);
         }
-        return "redirect:/edit-project?id=" + projectId;
+        return "redirect:/edit-project?projectId=" + projectId;
     }
 }

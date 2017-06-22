@@ -96,7 +96,7 @@
                                     Автор:  <a href="/id${item.author.id}">${item.author.username}</a><br>
                                     ${item.timeOfCreation} <br>
                                     <c:if test="${item.project != null}">
-                                        Проект: <a href="/project-detailed?id=${item.project.id}">${item.project.name}</a>
+                                        Проект: <a href="/project-detailed?projectId=${item.project.id}">${item.project.name}</a>
                                     </c:if>
                                 </p>
                                 <p class = "title">
@@ -137,13 +137,13 @@
                                         ${item.dateOfStart}
                                 </p>
                                 <p class = "title">
-                                    <a href="/project-detailed?id=${item.id}">${item.name}</a>
+                                    <a href="/project-detailed?projectId=${item.id}">${item.name}</a>
                                 </p>
                                 <div class="article">
                                         ${item.about}
                                 </div>
                                 <p class="detailes">
-                                    <a href="/project-detailed?id=${item.id}">Подробнее...</a>
+                                    <a href="/project-detailed?projectId=${item.id}">Подробнее...</a>
                                 </p>
                             </div>
                         </div>

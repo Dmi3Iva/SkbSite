@@ -70,7 +70,7 @@
                     <p>
                         <c:if test="${newsProject != null}">
                             Проект:
-                            <a href="/project-detailed?id=${newsProject.id}">${newsProject.name}</a>
+                            <a href="/project-detailed?projectId=${newsProject.id}">${newsProject.name}</a>
                         </c:if>
                     </p>
                     <p class="article">

@@ -60,7 +60,7 @@
                         </p>
                         <p>Проекты:
                             <c:forEach items="${userProjects}" var="project">
-                                <a href="/project-detailed?id=${project.id}">${project.name}</a>
+                                <a href="/project-detailed?projectId=${project.id}">${project.name}</a>
                                 ,
                             </c:forEach>
                         </p>

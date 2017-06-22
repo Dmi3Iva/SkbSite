@@ -56,7 +56,7 @@
           <div class="col-md-8">
             <div class="new">
               <p class="title">
-                <a href="/project-detailed?id=${project.id}">${project.name}</a>
+                <a href="/project-detailed?projectId=${project.id}">${project.name}</a>
               </p>
               <p>Капитан команды:
                 <a href="/id${project.captain.id}">${project.captain.username}</a>
@@ -80,10 +80,10 @@
               <p class="article">
                 ${project.about}
               </p>
-                  <a href="/project-detailed?id=${project.id}">Подробнее...</a>
+                  <a href="/project-detailed?projectId=${project.id}">Подробнее...</a>
               <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == project.captain.username }'">
                 <div class="form-group">
-                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
+                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?projectId=${project.id}';" value="Редактировать">
                   <form method="POST" action="/delete-project" class="btn">
                     <input type="hidden" value="${project.id}" name="projectId"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

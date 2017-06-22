@@ -52,7 +52,7 @@
             ${order.content}
           </p>
           <c:if test="${!empty order.project}">
-            <a href="/project-detailed?id=${order.project.id}">${order.project.name}</a>
+            <a href="/project-detailed?projectId=${order.project.id}">${order.project.name}</a>
           </c:if>
           <p class="description">
             Автор: <a href="/id${order.author.id}">${order.author.username}</a><br>

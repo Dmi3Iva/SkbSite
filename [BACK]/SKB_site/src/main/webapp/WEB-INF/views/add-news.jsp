@@ -65,7 +65,7 @@
         Добавление новости
     </c:if>
     <c:if test="${news.project != null}">
-        проекта <a href="/project-detailed?id=${news.project.id}">${news.project.name}</a>
+        проекта <a href="/project-detailed?projectId=${news.project.id}">${news.project.name}</a>
     </c:if>
 
     <form:form method="POST" modelAttribute="news" enctype="multipart/form-data">

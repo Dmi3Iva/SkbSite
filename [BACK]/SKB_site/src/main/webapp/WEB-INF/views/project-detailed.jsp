@@ -48,7 +48,7 @@
     <c:if test="${!empty project}">
       <sec:authorize access="hasRole('ROLE_ADMIN') or '${project.captain.username == logUser.username}'">
         <div class="form-group">
-          <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?id=${project.id}';" value="Редактировать">
+          <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?projectId=${project.id}';" value="Редактировать">
           <form method="POST" action="/delete-project" class="btn">
             <input type="hidden" value="${project.id}" name="projectId"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
