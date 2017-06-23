@@ -8,7 +8,7 @@
 }
 
 .personal_information h1{
-  color: var(--blue);
+  color: #0066d2;
 }
 
 .personal_information img {
@@ -22,7 +22,7 @@
 }
 
 .personal_information button {
-  background-color: var(--blue);
+  background-color: #0066d2;
   border-radius: 5px;
 }
 

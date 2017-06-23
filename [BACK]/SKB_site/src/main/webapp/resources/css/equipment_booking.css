@@ -14,8 +14,8 @@ caption{
 }
 
 thead{
-  background-color: var(--blue);
-  color:var(--white);
+  background-color: #0066d2;
+  color:#f8fdff;
 }
 
 .forFont {
@@ -49,9 +49,9 @@ label{
 }
 
 .blue .block{
-  background-color:var(--blue);
+  background-color:#0066d2;
 }
 
 .whiteblue .block{
-  background-color: var(--blue-btn);
+  background-color: #3095ff;
 }

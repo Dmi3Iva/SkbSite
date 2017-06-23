@@ -7,7 +7,7 @@
 }
 
 body{
-	background-color: var(--blue);
+	background-color: #0066d2;
 }
 
 .header{
@@ -21,8 +21,8 @@ body{
 	width: 80%;*/
 	padding: 5%;
 	margin: 9% 7% 9% 15% ;
-	background-color: var(--white);
-	color: var(--blue);
+	background-color: #f8fdff;
+	color: #0066d2;
 	border-radius: 20px;
 	font-size: 16px;
 }
