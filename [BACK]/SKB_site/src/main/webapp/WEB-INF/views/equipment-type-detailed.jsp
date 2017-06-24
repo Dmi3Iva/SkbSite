@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -12,9 +11,8 @@
     <meta charset="utf-8"/>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
     <title>СКБ</title>
+    <link rel="icon" href="${contextPath}/resources/images/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment_item.css">
 </head>
@@ -29,7 +27,6 @@
 
   <!-- main-->
   <div class="container">
-
     <div class="row">
       <div class="col-xs-9" >
         <ul class="titleHead">
@@ -38,7 +35,9 @@
         </ul>
       </div>
       <div class="col-xs-3">
-        <a href="/equipment-table-${equipmentType.id}" class="btn btn-default" role="button">Просмотреть список устройств. Всего(${equipmentType.equipmentSet.size()})</a>
+        <a href="/equipment-table-${equipmentType.id}" class="btn btn-primary" role="button">
+          Просмотреть список устройств <span class="badge">${equipmentType.equipmentSet.size()}</span>
+        </a>
       </div>
     </div>
     <c:if test="${!empty equipmentType}">
@@ -50,21 +49,18 @@
         <div class="image">
           <img src="${equipmentType.photoPath}" alt="Микроконтроллер1">
         </div>
-
       </div>
       <div class="col-md-6">
         <h5>Описание</h5>
         ${equipmentType.about}
-        <a href="/equipment-booking?idType=${equipmentType.id}">
-          <button type="button" class="btn btn-primary btn-lg btn-block">
-            Добавить к бронированию
-          </button>
-        </a>
+        <form action="equipment-type-detailed" method="post">
+          <input type="hidden" name="id" value="${equipmentType.id}"/>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
+        </form>
       </div>
     </div>
-
   </div>
-
     <div class="container">
       <div class="rows">
         <div class="col-md-6">
@@ -88,5 +84,4 @@
   <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 </body>
-
 </html>

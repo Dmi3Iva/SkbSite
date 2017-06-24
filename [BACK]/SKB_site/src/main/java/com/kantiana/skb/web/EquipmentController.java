@@ -3,6 +3,7 @@ package com.kantiana.skb.web;
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +11,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Timestamp;
+import javax.management.openmbean.ArrayType;
+import java.lang.reflect.Type;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.Date;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
 @Controller
+@SessionAttributes("basket")
 public class EquipmentController {
     @Autowired
     private EquipmentTypeService equipmentTypeService;
@@ -31,15 +37,26 @@ public class EquipmentController {
     @Autowired
     private RequestService requestService;
 
+    @ModelAttribute("basket")
+    public Set<EquipmentType> createBasket(){
+        return new HashSet<EquipmentType>();
+    }
+
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
-    public String equipment(Model model)
+    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket )
     {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
+
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
+
+        if(!model.containsAttribute("basket"))
+            model.addAttribute("basket", new HashSet<EquipmentType>());
+
         return "equipment";
     }
+
 
     @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
@@ -57,7 +74,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/add-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeAddPost(@ModelAttribute("equipmnetType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
     {
         if(bindingResult.hasErrors())
         {
@@ -70,7 +87,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeEditPost(@ModelAttribute("equipmnetType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
     {
         if(bindingResult.hasErrors())
         {
@@ -96,15 +113,29 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
-    public String newsDetailed( Long id,Model model) {
+    public String equipmentDetailed( Long id,Model model,@ModelAttribute("basket") Set<EquipmentType> basket, @ModelAttribute EquipmentType equipmentToBasket) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
+        if(basket ==null) basket = new HashSet<EquipmentType>();
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
+        if(!model.containsAttribute("basket"))
+            model.addAttribute("basket", new HashSet<EquipmentType>());
+        model.addAttribute("equipmentToBasket", equipmentToBasket);
         return "equipment-type-detailed";
     }
 
+    @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
+    public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+
+        for(EquipmentType e : basket){
+            if(e.getId()== id )return "redirect:/equipment-type-detailed?id="+id;
+        }
+        basket.add(equipmentTypeService.findById(id));
+        return "redirect:/equipment-type-detailed?id="+id;
+    }
+
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request)
     {
         if(bindingResult.hasErrors())
         {
@@ -112,44 +143,87 @@ public class EquipmentController {
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        return "redirect:/equipment-table-{idType}";
+        return "redirect:/equipment-table-"+ idType;
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType) {
-        model.addAttribute("easyTime",new EasyTime());
+    public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
+                                   @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
+        if(requestEquipment == null)
+        {
+            requestEquipment = new RequestEquipment();
+        }
+
+        if(requestEquipment.getSize() == 0)
+        {
+            for(EquipmentType e : basket)
+            {
+                requestEquipment.add(e.getId(),1L, e.getName());
+            }
+        }
+
+        if(!model.containsAttribute("requestEquipment"))
+        {
+            model.addAttribute("requestEquipment", requestEquipment);
+        }
 
         return "equipment-booking";
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, Long idType, @ModelAttribute EasyTime easyTime) {
-        Booking booking= new Booking();
-        easyTime.makeSecond();
-        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
-        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
-        EquipmentType equipmentType = equipmentTypeService.findById(idType);
-        Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
-        Equipment equipment = null;
-        for (Equipment e:equipmentSet
-             ) {
-            if(e.getBooking()==null) {
-                equipment = e;
-                break;
+    public String equipmentBookingPost(Model model, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
+        //Формируем отрезки времени
+        int timeMask=0;
+        Map<String,Integer> timeMap = new HashMap<String,Integer>();
+
+        List<String> timeChoose = requestEquipment.getTimeChoose();
+        List<String> timeList = requestEquipment.getTimeList();
+
+        int i = 0 ;
+        for (String s: timeList){
+            timeMap.put( s, i );
+            ++ i ;
+        }
+        for (String s: timeChoose) {
+            timeMask= timeMask | (1<<timeMap.get(s));
+        }
+
+        //
+        Request request = new Request();
+        request.setUser(securityService.findLoggedUser());
+        requestService.save(request);
+
+        //Формириуем bookings
+        List<EquipmentTypeCount> equipmentTypeCountList = requestEquipment.getEquipmentTypeCountList();
+        Booking booking = null;
+        for (EquipmentTypeCount equipmentTypeCount:
+             equipmentTypeCountList) {
+            EquipmentType equipmentType = equipmentTypeService.findById(equipmentTypeCount.getId());
+            Set<Equipment> equipmentSet = equipmentType.getEquipmentSet();
+            i = 0;
+            if( equipmentSet.size() < equipmentTypeCount.getCount())
+                return "equipment-booking";
+            for (Equipment e: equipmentSet) {
+                if( i >=  equipmentTypeCount.getCount()) {
+                    break;
+                }
+                booking = new Booking();
+                booking.setRequest(request);
+                //Преобразуем Date
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    java.util.Date utilDate = format.parse(requestEquipment.getDate());
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    booking.setDay(sqlDate);
+                }
+                catch (Exception ex) {}
+                booking.setEquipment(e);
+                booking.setTimeMask(timeMask);
+                bookingService.save(booking);
+                i++;
             }
         }
-        if (equipment ==null)
-            return "equipment-booking";
-        booking.setEquipment(equipment);
-        Request request = new Request();
-        Set<Booking> bookings = new HashSet<Booking>();
-        bookings.add(booking);
-        request.setBookingSet(bookings);
-        request.setUser(securityService.findLoggedUser());
-        booking.setRequest(request);
-        bookingService.save(booking);
-        requestService.save(request);
-        return "equipment-booking";
+        return "equipment";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
