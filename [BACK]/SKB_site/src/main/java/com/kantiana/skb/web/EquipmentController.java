@@ -13,9 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.management.openmbean.ArrayType;
 import java.lang.reflect.Type;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.Date;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -139,7 +143,7 @@ public class EquipmentController {
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        return "equipment";
+        return "redirect:/equipment-table-"+ idType;
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
@@ -167,7 +171,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, Long idType, @ModelAttribute RequestEquipment requestEquipment) {
+    public String equipmentBookingPost(Model model, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
         //Формируем отрезки времени
         int timeMask=0;
         Map<String,Integer> timeMap = new HashMap<String,Integer>();
@@ -191,42 +195,34 @@ public class EquipmentController {
 
         //Формириуем bookings
         List<EquipmentTypeCount> equipmentTypeCountList = requestEquipment.getEquipmentTypeCountList();
-
+        Booking booking = null;
         for (EquipmentTypeCount equipmentTypeCount:
              equipmentTypeCountList) {
-            Booking booking = new Booking();
-            booking.setRequest(request);
-            booking.setDay(requestEquipment.getDate());
-
-            booking.setEquipment();
-            booking.setTimeMask(timeMask);
+            EquipmentType equipmentType = equipmentTypeService.findById(equipmentTypeCount.getId());
+            Set<Equipment> equipmentSet = equipmentType.getEquipmentSet();
+            i = 0;
+            if( equipmentSet.size() < equipmentTypeCount.getCount())
+                return "equipment-booking";
+            for (Equipment e: equipmentSet) {
+                if( i >=  equipmentTypeCount.getCount()) {
+                    break;
+                }
+                booking = new Booking();
+                booking.setRequest(request);
+                //Преобразуем Date
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    java.util.Date utilDate = format.parse(requestEquipment.getDate());
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    booking.setDay(sqlDate);
+                }
+                catch (Exception ex) {}
+                booking.setEquipment(e);
+                booking.setTimeMask(timeMask);
+                bookingService.save(booking);
+                i++;
+            }
         }
-
-
-//        Booking booking= new Booking();
-//        easyTime.makeSecond();
-//        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
-//        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
-//        EquipmentType equipmentType = equipmentTypeService.findById(idType);
-//        Set<Equipment> equipmentSet= equipmentType.getEquipmentSet();
-//        Equipment equipment = null;
-//        for (Equipment e:equipmentSet) {
-//            if(e.getBooking()==null) {
-//                equipment = e;
-//                break;
-//            }
-//        }
-//        if (equipment ==null)
-//            return "equipment-booking";
-//        booking.setEquipment(equipment);
-//        Request request = new Request();
-//        Set<Booking> bookings = new HashSet<Booking>();
-//        bookings.add(booking);
-//        request.setBookingSet(bookings);
-//        request.setUser(securityService.findLoggedUser());
-//        booking.setRequest(request);
-//        bookingService.save(booking);
-//        requestService.save(request);
         return "equipment";
     }
 

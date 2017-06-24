@@ -72,9 +72,10 @@
                     <div class="col-xs-1">
                       <button>-</button>
                     </div>
+
                     <div class="col-xs-2">
-                      <form:hidden path="equipmentTypeCount[${status.index}].id"></form:hidden>
-                      <form:input class = "form-control" path="equipmentTypeCount[${status.index}].count"></form:input>
+                      <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
+                      <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
                     </div>
                     <div class="col-xs-1">
                       <button>+</button>

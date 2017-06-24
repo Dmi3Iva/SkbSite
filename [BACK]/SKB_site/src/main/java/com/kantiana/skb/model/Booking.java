@@ -1,8 +1,7 @@
 package com.kantiana.skb.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "booking")
@@ -25,7 +24,7 @@ public class Booking {
         return equipment;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "request_id")
     public Request getRequest() {
         return request;
