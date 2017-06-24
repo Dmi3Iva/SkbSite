@@ -6,7 +6,7 @@ import java.util.*;
 public class RequestEquipment {
 
     private List<EquipmentTypeCount> equipmentTypeCount;
-    private Date date;
+    private String date;
     private List<String> timeChoose;
     private List<String> timeList;
 
@@ -14,11 +14,11 @@ public class RequestEquipment {
         this.timeList = new ArrayList<String>();
         this.makeTimeList();
         this.timeChoose = new ArrayList<String>();
-        this.date = new Date();
+        this.date = new String();
         this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
     }
 
-    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, Date date, List<String> timeChoose, List<String> timeList) {
+    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, String date, List<String> timeChoose, List<String> timeList) {
         this.equipmentTypeCount = equipmentTypeCount;
         this.date = date;
         this.timeChoose = timeChoose;
@@ -33,11 +33,11 @@ public class RequestEquipment {
         this.equipmentTypeCount = equipmentTypeCount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
