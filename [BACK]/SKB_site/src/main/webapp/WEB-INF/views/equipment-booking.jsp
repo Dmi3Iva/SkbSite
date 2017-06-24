@@ -64,7 +64,7 @@
           <h1>В вашей корзине:</h1>
           <form:form modelAttribute="requestEquipment" action="/equipment-booking?${_csrf.parameterName}=${_csrf.token}" method="POST" >
 
-          <c:forEach items="${requestEquipment.equipmentTypeCount}" var="item" varStatus="status">
+          <c:forEach items="${requestEquipment.equipmentTypeCountList}" var="item" varStatus="status">
             <div class="row">
                     <div class="col-xs-4">
                       <label>${item.name} </label>

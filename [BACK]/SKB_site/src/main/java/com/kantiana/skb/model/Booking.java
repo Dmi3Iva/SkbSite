@@ -2,6 +2,7 @@ package com.kantiana.skb.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "booking")
@@ -9,8 +10,8 @@ public class Booking {
     private Long id;
     private Equipment equipment;
     private Request request;
-    private Timestamp begin;
-    private Timestamp end;
+    private Date day;
+    private Integer timeMask;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +31,21 @@ public class Booking {
         return request;
     }
 
-    @Column(name = "time_of_begin")
-    public Timestamp getBegin() {
-        return begin;
+    @Column(name = "day")
+    public Date getDay() {
+        return day;
     }
 
-    @Column(name = "time_of_end")
-    public Timestamp getEnd() {
-        return end;
+    @Column(name = "time_mask")
+    public Integer getTimeMask() {
+        return timeMask;
+    }
+
+    public void setTimeMask(Integer timeMask) {
+        this.timeMask = timeMask;
+    }
+    public void setDay(Date day) {
+        this.day = day;
     }
 
     public void setId(Long id) {
@@ -52,11 +60,4 @@ public class Booking {
         this.request = request;
     }
 
-    public void setBegin(Timestamp begin) {
-        this.begin = begin;
-    }
-
-    public void setEnd(Timestamp end) {
-        this.end = end;
-    }
 }

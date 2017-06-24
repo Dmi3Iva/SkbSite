@@ -25,11 +25,11 @@ public class RequestEquipment {
         this.timeList = timeList;
     }
 
-    public List<EquipmentTypeCount> getEquipmentTypeCount() {
+    public List<EquipmentTypeCount> getEquipmentTypeCountList() {
         return equipmentTypeCount;
     }
 
-    public void setEquipmentTypeCount(Vector<EquipmentTypeCount> equipmentTypeCount) {
+    public void setEquipmentTypeCountList(Vector<EquipmentTypeCount> equipmentTypeCount) {
         this.equipmentTypeCount = equipmentTypeCount;
     }
 
@@ -41,7 +41,7 @@ public class RequestEquipment {
         this.date = date;
     }
 
-    public void setEquipmentTypeCount(List<EquipmentTypeCount> equipmentTypeCount) {
+    public void setEquipmentTypeCountList(List<EquipmentTypeCount> equipmentTypeCount) {
         this.equipmentTypeCount = equipmentTypeCount;
     }
 

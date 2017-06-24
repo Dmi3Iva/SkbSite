@@ -163,32 +163,47 @@ public class EquipmentController {
             model.addAttribute("requestEquipment", requestEquipment);
         }
 
-//
-//        RequestEquipment timeList = new RequestEquipment();
-//        model.addAttribute("timeList", timeList);
-//        model.addAttribute("easyTime",new EasyTime());
-//        if(!model.containsAttribute("basket"))
-//            model.addAttribute("basket", new HashSet<EquipmentType>());
-//
-//        if( equipmentTypeCount == null )
-//        {
-//            for(EquipmentType e : basket)
-//            equipmentTypeCount.add(e.getId(),1L);
-//        }
-//        if( equipmentTypeCount.getId().size() == 0){
-//            for(EquipmentType e : basket)
-//                equipmentTypeCount.add(e.getId(),1L);
-//        }
-//        model.addAttribute("equipmentTypeCount",equipmentTypeCount);
-
         return "equipment-booking";
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
     public String equipmentBookingPost(Model model, Long idType, @ModelAttribute RequestEquipment requestEquipment) {
-        Set<Booking> bookingSet= new HashSet<Booking>();
+        //Формируем отрезки времени
+        int timeMask=0;
+        Map<String,Integer> timeMap = new HashMap<String,Integer>();
 
-        //        Booking booking= new Booking();
+        List<String> timeChoose = requestEquipment.getTimeChoose();
+        List<String> timeList = requestEquipment.getTimeList();
+
+        int i = 0 ;
+        for (String s: timeList){
+            timeMap.put( s, i );
+            ++ i ;
+        }
+        for (String s: timeChoose) {
+            timeMask= timeMask | (1<<timeMap.get(s));
+        }
+
+        //
+        Request request = new Request();
+        request.setUser(securityService.findLoggedUser());
+        requestService.save(request);
+
+        //Формириуем bookings
+        List<EquipmentTypeCount> equipmentTypeCountList = requestEquipment.getEquipmentTypeCountList();
+
+        for (EquipmentTypeCount equipmentTypeCount:
+             equipmentTypeCountList) {
+            Booking booking = new Booking();
+            booking.setRequest(request);
+            booking.setDay(requestEquipment.getDate());
+
+            booking.setEquipment();
+            booking.setTimeMask(timeMask);
+        }
+
+
+//        Booking booking= new Booking();
 //        easyTime.makeSecond();
 //        booking.setBegin(Timestamp.valueOf(easyTime.getBegin().replace("T"," ")));
 //        booking.setEnd(Timestamp.valueOf(easyTime.getEnd().replace("T"," ")));
