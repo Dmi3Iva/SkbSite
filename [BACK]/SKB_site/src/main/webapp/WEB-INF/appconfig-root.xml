@@ -18,7 +18,7 @@
     <!--Бин для работы загрузки файлов-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--Размер загружаемой фотографии-->
-        <property name="maxUploadSize" value="200000000000000" />
+        <property name="maxUploadSize" value="52428800" />
     </bean>
 
 </beans>
