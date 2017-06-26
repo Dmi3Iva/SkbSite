@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
+<c:set var="title" value="СКБ"/>
 
 <!doctype html>
 <html>
@@ -12,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
 </head>

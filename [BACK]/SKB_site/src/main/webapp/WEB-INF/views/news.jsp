@@ -4,7 +4,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page pageEncoding="UTF-8"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:choose>
+    <c:when test="${project == null}">
+        <c:set var="title" value="Новости"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Новости проекта '${project.name}'"/>
+    </c:otherwise>
+</c:choose>
 
 <!doctype html>
 <html lang="ru">
@@ -14,7 +23,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news.css">
 </head>

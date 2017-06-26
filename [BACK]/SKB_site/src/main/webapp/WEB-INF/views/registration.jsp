@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Регистрация"/>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -13,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>Регистрация</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
@@ -24,7 +25,7 @@
         <div class="row">
             <div class=" col-md-10 col-xs-12">
                 <div class="registration-form">
-                    <h1>Регистрация</h1>
+                    <h1>${title}</h1>
                     <form:form method="POST" modelAttribute="userForm" class="form-horizontal">
                         <spring:bind path="firstName">
                             <div class="form-group">

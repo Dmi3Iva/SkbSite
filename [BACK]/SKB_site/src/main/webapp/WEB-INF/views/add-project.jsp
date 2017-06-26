@@ -6,6 +6,15 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+<c:choose>
+    <c:when test="${project.name != null}">
+        <c:set var="title" value="Редактирование проекта '${project.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление проекта"/>
+    </c:otherwise>
+</c:choose>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,7 +22,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
     <%--TinyMCE Cloud deployment--%>
@@ -42,8 +51,14 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${isEditing == true}">Изменение проекта <a href="/project-detailed?projectId=${project.id}">"${project.name}"</a></c:if>
-                        <c:if test="${isEditing == false}"> Добавление проекта</c:if>
+                        <c:choose>
+                            <c:when test="${project.name != null}">
+                                Редактирование проекта
+                            </c:when>
+                            <c:otherwise>
+                                Добавление проекта
+                            </c:otherwise>
+                        </c:choose>
                     </h3>
                 </li>
             </ul>

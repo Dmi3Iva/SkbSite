@@ -6,6 +6,9 @@
 
 <%@page pageEncoding="UTF-8"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
+<c:set var="title" value="О нас"/>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -14,7 +17,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/about.css">
 </head>
@@ -33,7 +36,7 @@
         <div class="col-xs-6" >
             <ul class="titleHead">
                 <li><div class="smallBlueBox"></div></li>
-                <li><h3>О нас</h3></li>
+                <li><h3>${title}</h3></li>
             </ul>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">

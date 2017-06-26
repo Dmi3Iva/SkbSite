@@ -6,6 +6,14 @@
 <%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:choose>
+    <c:when test="${order.name != null}">
+        <c:set var="title" value="Редактирование заказа '${order.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление заказа"/>
+    </c:otherwise>
+</c:choose>
 
 <html>
 <head>
@@ -18,7 +26,7 @@
     <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-order.css">
     <%--TinyMCE Cloud deployment--%>
@@ -47,8 +55,14 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${order.id > 0}">Изменение заказа</c:if>
-                        <c:if test="${empty order.id }"> Добавление заказа</c:if>
+                        <c:choose>
+                            <c:when test="${order.name != null}">
+                                Редактирование заказа
+                            </c:when>
+                            <c:otherwise>
+                                Добавление заказа
+                            </c:otherwise>
+                        </c:choose>
                     </h3>
                 </li>
             </ul>

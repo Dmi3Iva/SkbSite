@@ -5,6 +5,8 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Таблица устройств модели ${equipmentType.name}"/>
+
 <!doctype html>
 <html lang="ru">
 
@@ -15,7 +17,7 @@
 
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment-table.css">
 
@@ -24,7 +26,7 @@
 <body>
 
 <main class="container-fluid">
-    <H1>Таблица устройств модели ${equipmentType.name}</H1>
+    <H1>${title}</H1>
     <c:if test="${empty equipmentSet}">
         <h2>Не добавлено ни одно устройство.</h2>
     </c:if>

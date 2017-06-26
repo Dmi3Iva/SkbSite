@@ -6,6 +6,8 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Бронирование оборудования"/>
+
 <!doctype html>
 <html lang="ru">
 
@@ -16,7 +18,7 @@
 
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-  <title>СКБ</title>
+  <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment_booking.css">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap-datepicker/css/bootstrap-datepicker.css">
@@ -48,7 +50,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Оборудование</h3></li>
+            <h3>${title}</h3></li>
         </ul>
       </div>
     </div>

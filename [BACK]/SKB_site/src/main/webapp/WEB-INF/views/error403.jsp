@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Ошибка 403"/>
 
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Ошибка 403</title>
+	<title>${title}</title>
 	<link rel="icon" href="${contextPath}/resources/images/logo.png">
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/error403.css">
 </head>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="${equipmentType.name}"/>
 
 <!doctype html>
 <html lang="ru">
@@ -11,7 +12,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>СКБ</title>
+    <title>${title}</title>
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment_item.css">
@@ -31,7 +32,7 @@
       <div class="col-xs-9" >
         <ul class="titleHead">
           <li><div class="smallBlueBox"></div></li>
-          <li><h3>Оборудование</h3></li>
+          <li><h3>${title}</h3></li>
         </ul>
       </div>
       <div class="col-xs-3">

@@ -4,15 +4,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Заказ '${order.name}'"/>
+
 <!doctype html>
 <html lang="ru">
-
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
-  <title>СКБ</title>
+  <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/order-detailed.css">
 </head>
@@ -35,7 +36,8 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Заказ</h3></li>
+            <h3>${title}</h3>
+          </li>
         </ul>
       </div>
     </div>

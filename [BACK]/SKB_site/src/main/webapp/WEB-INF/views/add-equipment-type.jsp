@@ -5,6 +5,15 @@
 <%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:choose>
+    <c:when test="${equipmentType.name != null}">
+        <c:set var="title" value="Редактирование модели '${equipmentType.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление модели"/>
+    </c:otherwise>
+</c:choose>
+
 
 <html>
 <head>
@@ -17,7 +26,7 @@
     <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
     <%--TinyMCE Cloud deployment--%>
@@ -46,8 +55,14 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${equipmentType.id > 0}">Изменение модели</c:if>
-                        <c:if test="${empty equipmentType.id }"> Добавление модели</c:if>
+                        <c:choose>
+                            <c:when test="${equipmentType.name != null}">
+                                Редактирование модели
+                            </c:when>
+                            <c:otherwise>
+                                Добавление модели
+                            </c:otherwise>
+                        </c:choose>
                     </h3>
                 </li>
             </ul>

@@ -5,16 +5,17 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Проект '${project.name}'"/>
+
 <!doctype html>
 <html lang="ru">
-
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-  <title>СКБ</title>
+  <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../resources/css/project-detailed.css">
 </head>
@@ -39,7 +40,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Проект "${project.name}"</h3>
+            <h3>${title}</h3>
           </li>
         </ul>
       </div>

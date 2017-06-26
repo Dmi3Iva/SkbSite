@@ -5,16 +5,17 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Проекты"/>
+
 <!doctype html>
 <html lang="ru">
-
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-  <title>СКБ</title>
+  <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/project.css">
 </head>
@@ -39,7 +40,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Проекты</h3></li>
+            <h3>${title}</h3></li>
         </ul>
       </div>
       <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">

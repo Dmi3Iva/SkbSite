@@ -6,6 +6,8 @@
 <%@page pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Новость '${news.name}'"/>
+
 <!doctype html>
 <html lang="ru">
 
@@ -15,7 +17,7 @@
   <meta name="author" content="">
   <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-  <title>СКБ</title>
+  <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news-detailed.css">
 </head>
@@ -40,7 +42,7 @@
             <div class="smallBlueBox"></div>
           </li>
           <li>
-            <h3>Новость "${news.name}"</h3></li>
+            <h3>${title}</h3></li>
         </ul>
       </div>
     </div>

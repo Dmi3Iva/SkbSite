@@ -6,6 +6,15 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+<c:choose>
+    <c:when test="${news.name != null}">
+        <c:set var="title" value="Редактирование новости '${news.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление новости"/>
+    </c:otherwise>
+</c:choose>
+
 <html>
 <head>
     <csrf disabled="true"/>
@@ -17,7 +26,7 @@
     <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
     <%--TinyMCE Cloud deployment--%>
@@ -46,27 +55,19 @@
                 </li>
                 <li>
                     <h3>
-                        <c:if test="${news.id > 0}">
-                            Изменение новости
-                        </c:if>
-                        <c:if test="${empty news.id}">
-                            Добавление новости
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${news.name != null}">
+                                Редактирование новости
+                            </c:when>
+                            <c:otherwise>
+                                Добавление новости
+                            </c:otherwise>
+                        </c:choose>
                     </h3>
                 </li>
             </ul>
         </div>
     </div>
-
-    <c:if test="${news.id > 0}">
-        Изменение новости
-    </c:if>
-    <c:if test="${empty news.id}">
-        Добавление новости
-    </c:if>
-    <c:if test="${news.project != null}">
-        проекта <a href="/project-detailed?projectId=${news.project.id}">${news.project.name}</a>
-    </c:if>
 
     <form:form method="POST" modelAttribute="news" enctype="multipart/form-data">
         <div class="col-xs-12">

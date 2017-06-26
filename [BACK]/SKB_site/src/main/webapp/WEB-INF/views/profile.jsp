@@ -4,7 +4,9 @@
 <%@taglib prefix="src" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="title" value="Личная информация ${user.username}"/>
 
 <html>
 <head>
@@ -13,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
-    <title>Личная информация</title>
+    <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/profile.css">
 
@@ -37,7 +39,7 @@
         <div class="container">
             <div class="row">
                 <div class="personal_header col-sm-offset-3">
-                    <h1>Личная информация </h1>
+                    <h1>${title}</h1>
                 </div>
                 <div class="container">
                     <div class="col-xs-6">
