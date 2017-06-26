@@ -17,6 +17,9 @@
     <title>СКБ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/about.css">
+
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
 
@@ -36,47 +39,47 @@
                 <li><h3>О нас</h3></li>
             </ul>
         </div>
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-            <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='#';" value="Редактировать">
+            <button type="button" class="btn btn-back btn-lg" data-toggle="modal" data-target = #myModal>
+                Редактировать
+            </button>
         </div>
-        </sec:authorize>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 col-sm-offset-2">
-            <div class="text">
-                <p>Сегодня каждое предприятие, организация или сообщество для коммуникации и организации работы должно иметь свою страницу в сети интернет. Удаленное общение помогает быстрее и качественнее справляться с поставленными целями и задачами. Современные средства позволяют наглядно и быстро делать и показывать информационный контент.
-                </p>
+
+        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <form:form modelAttribute="aboutPage" method="post">
+                    <div class="modal-body">
+
+                            <spring:bind path="id">
+                                <form:hidden path="id"/>
+                            </spring:bind>
+                            <spring:bind path="text">
+                                <form:textarea path="text"/>
+                            </spring:bind>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form:form>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <img class="image" src="../../resources/images/Photo/IMG_0019.JPG">
-        </div>
+
+        <%--</sec:authorize>--%>
     </div>
 
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-2">
-            <img class="image" src="../../resources/images/Photo/IMG_0003.JPG">
+        <div class="col-xs-12">
+            ${aboutPage.text}
         </div>
-        <div class="col-sm-4 ">
-            <div class="text">
-                <p>Для всех этих целей необходим веб-портал. Так для нашего “студенческого конструкторского бюро” необходим свой, который будет предоставлять возможности кооперативной разработки, что даст участникам удобную площадку для достижения своих целей в сферах науки и образования.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div class="text">
-                <p>Так получилось, что такой важной площадки на данный момент не имеется и созданием её занялись  студенты, для них это курсовая. В процессе разработки ими были исследованы следующие программные компоненты, языки вёрстки, языки программирования и фреймворки: Jetty(сервер), Java, Spring, html, css, javaScript, jsp, postgreSQL. Также разработка имела в виду под собой работу приложения с использованием распараллеливания процессов, которая осуществлена с помощью java и фреймворка spring.
-                </p>
-            </div>
-        </div>
-        <%--<div class="col-sm-4">--%>
-            <%--<img class="image" src="../../resources/images/Photo/IMG_0012.JPG">--%>
-        <%--</div>--%>
-
     </div>
 
 </div>
