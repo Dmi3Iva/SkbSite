@@ -25,10 +25,12 @@ public class WorkingWithFile {
 
     @ResponseBody
     @RequestMapping(value = "/images/{name}.jpg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] imageJPGOnThePage() throws Exception{
+    public byte[] imageJPGOnThePage(@PathVariable String name) throws Exception{
         InputStream in = null;
-        File f = new File("");
+        String rootPath = System.getProperty("user.dir");
+        File f = new File(rootPath+"/../images/"+name+".jpg");
         in = new FileInputStream(f);
+
 
         return IOUtils.toByteArray(in);
     }
