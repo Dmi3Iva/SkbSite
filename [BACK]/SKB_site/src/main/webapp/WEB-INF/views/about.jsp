@@ -87,25 +87,24 @@
         <div class="col-xs-12">
             ${aboutPage.text}
         </div>
-        <div id="summernoteR"></div>
     </div>
-    <div id="summernote"><p>Hello Summernote</p></div>
-    <script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-    </script>
+    <div ></div>
+
+
 </div>
 
 
     <%@include file="footer.jsp" %>
 
-    <script src="../../resources/js/jquery.min.js"></script>
-    <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
+
     <script>window.jQuery</script>
     <script src="../../resources/js/tether.min.js"></script>
     <script src="../../resources/bootstrap/js/bootstrap.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
 </body>
 
 </html>
