@@ -25,7 +25,8 @@
 <div id="rightSide">
 </div>
 
-<%@include file="header.jsp" %>
+
+<%@include file="header.jsp"%>
 
 <div class="container content">
     <!--Новости и проекты-->
@@ -116,7 +117,7 @@
                     </div>
                 </div>
                 <div class="col-xs-4 image hidden-xs hidden-sm">
-                    <img src="${item.photoPath}" alt="${item.name}picture" width="100%">
+                    <img class = "about-image" src="${item.photoPath}" alt="${item.name}picture" width="100%">
                 </div>
             </div>
         </c:forEach>
@@ -130,7 +131,6 @@
             </h2>
         </div>
     </c:if>
-
 </div>
 
 <%@include file="footer.jsp"%>

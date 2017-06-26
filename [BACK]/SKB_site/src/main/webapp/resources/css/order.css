@@ -53,10 +53,13 @@ ul.titleHead li:nth-child(2){
 }
 
 /*блок новостей или проектов*/
-image{
+.about-image{
   float: left;
   padding-right: 10px;
   max-width: 400px;
+  overflow: hidden;
+  min-width: 360px;
+  padding: 0 15px;
 }
 
 .block{
@@ -70,11 +73,6 @@ image{
   }
 }
 
-image{
-  overflow: hidden;
-  min-width: 360px;
-  padding: 0 15px;
-}
  .description{
   color:#003765;
   font-size: 12px;
