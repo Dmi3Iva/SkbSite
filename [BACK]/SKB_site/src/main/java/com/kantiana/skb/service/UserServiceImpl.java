@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -36,12 +36,11 @@ public class UserServiceImpl implements UserService {
         // Устанавливаем начальную роль
         Set<Role> roles = new HashSet<Role>();
         if (user.isCustomer()) {
-            roles.add(roleRepository.findByName(ROLE_CUSTOMER));
+            user.setRole(roleService.getRoleCustomer());
         }
         else {
-            roles.add(roleRepository.findByName(ROLE_MEMBER));
+            user.setRole(roleService.getRoleMember());
         }
-        user.setRoles(roles);
         userRepository.save(user);
     }
 

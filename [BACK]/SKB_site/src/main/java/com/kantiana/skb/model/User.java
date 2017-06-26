@@ -21,8 +21,8 @@ public class User {
     private String github;
     private String contactDetails;
     private String about;
+    private Role role;
     private Set<News> news;
-    private Set<Role> roles;
     private Set<Comment> comments;
     private Set<Project> ownProjects;
     private Set<Request> requestList;
@@ -156,16 +156,6 @@ public class User {
         this.news = news;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name = "users_roles",  joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     @OneToMany(targetEntity = Comment.class, mappedBy = "author", cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
         return comments;
@@ -214,5 +204,15 @@ public class User {
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof User) && ((User)obj).getId() == getId();
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
