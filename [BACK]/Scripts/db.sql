@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS equipment CASCADE;
 DROP TABLE IF EXISTS equipment_type CASCADE;
 DROP TABLE IF EXISTS booking CASCADE;
 DROP TABLE IF EXISTS request CASCADE;
+DROP TABLE IF EXISTS about CASCADE;
 
 CREATE TABLE roles (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -143,3 +144,11 @@ CREATE TABLE booking (
 	day DATE NOT NULL,
 	time_mask INT NOT NULL
 );
+
+---------------
+--О нас
+--------------
+CREATE TABLE about(
+	id SERIAL NOT NULL PRIMARY KEY,
+	text_about TEXT NOT NULL 
+)

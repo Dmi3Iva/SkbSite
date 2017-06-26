@@ -4,7 +4,9 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +43,8 @@ public class WorkingWithFile {
         InputStream in = null;
         String rootPath = System.getProperty("user.dir");
         File f = new File(rootPath+"/../images/"+name+".png");
+        if(!f.exists())
+            return null;
         in = new FileInputStream(f);
 
 
