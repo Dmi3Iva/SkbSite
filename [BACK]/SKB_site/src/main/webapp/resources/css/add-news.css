@@ -9,14 +9,14 @@
 }
 
 .blue-box {
-  background-color: var(--blue-btn);
+  background-color: #3095ff;
 }
 
 /*Заголовок*/
 
 .titleHead {
-  background-color: var(--blue);
-  color: var(--white);
+  background-color: #0066d2;
+  color: #f8fdff;
   width: 70%;
 }
 
@@ -49,7 +49,7 @@ ul.titleHead li:nth-child(2) {
 }
 
 .titleHead li a{
-  color: var(--white);
+  color: #f8fdff;
   text-decoration: none;
 }
 

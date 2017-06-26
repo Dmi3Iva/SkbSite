@@ -1,14 +1,14 @@
 @import "main.css";
 
 .titleName{
-  background-color: var(--blue);
+  background-color: #0066d2;
   height: 40px;
   padding-top: 10px;
 }
 
 .titleName h4{
   margin-top: 10px;
-  color:var(--white);
+  color:#f8fdff;
 }
 
 .image img{
@@ -25,25 +25,25 @@ h5,p{
   font-size: 16px;
 }
 h5,p,h4{
-  color: var(--blue);
+  color: #0066d2;
 }
 
 #micro_detailed{
-  color: var(--blue);
+  color: #0066d2;
   font-size: 14px;
 }
 
 /*оборудование смотрите так же*/
 
 .item .col-xs-6{
-  background-color: var(--blue);
+  background-color: #0066d2;
   margin: 15px auto;
   padding-left: 0;
   height: 123.75px;
 }
 
 .col-xs-12{
-  background-color: var(--blue);
+  background-color: #0066d2;
   margin: 15px auto;
   padding-left: 0;
 }
@@ -51,7 +51,7 @@ h5,p,h4{
 .item p{
   padding-top: 10px;
   font-size: 16px;
-  color:var(--white);
+  color:#f8fdff;
 }
 
 .item img{
@@ -80,5 +80,5 @@ h5,p,h4{
 }
 .item a{
   text-decoration:none;
-  color:var(--white);
+  color:#f8fdff;
 }

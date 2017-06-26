@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-sm-10 mx-auto">
                     <ul id="main_nav" class="nav nav-justified">
-                        <li class=" visible-xs"><a class="logotip" href=""><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
+                        <li class="visible-xs"><a class="logotip" href="/index"><img src ="${contextPath}/resources/images/logo-100.png"></a></li>
                         <li class=""><a href= "/news" >Новости</a></li>
                         <li class=""><a href="/equipment">Оборудование</a></li>
                         <li class=""><a href="/projects">Проекты</a></li>

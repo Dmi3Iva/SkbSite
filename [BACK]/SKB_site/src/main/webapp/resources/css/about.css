@@ -1,7 +1,7 @@
 ﻿@import "main.css";
 
 h1{
-    color: var(--blue);
+    color: #0066d2;
 }
 
 .text{
@@ -18,8 +18,8 @@ h1{
 
 /**/
 .titleHead{
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: #0066d2;
+    color: #f8fdff;
     width:70%;
 }
 
@@ -72,7 +72,7 @@ ul.titleHead li:nth-child(3){
 }
 
 .titleHead div a:hover{
-    background-color: var(--blue-btn-action);
+    background-color: #1481f4;
 }
 
 input {
