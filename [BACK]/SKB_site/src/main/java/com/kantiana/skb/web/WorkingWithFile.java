@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sun.nio.ch.IOUtil;
 
@@ -49,6 +46,24 @@ public class WorkingWithFile {
 
 
         return IOUtils.toByteArray(in);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/images/{name}.jpg", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
+    public String imageJPGOnThePagePost(@ModelAttribute("file") MultipartFile file) throws Exception{
+        return uploadFile(file);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/images/upload", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
+    public String imageJPGOnThePagePostSummer(@ModelAttribute("file") MultipartFile file) throws Exception{
+        return uploadFile(file);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/images/{name}.png", method = RequestMethod.POST, produces = MediaType.IMAGE_PNG_VALUE)
+    public String imagePNGOnThePagePost(@ModelAttribute("file") MultipartFile file) throws Exception{
+        return uploadFile(file);
     }
 
     static public void  UploadFile(){
