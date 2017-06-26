@@ -5,38 +5,38 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
 
 .navbar-default{
-  background-color: var(--blue);
-  border-color: var(--blue);
+  background-color: #0066d2;
+  border-color: #0066d2;
 }
 
 .navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
-  color: var(--white);
+  color: #f8fdff;
 }
 
 .navbar-default .navbar-nav>li>a{
-  color:var(--white);
+  color:#f8fdff;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: var(--white-hover);
+    color: #caf2ff;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    border-color: var(--blue);
+    border-color: #0066d2;
 }
 
 /*Change button top*/
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
-  background-color: var(--blue-btn-action);
+  background-color: #1481f4;
 }
 
 .navbar-default .navbar-toggle{
-  background-color: var(--blue-btn);
+  background-color: #3095ff;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: var(--white);
+    background-color: #f8fdff;
 }
 
 /*Вкладки навигиации*/
@@ -117,7 +117,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 #carousel {
   margin: 1% 10%;
   width: 80%;
-  background-color: var(--blue);
+  background-color: #0066d2;
   /*height: 350px;*/
 }
 
@@ -135,7 +135,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 /*Контент*/
 #blockBook .link a,#blockBook.link a:hover,#blockBook .link a:focus,
 #events .link a,#events .link a:hover,#events .link a:focus{
-  color:var(--white);
+  color:#f8fdff;
   padding: 10px 5px;
   margin-top: 10px;
   border-radius: 26px;
@@ -146,7 +146,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 #blockBook .link a:hover,#events .link a:hover{
-  background-color: var(--blue-btn-action);
+  background-color: #1481f4;
 }
 
 #blockBook{
@@ -161,7 +161,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 #blockBook,#blockBook .col-md-8{
-  background-color: var(--blue);
+  background-color: #0066d2;
   padding-left: 0;
   padding-right: 0;
 }
@@ -172,7 +172,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 #bookbtn {
   padding: 0;
-  /*color:var(--white);*/
+  /*color:#f8fdff;*/
 }
 
 #bookbtn p{
@@ -188,7 +188,7 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 
 #events{
   height: 300px;
-  background-color: var(--blue);
+  background-color: #0066d2;
   padding: 10px;
 }
 @media screen and (max-width: 1199px)
@@ -208,14 +208,14 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 .blue-box{
-  background-color: var(--blue-btn);
+  background-color: #3095ff;
 
 }
 
 /*Новости и проекты*/
 .titleHead{
-  background-color: var(--blue);
-  color:var(--white);
+  background-color: #0066d2;
+  color:#f8fdff;
   width:70%;
 }
 
@@ -260,7 +260,7 @@ ul.titleHead li:nth-child(3){
 
 /*форма ссылки*/
 .titleHead div a{
-  color:var(--white);
+  color:#f8fdff;
   padding: 4px 10px;
   border-radius: 26px;
   background-color: #3095ff;
@@ -268,7 +268,7 @@ ul.titleHead li:nth-child(3){
 }
 
 .titleHead div a:hover{
-  background-color: var(--blue-btn-action);
+  background-color: #1481f4;
 }
 
 /*блок новостей или проектов*/

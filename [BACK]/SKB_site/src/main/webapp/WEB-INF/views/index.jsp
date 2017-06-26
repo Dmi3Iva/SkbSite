@@ -163,8 +163,5 @@
 <script src="../../resources/js/tether.min.js"></script>
 <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
-<script>
-</script>
-
 </body>
 </html>

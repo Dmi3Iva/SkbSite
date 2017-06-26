@@ -33,7 +33,7 @@ body{
 
 /*Полоски по бокам*/
 #leftSide, #rightSide{
-	background-color: var(--side);
+	background-color: #f2f2f2;
 	height: 130%;
 	position: fixed;
 	top:10px;
@@ -58,38 +58,38 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 */
 
 .navbar-default{
-	background-color: var(--blue);
-	border-color: var(--blue);
+	background-color: #0066d2;
+	border-color: #0066d2;
 }
 
 .navbar-default .navbar-brand,.navbar-default .navbar-brand:visited{
-	color: var(--white);
+	color: #f8fdff;
 }
 
 .navbar-default .navbar-nav>li>a{
-	color:var(--white);
+	color:#f8fdff;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-	color: var(--white-hover);
+	color: #caf2ff;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-	border-color: var(--blue);
+	border-color: #0066d2;
 }
 
 /*Change button top*/
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
-	background-color: var(--blue-btn-action);
+	background-color: #1481f4;
 }
 
 .navbar-default .navbar-toggle{
-	background-color: var(--blue-btn);
+	background-color: #3095ff;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: var(--white);
+	background-color: #f8fdff;
 }
 
 /*Вкладки навигиации*/
@@ -168,15 +168,15 @@ https://itchief.ru/lessons/bootstrap-3/119-bootstrap-3-customize-the-navbar
 }
 
 footer {
-	background-color: var(--blue);
-	color:var(--white);
+	background-color: #0066d2;
+	color:#f8fdff;
 	font-size: 16px;
 	margin-top: 80px;
 }
 
 footer li a{
 	text-decoration: none;
-	color:var(--white);
+	color:#f8fdff;
 }
 
 /*Для фикскированного body, при уменьшении экрана меньше 360px*/

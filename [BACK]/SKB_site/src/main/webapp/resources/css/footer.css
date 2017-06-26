@@ -18,3 +18,62 @@ body {
     /* Set the fixed height of the footer here */
     height: 130px;
 }
+
+@media screen and (max-width: 991px) {
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        /* Margin bottom by footer height */
+        margin-bottom: 140px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 140px;
+    }
+
+}
+
+/*@media screen and (max-width: 460px) {*/
+    /*html {*/
+        /*position: relative;*/
+        /*min-height: 100%;*/
+    /*}*/
+
+    /*body {*/
+        /*!* Margin bottom by footer height *!*/
+        /*margin-bottom: 160px;*/
+    /*}*/
+
+    /*.footer {*/
+        /*position: absolute;*/
+        /*bottom: 0;*/
+        /*width: 100%;*/
+        /*!* Set the fixed height of the footer here *!*/
+        /*height: 160px;*/
+    /*}*/
+
+/*}*/
+
+@media screen and (max-width: 400px) and (min-width: 200px){
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        /* Margin bottom by footer height */
+        margin-bottom: 200px;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 200px;
+    }
+}
