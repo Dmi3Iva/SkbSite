@@ -18,8 +18,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/about.css">
 
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+
+
+    <!-- include libraries(jQuery, bootstrap) -->
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+    <!-- include summernote css/js-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
 </head>
 <body>
 
@@ -60,7 +67,7 @@
                                 <form:hidden path="id"/>
                             </spring:bind>
                             <spring:bind path="text">
-                                <form:textarea path="text"/>
+                                <form:textarea path="text" id="summernote"/>
                             </spring:bind>
 
                     </div>
@@ -80,17 +87,24 @@
         <div class="col-xs-12">
             ${aboutPage.text}
         </div>
+        <div id="summernoteR"></div>
     </div>
-
+    <div id="summernote"><p>Hello Summernote</p></div>
+    <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+    </script>
 </div>
 
-<%@include file="footer.jsp" %>
 
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+    <%@include file="footer.jsp" %>
+
+    <script src="../../resources/js/jquery.min.js"></script>
+    <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
+    <script>window.jQuery</script>
+    <script src="../../resources/js/tether.min.js"></script>
+    <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 </body>
 
