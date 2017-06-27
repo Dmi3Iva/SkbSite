@@ -5,10 +5,12 @@ import com.kantiana.skb.model.User;
 
 public interface SecurityService {
     // Возвращает зарегистрированного пользователя
-    public User findLoggedUser();
+    User findLoggedUser();
 
     // Возвращает имя зарегистрированного пользователя
-    public String findLoggedInUsername();
+    String findLoggedInUsername();
 
-    public void autologin(String username, String password);
+    void login(String username, String password);
+
+    void relogin(String username, String password);
 }

@@ -31,7 +31,14 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public void autologin(String username, String password) {
+    public User findLoggedUser() {
+        String username = findLoggedInUsername();
+        return userService.findByUsername(username);
+    }
+
+    // Авторизует пользователя
+    @Override
+    public void login(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
@@ -43,9 +50,11 @@ public class SecurityServiceImpl implements SecurityService {
         }
     }
 
+    // Переавторизовывает пользователя
     @Override
-    public User findLoggedUser() {
-        String username = findLoggedInUsername();
-        return userService.findByUsername(username);
+    public void relogin(String username, String password) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
     }
 }
