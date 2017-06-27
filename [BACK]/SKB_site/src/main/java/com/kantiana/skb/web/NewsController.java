@@ -134,14 +134,9 @@ public class NewsController {
         if (news.getProject() != null) {
             author = news.getProject().getCaptain();
         }
-        Boolean admin = false;
-        /*for (Role i: logUser.getRoles()){
-            if (i.getName().equals("ROLE_ADMIN")){
-                admin = true;
-                break;
-            }
-        }*/
-        if (logUser.getId() != author.getId() && !admin){
+        if (logUser.getId() != author.getId() &&
+            !logUser.getRole().getName().equals("ROLE_MODERATOR") &&
+            !logUser.getRole().getName().equals("ROLE_ADMIN")){
             return "redirect:/error403";
         }
         if (news.getProject() == null) {

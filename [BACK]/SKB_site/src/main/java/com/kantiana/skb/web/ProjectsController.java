@@ -54,6 +54,11 @@ public class ProjectsController {
 
     @RequestMapping(value = "/add-project", method = RequestMethod.GET)
     public String addProject(Model model) {
+        User logUser = securityService.findLoggedUser();
+        if (logUser.getUsername() == null ||
+            logUser.getRole().getName().equals("ROLE_CUSTOMER")){
+            return "redirect:/error403";
+        }
         model.addAttribute("project", new Project());
         model.addAttribute("isEditing", false);
         model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
@@ -71,14 +76,10 @@ public class ProjectsController {
         //для борьбы с незаконным доступом
         User logUser = securityService.findLoggedUser();
         User author = project.getCaptain();
-        Boolean admin = false;
-        /*for (Role i: logUser.getRoles()){
-            if (i.getName().equals("ROLE_ADMIN")){
-                admin = true;
-                break;
-            }
-        }*/
-        if (logUser.getId() != author.getId() && !admin){
+
+        if (logUser.getId() != author.getId() &&
+            !logUser.getRole().getName().equals("ROLE_MODERATOR") &&
+            !logUser.getRole().getName().equals("ROLE_ADMIN")){
             return "redirect:/error403";
         }
         return "add-project";

@@ -28,23 +28,7 @@ h1{
 .visible-xs{
   padding: 10px;
 }
-/*@media screen and (max-width:1199px) {*/
-  /*.item .col-xs-6{*/
-    /*height:98.734px;*/
-  /*}*/
-/*}*/
 
-/*@media screen and (max-width:991px) {*/
-  /*.item .col-xs-6,.col-xs-12{*/
-    /*height:71.250px;*/
-  /*}*/
-/*}*/
-
-/*@media screen and (max-width:400px) {*/
-  /*.item .col-xs-6{*/
-    /*height:100%;*/
-  /*}*/
-/*}*/
 .item a{
   text-decoration:none;
   color: #f8fdff;
@@ -113,4 +97,12 @@ ul.titleHead li:nth-child(3){
 input {
   color: #000;
 }
+
+.item {
+  margin-top: 15px;
+}
+
+/*.itemEquipment {*/
+  /*margin-bottom: 15px;*/
+/*}*/
 

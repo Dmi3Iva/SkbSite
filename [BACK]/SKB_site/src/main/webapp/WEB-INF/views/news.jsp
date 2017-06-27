@@ -106,7 +106,7 @@
                                     </c:if>
                                     <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
                                         <c:if test="${item.editor.username != item.author.username}">
-                                            Редактор: ${item.editor.username} <br>
+                                            Редактор: <a href="/id${item.editor.id}">${item.editor.username}</a><br>
                                         </c:if>
                                         <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
                                     </c:if>

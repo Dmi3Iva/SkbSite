@@ -82,7 +82,7 @@
                 ${project.about}
               </p>
                   <a href="/project-detailed?projectId=${project.id}">Подробнее...</a>
-              <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == project.captain.username }'">
+              <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == project.captain.username }'">
                 <div class="form-group">
                   <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-project?projectId=${project.id}';" value="Редактировать">
                   <form method="POST" action="/delete-project" class="btn">

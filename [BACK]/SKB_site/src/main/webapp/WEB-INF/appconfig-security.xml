@@ -19,8 +19,12 @@
         <intercept-url pattern="/registration" access="isAnonymous()"/>
         <intercept-url pattern="/profile" access="isAuthenticated()"/>
         <intercept-url pattern="/add-project" access="isAuthenticated()"/>
+        <intercept-url pattern="/edit-project" access="isAuthenticated()"/>
         <intercept-url pattern="/add-news" access="isAuthenticated()"/>
         <intercept-url pattern="/add-order" access="isAuthenticated()"/>
+        <intercept-url pattern="/edit-order" access="isAuthenticated()"/>
+        <intercept-url pattern="/equipment-booking" access="isAuthenticated()"/>
+        <intercept-url pattern="/equipment-type-detailed" access="isAuthenticated()"/>
     </http>
 
     <authentication-manager alias="authenticationManager">

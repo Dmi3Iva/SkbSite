@@ -79,7 +79,7 @@
                 </c:if>
               </p>
             </li>
-            <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == item.author.username}'">
+            <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
               <div class="form-group">
                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
                 <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">

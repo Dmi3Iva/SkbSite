@@ -62,6 +62,11 @@ public class OrdersController {
     //выводит страницу создания и редактирования новости
     @RequestMapping(value = {"/add-order"}, method = RequestMethod.GET)
     public String addOrder(Model model, Long orderId) {
+        User logUser = securityService.findLoggedUser();
+        if (logUser.getUsername() == null ||
+            logUser.getRole().getName().equals("ROLE_MEMBER")){
+            return "redirect:/error403";
+        }
         if(orderId!=null) {
             Order order = ordersService.findById(orderId);
             model.addAttribute("order", order);
@@ -80,14 +85,10 @@ public class OrdersController {
             //для борьбы с незаконным доступом
             User logUser = securityService.findLoggedUser();
             User author = order.getAuthor();
-            Boolean admin = false;
-            /*for (Role i: logUser.getRoles()){
-                if (i.getName().equals("ROLE_ADMIN")){
-                    admin = true;
-                    break;
-                }
-            }*/
-            if (logUser.getId() != author.getId() && !admin){
+
+            if (logUser.getId() != author.getId() &&
+                !logUser.getRole().getName().equals("ROLE_MODERATOR") &&
+                !logUser.getRole().getName().equals("ROLE_ADMIN")){
                 return "redirect:/error403";
             }
         }

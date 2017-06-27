@@ -54,14 +54,16 @@
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
       </div>
     </sec:authorize>
+    <sec:authorize access="'${!logUser.username}'">
       <div class="col-xs-3">
           <a class="btn btn-lg btn-primary" href="/equipment-booking">
               Корзина <span class="badge">
-                <c:if test="${empty basket}">0</c:if>
+              <c:if test="${empty basket}">0</c:if>
               <c:if test="${!empty basket}">${basket.size()}</c:if>
-                </span>
+              </span>
           </a>
       </div>
+    </sec:authorize>
   </div>
 
   <c:if test="${empty equipmentTypeList}">
@@ -89,15 +91,17 @@
             <p>${item.name}</p>
           </div>
         </a>
-          <div class="form-group">
-              <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-equipment-type?id=${item.id}';" value="Редактировать">
-              <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить модель?'))?self.location.href='/del-equipment-type?id=${item.id}':1/1;" value="Удалить">
-          </div>
+          <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
+              <div class="form-group">
+                  <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-equipment-type?id=${item.id}';" value="Редактировать">
+                  <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить модель?'))?self.location.href='/del-equipment-type?id=${item.id}':1/1;" value="Удалить">
+              </div>
+          </sec:authorize>
       </div>
     </div>
   </div>
   </c:forEach>
-      </div>
+  </div>
   </c:if>
 
 </div>

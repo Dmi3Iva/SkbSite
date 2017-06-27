@@ -61,6 +61,11 @@ public class EquipmentController {
     @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
     {
+        User logUser = securityService.findLoggedUser();
+        if (!logUser.getRole().getName().equals("ROLE_MODERATOR") &&
+            !logUser.getRole().getName().equals("ROLE_ADMIN")){
+            return "redirect:/error403";
+        }
         if(id != null)
         {
             EquipmentType equipmentType = equipmentTypeService.findById(id);
