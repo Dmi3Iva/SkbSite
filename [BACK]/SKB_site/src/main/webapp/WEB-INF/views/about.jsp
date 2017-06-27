@@ -1,35 +1,28 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var = "userPrincipal" value = "${pageContext.request.userPrincipal}"/>
 
-<%@page pageEncoding="UTF-8"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="_csrf_parameter" content="_csrf" />
-    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-    <meta name="_csrf" content="${_csrf.token}" />
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
+
 
     <title>СКБ</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/about.css">
-
-
-
-    <!-- include libraries(jQuery, bootstrap) -->
-
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-
-    <!-- include summernote css/js-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/about.css">
+    <%@include file="includes/head.jsp"%>
+    <%@include file="includes/summernoteLinksScrtipts.jsp"%>
+    <script>
+        $(document).ready(
+            function () {
+                $("#about-toggle-button").click(function () {
+                    $(".about-toggle").toggle("slow");
+                })
+            }
+        )
+    </script>
 </head>
 <body>
 
@@ -38,7 +31,7 @@
 <div id="rightSide">
 </div>
 
-<%@include file="header.jsp" %>
+<%@include file="includes/header.jsp" %>
 
 <div class="container content">
     <div class="row">
@@ -51,140 +44,38 @@
         </div>
         <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-            <button type="button" class="btn btn-back btn-lg" data-toggle="modal" data-target = #myModal>
+            <button type="button" class="btn btn-back btn-lg" id="about-toggle-button">
                 Редактировать
             </button>
         </div>
 
-        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <form:form modelAttribute="aboutPage" method="post" action="/about?${_csrf.parameterName}=${_csrf.token}">
-                    <div class="modal-body">
-
-                            <spring:bind path="id">
-                                <form:hidden path="id"/>
-                            </spring:bind>
-                            <spring:bind path="text">
-                                <form:textarea path="text" id="editor-body"/>
-                            </spring:bind>
-
-                    </div>
-                    <div class="modal-footer">
+        <div class="row about-toggle" style="display: none">
+            <div class="col-xs-12">
+                <form:form modelAttribute="aboutPage" method="post" action="/about?${_csrf.parameterName}=${_csrf.token}">
+                        <spring:bind path="id">
+                            <form:hidden path="id"/>
+                        </spring:bind>
+                        <spring:bind path="text">
+                            <form:textarea path="text" class="summernote-editor"/>
+                        </spring:bind>
+                    <div class="col-xs-3 col-xs-offset-9">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
-                    </form:form>
-                </div>
+                </form:form>
             </div>
         </div>
-
         <%--</sec:authorize>--%>
     </div>
 
-    <div class="row">
+    <div class="row about-toggle" >
         <div class="col-xs-12">
             ${aboutPage.text}
         </div>
     </div>
-    <div ></div>
-    <div id="debug"></div>
-
 </div>
 
-
-    <%@include file="footer.jsp" %>
-
-
-    <script>window.jQuery</script>
-    <script src="../../resources/
-    js/tether.min.js"></script>
-    <script src="../../resources/bootstrap/js/bootstrap.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            var editor = $('#editor-body');
-
-            var configFull = {
-                lang: 'ru-RU', // default: 'en-US'
-                shortcuts: true,
-                airMode: false,
-                minHeight: null, // set minimum height of editor
-                maxHeight: null, // set maximum height of editor
-                focus: true, // set focus to editable area after initializing summernote
-                disableDragAndDrop: true,
-                callbacks: {
-                    onImageUpload: function (files) {
-                        document.getElementById('debug').innerHTML = files[0].length;
-                        uploadFile(files);
-                    },
-
-                    onMediaDelete: function ($target, editor, $editable) {
-
-                        var fileURL = $target[0].src;
-                        deleteFile(fileURL);
-
-                        // remove element in editor
-                        $target.remove();
-                    }
-                }
-            };
-
-            // Featured editor
-            editor.summernote(configFull);
-
-            // Upload file on the server.
-            function uploadFile(filesForm) {
-
-                data = new FormData();
-                // Add all files from form to array.
-                for (var i = 0; i < filesForm.length; i++) {
-                    data.append("files",filesForm[i]);
-                };
-
-
-                $.ajax({
-                    data:data,
-                    type: "POST",
-                    url: "/images/upload",
-                    cache: false,
-                    headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
-                    contentType: false,
-                    processData: false,
-                    success: function (images) {
-                        for(var i=0;i<images.length;++i)
-                            editor.summernote('insertImage', images[i]);
-                    }
-                });
-            }
-
-            // Delete file from the server.
-            function deleteFile(file) {
-                data = new FormData();
-                data.append("fileUrl", file);
-                $.ajax({
-                    data: data,
-                    type: "POST",
-                    url: "/images/delete",
-                    cache: false,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
-                    contentType: false,
-                    processData: false,
-                    success: function (image) {
-                        //console.log(image);
-                    }
-                });
-            }
-
-        });
-
-    </script>
+<%@include file="includes/footer.jsp" %>
 
 </body>
-
 </html>

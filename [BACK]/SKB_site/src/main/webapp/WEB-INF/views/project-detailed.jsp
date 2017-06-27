@@ -27,7 +27,7 @@
   </div>
 
 
-  <%@include file="header.jsp" %>
+  <%@include file="includes/header.jsp" %>
 
   <div class="container content">
     <!--Новости и проекты-->
@@ -107,7 +107,7 @@
 
 <!-- /container -->
 
-  <%@include file="footer.jsp" %>
+  <%@include file="includes/footer.jsp" %>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>

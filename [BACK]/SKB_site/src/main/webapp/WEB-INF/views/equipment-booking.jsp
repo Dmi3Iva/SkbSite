@@ -36,7 +36,7 @@
   </div>
 
 
-  <%@include file="header.jsp" %>
+  <%@include file="includes/header.jsp" %>
 
   <!-- main-->
   <div class="container">
@@ -128,7 +128,7 @@
 
   <!--end main-->
 
-  <%@include file="footer.jsp" %>
+  <%@include file="includes/footer.jsp" %>
 
   <script>window.jQuery</script>
   <script src="../../resources/js/tether.min.js"></script>

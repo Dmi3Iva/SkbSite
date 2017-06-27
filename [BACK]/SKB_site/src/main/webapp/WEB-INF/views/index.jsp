@@ -23,7 +23,7 @@
 <div id="rightSide">
 </div>
 
-<%@include file="header.jsp" %>
+<%@include file="includes/header.jsp" %>
 
     <!-- main-->
     <div id="carousel" class="carousel slide">
@@ -154,7 +154,7 @@
     </div>
 </div>
 
-<%@include file="footer.jsp" %>
+<%@include file="includes/footer.jsp" %>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="../../resources/js/jquery.min.js"></script>

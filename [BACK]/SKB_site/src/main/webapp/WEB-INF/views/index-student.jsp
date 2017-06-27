@@ -24,7 +24,7 @@
   </div>
 
 
-  <%@include file="header.jsp" %>
+  <%@include file="includes/header.jsp" %>
 <div id="carousel" class="carousel slide" data-interval="3500" data-ride="carousel">
         <!--Индикаторы слайдов -->
         <ol class="carousel-indicators">
@@ -204,7 +204,7 @@
     </div>
   </div>
 
-  <%@include file="footer.jsp" %>
+  <%@include file="includes/footer.jsp" %>
 
   <script src="../../resources/js/jquery.min.js"></script>
   <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
