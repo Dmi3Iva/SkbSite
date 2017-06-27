@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-5" for="dateOfBirth">Дата рождения</label>
                                 <div class="col-xs-7">
-                                    <form:input type="date" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>
+                                    <form:input type="date" data-date-format="dd.MM.yyyy" path="dateOfBirth" class="form-control" id="dateOfBirth" placeholder=""/>
                                     <form:errors path="dateOfBirth"/>
                                 </div>
                             </div>

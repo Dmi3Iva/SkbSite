@@ -81,12 +81,12 @@ public class OrdersController {
             User logUser = securityService.findLoggedUser();
             User author = order.getAuthor();
             Boolean admin = false;
-            for (Role i: logUser.getRoles()){
+            /*for (Role i: logUser.getRoles()){
                 if (i.getName().equals("ROLE_ADMIN")){
                     admin = true;
                     break;
                 }
-            }
+            }*/
             if (logUser.getId() != author.getId() && !admin){
                 return "redirect:/error403";
             }

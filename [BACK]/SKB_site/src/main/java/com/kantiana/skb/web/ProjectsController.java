@@ -72,12 +72,12 @@ public class ProjectsController {
         User logUser = securityService.findLoggedUser();
         User author = project.getCaptain();
         Boolean admin = false;
-        for (Role i: logUser.getRoles()){
+        /*for (Role i: logUser.getRoles()){
             if (i.getName().equals("ROLE_ADMIN")){
                 admin = true;
                 break;
             }
-        }
+        }*/
         if (logUser.getId() != author.getId() && !admin){
             return "redirect:/error403";
         }

@@ -1,5 +1,7 @@
 package com.kantiana.skb.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;

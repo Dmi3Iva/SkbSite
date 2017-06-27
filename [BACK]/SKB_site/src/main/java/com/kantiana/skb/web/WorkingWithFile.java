@@ -17,7 +17,6 @@ public class WorkingWithFile {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
-
     static public void  UploadFile(){
     }
 

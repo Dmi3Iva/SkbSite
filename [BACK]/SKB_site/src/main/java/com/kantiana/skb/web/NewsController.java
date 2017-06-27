@@ -97,12 +97,12 @@ public class NewsController {
             User logUser = securityService.findLoggedUser();
             User captain = project.getCaptain();
             Boolean admin = false;
-            for (Role i: logUser.getRoles()){
+            /*for (Role i: logUser.getRoles()){
                 if (i.getName().equals("ROLE_ADMIN")){
                     admin = true;
                     break;
                 }
-            }
+            }*/
             if (logUser.getId() != captain.getId() && !admin){
                 return "redirect:/error403";
             }
@@ -135,12 +135,12 @@ public class NewsController {
             author = news.getProject().getCaptain();
         }
         Boolean admin = false;
-        for (Role i: logUser.getRoles()){
+        /*for (Role i: logUser.getRoles()){
             if (i.getName().equals("ROLE_ADMIN")){
                 admin = true;
                 break;
             }
-        }
+        }*/
         if (logUser.getId() != author.getId() && !admin){
             return "redirect:/error403";
         }
