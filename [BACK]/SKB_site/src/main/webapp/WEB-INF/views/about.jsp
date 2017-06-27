@@ -157,6 +157,8 @@
                     contentType: false,
                     processData: false,
                     success: function (images) {
+                        editor.summernote('insertImage', images);
+                        alert(images);
                         //console.log(images);
                         alert(images);
                         // If not errors.

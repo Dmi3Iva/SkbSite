@@ -61,12 +61,8 @@ public class WorkingWithFile {
     public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam(value = "files", required = false) MultipartFile file) {
         Set<String> result = new HashSet<String>();
         result.add(uploadFile(file));
-//        for(bytes: file)
-//        {
-//            result.add(uploadFile(bytes));
-//        }
 
-        return String.valueOf(result);
+        return uploadFile(file);
     }
 
     @ResponseBody
@@ -125,46 +121,4 @@ public class WorkingWithFile {
         }
     }
 
-    static public String uploadFile(byte[] bytes) {
-        String name = null,res=null;
-
-        if (bytes!=null ) {
-            try {
-
-                String rootPath = System.getProperty("user.dir");
-                //Директория
-                File dir = new File(rootPath+"/../images/");
-
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                Random a= new Random();
-                name = String.valueOf(a.nextInt()) + ".jpg";
-                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
-                res = "/images/"+name;
-                String random = new String();
-                while(uploadedFile.exists())
-                {
-                    random = String.valueOf(a.nextInt());
-                    uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
-                    res = "/images/"+random +name;
-                }
-
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
-                stream.write(bytes);
-                stream.flush();
-                stream.close();
-
-                logger.info("uploaded: " + uploadedFile.getAbsolutePath()+'\n'+"uploaded-cath:"+uploadedFile.getCanonicalPath());
-
-
-                return res;
-
-            } catch (Exception e) {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 }
