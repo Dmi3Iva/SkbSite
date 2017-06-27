@@ -77,7 +77,7 @@
           </ul>
         </div>
       </div>
-     
+
     </div>
   </c:forEach>
 </c:if>
