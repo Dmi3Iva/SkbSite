@@ -1,31 +1,18 @@
-<%@ page import="com.kantiana.skb.model.EquipmentType" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ru">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
   <title>СКБ</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/equipment_booking.css">
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap-datepicker/css/bootstrap-datepicker.css">
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script src="${contextPath}/resources/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script src="${contextPath}/resources/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>
+  <%@include file="includes/head.jsp"%>
+  
+  <link rel="stylesheet" type="text/css" href="/resources/css/equipment_booking.css">
+  <link rel="stylesheet" type="text/css" href="/resources/bootstrap-datepicker/css/bootstrap-datepicker.css">
+  <script src="/resources/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>
+  <script src="/resources/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-  <!--datetime css-->
-  <link href="${contextPath}/resources/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
@@ -72,7 +59,6 @@
                     <div class="col-xs-1">
                       <button>-</button>
                     </div>
-
                     <div class="col-xs-2">
                       <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
                       <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
@@ -82,13 +68,7 @@
                     </div>
               </div>
             </c:forEach>
-
-
-
-
       </div>
-
-
       <div class="col-md-6">
         <div class="row">
           <div class="text-center">
@@ -118,35 +98,19 @@
     </div>
     </form:form>
   </c:if>
-  <!--мой вариант -->
-  <div class="forFont">
-    <div class="container" >
-
-  </div>
-  </div>
-  </div>
-
-  <!--end main-->
 
   <%@include file="includes/footer.jsp" %>
-
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
   <script>
-      $('#Date input').datepicker({
-
-          maxViewMode: 2,
-          todayBtn: "linked",
-          clearBtn: true,
-          language: "ru",
-          daysOfWeekDisabled: "0",
-          todayHighlight: true
-      });
+      $(document).ready(
+          $('#Date input').datepicker({
+              maxViewMode: 2,
+              todayBtn: "linked",
+              clearBtn: true,
+              language: "ru",
+              daysOfWeekDisabled: "0",
+              todayHighlight: true
+          })
+      )
   </script>
-
-
-
 </body>
-
 </html>

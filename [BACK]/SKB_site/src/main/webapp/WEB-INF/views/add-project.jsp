@@ -1,15 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
+<!doctype html>
 <html>
 <head>
     <title>СКБ</title>
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/add-news.css">
     <%@include file="includes/head.jsp"%>
     <%@include file="includes/summernoteLinksScrtipts.jsp"%>
 </head>
