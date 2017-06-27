@@ -12,6 +12,9 @@
     <meta charset="utf-8"/>
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf_parameter" content="_csrf" />
+    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
+    <meta name="_csrf" content="${_csrf.token}" />
     <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
     <title>СКБ</title>
@@ -60,7 +63,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                     </div>
-                    <form:form modelAttribute="aboutPage" method="post">
+                    <form:form modelAttribute="aboutPage" method="post" action="/about?${_csrf.parameterName}=${_csrf.token}">
                     <div class="modal-body">
 
                             <spring:bind path="id">
@@ -142,19 +145,19 @@
                     // Add all files from form to array.
                     for (var i = 0; i < filesForm.length; i++) {
                         data.append("files[]", filesForm[i]);
-                    }
+                    };
 
                     $.ajax({
                         data: data,
                         type: "POST",
                         url: "/images/upload",
                         cache: false,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
                         contentType: false,
                         processData: false,
                         success: function (images) {
                             //console.log(images);
-
+                            alert(images);
                             // If not errors.
                             if (typeof images['error'] == 'undefined') {
 

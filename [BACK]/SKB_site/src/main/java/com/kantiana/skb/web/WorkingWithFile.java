@@ -14,7 +14,9 @@ import sun.nio.ch.IOUtil;
 
 import java.awt.*;
 import java.io.*;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 @Controller
 public class WorkingWithFile {
@@ -54,10 +56,15 @@ public class WorkingWithFile {
         return uploadFile(file);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/images/upload", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
-    public String imageJPGOnThePagePostSummer(@ModelAttribute("file") MultipartFile file) throws Exception{
-        return uploadFile(file);
+
+    @RequestMapping(value = "/images/upload", method = RequestMethod.POST)
+    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam("file[]") Set<MultipartFile> fileSet,@ModelAttribute("file") MultipartFile file) {
+        Set<String> result = new HashSet<String>();
+        for (MultipartFile f :
+             fileSet) {
+            result.add(uploadFile(f));
+        }
+        return String.valueOf(result);
     }
 
     @ResponseBody
