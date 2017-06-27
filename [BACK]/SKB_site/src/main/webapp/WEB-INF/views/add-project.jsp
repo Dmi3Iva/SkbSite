@@ -8,17 +8,10 @@
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
     <title>СКБ</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-news.css">
-    <%--TinyMCE Cloud deployment--%>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <%@include file="includes/head.jsp"%>
+    <%@include file="includes/summernoteLinksScrtipts.jsp"%>
 </head>
 
 <body>
@@ -92,16 +85,10 @@
                         <label class="control-label col-xs-3" for="about">Описание</label>
                         <spring:bind path="about">
                             <div class="col-xs-9">
-                                <form:textarea path="about" id="about" placeholder="Опишите свой проект" class="form-control" ></form:textarea>
+                                <form:textarea path="about" id="about" placeholder="Опишите свой проект" class="form-control summernote-editor" ></form:textarea>
                                 <form:errors path="about"></form:errors>
                             </div>
                         </spring:bind>
-                    </div>
-                    <div class="form-group content-shell">
-                        <label class="control-label col-xs-3" for="newsPic">Загрузите картинку</label>
-                        <div class="col-xs-9">
-                            <input type="file" name="file" id="newsPic">
-                        </div>
                     </div>
                     <div class="container">
                         <div class="col-xs-offset-6 col-xs-6 col-md-offset-8 col-md-4 col-sm-offset-7 col-sm-5">
@@ -164,17 +151,6 @@
         </div>
     </c:if>
 </div>
-
-<!-- /container -->
-
-<!--end contant-->
 <%@include file="includes/footer.jsp" %>
-
-<script src="../../resources/js/jquery.min.js"></script>
-<script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-<script>window.jQuery</script>
-<script src="../../resources/js/tether.min.js"></script>
-<script src="../../resources/bootstrap/js/bootstrap.js"></script>
-
 </body>
 </html>

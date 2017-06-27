@@ -9,21 +9,13 @@
 
 <html>
 <head>
-    <csrf disabled="true"/>
-    <meta charset="utf-8" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="_csrf_parameter" content="_csrf" />
-    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-    <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
     <title>СКБ</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/add-order.css">
-    <%--TinyMCE Cloud deployment--%>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+
+    <link rel="stylesheet" type="text/css" href="/resources/css/add-order.css">
+    <%@include file="includes/head.jsp"%>
+    <%@include file="includes/summernoteLinksScrtipts.jsp"%>
+
 </head>
 
 <body>
@@ -74,7 +66,7 @@
                         <label class="control-label col-xs-3" for="orderContent">Содержание заказа</label>
                         <spring:bind path="content">
                             <div class="col-xs-9">
-                                <form:textarea path="content" placeholder="Содержание заказа" class="form-control" id="orderContent"></form:textarea>
+                                <form:textarea path="content" placeholder="Содержание заказа" class="form-control summernote-editor" id="orderContent"></form:textarea>
                                 <form:errors path="content"></form:errors>
                                 <c:if test="${order.id > 0}">
                                     <form:input  path="id"  value="${order.id}" cssStyle="visibility: hidden"></form:input>
@@ -93,10 +85,6 @@
                             </div>
                         </div>
                     </sec:authorize>
-                    <div class="form-group order-shell">
-                        <label class="control-label col-xs-3" for="orderPic">Загрузите картинку</label>
-                        <input class="col-xs-9" type="file" name="file" id="orderPic"  >
-                    </div>
                     <div class="container">
                         <div class="col-xs-offset-6 col-xs-6 col-md-offset-8 col-md-4 col-sm-offset-7 col-sm-5">
                             <div class="form-group">

@@ -59,8 +59,7 @@
                             <form:textarea path="text" class="summernote-editor"/>
                         </spring:bind>
                     <div class="col-xs-3 col-xs-offset-9">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </div>
                 </form:form>
             </div>
