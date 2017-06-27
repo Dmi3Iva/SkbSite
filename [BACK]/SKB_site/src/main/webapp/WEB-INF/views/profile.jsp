@@ -53,11 +53,17 @@
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
                         <p>Статус:
-                            <c:if test="${user.customer == true}">
+                            <c:if test="${user.role.id == 1}">
+                                Обычный пользователь
+                            </c:if>
+                            <c:if test="${user.role.id == 2}">
                                 Заказчик
                             </c:if>
-                            <c:if test="${user.customer == false}">
-                                Обычный пользователь
+                            <c:if test="${user.role.id == 3}">
+                               Модератор
+                            </c:if>
+                            <c:if test="${user.role.id == 4}">
+                               Администратор
                             </c:if>
                         </p>
                         <p>Проекты:
