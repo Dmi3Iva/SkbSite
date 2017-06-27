@@ -117,7 +117,7 @@ public class UserController {
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
     public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-       return "change-profile";
+            return "change-profile";
         }
 
         User oldUser= userService.findById(id);
