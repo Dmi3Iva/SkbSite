@@ -63,6 +63,27 @@ public class WorkingWithFile {
         return result;
     }
 
+    @RequestMapping(value = "/images/delete", method = RequestMethod.POST)
+    public void deleteFileSummerNote(@RequestParam(value = "fileUrl", required = false) String name) {
+        try{
+            name = name.substring(21);
+            String rootPath = System.getProperty("user.dir");
+            File file = new File(rootPath+"/.."+name);
+
+            if(file.delete()){
+                System.out.println(file.getName() + " is deleted!");
+            }else{
+                System.out.println("Delete operation is failed.");
+            }
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+    }
+
     @ResponseBody
     @RequestMapping(value = "/images/{name}.png", method = RequestMethod.POST, produces = MediaType.IMAGE_PNG_VALUE)
     public String imagePNGOnThePagePost(@ModelAttribute("file") MultipartFile file) throws Exception{

@@ -166,13 +166,13 @@
             // Delete file from the server.
             function deleteFile(file) {
                 data = new FormData();
-                data.append("file", file);
+                data.append("fileUrl", file);
                 $.ajax({
                     data: data,
                     type: "POST",
-                    url: "/ajax/uploader/delete",
+                    url: "/images/delete",
                     cache: false,
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
                     contentType: false,
                     processData: false,
                     success: function (image) {
