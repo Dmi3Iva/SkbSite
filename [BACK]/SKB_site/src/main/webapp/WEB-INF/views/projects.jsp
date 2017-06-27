@@ -43,7 +43,7 @@
             <h3>${title}</h3></li>
         </ul>
       </div>
-      <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_MEMBER')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
             <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-project';" value="Добавить проект">
         </div>

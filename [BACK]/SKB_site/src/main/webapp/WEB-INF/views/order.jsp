@@ -41,7 +41,7 @@
           <li><h3>${title}</h3></li>
         </ul>
       </div>
-      <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_MODERATOR')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
           <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-order';" value="Добавить заказ">
         </div>
@@ -51,7 +51,7 @@
   <c:forEach items="${ordersList}" var="item">
     <div class="row">
       <div class="col-md-8">
-        <div class="new">
+        <div class="order">
           <p class="title">
               ${item.name}
           </p>
