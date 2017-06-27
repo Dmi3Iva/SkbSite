@@ -58,12 +58,13 @@ public class WorkingWithFile {
 
 
     @RequestMapping(value = "/images/upload", method = RequestMethod.POST)
-    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam("file[]") Set<MultipartFile> fileSet,@ModelAttribute("file") MultipartFile file) {
+    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam(value = "files", required = false) Set<byte[]> file) {
         Set<String> result = new HashSet<String>();
-        for (MultipartFile f :
-             fileSet) {
-            result.add(uploadFile(f));
+        for(byte[] bytes: file)
+        {
+            result.add(uploadFile(bytes));
         }
+
         return String.valueOf(result);
     }
 
@@ -96,6 +97,49 @@ public class WorkingWithFile {
 
                 File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
                 Random a= new Random();
+                res = "/images/"+name;
+                String random = new String();
+                while(uploadedFile.exists())
+                {
+                    random = String.valueOf(a.nextInt());
+                    uploadedFile = new File(dir.getAbsolutePath() + File.separator + random + name);
+                    res = "/images/"+random +name;
+                }
+
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
+                stream.write(bytes);
+                stream.flush();
+                stream.close();
+
+                logger.info("uploaded: " + uploadedFile.getAbsolutePath()+'\n'+"uploaded-cath:"+uploadedFile.getCanonicalPath());
+
+
+                return res;
+
+            } catch (Exception e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    static public String uploadFile(byte[] bytes) {
+        String name = null,res=null;
+
+        if (bytes!=null ) {
+            try {
+
+                String rootPath = System.getProperty("user.dir");
+                //Директория
+                File dir = new File(rootPath+"/../images/");
+
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+                Random a= new Random();
+                name = String.valueOf(a.nextInt()) + ".jpg";
+                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
                 res = "/images/"+name;
                 String random = new String();
                 while(uploadedFile.exists())
