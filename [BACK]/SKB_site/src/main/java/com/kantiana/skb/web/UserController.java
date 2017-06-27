@@ -2,9 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
-import com.kantiana.skb.web.WorkingWithFile;
 import com.kantiana.skb.validator.UserValidator;
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.String;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -76,7 +72,7 @@ public class UserController {
         }
         userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.login(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";
     }
 
@@ -141,6 +137,7 @@ public class UserController {
             oldUser.setPhotoPath(uploadFile(file));
 
         userService.update(oldUser);
+        securityService.relogin(oldUser.getUsername(), oldUser.getPassword());
 
         return "redirect:/profile";
     }
