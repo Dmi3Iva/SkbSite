@@ -115,9 +115,9 @@ public class UserController {
 
     // Контроллер редактирования информации в личном кабинете пользователя
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
-    public String ChangeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+    public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-            return "profile";
+       return "change-profile";
         }
 
         User oldUser= userService.findById(id);
