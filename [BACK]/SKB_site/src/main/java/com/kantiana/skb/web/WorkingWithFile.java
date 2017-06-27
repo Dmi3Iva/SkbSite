@@ -4,19 +4,13 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sun.nio.ch.IOUtil;
 
-import java.awt.*;
 import java.io.*;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class WorkingWithFile {
@@ -58,11 +52,15 @@ public class WorkingWithFile {
 
 
     @RequestMapping(value = "/images/upload", method = RequestMethod.POST)
-    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam(value = "files", required = false) MultipartFile file) {
-        Set<String> result = new HashSet<String>();
-        result.add(uploadFile(file));
+    public @ResponseBody
+    List<String> uploadFileSummerNote(@RequestParam(value = "files", required = false) List<MultipartFile> file) {
+        java.util.List<String> result = new ArrayList<String>();
+        for (MultipartFile mf:
+             file) {
+            result.add(uploadFile(mf));
+        }
 
-        return uploadFile(file);
+        return result;
     }
 
     @ResponseBody
