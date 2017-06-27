@@ -146,7 +146,7 @@
 //                for (var i = 0; i < filesForm.length; i++) {
 //                    data.append("files",filesForm[i]);
 //                };
-                data.append("files",filesForm);
+                data.append("files",filesForm[0]);
 
                 $.ajax({
                     data:data,

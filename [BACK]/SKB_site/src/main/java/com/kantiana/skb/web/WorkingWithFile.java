@@ -58,12 +58,13 @@ public class WorkingWithFile {
 
 
     @RequestMapping(value = "/images/upload", method = RequestMethod.POST)
-    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam(value = "files", required = false) Set<byte[]> file) {
+    public @ResponseBody String imageJPGOnThePagePostSummer(@RequestParam(value = "files", required = false) MultipartFile file) {
         Set<String> result = new HashSet<String>();
-        for(byte[] bytes: file)
-        {
-            result.add(uploadFile(bytes));
-        }
+        result.add(uploadFile(file));
+//        for(bytes: file)
+//        {
+//            result.add(uploadFile(bytes));
+//        }
 
         return String.valueOf(result);
     }
