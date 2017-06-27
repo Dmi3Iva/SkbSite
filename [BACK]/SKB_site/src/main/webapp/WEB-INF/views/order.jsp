@@ -77,9 +77,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-xs-4 image hidden-xs hidden-sm">
-        <img src="${item.photoPath}" alt="${item.name}Picture" width="100%">
-      </div>
+     
     </div>
   </c:forEach>
 </c:if>

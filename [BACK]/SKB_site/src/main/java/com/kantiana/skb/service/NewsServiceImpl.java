@@ -25,7 +25,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void save(News news) {
+    public void saveFull(News news) {
         if (news == null) {
             return;
         }
@@ -43,17 +43,14 @@ public class NewsServiceImpl implements NewsService {
         }
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
-        save(news);
+        saveFull(news);
     }
 
     @Override
-    public void update(News news, MultipartFile image) {
+    public void update(News news) {
         News oldNews= findById(news.getId());
         if(oldNews == null) {
             return;
-        }
-        if (image != null && image.getSize() > 0) {
-            String photoPath = uploadFile(image);
         }
         oldNews.setEditor(securityService.findLoggedUser());
         oldNews.setName(news.getName());

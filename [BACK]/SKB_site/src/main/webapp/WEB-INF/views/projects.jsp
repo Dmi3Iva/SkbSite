@@ -83,10 +83,6 @@
               </sec:authorize>
             </div>
           </div>
-
-          <div class="col-xs-4 image hidden-xs hidden-sm">
-            <img src="${project.photoPath}" alt="${project.name} Picture" width="100%">
-          </div>
         </div>
       </c:forEach>
     </c:if>

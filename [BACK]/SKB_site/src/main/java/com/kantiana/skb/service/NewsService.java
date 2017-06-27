@@ -9,6 +9,8 @@ import java.util.List;
 public interface NewsService {
     void save(News news);
 
+    public void saveFull(News news);
+
     void update(News news);
 
     List<News> getAllNews();

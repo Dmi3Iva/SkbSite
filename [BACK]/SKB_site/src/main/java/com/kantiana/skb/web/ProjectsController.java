@@ -85,20 +85,20 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/add-project", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, @RequestParam("file") MultipartFile image) {
+    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
-        projectService.saveNewProject(project, image);
+        projectService.saveNewProject(project);
         return "redirect:/projects";
     }
 
     @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
-    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, @RequestParam("file") MultipartFile image) {
+    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
-        projectService.saveUpdatedProject(project, image);
+        projectService.saveUpdatedProject(project);
         return "redirect:/projects";
     }
 

@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectMembershipService projectMembershipService;
 
-    public void saveNewProject(Project project, MultipartFile image) {
+    public void saveNewProject(Project project) {
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -37,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
         projectMembershipService.save(project, project.getCaptain());
     }
 
-    public void saveUpdatedProject(Project project, MultipartFile image) {
+    public void saveUpdatedProjectFull(Project project) {
         Project oldProject = projectRepository.findById(project.getId());
         if (oldProject != null) {
             oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -61,7 +61,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     public void saveUpdatedProject(Project project) {
-        saveUpdatedProject(project, null);
+        saveUpdatedProjectFull(project);
     }
 
     public Project findByName(String name) {
