@@ -13,7 +13,6 @@ public class Order {
     private Timestamp timeOfLastUpdate;
     private User author;
     private User editor;
-    private String photoPath;
     private Project project;
 
     @Id
@@ -60,15 +59,6 @@ public class Order {
     public User getEditor() { return editor; }
 
     public void setEditor(User editor) { this.editor = editor; }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    @Column(name = "photo_path")
-    public String getPhotoPath() {
-        return photoPath;
-    }
 
     public void setTimeOfLastUpdate(Timestamp timeOfLastUpdate) {
         this.timeOfLastUpdate = timeOfLastUpdate;
