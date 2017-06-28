@@ -49,10 +49,6 @@ public class UserController {
         model.addAttribute("news", news);
         List<Project> projects = projectService.getAllProjects();
         model.addAttribute("projects", projects);
-        // Если пользователь вышел сообщаем ему об этом
-        if (logout != null) {
-            model.addAttribute("logoutMessage", "Вы успешно вышли");
-        }
         return "index";
     }
 
@@ -66,7 +62,7 @@ public class UserController {
     // Контроллер, регистрирующий пользователя
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
+        userValidator.validateRegistration(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration";
         }
@@ -115,6 +111,7 @@ public class UserController {
     // Контроллер редактирования информации в личном кабинете пользователя
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
     public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+        userValidator.validateChange(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "change-profile";
         }

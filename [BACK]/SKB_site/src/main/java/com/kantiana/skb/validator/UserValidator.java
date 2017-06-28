@@ -4,7 +4,7 @@ import com.kantiana.skb.model.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-public interface UserValidator extends Validator {
+public interface UserValidator {
     void validateRegistration(User user, Errors errors);
 
     void validateChange(User user, Errors errors);

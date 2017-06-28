@@ -141,7 +141,7 @@
                                 <label class="control-label col-xs-5" for="github">github</label>
                                 <div class="col-xs-7">
                                     <form:input type="text" path="github" class="form-control" id="github" placeholder=""/>
-                                    <form:errors path="about"/>
+                                    <form:errors path="github"/>
                                 </div>
                             </div>
                         </spring:bind>
