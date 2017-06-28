@@ -2,7 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
-import com.kantiana.skb.validator.UserValidator;
+import com.kantiana.skb.validator.UserValidatorImpl;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,7 +33,7 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
     @Autowired
-    private UserValidator userValidator;
+    private UserValidatorImpl userValidator;
     @Autowired
     private ProjectMembershipService projectMembershipService;
     @Autowired
@@ -76,15 +76,14 @@ public class UserController {
         return "redirect:/";
     }
 
-    //TODO: Сообщения об ошибках и другие не должны быть в коде
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(Model model, String success, String error) {
         if (error != null) {
-            model.addAttribute("error", "Ваше имя и пароль не действительны.");
+            model.addAttribute("loginErrorCode", "Login.error");
         }
         if (success != null) {
-            model.addAttribute("success", "Письмо с новым паролем отправлено на Вашу почту");
+            model.addAttribute("emailPasswordSuccessCode", "Email.password.success");
         }
         return "authorization";
     }
