@@ -84,6 +84,7 @@
                     </div>
               </div>
             </c:forEach>
+      </div>
         <div class="col-md-6">
           <div class="row">
             <div class="text-center">
@@ -111,17 +112,7 @@
     </form:form>
     </c:if>
     </div>
-    </div>
   </div>
-
-
-  <%--<!--мой вариант -->--%>
-  <%--<div class="forFont">--%>
-    <%--<div class="container" >--%>
-
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--</div>--%>
 
   <!--end main-->
 
