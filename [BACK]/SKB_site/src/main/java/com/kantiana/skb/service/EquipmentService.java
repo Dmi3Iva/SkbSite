@@ -12,4 +12,6 @@ public interface EquipmentService {
     public Equipment findById(Long id);
 
     public void deleteById(Long id);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }

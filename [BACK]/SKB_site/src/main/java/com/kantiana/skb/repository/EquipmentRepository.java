@@ -11,4 +11,6 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
 
     public void deleteById(Long id);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }

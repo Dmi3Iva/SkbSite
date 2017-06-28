@@ -30,4 +30,9 @@ public class EquipmentServiceImpl implements EquipmentService {
     public void deleteById(Long id){
         equipmentRepository.deleteById(id);
     }
+
+    @Override
+    public int countByEquipmentTypeId(Long equipmentTypeId) {
+        return equipmentRepository.countByEquipmentTypeId(equipmentTypeId);
+    }
 }
