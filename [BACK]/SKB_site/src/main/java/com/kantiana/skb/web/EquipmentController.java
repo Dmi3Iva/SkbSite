@@ -154,6 +154,11 @@ public class EquipmentController {
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
                                    @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
+        User logUser = securityService.findLoggedUser();
+        if (logUser.getUsername() == null ||
+            logUser.getRole().getName().equals("ROLE_CUSTOMER")){
+            return "redirect:/error403";
+        }
         if(requestEquipment == null)
         {
             requestEquipment = new RequestEquipment();
@@ -233,6 +238,12 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
     public String equipmentTable(@PathVariable Long idType, Model model) {
+        User user = securityService.findLoggedUser();
+        if (user.getUsername() == null ||
+            user.getRole().getName().equals("ROLE_MEMBER")||
+            user.getRole().getName().equals("ROLE_CUSTOMER")){
+            return "redirect:/error403";
+        }
         EquipmentType equipmentType = equipmentTypeService.findById(idType);
         model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
         model.addAttribute("equipmentType",equipmentType);

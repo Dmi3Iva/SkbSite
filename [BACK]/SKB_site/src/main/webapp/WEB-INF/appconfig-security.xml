@@ -24,7 +24,6 @@
         <intercept-url pattern="/add-order" access="isAuthenticated()"/>
         <intercept-url pattern="/edit-order" access="isAuthenticated()"/>
         <intercept-url pattern="/equipment-booking" access="isAuthenticated()"/>
-        <intercept-url pattern="/equipment-type-detailed" access="isAuthenticated()"/>
     </http>
 
     <authentication-manager alias="authenticationManager">

@@ -54,7 +54,7 @@
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-equipment-type';" value="Добавить модель">
       </div>
     </sec:authorize>
-    <sec:authorize access="'${!logUser.username}'">
+    <sec:authorize access="hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
       <div class="col-xs-3">
           <a class="btn btn-lg btn-primary" href="/equipment-booking">
               Корзина <span class="badge">
