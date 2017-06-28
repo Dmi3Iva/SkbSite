@@ -191,3 +191,9 @@ footer li a{
 		width: 424px;
 	}
 }
+
+@media screen and (max-width: 999px) and (min-width: 768px ){
+	.main-navbar {
+		text-align: left;
+	}
+}
