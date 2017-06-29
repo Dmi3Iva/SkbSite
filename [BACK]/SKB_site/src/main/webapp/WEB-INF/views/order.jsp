@@ -56,7 +56,7 @@
       <div class="col-md-8">
         <div class="new">
           <p class="title">
-              ${item.name}
+            <a href="/order-detailed?orderId=${item.id}">${item.name}</a>
           </p>
           <p class="article">
               ${item.content}
