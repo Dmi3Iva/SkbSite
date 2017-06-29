@@ -27,8 +27,9 @@
   <div id="rightSide">
   </div>
 
-
   <%@include file="header.jsp" %>
+
+  <spring:message code="${projectEditSuccess}"/>
 
   <div class="container content">
     <!--Новости и проекты-->

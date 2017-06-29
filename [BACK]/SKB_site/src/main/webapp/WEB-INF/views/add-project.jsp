@@ -40,6 +40,10 @@
 
 <%@include file="header.jsp" %>
 
+<spring:message code="${projectMemberAddSuccess}"/>
+<spring:message code="${projectMemberDeleteSuccess}"/>
+<spring:message code="${projectCaptainChangeSuccess}"/>
+
 <div class="container content">
     <!--Новости и проекты-->
     <div class="row">
@@ -97,7 +101,7 @@
                             <div class="col-xs-9">
                                 <spring:bind path="statusPercent">
                                         <form:input type="text" path="statusPercent" class="form-control" id="percent" placeholder="Процент завершения"></form:input>
-                                        <form:errors path="name"></form:errors>
+                                        <form:errors path="statusPercent"></form:errors>
                                 </spring:bind>
                             </div>
                         </div>

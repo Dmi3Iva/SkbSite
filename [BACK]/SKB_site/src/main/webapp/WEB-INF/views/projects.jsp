@@ -30,6 +30,9 @@
 
   <%@include file="header.jsp" %>
 
+  <spring:message code="${projectAddSuccess}"/>
+  <spring:message code="${projectDeleteSuccess}"/>
+
   <div class="container content">
     <!--Новости и проекты-->
     <div class="row">
