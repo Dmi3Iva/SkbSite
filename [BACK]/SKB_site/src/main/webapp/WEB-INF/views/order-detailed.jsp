@@ -26,6 +26,8 @@
 
   <%@include file="header.jsp" %>
 
+  <spring:message code="${orderEditSuccess}"/>
+
   <div class="container content">
     <!--Новости и проекты-->
     <div class="row">

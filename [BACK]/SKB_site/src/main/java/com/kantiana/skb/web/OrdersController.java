@@ -7,6 +7,7 @@ import com.kantiana.skb.model.User;
 import com.kantiana.skb.service.OrdersService;
 import com.kantiana.skb.service.ProjectService;
 import com.kantiana.skb.service.SecurityService;
+import com.kantiana.skb.validator.OrderValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -31,6 +33,8 @@ public class OrdersController {
     private SecurityService securityService;
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private OrderValidator orderValidator;
 
     //Контроллер списка новостей
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -98,7 +102,8 @@ public class OrdersController {
     }
 
     @RequestMapping(value = "/add-order", method = RequestMethod.POST)
-    public String addOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String addOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        orderValidator.validate(order, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add-order";
         }
@@ -109,11 +114,13 @@ public class OrdersController {
         order.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         order.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
         ordersService.save(order);
+        redirectAttributes.addFlashAttribute("orderAddSuccess", "Order.add.success");
         return "redirect:/order";
     }
 
     @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
-    public String editOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String editOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        orderValidator.validate(order, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add-order";
         }
@@ -127,14 +134,16 @@ public class OrdersController {
         oldOrder.setName(order.getName());
         oldOrder.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
         ordersService.save(oldOrder);
-        return "redirect:/order";
+        redirectAttributes.addFlashAttribute("orderEditSuccess", "Order.edit.success");
+        return "redirect:/order-detailed?orderId=" + order.getId();
     }
 
-
+    //TODO: Метод должен быть DELETE или на крайний случай POST
     @RequestMapping(value = "/del-order", method = RequestMethod.GET)
-    public String editOrder(Long orderId) {
+    public String editOrder(Long orderId, RedirectAttributes redirectAttributes) {
         Order order = ordersService.findById(orderId);
         ordersService.delete(order);
+        redirectAttributes.addFlashAttribute("orderDeleteSuccess", "Order.delete.success");
         return "redirect:/order";
     }
 }
