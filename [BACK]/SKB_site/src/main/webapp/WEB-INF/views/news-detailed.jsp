@@ -58,7 +58,7 @@
                 <form method="POST" action="/delete-news" class="btn">
                     <input type="hidden" value="${news.id}" name="newsId"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
+                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены, что хотите удалить новость?'))">Удалить</button>
                 </form>
             </div>
         </sec:authorize>
@@ -128,7 +128,7 @@
                             <input type="hidden" value="${news.id}" name="newsId"/>
                             <input type="hidden" value="${item.id}" name="commentId"/>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
+                            <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены, что хотите удалить комментарий?'))">Удалить</button>
                         </form>
                     </div>
                 </sec:authorize>
