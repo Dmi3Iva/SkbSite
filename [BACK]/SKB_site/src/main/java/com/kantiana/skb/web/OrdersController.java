@@ -53,16 +53,6 @@ public class OrdersController {
         return "order-detailed";
     }
 
-    @RequestMapping(value = "/order-detailed", method = RequestMethod.POST)
-    public String orderDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, Long orderId) {
-        if (bindingResult.hasErrors()) {
-            return "order-detailed";
-        }
-        Order order = ordersService.findById(orderId);
-        model.addAttribute("order", order);
-        return "order-detailed";
-    }
-
     //выводит страницу создания и редактирования новости
     @RequestMapping(value = {"/add-order"}, method = RequestMethod.GET)
     public String addOrder(Model model, Long orderId) {
