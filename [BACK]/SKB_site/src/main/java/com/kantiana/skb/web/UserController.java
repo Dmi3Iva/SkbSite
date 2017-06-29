@@ -47,12 +47,18 @@ public class UserController {
 
     // Контроллер главной страницы
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(Model model, String logout) {
+    public String index(Model model, String logout, String login) {
         // Передаём в index.jsp все новости
         List<News> news = newsService.findTop(2);
         model.addAttribute("news", news);
         List<Project> projects = projectService.getAllProjects();
         model.addAttribute("projects", projects);
+        if (logout != null) {
+            model.addAttribute("logoutMessage", "LogoutMessage");
+        }
+        else if (login != null) {
+            model.addAttribute("loginMessage", "LoginMessage");
+        }
         return "index";
     }
 

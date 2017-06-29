@@ -9,7 +9,7 @@
 
     <!--Здесь настраиваются страницы входа, возможность выхода, фильтры доступа к страницам-->
     <http auto-config="true">
-        <form-login login-page="/authorization" default-target-url="/"
+        <form-login login-page="/authorization" default-target-url="/?login"
                     authentication-failure-url="/authorization?error"
                     username-parameter="username"
                     password-parameter="password"

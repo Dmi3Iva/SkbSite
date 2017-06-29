@@ -26,6 +26,8 @@
 
 <%@include file="header.jsp" %>
 
+    <spring:message code="${loginMessage}"/>
+    <spring:message code="${logoutMessage}"/>
     <!-- main-->
     <div id="carousel" class="carousel slide">
         <!--Индикаторы слайдов -->
