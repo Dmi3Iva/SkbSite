@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -116,12 +117,13 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image, RedirectAttributes redirectAttributes) {
         newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
         newsService.save(news, image);
+        redirectAttributes.addFlashAttribute("newsAddSuccess", "News.add.success");
         return "redirect:/news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
@@ -156,12 +158,13 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image, RedirectAttributes redirectAttributes) {
         newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add-news";
         }
         newsService.update(news, image);
+        redirectAttributes.addFlashAttribute("newsEditSuccess", "News.edit.success");
         return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
@@ -170,8 +173,9 @@ public class NewsController {
     //-----------------------------------------
     //TODO: Метод должен быть DELETE
     @RequestMapping(value = "/delete-news", method = RequestMethod.POST)
-    public String deleteNews(Long newsId) {
+    public String deleteNews(Long newsId, RedirectAttributes redirectAttributes) {
         newsService.delete(newsId);
+        redirectAttributes.addFlashAttribute("newsDeleteSuccess", "News.delete.success");
         return "redirect:/news";
     }
 }

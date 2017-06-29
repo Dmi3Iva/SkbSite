@@ -37,6 +37,10 @@
 
 <%@include file="header.jsp"%>
 
+<spring:message code="${newsAddSuccess}"/>
+<spring:message code="${newsEditSuccess}"/>
+<spring:message code="${newsDeleteSuccess}"/>
+
 <div class="container content">
     <!--Новости и проекты-->
     <div class="row">
