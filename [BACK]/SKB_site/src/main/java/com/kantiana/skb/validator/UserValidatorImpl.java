@@ -6,11 +6,17 @@ import com.kantiana.skb.service.UserService;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.hibernate.validator.internal.constraintvalidators.hv.URLValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class UserValidatorImpl implements UserValidator {
@@ -18,6 +24,8 @@ public class UserValidatorImpl implements UserValidator {
     private UserService userService;
     @Autowired
     private SecurityService securityService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void validateRegistration(User user, Errors errors) {
@@ -45,8 +53,17 @@ public class UserValidatorImpl implements UserValidator {
     }
 
     @Override
-    public void validatePasswordChange(String newPassword, String password, String passwordConfirm, Errors errors) {
-
+    public void validatePasswordChange(String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors) {
+        String correctCurrentPassword = securityService.findLoggedUser().getPassword();
+        if (!bCryptPasswordEncoder.matches(currentPassword, correctCurrentPassword)) {
+            errors.put("uncorrectPassword", "Password.uncorrect");
+        }
+        if (newPassword.length() < 2 || newPassword.length() > 32) {
+            errors.put("uncorrectNewPasswordSize", "Size.user.password");
+        }
+        if (!newPasswordConfirm.equals(newPassword)) {
+            errors.put("uncorrectNewPasswordConfirm", "Diff.user.passwordConfirm");
+        }
     }
 
     private void validateFullName(Errors errors) {

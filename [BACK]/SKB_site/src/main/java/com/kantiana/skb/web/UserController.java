@@ -12,13 +12,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.String;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -108,6 +112,14 @@ public class UserController {
         return "profile";
     }
 
+    @RequestMapping(value = "/change-profile", method = RequestMethod.GET)
+    public String changeProfile(Model model, RedirectAttributes redirectAttributes) {
+        User user = securityService.findLoggedUser();
+        model.addAttribute("user", user);
+        model.addAttribute("error", new String());
+        return "change-profile";
+    }
+
     // Контроллер редактирования информации в личном кабинете пользователя
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
     public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
@@ -140,21 +152,18 @@ public class UserController {
 
     // Контроллер изменения пароля пользователя
     @RequestMapping(value = "/change-password", method = RequestMethod.POST)
-    public String changePassword(String currentPassword, String newPassword, String confirmNewPassword){
+    public String changePassword(String currentPassword, String newPassword, String confirmNewPassword, RedirectAttributes redirectAttributes){
+        Map<String, String> errors = new HashMap<>();
+        userValidator.validatePasswordChange(currentPassword, newPassword, confirmNewPassword, errors);
+        if (!errors.isEmpty()) {
+            Set<String> errorsKeys = errors.keySet();
+            for (String key : errorsKeys) {
+                redirectAttributes.addFlashAttribute(key, errors.get(key));
+            }
+            return "redirect:/change-profile";
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User currentUser = securityService.findLoggedUser();
-
-        //TODO: Сделать вывод ошибок
-        if (currentPassword == null || newPassword == null || confirmNewPassword == null) {
-            // Если писать return "change-profile", то будет ругаться spring-bind в jsp
-            return "redirect:/change-profile";
-        }
-        if (!passwordEncoder.matches(currentPassword, currentUser.getPassword())) {
-            return "redirect:/change-profile";
-        }
-        if (!newPassword.equals(confirmNewPassword)) {
-            return "redirect:/change-profile";
-        }
 
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userService.update(currentUser);
@@ -163,14 +172,6 @@ public class UserController {
     }
 
     //Контроллеры для интеграции страниц
-
-    @RequestMapping(value = "/change-profile", method = RequestMethod.GET)
-    public String changeProfile(Model model) {
-        User user = securityService.findLoggedUser();
-        model.addAttribute("user", user);
-        model.addAttribute("error", new String());
-        return "change-profile";
-    }
 
     @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
     public String forgetPassword(Model model, String error) {

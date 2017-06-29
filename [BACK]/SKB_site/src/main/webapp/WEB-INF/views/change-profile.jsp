@@ -163,18 +163,21 @@
                             <label class="control-label col-xs-5 text-right">Старый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="currentPassword" class="form-control">
+                                <spring:message code="${uncorrectPassword}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5 text-right">Новый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="newPassword" class="form-control">
+                                <spring:message code="${uncorrectNewPasswordSize}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="confirmNewPassword" class="form-control">
+                                <spring:message code="${uncorrectNewPasswordConfirm}"/>
                             </div>
                         </div>
                     </div>
