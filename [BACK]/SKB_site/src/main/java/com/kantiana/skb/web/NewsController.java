@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.NewsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ public class NewsController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private NewsValidator newsValidator;
 
     //-----------------------------------------
     //      ВСЕ НОВОСТИ
@@ -113,8 +117,9 @@ public class NewsController {
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
     public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+        newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/add-news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+            return "add-news";
         }
         newsService.save(news, image);
         return "redirect:/news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
@@ -152,8 +157,9 @@ public class NewsController {
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
     public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+        newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "add-news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+            return "add-news";
         }
         newsService.update(news, image);
         return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
