@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.CommentValidator;
 import com.kantiana.skb.validator.NewsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,9 @@ public class NewsController {
     @Autowired
     private NewsValidator newsValidator;
 
+    @Autowired
+    private CommentValidator commentValidator;
+
     //-----------------------------------------
     //      ВСЕ НОВОСТИ
     //-----------------------------------------
@@ -72,18 +76,24 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
-    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model) {
+    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        commentValidator.validate(commentForm, bindingResult);
         if (bindingResult.hasErrors()) {
+            Long newsId = commentForm.getNews().getId();
+            model.addAttribute("news", newsService.findById(newsId));
+            model.addAttribute("commentsForCurrentNews", commentService.findAllByNewsIdOrderByTimeOfCreation(newsId));
             return "news-detailed";
         }
         commentService.save(commentForm);
+        redirectAttributes.addFlashAttribute("commentAddSuccess", "Comment.add.success");
         return "redirect:/news-detailed?newsId=" + commentForm.getNews().getId(); // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
     }
 
     //TODO: Метод должен быть DELETE
     @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
-    public String editComment(Long newsId, Long commentId) {
+    public String editComment(Long newsId, Long commentId, RedirectAttributes redirectAttributes) {
         commentService.delete(commentId);
+        redirectAttributes.addFlashAttribute("commentDeleteSuccess", "Comment.delete.success");
         return "redirect:/news-detailed?newsId=" + newsId;
     }
 
@@ -165,7 +175,7 @@ public class NewsController {
         }
         newsService.update(news, image);
         redirectAttributes.addFlashAttribute("newsEditSuccess", "News.edit.success");
-        return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+        return "redirect:/news-detailed?newsId=" + news.getId();
     }
 
     //-----------------------------------------
