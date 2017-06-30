@@ -15,8 +15,12 @@
   <meta charset="utf-8" />
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="${contextPath}/resources/images/logo.png">
+  <meta name="_csrf_parameter" content="_csrf" />
+  <meta name="_csrf_header" content="X-CSRF-TOKEN" />
+  <meta name="_csrf" content="${_csrf.token}" />
 
+    <link rel="icon" href="${contextPath}/resources/images/logo.png">
+  <script src="${contextPath}/resources/js/jquery-3.2.1.min.js"></script>
   <title>${title}</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news-detailed.css">
@@ -29,37 +33,64 @@
   <div id="rightSide">
   </div>
 
-  <!--Функция для редактирования комментария пользователя к новости -->
-  <%--<script type="text/javascript">--%>
-    <%--function editComment() {--%>
-        <%--$.ajax({--%>
-            <%--url:--%>
-            <%--type: 'GET',--%>
-
-            <%--success: function (){--%>
-
-            <%--}--%>
-        <%--})--%>
-
-    <%--}--%>
-  <%--</script>--%>
+  <!--Функция для появления формы с комментарием и кнопки,
+  с помощью которых можно изменить комментарий -->
   <script type="text/javascript">
-      function editComment(data, id) {
+      function prepareForEdit(id) {
           var comment = document.getElementById("textComment" + id.toString());
           comment.style.display = 'none';
           var text = comment.innerHTML;
-          //alert(text);
           var inputForm = document.getElementById("editTextComment" + id.toString());
           inputForm.style.display = 'block';
           inputForm.value = text;
           var inputButton = document.getElementById("editBtnComment" + id.toString());
           inputButton.style.display = 'block';
       }
+  </script>
+  <!--Функция для динамического изменения комментария и
+   сохранения его в базу данных-->
+  <script type="text/javascript">
+      function changeComment(idComment){
+          var formData = {
+              id : idComment,
+              content : $("#editTextComment" + idComment.toString()).val()
+              };
+          var data = new FormData();
+          data.append("id", idComment);
+          <%--data.append("news", ${news});--%>
+          data.append("content", $("#editTextComment" + idComment.toString()).val());
+          alert(data);
+          alert(idComment);
+          alert($("#editTextComment" + idComment.toString()).val());
+          $.ajax({
+              headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
+              type: "POST",
+              url: "/news-detailed/edit-comment",
+              data: JSON.stringify(formData),
+              dataType : 'json',
+              processData : false,
+              success: function (result) {
+                  document.getElementById("#infoMessage"+idComment.toString()).val = result;
+                  var comment = document.getElementById("textComment" + idComment.toString());
+                  comment.style.display = 'inline';
+                  var inputForm = document.getElementById("editTextComment" + idComment.toString());
+                  inputForm.style.display = 'none';
+                  var inputButton = document.getElementById("editBtnComment" + idComment.toString());
+                  inputButton.style.display = 'none';
+              }
+          });
+//          $.ajax({
+//              type: 'POST',
+//              url: "/news-detailed/edit-comment",
+//              data: formData,
+//              dataType: 'json',
+//              success: function (result) {
+//                  document.getElementById("#infoMessage"+idComment.toString()).val = result;
+//              }
+//          });
+      }
 
-//      $('#textComment').click(function(){
-//          $this = $(this)
-//          $this.replaceWith( $('<input />').val( $this.text() ) )
-//      })
+
   </script>
 
 
@@ -148,7 +179,8 @@
           <div class="col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong><a href="/id${item.author.id}">${item.author.username}</a></strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
+                    <strong><a href="/id${item.author.id}">${item.author.username}</a></strong>
+                    <span class="text-muted">добавлено ${item.timeOfCreation}</span>
                 </div>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.id == item.author.id}'">
                     <div class="form-group">
@@ -158,9 +190,12 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
                         </form>
-                        <button type="submit" class="btn btn-back" onClick="editComment('${item.content}', '${item.id}')">Редактировать</button>
+                        <button type="submit" class="btn btn-back" onClick="prepareForEdit('${item.id}')">Редактировать</button>
                     </div>
                 </sec:authorize>
+              <div class="row">
+                  <p id="infoMassage${item.id}" class="text-success"></p>
+              </div>
               <div class="panel-body">
                   <p id="textComment${item.id}">${item.content}</p>
                   <div class="row-fluid">
@@ -168,7 +203,7 @@
                           <textarea id="editTextComment${item.id}" class="form-control editText"></textarea>
                       </div>
                       <div class="text-right">
-                        <button type="submit" id="editBtnComment${item.id}" class="btn-md btn-back btn text-center editBtn">Изменить</button>
+                        <button type="submit" id="editBtnComment${item.id}" class="btn-md btn-back btn text-center editBtn" onClick="changeComment(${item.id})">Изменить</button>
                       </div>
                   </div>
               </div>
@@ -205,11 +240,12 @@
 
   <%@include file="footer.jsp" %>
 
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
+  <%--<script src="../../resources/js/jquery.min.js"></script>--%>
+  <%--<script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>--%>
+  <%--<script>window.jQuery</script>--%>
   <script src="../../resources/js/tether.min.js"></script>
   <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+
 
 </body>
 
