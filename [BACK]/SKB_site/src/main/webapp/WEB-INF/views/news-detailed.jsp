@@ -29,6 +29,39 @@
   <div id="rightSide">
   </div>
 
+  <!--Функция для редактирования комментария пользователя к новости -->
+  <%--<script type="text/javascript">--%>
+    <%--function editComment() {--%>
+        <%--$.ajax({--%>
+            <%--url:--%>
+            <%--type: 'GET',--%>
+
+            <%--success: function (){--%>
+
+            <%--}--%>
+        <%--})--%>
+
+    <%--}--%>
+  <%--</script>--%>
+  <script type="text/javascript">
+      function editComment(data, id) {
+          var comment = document.getElementById("textComment" + id.toString());
+          comment.style.display = 'none';
+          var text = comment.innerHTML;
+          //alert(text);
+          var inputForm = document.getElementById("editTextComment" + id.toString());
+          inputForm.style.display = 'block';
+          inputForm.value = text;
+          var inputButton = document.getElementById("editBtnComment" + id.toString());
+          inputButton.style.display = 'block';
+      }
+
+//      $('#textComment').click(function(){
+//          $this = $(this)
+//          $this.replaceWith( $('<input />').val( $this.text() ) )
+//      })
+  </script>
+
 
   <%@include file="header.jsp" %>
 
@@ -92,7 +125,6 @@
                             <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
                         </c:if>
                     </p>
-
                 </div>
             </div>
 
@@ -126,10 +158,19 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
                         </form>
+                        <button type="submit" class="btn btn-back" onClick="editComment('${item.content}', '${item.id}')">Редактировать</button>
                     </div>
                 </sec:authorize>
               <div class="panel-body">
-                  ${item.content}
+                  <p id="textComment${item.id}">${item.content}</p>
+                  <div class="row-fluid">
+                      <div class="form-group">
+                          <textarea id="editTextComment${item.id}" class="form-control editText"></textarea>
+                      </div>
+                      <div class="text-right">
+                        <button type="submit" id="editBtnComment${item.id}" class="btn-md btn-back btn text-center editBtn">Изменить</button>
+                      </div>
+                  </div>
               </div>
                 <!-- /panel-body -->
             </div>
@@ -151,7 +192,7 @@
                 <spring:bind path="news.id">
                     <form:input path="news.id" value="${news.id}" cssStyle="visibility: hidden"/>
                 </spring:bind>
-                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
+                <button class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
               </form:form>
             </div><!-- Status Upload  -->
           </div><!-- Widget Area -->
