@@ -39,6 +39,9 @@
 
   <%@include file="header.jsp" %>
 
+  <spring:message code="${equipmentTypeAddSuccess}"/>
+  <spring:message code="${equipmentTypeDeleteSuccess}"/>
+
 <!-- main-->
 <div class="container">
 

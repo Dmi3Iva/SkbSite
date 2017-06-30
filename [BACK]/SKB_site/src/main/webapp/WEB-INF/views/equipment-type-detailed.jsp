@@ -26,6 +26,8 @@
 
   <%@include file="header.jsp" %>
 
+  <spring:message code="${equipmentTypeDeleteSuccess}"/>
+
   <!-- main-->
   <div class="container">
     <div class="row">

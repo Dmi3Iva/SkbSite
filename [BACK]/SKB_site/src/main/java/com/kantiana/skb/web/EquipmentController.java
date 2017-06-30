@@ -2,6 +2,7 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.EquipmentTypeValidator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.management.openmbean.ArrayType;
 import java.lang.reflect.Type;
@@ -36,6 +38,8 @@ public class EquipmentController {
     private SecurityService securityService;
     @Autowired
     private RequestService requestService;
+    @Autowired
+    private EquipmentTypeValidator equipmentTypeValidator;
 
     @ModelAttribute("basket")
     public Set<EquipmentType> createBasket(){
@@ -58,7 +62,7 @@ public class EquipmentController {
     }
 
 
-    @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-equipment-type", "/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
     {
         if(id != null)
@@ -74,22 +78,25 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/add-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
     {
-        if(bindingResult.hasErrors())
+        equipmentTypeValidator.validate(equipmentType, bindingResult);
+        if (bindingResult.hasErrors())
         {
             return "add-equipment-type";
         }
         if (file.getSize()>0)
             equipmentType.setPhotoPath(uploadFile(file));
         equipmentTypeService.save(equipmentType);
+        redirectAttributes.addFlashAttribute("equipmentTypeAddSuccess", "EquipmentType.add.success");
         return "redirect:/equipment";
     }
 
     @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
     {
-        if(bindingResult.hasErrors())
+        equipmentTypeValidator.validate(equipmentType, bindingResult);
+        if (bindingResult.hasErrors())
         {
             return "add-equipment-type";
         }
@@ -103,12 +110,15 @@ public class EquipmentController {
         if (file.getSize()>0)
             et.setPhotoPath(uploadFile(file));
         equipmentTypeService.save(et);
-        return "redirect:/equipment";
+        redirectAttributes.addFlashAttribute("equipmentTypeEditSuccess", "EquipmentType.edit.success");
+        return "redirect:/equipment-type-detailed?id=" + equipmentType.getId();
     }
 
+    //TODO: Метод должен быть DELETE или по крайней мере POST
     @RequestMapping(value = "/del-equipment-type", method = RequestMethod.GET)
-    public String delEquipmentType(Long id) {
+    public String delEquipmentType(Long id, RedirectAttributes redirectAttributes) {
         equipmentTypeService.delete(id);
+        redirectAttributes.addFlashAttribute("equipmentTypeDeleteSuccess", "EquipmentType.delete.success");
         return "redirect:/equipment";
     }
 
