@@ -4,9 +4,6 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    
-    <title>СКБ</title>
-    
     <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/equipment_item.css">
     <title>${title}</title>

@@ -5,7 +5,6 @@
 <html lang="ru">
 
 <head>
-    <title>СКБ</title>
     <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/equipment-table.css">
     <title>${title}</title>

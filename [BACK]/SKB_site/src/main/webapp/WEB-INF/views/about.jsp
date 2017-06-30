@@ -1,11 +1,12 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
+<c:set var="title" value="О нас"/>
 <!doctype html>
 <html lang="ru">
 <head>
 
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/about.css">
     <%@include file="includes/head.jsp"%>
     <%@include file="includes/summernoteLinksScrtipts.jsp"%>

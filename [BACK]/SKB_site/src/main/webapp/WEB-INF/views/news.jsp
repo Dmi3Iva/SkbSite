@@ -1,18 +1,18 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
+
 <c:choose>
-    <c:when test="${project == null}">
-        <c:set var="title" value="Новости"/>
-    <c:otherwise>
+    <c:when test="${news.name != null}">
+        <c:set var="title" value="Редактирование новости '${news.name}'"/>
     </c:when>
-        <c:set var="title" value="Новости проекта '${project.name}'"/>
+    <c:otherwise>
+        <c:set var="title" value="Добавление новости"/>
     </c:otherwise>
 </c:choose>
 
 <!doctype html>
 <html lang="ru">
 <head>
-    <title>СКБ</title>
     <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/news.css">
     <title>${title}</title>
@@ -25,8 +25,6 @@
 </div>
 
 <%@include file="includes/header.jsp" %>
-
-<%@include file="header.jsp"%>
 
 <div class="container content">
     <!--Новости и проекты-->

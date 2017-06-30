@@ -1,14 +1,14 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
 <!doctype html>
+<c:choose>
     <c:when test="${order.name != null}">
-    </c:when>
         <c:set var="title" value="Редактирование заказа '${order.name}'"/>
+    </c:when>
     <c:otherwise>
         <c:set var="title" value="Добавление заказа"/>
-</c:choose>
     </c:otherwise>
-<c:choose>
+</c:choose>
 <html>
 <head>
 

@@ -6,7 +6,6 @@
 
 <head>
 
-  <title>СКБ</title>
   <%@include file="includes/head.jsp"%>
   <link rel="stylesheet" type="text/css" href="/resources/css/order.css">
   <title>${title}</title>
