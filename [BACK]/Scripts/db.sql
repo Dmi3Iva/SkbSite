@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS equipment CASCADE;
 DROP TABLE IF EXISTS equipment_type CASCADE;
 DROP TABLE IF EXISTS booking CASCADE;
 DROP TABLE IF EXISTS request CASCADE;
+DROP TABLE IF EXISTS about CASCADE;
 
 CREATE TABLE roles (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -37,7 +38,6 @@ CREATE TABLE users (
 	email VARCHAR(255) DEFAULT NULL,
 	organization VARCHAR(255) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
-	photo_path VARCHAR(255) DEFAULT NULL,
 	github VARCHAR(255) DEFAULT NULL,
 	contact_details VARCHAR(255),
 	about TEXT DEFAULT NULL
@@ -68,7 +68,6 @@ CREATE TABLE projects (
 	captain_id INT REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	date_of_start DATE NOT NULL,
 	date_of_last_update DATE NOT NULL,
-	photo_path VARCHAR(255) DEFAULT NULL,
 	about TEXT NOT NULL
 );
 
@@ -88,7 +87,6 @@ CREATE TABLE news (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
-	photo_path VARCHAR(255) DEFAULT NULL,
 	time_of_last_update TIMESTAMP NOT NULL
 );
 
@@ -110,7 +108,6 @@ CREATE TABLE orders (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
-	photo_path VARCHAR(255) DEFAULT NULL,
 	time_of_last_update TIMESTAMP NOT NULL
 );
 
@@ -143,3 +140,11 @@ CREATE TABLE booking (
 	day DATE NOT NULL,
 	time_mask INT NOT NULL
 );
+
+---------------
+--О нас
+--------------
+CREATE TABLE about(
+	id SERIAL NOT NULL PRIMARY KEY,
+	text_about TEXT NOT NULL
+)

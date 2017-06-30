@@ -15,7 +15,6 @@ public class News {
     private User author;
     private User editor;
     private Project project;
-    private String photoPath;
     private Set<Comment> comments;
 
     @Id
@@ -82,15 +81,6 @@ public class News {
         this.comments = comments;
     }
 
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    @Column(name = "photo_path")
-    public String getPhotoPath() {
-        return photoPath;
-    }
 
     public void setTimeOfLastUpdate(Timestamp timeOfLastUpdate) {
         this.timeOfLastUpdate = timeOfLastUpdate;

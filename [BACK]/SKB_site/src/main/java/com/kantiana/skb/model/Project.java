@@ -15,7 +15,6 @@ public class Project {
     private Date dateOfStart;
     private Date dateOfLastUpdate;
     private String about;
-    private String photoPath;
     private Set<News> news;
     private Order order;
     private Set<ProjectMembership> projectMemberships;
@@ -102,14 +101,6 @@ public class Project {
         this.news = news;
     }
 
-    @Column(name="photo_path")
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
 
     @OneToOne(mappedBy = "project")
     public Order getOrder() {

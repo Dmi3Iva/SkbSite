@@ -112,11 +112,11 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "/add-news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
         }
-        newsService.save(news, image);
+        newsService.save(news);
         return "redirect:/news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
@@ -151,11 +151,11 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile image) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "add-news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
         }
-        newsService.update(news, image);
+        newsService.update(news);
         return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 

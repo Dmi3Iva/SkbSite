@@ -9,9 +9,9 @@ import java.util.List;
 public interface NewsService {
     void save(News news);
 
-    void save(News news, MultipartFile image);
+    public void saveFull(News news);
 
-    void update(News news, MultipartFile image);
+    void update(News news);
 
     List<News> getAllNews();
 

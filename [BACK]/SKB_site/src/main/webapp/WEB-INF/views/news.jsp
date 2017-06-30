@@ -1,16 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page pageEncoding="UTF-8"%>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@include file="includes/aboveHtml.jsp"%>
 <c:choose>
     <c:when test="${project == null}">
         <c:set var="title" value="Новости"/>
-    </c:when>
     <c:otherwise>
+    </c:when>
         <c:set var="title" value="Новости проекта '${project.name}'"/>
     </c:otherwise>
 </c:choose>
@@ -18,14 +12,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
+    <title>СКБ</title>
+    <%@include file="includes/head.jsp"%>
+    <link rel="stylesheet" type="text/css" href="/resources/css/news.css">
     <title>${title}</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/news.css">
 </head>
 <body>
 
@@ -34,6 +24,7 @@
 <div id="rightSide">
 </div>
 
+<%@include file="includes/header.jsp" %>
 
 <%@include file="header.jsp"%>
 
@@ -125,9 +116,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xs-4 image hidden-xs hidden-sm">
-                    <img class = "about-image" src="${item.photoPath}" alt="${item.name}picture" width="100%">
-                </div>
             </div>
         </c:forEach>
 
@@ -142,13 +130,7 @@
     </c:if>
 </div>
 
-<%@include file="footer.jsp"%>
-
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+<%@include file="includes/footer.jsp"%>
 
 </body>
 

@@ -26,21 +26,18 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectMembershipService projectMembershipService;
 
-    public void saveNewProject(Project project, MultipartFile image) {
+    public void saveNewProject(Project project) {
         project.setCaptain(securityService.findLoggedUser());
         project.setDateOfStart(new Date(System.currentTimeMillis()));
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
         project.setStatusPercent(0L);
-        if(image != null && image.getSize() > 0) {
-            project.setPhotoPath(uploadFile(image));
-        }
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
         projectRepository.save(project);
         projectMembershipService.save(project, project.getCaptain());
     }
 
-    public void saveUpdatedProject(Project project, MultipartFile image) {
+    public void saveUpdatedProjectFull(Project project) {
         Project oldProject = projectRepository.findById(project.getId());
         if (oldProject != null) {
             oldProject.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
@@ -59,15 +56,12 @@ public class ProjectServiceImpl implements ProjectService {
             if (project.getStatusPercent() != null) {
                 oldProject.setStatusPercent(project.getStatusPercent());
             }
-            if (image != null && image.getSize() > 0) {
-                oldProject.setPhotoPath(uploadFile(image));
-            }
             projectRepository.save(oldProject);
         }
     }
 
     public void saveUpdatedProject(Project project) {
-        saveUpdatedProject(project, null);
+        saveUpdatedProjectFull(project);
     }
 
     public Project findByName(String name) {

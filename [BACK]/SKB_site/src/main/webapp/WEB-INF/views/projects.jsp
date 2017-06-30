@@ -1,23 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 <c:set var="title" value="Проекты"/>
-
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
+  <title>СКБ</title>
+  <%@include file="includes/head.jsp"%>
+  <link rel="stylesheet" type="text/css" href="/resources/css/project.css">
   <title>${title}</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/project.css">
 </head>
 
 <body>
@@ -28,7 +18,7 @@
   </div>
 
 
-  <%@include file="header.jsp" %>
+  <%@include file="includes/header.jsp" %>
 
   <div class="container content">
     <!--Новости и проекты-->
@@ -94,10 +84,6 @@
               </sec:authorize>
             </div>
           </div>
-
-          <div class="col-xs-4 image hidden-xs hidden-sm">
-            <img class="about-images" src="${project.photoPath}" alt="${project.name} Picture" width="100%">
-          </div>
         </div>
       </c:forEach>
     </c:if>
@@ -109,13 +95,8 @@
   </c:if>
 </div>
 
-  <%@include file="footer.jsp"%>
+  <%@include file="includes/footer.jsp"%>
 
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 </body>
 

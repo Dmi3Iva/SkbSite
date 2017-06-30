@@ -1,21 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:set var = "contextPath" value = "${pageContext.request.contextPath}"/>
+<%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 <c:set var="title" value="СКБ"/>
-
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
+    <title>СКБ</title>
+    <%@include file="includes/head.jsp"%>
+    <link type="text/css" rel="stylesheet" href="/resources/css/index.css">
     <title>${title}</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/index.css">
 </head>
 <body>
 
@@ -24,7 +16,7 @@
 <div id="rightSide">
 </div>
 
-<%@include file="header.jsp" %>
+<%@include file="includes/header.jsp" %>
 
     <!-- main-->
     <div id="carousel" class="carousel slide">
@@ -38,21 +30,21 @@
         <!--Слайды -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="${contextPath}/resources/images/Photo/IMG_0019.JPG" width="50%" alt="СКБ">
+                <img src="/resources/images/Photo/IMG_0019.JPG" width="50%" alt="СКБ">
                 <div class="carousel-caption">
                     <a href="/news"><h3>Новости</h3></a>
                     <p>Узнавай о текущих событиях</p>
                 </div>
             </div>
             <div class="item">
-                <img src="${contextPath}/resources/images/Photo/IMG_0003.JPG" width="50%" alt="drop2">
+                <img src="/resources/images/Photo/IMG_0003.JPG" width="50%" alt="drop2">
                 <div class="carousel-caption">
                     <a href="/projects"><h3>Посмотреть проекты</h3></a>
                     <p>Предложи свой проект или присоединись к уже сформировавшейся команде</p>
                 </div>
             </div>
             <div class="item">
-                <img src="${contextPath}/resources/images/Photo/equipment.jpg" width="50%" alt="drop3">
+                <img src="/resources/images/Photo/equipment.jpg" width="50%" alt="drop3">
                 <div class="carousel-caption">
                     <a href="/equipment"><h3>Заказать оборудование</h3></a>
                     <p>Реализуй свою идею, используя наши возможности</p>
@@ -89,9 +81,6 @@
                 <c:if test="${!empty news}">
                     <c:forEach items="${news}" var="item">
                         <div class="row">
-                            <div class="col-md-6 block">
-                                <img src="${item.photoPath}" alt="new${item.id}" width="100%">
-                            </div>
                             <div class="col-md-6 block">
                                 <p class="description">
                                     Автор:  <a href="/id${item.author.id}">${item.author.username}</a><br>
@@ -130,9 +119,6 @@
                     <c:forEach items="${projects}" var="item">
                         <div class="row">
                             <div class="col-md-6 block">
-                                <img src="${item.photoPath}" alt="project${item.id}" width="100%">
-                            </div>
-                            <div class="col-md-6 block">
                                 <p class="description">
                                     Капитан:  <a href="/id${item.captain.id}">${item.captain.username}</a><br>
                                         ${item.dateOfStart}
@@ -155,14 +141,7 @@
     </div>
 </div>
 
-<%@include file="footer.jsp" %>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../resources/js/jquery.min.js"></script>
-<script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-<script>window.jQuery</script>
-<script src="../../resources/js/tether.min.js"></script>
-<script src="../../resources/bootstrap/js/bootstrap.js"></script>
+<%@include file="includes/footer.jsp" %>
 
 </body>
 </html>

@@ -17,7 +17,6 @@ public class User {
     private String organization;
     private String password;
     private String passwordConfirm;
-    private String photoPath;
     private String github;
     private String contactDetails;
     private String about;
@@ -111,15 +110,6 @@ public class User {
 
     public void setOrganization(String organization) {
         this.organization = organization;
-    }
-
-    @Column(name = "photo_path")
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
     }
 
     public String getGithub() {

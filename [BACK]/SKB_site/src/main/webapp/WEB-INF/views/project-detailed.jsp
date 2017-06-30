@@ -1,22 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="title" value="Проект '${project.name}'"/>
-
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="${contextPath}/resources/images/logo.png">
-
+  <%@include file="includes/head.jsp"%>
   <title>${title}</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../resources/css/project-detailed.css">
 </head>
 
@@ -28,7 +18,7 @@
   </div>
 
 
-  <%@include file="header.jsp" %>
+  <%@include file="includes/header.jsp" %>
 
   <div class="container content">
     <!--Новости и проекты-->
@@ -106,15 +96,7 @@
     </c:if>
   </div>
 
-<!-- /container -->
-
-  <%@include file="footer.jsp" %>
-
-  <script src="../../resources/js/jquery.min.js"></script>
-  <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-  <script>window.jQuery</script>
-  <script src="../../resources/js/tether.min.js"></script>
-  <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+  <%@include file="includes/footer.jsp" %>
 
 </body>
 

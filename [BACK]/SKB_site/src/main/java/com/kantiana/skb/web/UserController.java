@@ -70,7 +70,6 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
         securityService.login(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";
@@ -132,10 +131,6 @@ public class UserController {
         oldUser.setGithub(user.getGithub());
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
-
-        if (file.getSize()>0)
-            oldUser.setPhotoPath(uploadFile(file));
-
         userService.update(oldUser);
         securityService.relogin(oldUser.getUsername(), oldUser.getPassword());
 

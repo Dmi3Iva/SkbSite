@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface ProjectService {
     // Создает новый проект
-    void saveNewProject(Project project, MultipartFile image);
+    void saveNewProject(Project project);
 
     // Обновляет существующий проект
-    void saveUpdatedProject(Project project, MultipartFile image);
+    void saveUpdatedProjectFull(Project project);
     void saveUpdatedProject(Project project);
 
     Project findByName(String name);

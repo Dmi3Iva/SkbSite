@@ -1,24 +1,16 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page pageEncoding="UTF-8"%>
+<%@include file="includes/aboveHtml.jsp"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="title" value="Регистрация"/>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="${contextPath}/resources/images/logo.png">
 
+    <title>Регистрация</title>
+    <%@include file="includes/head.jsp"%>
+    <link href="/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/resources/css/registration.css"></head>
     <title>${title}</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="${contextPath}/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="${contextPath}/resources/bootstrap/css/v4-alpha-bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/registration.css"></head>
 <body>
 
     <div class="container">
@@ -129,13 +121,6 @@
             </div>
         </div>
     </div>
-
-
-    <script src="../../resources/js/jquery.min.js"></script>
-    <script src="../../resources/js/jquery-3.1.1.slim.min.js"></script>
-    <script>window.jQuery</script>
-    <script src="../../resources/js/tether.min.js"></script>
-    <script src="../../resources/bootstrap/js/bootstrap.js"></script>
 
 </body>
 </html>

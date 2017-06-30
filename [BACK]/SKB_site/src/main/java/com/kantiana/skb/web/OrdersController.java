@@ -98,12 +98,11 @@ public class OrdersController {
     }
 
     @RequestMapping(value = "/add-order", method = RequestMethod.POST)
-    public String addOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String addOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "add-order";
         }
         // Инициализируем неинициализированные поля
-        order.setPhotoPath(uploadFile(file));
         order.setAuthor(securityService.findLoggedUser());
         order.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         order.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
@@ -113,14 +112,12 @@ public class OrdersController {
     }
 
     @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
-    public String editOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model,@RequestParam("file") MultipartFile file) {
+    public String editOrder(@ModelAttribute("order") Order order, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "add-order";
         }
         Order oldOrder= ordersService.findById(order.getId());
         if(oldOrder ==null) return "redirect:/order";
-        if(file.getSize()>0)
-            oldOrder.setPhotoPath(uploadFile(file));
         oldOrder.setEditor(securityService.findLoggedUser());
         oldOrder.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         oldOrder.setContent(order.getContent());
