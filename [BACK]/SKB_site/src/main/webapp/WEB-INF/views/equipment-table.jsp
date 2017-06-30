@@ -5,7 +5,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<c:set var="title" value="Таблица устройств модели ${equipmentType.name}"/>
+<c:set var="title" value="Таблица устройств модели '${equipmentType.name}'"/>
 
 <!doctype html>
 <html lang="ru">
@@ -27,6 +27,10 @@
 
 <main class="container-fluid">
     <H1>${title}</H1>
+    <spring:message code="${equipmentAddSuccess}"/>
+    <spring:message code="${equipmentEditSuccess}"/>
+    <spring:message code="${equipmentDeleteSuccess}"/>
+
     <c:if test="${empty equipmentSet}">
         <h2>Не добавлено ни одно устройство.</h2>
     </c:if>
@@ -49,6 +53,9 @@
                                     <input type="hidden" name="idEquip" value="${item.id}"/>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="text" class="form-control" name="uniqueNumber">
+                                    <c:forEach items="${item.uniqueNumberErrors}" var="error">
+                                        <spring:message code="${error}"/>
+                                    </c:forEach>
                                     <button type="submit" class="btn btn-success">Изменить UN</button>
                                 </div>
                             </form>

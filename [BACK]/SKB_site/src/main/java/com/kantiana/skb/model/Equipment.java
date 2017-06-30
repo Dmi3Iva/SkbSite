@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment")
@@ -11,6 +12,8 @@ public class Equipment {
     private Long id;
     private EquipmentType equipmentType;
     private String uniqueNumber;
+    @Transient
+    private List<String> uniqueNumberErrors;
 
     private Booking booking;
 
@@ -50,5 +53,13 @@ public class Equipment {
 
     public void setBooking(Booking booking) {
         this.booking = booking;
+    }
+
+    public List<String> getUniqueNumberErrors() {
+        return uniqueNumberErrors;
+    }
+
+    public void setUniqueNumberErrors(List<String> uniqueNumberErrors) {
+        this.uniqueNumberErrors = uniqueNumberErrors;
     }
 }

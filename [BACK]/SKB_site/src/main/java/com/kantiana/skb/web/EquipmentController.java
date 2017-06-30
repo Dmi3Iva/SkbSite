@@ -3,6 +3,7 @@ package com.kantiana.skb.web;
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.EquipmentTypeValidator;
+import com.kantiana.skb.validator.EquipmentValidator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class EquipmentController {
     private RequestService requestService;
     @Autowired
     private EquipmentTypeValidator equipmentTypeValidator;
+    @Autowired
+    private EquipmentValidator equipmentValidator;
 
     @ModelAttribute("basket")
     public Set<EquipmentType> createBasket(){
@@ -60,7 +63,6 @@ public class EquipmentController {
 
         return "equipment";
     }
-
 
     @RequestMapping(value = {"/add-equipment-type", "/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
@@ -93,7 +95,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
+    public String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
     {
         equipmentTypeValidator.validate(equipmentType, bindingResult);
         if (bindingResult.hasErrors())
@@ -142,18 +144,6 @@ public class EquipmentController {
         }
         basket.add(equipmentTypeService.findById(id));
         return "redirect:/equipment-type-detailed?id="+id;
-    }
-
-    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request)
-    {
-        if(bindingResult.hasErrors())
-        {
-            return "redirect:/equipment-table-"+ idType;
-        }
-        equipment.setEquipmentType(equipmentTypeService.findById(idType));
-        equipmentService.save(equipment);
-        return "redirect:/equipment-table-"+ idType;
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
@@ -245,18 +235,45 @@ public class EquipmentController {
         return "equipment-table";
     }
 
+    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request, Model model, RedirectAttributes redirectAttributes)
+    {
+        equipmentValidator.validate(equipment, bindingResult);
+        if (bindingResult.hasErrors())
+        {
+            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeIdOrderById(idType));
+            model.addAttribute("equipmentType", equipmentTypeService.findById(idType));
+            return "equipment-table";
+        }
+        equipment.setEquipmentType(equipmentTypeService.findById(idType));
+        equipmentService.save(equipment);
+        redirectAttributes.addFlashAttribute("equipmentAddSuccess", "Equipment.add.success");
+        return "redirect:/equipment-table-"+ idType;
+    }
+
     @RequestMapping(value = "/edit-equipment-table", method = RequestMethod.POST)
-    public String editEquipmentTable(Long idEquip, String uniqueNumber) {
+    public String editEquipmentTable(Long idEquip, String uniqueNumber, Model model, RedirectAttributes redirectAttributes) {
         Equipment equipment = equipmentService.findById(idEquip);
+        List<String> errors = new LinkedList<>();
+        equipmentValidator.validate(uniqueNumber, errors);
+        if (!errors.isEmpty()) {
+            equipment.setUniqueNumberErrors(errors);
+            Long idType = equipment.getEquipmentType().getId();
+            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeIdOrderById(idType));
+            model.addAttribute("equipmentType", equipmentTypeService.findById(idType));
+            return "equipment-table";
+        }
         equipment.setUniqueNumber(uniqueNumber);
         equipmentService.save(equipment);
-        return "redirect://equipment-table-"+equipment.getEquipmentType().getId();
+        redirectAttributes.addFlashAttribute("equipmentEditSuccess", "Equipment.edit.success");
+        return "redirect:/equipment-table-"+equipment.getEquipmentType().getId();
     }
 
     @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
-    public String delEquipmentTable(Long idEquip) {
+    public String delEquipmentTable(Long idEquip, RedirectAttributes redirectAttributes) {
         Long idType = equipmentService.findById(idEquip).getEquipmentType().getId();
         equipmentService.deleteById(idEquip);
-        return "redirect://equipment-table-"+idType;
+        redirectAttributes.addFlashAttribute("equipmentDeleteSuccess", "Equipment.delete.success");
+        return "redirect:/equipment-table-"+idType;
     }
 }
