@@ -162,11 +162,14 @@ public class NewsController {
     }
 
     //Динамическое изменение комментария
-    @RequestMapping(value = "/news-detailed/edit-comment", method = RequestMethod.POST)
-    public  String editComment(ChangingComment changingComment) {
+    @RequestMapping(value = "/news-detailed/edit-comment",
+                    method = RequestMethod.POST,
+                    headers = {"Content-type=application/json"})
+    @ResponseBody
+    public  String editComment(@RequestBody ChangingComment changingComment) {
         Comment currentComment = commentService.findById(changingComment.getId());
         currentComment.setContent(changingComment.getContent());
         commentService.save(currentComment);
-        return "Комментарий был успешно изменен";
+        return changingComment.getContent();
     }
 }

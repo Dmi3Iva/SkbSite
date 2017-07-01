@@ -228,6 +228,15 @@ ul.titleHead li:nth-child(2) {
   margin-right: 7px;
 }
 
-.editText, .editBtn {
+.editText, .editBtn, .cancelEditBtn {
   display: none;
+}
+
+.editBtn {
+  margin-left: 20px;
+}
+
+.success {
+  color: #1b6d85;
+  display: block;
 }

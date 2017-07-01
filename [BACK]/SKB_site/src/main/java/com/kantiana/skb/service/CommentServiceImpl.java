@@ -26,7 +26,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void save(Comment comment) {
         comment.setAuthor(securityService.findLoggedUser());
-        comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        if (comment.getTimeOfCreation() == null) {
+            comment.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        }
         commentRepository.save(comment);
     }
 

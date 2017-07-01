@@ -33,66 +33,69 @@
   <div id="rightSide">
   </div>
 
-  <!--Функция для появления формы с комментарием и кнопки,
-  с помощью которых можно изменить комментарий -->
-  <script type="text/javascript">
-      function prepareForEdit(id) {
-          var comment = document.getElementById("textComment" + id.toString());
-          comment.style.display = 'none';
-          var text = comment.innerHTML;
-          var inputForm = document.getElementById("editTextComment" + id.toString());
-          inputForm.style.display = 'block';
-          inputForm.value = text;
-          var inputButton = document.getElementById("editBtnComment" + id.toString());
-          inputButton.style.display = 'block';
-      }
-  </script>
-  <!--Функция для динамического изменения комментария и
-   сохранения его в базу данных-->
-  <script type="text/javascript">
-      function changeComment(idComment){
-          var formData = {
-              id : idComment,
-              content : $("#editTextComment" + idComment.toString()).val()
-              };
-          var data = new FormData();
-          data.append("id", idComment);
-          <%--data.append("news", ${news});--%>
-          data.append("content", $("#editTextComment" + idComment.toString()).val());
-          alert(data);
-          alert(idComment);
-          alert($("#editTextComment" + idComment.toString()).val());
-          $.ajax({
-              headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},
-              type: "POST",
-              url: "/news-detailed/edit-comment",
-              data: JSON.stringify(formData),
-              dataType : 'json',
-              processData : false,
-              success: function (result) {
-                  document.getElementById("#infoMessage"+idComment.toString()).val = result;
-                  var comment = document.getElementById("textComment" + idComment.toString());
-                  comment.style.display = 'inline';
-                  var inputForm = document.getElementById("editTextComment" + idComment.toString());
-                  inputForm.style.display = 'none';
-                  var inputButton = document.getElementById("editBtnComment" + idComment.toString());
-                  inputButton.style.display = 'none';
-              }
-          });
-//          $.ajax({
-//              type: 'POST',
-//              url: "/news-detailed/edit-comment",
-//              data: formData,
-//              dataType: 'json',
-//              success: function (result) {
-//                  document.getElementById("#infoMessage"+idComment.toString()).val = result;
-//              }
-//          });
-      }
-
-
-  </script>
-
+  <%--<script type="text/javascript">--%>
+<%--//      Функция для появления формы с комментарием и кнопки,--%>
+<%--//          с помощью которых можно изменить комментарий--%>
+      <%--function prepareForEdit(id) {--%>
+          <%--var editButton = document.getElementById("editBtn" + id.toString());--%>
+          <%--editButton.style.display = 'none';--%>
+          <%--var comment = document.getElementById("textComment" + id.toString());--%>
+          <%--comment.style.display = 'none';--%>
+          <%--var text = comment.innerHTML;--%>
+          <%--var inputForm = document.getElementById("editTextComment" + id.toString());--%>
+          <%--inputForm.style.display = 'block';--%>
+          <%--inputForm.value = text;--%>
+          <%--var inputButton = document.getElementById("editBtnComment" + id.toString());--%>
+          <%--inputButton.style.display = 'block';--%>
+          <%--var cancelButton = document.getElementById("cancelChangeComment" + id.toString());--%>
+          <%--cancelButton.style.display = 'block';--%>
+      <%--}--%>
+  <%--</script>--%>
+  <%--<script type="text/javascript">--%>
+<%--//      Функция для динамического изменения комментария и--%>
+<%--//      сохранения его в базу данных--%>
+      <%--function changeComment(idComment){--%>
+          <%--var formData = {--%>
+              <%--id : idComment,--%>
+              <%--content : $("#editTextComment" + idComment.toString()).val()--%>
+              <%--};--%>
+          <%--$.ajax({--%>
+              <%--headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},--%>
+              <%--type: "POST",--%>
+              <%--url: "/news-detailed/edit-comment",--%>
+              <%--data: JSON.stringify(formData),--%>
+              <%--contentType: 'application/json',--%>
+              <%--success: function (result) {--%>
+                  <%--var comment = document.getElementById("textComment" + idComment.toString());--%>
+                  <%--comment.style.display = 'inline';--%>
+                  <%--comment.innerHTML = formData.content;--%>
+                  <%--var inputForm = document.getElementById("editTextComment" + idComment.toString());--%>
+                  <%--inputForm.style.display = 'none';--%>
+                  <%--var inputButton = document.getElementById("editBtnComment" + idComment.toString());--%>
+                  <%--inputButton.style.display = 'none';--%>
+                  <%--var cancelButton = document.getElementById("cancelChangeComment" + idComment.toString());--%>
+                  <%--cancelButton.style.display = 'none';--%>
+                  <%--var editButton = document.getElementById("editBtn" + idComment.toString());--%>
+                  <%--editButton.style.display = 'inline';--%>
+              <%--}--%>
+          <%--});--%>
+      <%--}--%>
+  <%--</script>--%>
+  <%--<script type="text/javascript">--%>
+<%--//  Функция для отмены редактирования комментария--%>
+      <%--function cancelEditComment(idComment) {--%>
+          <%--var comment = document.getElementById("textComment" + idComment.toString());--%>
+          <%--comment.style.display = 'block';--%>
+          <%--var inputForm = document.getElementById("editTextComment" + idComment.toString());--%>
+          <%--inputForm.style.display = 'none';--%>
+          <%--var inputButton = document.getElementById("editBtnComment" + idComment.toString());--%>
+          <%--inputButton.style.display = 'none';--%>
+          <%--var cancelButton = document.getElementById("cancelChangeComment" + idComment.toString());--%>
+          <%--cancelButton.style.display = 'none';--%>
+          <%--var editButton = document.getElementById("editBtn" + idComment.toString());--%>
+          <%--editButton.style.display = 'inline';--%>
+      <%--}--%>
+  <%--</script>--%>
 
   <%@include file="header.jsp" %>
 
@@ -190,21 +193,19 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
                         </form>
-                        <button type="submit" class="btn btn-back" onClick="prepareForEdit('${item.id}')">Редактировать</button>
+                        <button type="submit" id="editBtn${item.id}" class="btn btn-back" onClick="prepareForEdit('${item.id}')">Редактировать</button>
                     </div>
                 </sec:authorize>
-              <div class="row">
-                  <p id="infoMassage${item.id}" class="text-success"></p>
-              </div>
               <div class="panel-body">
                   <p id="textComment${item.id}">${item.content}</p>
                   <div class="row-fluid">
                       <div class="form-group">
                           <textarea id="editTextComment${item.id}" class="form-control editText"></textarea>
                       </div>
-                      <div class="text-right">
-                        <button type="submit" id="editBtnComment${item.id}" class="btn-md btn-back btn text-center editBtn" onClick="changeComment(${item.id})">Изменить</button>
-                      </div>
+                  </div>
+                  <div class="btn-group inline">
+                      <button type="submit" id="editBtnComment${item.id}" class="btn btn-md btn-primary editBtn" onClick="changeComment(${item.id})">Изменить</button>
+                      <button type="button" id="cancelChangeComment${item.id}" class="btn-md btn btn-primary cancelEditBtn" onClick="cancelEditComment(${item.id})">Отмена</button>
                   </div>
               </div>
                 <!-- /panel-body -->
@@ -245,6 +246,7 @@
   <%--<script>window.jQuery</script>--%>
   <script src="../../resources/js/tether.min.js"></script>
   <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+  <script src="../../resources/js/editComment.js"></script>
 
 
 </body>
