@@ -6,7 +6,7 @@
 <html lang="ru">
 
 <head>
-    <%@include file="includes/head.jsp"%>>
+    <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/news-detailed.css">
   <title>${title}</title>
 </head>
@@ -112,7 +112,7 @@
         </sec:authorize>
         <c:set var="newsProject" value="${news.project}"/>
         <div class="row">
-            <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
+            <%--<div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>--%>
         <div class="row ">
             <div class="col-xs-12">
 
@@ -222,9 +222,12 @@
 
     </c:if>
   </div>
+  </div>
+
 <!-- /container -->
 
   <%@include file="includes/footer.jsp" %>
+  <script type="text/javascript" src="/resources/js/editComment.js"></script>
 </body>
 
 </html>

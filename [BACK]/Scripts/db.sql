@@ -1,5 +1,5 @@
-п»ї---------------------------------------
---РЎРєСЂРёРїС‚ СЃРѕР·РґР°РЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+---------------------------------------
+--Скрипт создания структуры базы данных
 ---------------------------------------
 
 DROP TABLE IF EXISTS roles CASCADE;
@@ -37,6 +37,7 @@ CREATE TABLE users (
 	email VARCHAR(255) DEFAULT NULL,
 	organization VARCHAR(255) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
+	photo_path VARCHAR(255) DEFAULT NULL,
 	github VARCHAR(255) DEFAULT NULL,
 	contact_details VARCHAR(255),
 	about TEXT DEFAULT NULL,
@@ -105,7 +106,7 @@ CREATE TABLE orders (
 );
 
 --------------
---РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ
+--Оборудование
 --------------
 CREATE TABLE equipment_type (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -135,7 +136,7 @@ CREATE TABLE booking (
 );
 
 ---------------
---Рћ РЅР°СЃ
+--О нас
 --------------
 CREATE TABLE about(
 	id SERIAL NOT NULL PRIMARY KEY,

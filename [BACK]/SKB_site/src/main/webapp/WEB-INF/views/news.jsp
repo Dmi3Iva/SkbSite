@@ -3,8 +3,8 @@
 <c:choose>
     <c:when test="${project == null}">
         <c:set var="title" value="Новости"/>
-    <c:otherwise>
     </c:when>
+    <c:otherwise>
         <c:set var="title" value="Новости проекта '${project.name}'"/>
     </c:otherwise>
 </c:choose>
@@ -25,8 +25,6 @@
 </div>
 
 <%@include file="includes/header.jsp" %>
-
-<%@include file="header.jsp"%>
 
 <div class="container content">
     <!--Новости и проекты-->

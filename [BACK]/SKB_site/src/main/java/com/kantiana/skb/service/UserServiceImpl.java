@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         // Устанавливаем начальную роль
-        Set<Role> roles = new HashSet<Role>();
         if (user.isCustomer()) {
             user.setRole(roleService.getRoleCustomer());
         }

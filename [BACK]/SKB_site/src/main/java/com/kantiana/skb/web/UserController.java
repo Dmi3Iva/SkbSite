@@ -70,6 +70,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
+        userForm.setPhotoPath("/resources/images/user.jpg");
         userService.save(userForm);
         securityService.login(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";

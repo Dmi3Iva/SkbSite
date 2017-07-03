@@ -2,14 +2,14 @@
 <%@include file="includes/aboveHtml.jsp"%>
 
 <!doctype html>
-</c:choose>
-    </c:otherwise>
-        <c:set var="title" value="Добавление проекта"/>
-    <c:otherwise>
-    </c:when>
-        <c:set var="title" value="Редактирование проекта '${project.name}'"/>
-    <c:when test="${project.name != null}">
 <c:choose>
+    <c:when test="${project.name != null}">
+        <c:set var="title" value="Редактирование проекта '${project.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление проекта"/>
+    </c:otherwise>
+</c:choose>
 <html>
 <head>
     <title>СКБ</title>

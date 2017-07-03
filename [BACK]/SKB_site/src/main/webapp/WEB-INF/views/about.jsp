@@ -34,7 +34,9 @@
         <div class="col-xs-6" >
             <ul class="titleHead">
                 <li><div class="smallBlueBox"></div></li>
-                <li><h3>${title}</h3></li>
+                <li><h3>О нас</h3></li>
+                <!-- Что это такое снизу, я без понятия-->
+                <%--<li><h3>${title}</h3></li>--%>
             </ul>
         </div>
         <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>

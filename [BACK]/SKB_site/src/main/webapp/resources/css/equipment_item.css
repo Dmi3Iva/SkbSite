@@ -44,7 +44,7 @@ h5,p,h4{
 
 .col-xs-12{
   background-color: #0066d2;
-  margin: 15px auto;
+  margin: 0 auto 15px auto;
   padding-left: 0;
 }
 

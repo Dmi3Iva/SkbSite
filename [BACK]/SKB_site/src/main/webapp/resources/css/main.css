@@ -10,9 +10,15 @@
 	--side:#f2f2f2;
 }
 
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 body{
 	font-family:"Roboto Light",sans-serif;
 	margin-top: 75px;
+	margin-bottom: 130px;
 }
 
 @media screen and (max-width: 991px){
@@ -196,4 +202,32 @@ footer li a{
 	.main-navbar {
 		text-align: left;
 	}
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 130px;
+}
+
+@media screen and (max-width: 991px) {
+	html {
+		position: relative;
+		min-height: 100%;
+	}
+	body {
+		/* Margin bottom by footer height */
+		margin-bottom: 140px;
+	}
+
+	.footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		/* Set the fixed height of the footer here */
+		height: 140px;
+	}
+
 }
