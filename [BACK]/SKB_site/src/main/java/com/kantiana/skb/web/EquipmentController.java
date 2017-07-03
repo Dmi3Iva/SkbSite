@@ -48,17 +48,13 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
-    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket )
+    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket)
     {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
 
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
-
-        if(!model.containsAttribute("basket")) {
-            model.addAttribute("basket", new HashSet<EquipmentType>());
-        }
 
         return "equipment";
     }
@@ -130,12 +126,6 @@ public class EquipmentController {
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
     public String equipmentDetailed(Long id, Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
-        if (basket == null) {
-            basket = new HashSet<EquipmentType>();
-        }
-        if (!model.containsAttribute("basket")) {
-            model.addAttribute("basket", new HashSet<EquipmentType>());
-        }
         model.addAttribute("equipmentType", equipmentType);
         model.addAttribute("equipmentToBasket", new EquipmentType());
         return "equipment-type-detailed";
