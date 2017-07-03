@@ -27,9 +27,9 @@
 
 <main class="container-fluid">
     <H1>${title}</H1>
-    <spring:message code="${equipmentAddSuccess}"/>
+    ${equipmentAddSuccess}
     <spring:message code="${equipmentEditSuccess}"/>
-    <spring:message code="${equipmentDeleteSuccess}"/>
+    ${equipmentDeleteSuccess}
 
     <c:if test="${empty equipmentSet}">
         <h2>Не добавлено ни одно устройство.</h2>

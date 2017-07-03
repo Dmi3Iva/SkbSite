@@ -7,6 +7,7 @@ import com.kantiana.skb.validator.EquipmentValidator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +44,8 @@ public class EquipmentController {
     private EquipmentTypeValidator equipmentTypeValidator;
     @Autowired
     private EquipmentValidator equipmentValidator;
+    @Autowired
+    private MessageSource messageSource;
 
     @ModelAttribute("basket")
     public Set<EquipmentType> createBasket(){
@@ -247,7 +250,9 @@ public class EquipmentController {
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        redirectAttributes.addFlashAttribute("equipmentAddSuccess", "Equipment.add.success");
+        Object[] arg = {equipment.getUniqueNumber()};
+        String msg = messageSource.getMessage("Equipment.add.success", arg, Locale.ROOT);
+        redirectAttributes.addFlashAttribute("equipmentAddSuccess", msg);
         return "redirect:/equipment-table-"+ idType;
     }
 
@@ -273,9 +278,12 @@ public class EquipmentController {
 
     @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
     public String delEquipmentTable(Long idEquip, RedirectAttributes redirectAttributes) {
-        Long idType = equipmentService.findById(idEquip).getEquipmentType().getId();
+        Equipment equipment = equipmentService.findById(idEquip);
+        Long idType = equipment.getEquipmentType().getId();
         equipmentService.deleteById(idEquip);
-        redirectAttributes.addFlashAttribute("equipmentDeleteSuccess", "Equipment.delete.success");
-        return "redirect:/equipment-table-"+idType;
+        Object[] arg = {equipment.getUniqueNumber()};
+        String msg = messageSource.getMessage("Equipment.delete.success", arg, Locale.ROOT);
+        redirectAttributes.addFlashAttribute("equipmentDeleteSuccess", msg);
+        return "redirect:/equipment-table-" + idType;
     }
 }
