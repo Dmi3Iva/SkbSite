@@ -71,36 +71,34 @@
               </div>
             </c:forEach>
       </div>
-      <div class="col-md-6">
-        <div class="row">
-          <div class="text-center">
-            Выберите дату бронирования
-          </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="text-center">
+              Выберите дату бронирования
+            </div>
 
-
-          <div class=" col-xs-5">
-            <label for="Date">Выберите день</label>
-            <div id="Date">
-              <form:input type = "text" class = "form-control" path="date"></form:input>
-              <div></div>
+            <div class=" col-xs-5">
+              <label for="Date">Выберите день</label>
+              <div id="Date">
+                <form:input type = "text" class = "form-control" path="date"></form:input>
+                <div></div>
+              </div>
+            </div>
+            <div class="col-xs-5">
+              Время:
+              <form:select multiple = "true" path="timeChoose" class="form-control">
+                <form:options items="${RequestEquipment.timeList}"></form:options>
+              </form:select>
             </div>
           </div>
-          <div class="col-xs-5">
-            Время:
-            <form:select multiple = "true" path="timeChoose" class="form-control">
-              <form:options items="${RequestEquipment.timeList}"></form:options>
-            </form:select>
+          <div class="col-xs-offset-8 col-xs-4">
+            <form:button class="btn btn-default btn-md">Забронировать</form:button>
           </div>
         </div>
-        <div class="col-xs-offset-8 col-xs-4">
-          <form:button class="btn btn-default btn-md">Забронировать</form:button>
-        </div>
-      </div>
-    </div>
-    </div>
     </form:form>
   </c:if>
-
+    </div>
+  </div>
   <%@include file="includes/footer.jsp" %>
   <script>
       $(document).ready(

@@ -10,7 +10,7 @@
             </button>
             <a class="navbar-brand" href="/">Студентческое конструкторское бюро</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse navbar-right">
+        <div id="navbar" class="hidden-lg navbar-collapse collapse navbar-right main-navbar">
             <form class="navbar-nav navbar-form  ">
                 <div class="form-group">
                     <input type="text" placeholder="Поиск" class="form-control">

@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
@@ -97,12 +94,12 @@ public class NewsController {
             User logUser = securityService.findLoggedUser();
             User captain = project.getCaptain();
             Boolean admin = false;
-            for (Role i: logUser.getRoles()){
+            /*for (Role i: logUser.getRoles()){
                 if (i.getName().equals("ROLE_ADMIN")){
                     admin = true;
                     break;
                 }
-            }
+            }*/
             if (logUser.getId() != captain.getId() && !admin){
                 return "redirect:/error403";
             }
@@ -134,14 +131,9 @@ public class NewsController {
         if (news.getProject() != null) {
             author = news.getProject().getCaptain();
         }
-        Boolean admin = false;
-        for (Role i: logUser.getRoles()){
-            if (i.getName().equals("ROLE_ADMIN")){
-                admin = true;
-                break;
-            }
-        }
-        if (logUser.getId() != author.getId() && !admin){
+        if (logUser.getId() != author.getId() &&
+            !logUser.getRole().getName().equals("ROLE_MODERATOR") &&
+            !logUser.getRole().getName().equals("ROLE_ADMIN")){
             return "redirect:/error403";
         }
         if (news.getProject() == null) {
@@ -167,5 +159,17 @@ public class NewsController {
     public String deleteNews(Long newsId) {
         newsService.delete(newsId);
         return "redirect:/news";
+    }
+
+    //Динамическое изменение комментария
+    @RequestMapping(value = "/news-detailed/edit-comment",
+                    method = RequestMethod.POST,
+                    headers = {"Content-type=application/json"})
+    @ResponseBody
+    public  String editComment(@RequestBody ChangingComment changingComment) {
+        Comment currentComment = commentService.findById(changingComment.getId());
+        currentComment.setContent(changingComment.getContent());
+        commentService.save(currentComment);
+        return changingComment.getContent();
     }
 }

@@ -47,7 +47,7 @@ public class UserController {
         // Передаём в index.jsp все новости
         List<News> news = newsService.findTop(2);
         model.addAttribute("news", news);
-        List<Project> projects = projectService.getAllProjects();
+        List<Project> projects = projectService.findTop(2);
         model.addAttribute("projects", projects);
         // Если пользователь вышел сообщаем ему об этом
         if (logout != null) {

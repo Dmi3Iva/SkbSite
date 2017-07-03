@@ -227,3 +227,16 @@ ul.titleHead li:nth-child(2) {
 .status-upload form button>i {
   margin-right: 7px;
 }
+
+.editText, .editBtn, .cancelEditBtn {
+  display: none;
+}
+
+.editBtn {
+  margin-left: 20px;
+}
+
+.success {
+  color: #1b6d85;
+  display: block;
+}
