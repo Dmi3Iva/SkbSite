@@ -26,17 +26,18 @@
         <div class=" col-md-10 col-xs-12">
             <div class="registration-form">
                 <h1>${title}</h1>
-                <form method="POST">
-                    <p class="alert-danger">${error}</p>
+                <form:form method="POST" modelAttribute="user">
                     <label for="username" class="control-label col-xs-5">Имя пользователя</label>
                     <div class="col-xs-5">
-                        <input type="text" name="username" id="username" class="form-control"/>
+                        <spring:bind path="username">
+                            <form:errors path="username"/>
+                            <form:input type="text" path="username" id="username" class="form-control"/>
+                        </spring:bind>
                     </div>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="col-xs-offset-1">
                         <button type="submit" class="btn btn-back btn-lg">Получить новый пароль</button>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>

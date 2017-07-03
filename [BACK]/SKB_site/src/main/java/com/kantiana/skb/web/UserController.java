@@ -5,6 +5,7 @@ import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.UserValidatorImpl;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.String;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +40,8 @@ public class UserController {
     private ProjectMembershipService projectMembershipService;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private MessageSource messageSource;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -84,12 +84,9 @@ public class UserController {
 
     // Контроллер страницы входа
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
-    public String authorization(Model model, String success, String error) {
+    public String authorization(Model model, String error) {
         if (error != null) {
             model.addAttribute("loginErrorCode", "Login.error");
-        }
-        if (success != null) {
-            model.addAttribute("emailPasswordSuccessCode", "Email.password.success");
         }
         return "authorization";
     }
@@ -162,10 +159,7 @@ public class UserController {
         Map<String, String> errors = new HashMap<>();
         userValidator.validatePasswordChange(currentPassword, newPassword, confirmNewPassword, errors);
         if (!errors.isEmpty()) {
-            Set<String> errorsKeys = errors.keySet();
-            for (String key : errorsKeys) {
-                redirectAttributes.addFlashAttribute(key, errors.get(key));
-            }
+            redirectAttributes.addFlashAttribute("passwordChangeErrors", errors);
             return "redirect:/change-profile";
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -177,28 +171,28 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    //Контроллеры для интеграции страниц
-
     @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
-    public String forgetPassword(Model model, String error) {
-        if (error != null) {
-            model.addAttribute("error", "Пользователя с таким именем не существует.");
-        }
-        return "forget_password";
+    public String forgetPassword(Model model) {
+        model.addAttribute("user", new User());
+        return "forget-password";
     }
 
     @RequestMapping(value = "/forget-password", method = RequestMethod.POST)
-    public String forgetPassword(String username) {
-        User user = userService.findByUsername(username);
-        if (user == null) {
-            return "redirect:/forget-password?error";
+    public String forgetPassword(@ModelAttribute("user") User userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        userValidator.validateForgetPassword(userForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "forget-password";
         }
+        User user = userService.findByUsername(userForm.getUsername());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String newPassword = userService.generatePassword();
         user.setPassword(passwordEncoder.encode(newPassword));
         userService.update(user);
-        mailService.sendNewPassword(username, newPassword, user.getEmail());
-        return "redirect:/authorization?success";
+        mailService.sendNewPassword(user.getUsername(), newPassword, user.getEmail());
+        Object[] arg = {user.getEmail()};
+        String msg = messageSource.getMessage("Email.password.success", arg, Locale.ROOT);
+        redirectAttributes.addFlashAttribute("emailPasswordSuccess", msg);
+        return "redirect:/authorization";
     }
 
     //Контроллер для страницы с ошибкой доступа
