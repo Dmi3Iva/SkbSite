@@ -2,10 +2,12 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.BookingValidator;
 import com.kantiana.skb.validator.EquipmentTypeValidator;
 import com.kantiana.skb.validator.EquipmentValidator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.ir.RuntimeNode;
+import org.apache.taglibs.standard.extra.spath.AttributePredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -44,6 +46,8 @@ public class EquipmentController {
     private EquipmentTypeValidator equipmentTypeValidator;
     @Autowired
     private EquipmentValidator equipmentValidator;
+    @Autowired
+    private BookingValidator bookingValidator;
     @Autowired
     private MessageSource messageSource;
 
@@ -128,36 +132,43 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
-    public String equipmentDetailed( Long id,Model model,@ModelAttribute("basket") Set<EquipmentType> basket, @ModelAttribute EquipmentType equipmentToBasket) {
+    public String equipmentDetailed(Long id, Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
-        if(basket ==null) basket = new HashSet<EquipmentType>();
-        model.addAttribute("equipmentType",equipmentType);
-        model.addAttribute("equipment", new Equipment());
-        if(!model.containsAttribute("basket"))
+        if (basket == null) {
+            basket = new HashSet<EquipmentType>();
+        }
+        if (!model.containsAttribute("basket")) {
             model.addAttribute("basket", new HashSet<EquipmentType>());
-        model.addAttribute("equipmentToBasket", equipmentToBasket);
+        }
+        model.addAttribute("equipmentType", equipmentType);
+        model.addAttribute("equipmentToBasket", new EquipmentType());
         return "equipment-type-detailed";
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
-    public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
-
-        for(EquipmentType e : basket){
-            if(e.getId()== id )return "redirect:/equipment-type-detailed?id="+id;
+    public String equipmentPostDetailed(@ModelAttribute("equipmentToBasket") EquipmentType chosenEquipment, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        chosenEquipment = equipmentTypeService.findById(chosenEquipment.getId());
+        bookingValidator.validateAddingToBasket(chosenEquipment, basket, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("equipmentType", chosenEquipment);
+            return "equipment-type-detailed";
         }
-        basket.add(equipmentTypeService.findById(id));
-        return "redirect:/equipment-type-detailed?id="+id;
+        basket.add(chosenEquipment);
+        Object[] arg = {chosenEquipment.getName()};
+        String msg = messageSource.getMessage("Basket.equipment.add.success", arg, Locale.ROOT);
+        redirectAttributes.addFlashAttribute("equipmentAddedToBasketMsg", msg);
+        return "redirect:/equipment-type-detailed?id=" + chosenEquipment.getId();
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
     public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
                                    @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
-        if(requestEquipment == null)
+        if (requestEquipment == null)
         {
             requestEquipment = new RequestEquipment();
         }
 
-        if(requestEquipment.getSize() == 0)
+        if (requestEquipment.getSize() == 0)
         {
             for(EquipmentType e : basket)
             {
@@ -165,7 +176,7 @@ public class EquipmentController {
             }
         }
 
-        if(!model.containsAttribute("requestEquipment"))
+        if (!model.containsAttribute("requestEquipment"))
         {
             model.addAttribute("requestEquipment", requestEquipment);
         }

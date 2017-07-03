@@ -27,6 +27,7 @@
   <%@include file="header.jsp" %>
 
   <spring:message code="${equipmentTypeDeleteSuccess}"/>
+  ${equipmentAddedToBasketMsg}
 
   <!-- main-->
   <div class="container">
@@ -56,11 +57,13 @@
       <div class="col-md-6">
         <h5>Описание</h5>
         ${equipmentType.about}
-        <form action="equipment-type-detailed" method="post">
-          <input type="hidden" name="id" value="${equipmentType.id}"/>
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-          <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
-        </form>
+        <form:form method="POST" modelAttribute="equipmentToBasket">
+            <spring:bind path="id">
+              <form:input path="id" value="${equipmentType.id}" cssStyle="visibility: hidden"/>
+              <form:errors path="id"/>
+            </spring:bind>
+            <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+        </form:form>
       </div>
     </div>
   </div>

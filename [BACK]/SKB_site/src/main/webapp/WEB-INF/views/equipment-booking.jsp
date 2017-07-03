@@ -68,22 +68,21 @@
 
           <c:forEach items="${requestEquipment.equipmentTypeCountList}" var="item" varStatus="status">
             <div class="row">
-                    <div class="col-xs-4">
-                      <label>${item.name} </label>
-                    </div>
-                    <div class="col-xs-1">
-                      <button>-</button>
-                    </div>
-
-                    <div class="col-xs-2">
-                      <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
-                      <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
-                    </div>
-                    <div class="col-xs-1">
-                      <button>+</button>
-                    </div>
-              </div>
-            </c:forEach>
+                <div class="col-xs-4">
+                  <label>${item.name} </label>
+                </div>
+                <div class="col-xs-1">
+                  <button>-</button>
+                </div>
+                <div class="col-xs-2">
+                  <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
+                  <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
+                </div>
+                <div class="col-xs-1">
+                  <button>+</button>
+                </div>
+            </div>
+          </c:forEach>
 
 
 
