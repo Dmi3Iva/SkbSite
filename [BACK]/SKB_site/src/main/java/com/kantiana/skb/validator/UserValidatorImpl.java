@@ -1,23 +1,18 @@
 package com.kantiana.skb.validator;
 
 import com.kantiana.skb.model.User;
+import com.kantiana.skb.service.MessageService;
 import com.kantiana.skb.service.SecurityService;
 import com.kantiana.skb.service.UserService;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.hibernate.validator.internal.constraintvalidators.hv.URLValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -29,7 +24,7 @@ public class UserValidatorImpl implements UserValidator {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
-    private MessageSource messageSource;
+    private MessageService messageService;
 
     private int USERNAME_MIN_LENGTH = 2;
     private int USERNAME_MAX_LENGTH = 32;
@@ -65,15 +60,16 @@ public class UserValidatorImpl implements UserValidator {
     public void validatePasswordChange(String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors) {
         String correctCurrentPassword = securityService.findLoggedUser().getPassword();
         if (!bCryptPasswordEncoder.matches(currentPassword, correctCurrentPassword)) {
-            errors.put("uncorrectPassword", messageSource.getMessage("Password.uncorrect", null, Locale.ROOT));
+            errors.put("uncorrectPassword", messageService.getMessage("Password.uncorrect"));
         }
         if (newPassword.length() < PASSWORD_MIN_LENGTH || newPassword.length() > PASSWORD_MAX_LENGTH) {
-            Object[] arg = {PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH};
-            String msg = messageSource.getMessage("Size.user.password", arg, Locale.ROOT);
-            errors.put("uncorrectNewPasswordSize", msg);
+            errors.put(
+                    "uncorrectNewPasswordSize",
+                    messageService.getMessage("Size.user.password", PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)
+            );
         }
         if (!newPasswordConfirm.equals(newPassword)) {
-            errors.put("uncorrectNewPasswordConfirm", messageSource.getMessage("Diff.user.passwordConfirm", null, Locale.ROOT));
+            errors.put("uncorrectNewPasswordConfirm", messageService.getMessage("Diff.user.passwordConfirm"));
         }
     }
 

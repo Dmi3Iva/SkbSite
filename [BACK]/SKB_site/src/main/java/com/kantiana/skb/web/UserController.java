@@ -5,7 +5,6 @@ import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.UserValidatorImpl;
 import org.apache.commons.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +40,7 @@ public class UserController {
     @Autowired
     private MailService mailService;
     @Autowired
-    private MessageSource messageSource;
+    private MessageService messageService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -190,8 +189,10 @@ public class UserController {
         userService.update(user);
         mailService.sendNewPassword(user.getUsername(), newPassword, user.getEmail());
         Object[] arg = {user.getEmail()};
-        String msg = messageSource.getMessage("Email.password.success", arg, Locale.ROOT);
-        redirectAttributes.addFlashAttribute("emailPasswordSuccess", msg);
+        redirectAttributes.addFlashAttribute(
+                "emailPasswordSuccess",
+                messageService.getMessage("Email.password.success", user.getEmail())
+        );
         return "redirect:/authorization";
     }
 

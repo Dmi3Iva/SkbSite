@@ -5,11 +5,7 @@ import com.kantiana.skb.service.*;
 import com.kantiana.skb.validator.BookingValidator;
 import com.kantiana.skb.validator.EquipmentTypeValidator;
 import com.kantiana.skb.validator.EquipmentValidator;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import jdk.nashorn.internal.ir.RuntimeNode;
-import org.apache.taglibs.standard.extra.spath.AttributePredicate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,15 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.management.openmbean.ArrayType;
-import java.lang.reflect.Type;
-import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.Date;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -49,7 +40,7 @@ public class EquipmentController {
     @Autowired
     private BookingValidator bookingValidator;
     @Autowired
-    private MessageSource messageSource;
+    private MessageService messageService;
 
     @ModelAttribute("basket")
     public Set<EquipmentType> createBasket(){
@@ -65,8 +56,9 @@ public class EquipmentController {
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
 
-        if(!model.containsAttribute("basket"))
+        if(!model.containsAttribute("basket")) {
             model.addAttribute("basket", new HashSet<EquipmentType>());
+        }
 
         return "equipment";
     }
@@ -110,14 +102,18 @@ public class EquipmentController {
             return "add-equipment-type";
         }
         EquipmentType et= equipmentTypeService.findById(equipmentType.getId());
-        if(et == null) return "redirect:/equipment";
+        if (et == null) {
+            return "redirect:/equipment";
+        }
         et.setAbout(equipmentType.getAbout());
         et.setEquipmentSet(equipmentType.getEquipmentSet());
         et.setFeatures(equipmentType.getFeatures());
         et.setName(equipmentType.getName());
 
-        if (file.getSize()>0)
+        if (file.getSize()>0) {
             et.setPhotoPath(uploadFile(file));
+        }
+
         equipmentTypeService.save(et);
         redirectAttributes.addFlashAttribute("equipmentTypeEditSuccess", "EquipmentType.edit.success");
         return "redirect:/equipment-type-detailed?id=" + equipmentType.getId();
@@ -154,9 +150,10 @@ public class EquipmentController {
             return "equipment-type-detailed";
         }
         basket.add(chosenEquipment);
-        Object[] arg = {chosenEquipment.getName()};
-        String msg = messageSource.getMessage("Basket.equipment.add.success", arg, Locale.ROOT);
-        redirectAttributes.addFlashAttribute("equipmentAddedToBasketMsg", msg);
+        redirectAttributes.addFlashAttribute(
+                "equipmentAddedToBasketMsg",
+                messageService.getMessage("Basket.equipment.add.success", chosenEquipment.getName())
+        );
         return "redirect:/equipment-type-detailed?id=" + chosenEquipment.getId();
     }
 
@@ -261,9 +258,10 @@ public class EquipmentController {
         }
         equipment.setEquipmentType(equipmentTypeService.findById(idType));
         equipmentService.save(equipment);
-        Object[] arg = {equipment.getUniqueNumber()};
-        String msg = messageSource.getMessage("Equipment.add.success", arg, Locale.ROOT);
-        redirectAttributes.addFlashAttribute("equipmentAddSuccess", msg);
+        redirectAttributes.addFlashAttribute(
+                "equipmentAddSuccess",
+                messageService.getMessage("Equipment.add.success", equipment.getUniqueNumber())
+        );
         return "redirect:/equipment-table-"+ idType;
     }
 
@@ -292,9 +290,10 @@ public class EquipmentController {
         Equipment equipment = equipmentService.findById(idEquip);
         Long idType = equipment.getEquipmentType().getId();
         equipmentService.deleteById(idEquip);
-        Object[] arg = {equipment.getUniqueNumber()};
-        String msg = messageSource.getMessage("Equipment.delete.success", arg, Locale.ROOT);
-        redirectAttributes.addFlashAttribute("equipmentDeleteSuccess", msg);
+        redirectAttributes.addFlashAttribute(
+                "equipmentDeleteSuccess",
+                messageService.getMessage("Equipment.delete.success", equipment.getUniqueNumber())
+        );
         return "redirect:/equipment-table-" + idType;
     }
 }
