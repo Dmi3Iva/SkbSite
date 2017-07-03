@@ -7,7 +7,7 @@ import java.util.List;
 public interface EquipmentService {
     void save(Equipment equipment);
 
-    List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
+    List<Equipment> findAllByEquipmentTypeId(Long equipmentTypeId);
 
     Equipment findById(Long id);
 

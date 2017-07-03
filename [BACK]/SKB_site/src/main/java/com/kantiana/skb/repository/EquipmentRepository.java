@@ -8,7 +8,7 @@ import java.util.List;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     Equipment findById(Long id);
 
-    List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
+    List<Equipment> findAllByEquipmentTypeIdOrderByUniqueNumber(Long equipmentTypeId);
 
     void deleteById(Long id);
 

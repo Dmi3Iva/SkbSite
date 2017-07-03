@@ -12,9 +12,6 @@ public class Equipment {
     private Long id;
     private EquipmentType equipmentType;
     private String uniqueNumber;
-    @Transient
-    private List<String> uniqueNumberErrors;
-
     private Booking booking;
 
     @Id
@@ -48,18 +45,10 @@ public class Equipment {
     }
 
     public void setUniqueNumber(String uniqueNumber) {
-        this.uniqueNumber = uniqueNumber;
+        this.uniqueNumber = uniqueNumber.trim();
     }
 
     public void setBooking(Booking booking) {
         this.booking = booking;
-    }
-
-    public List<String> getUniqueNumberErrors() {
-        return uniqueNumberErrors;
-    }
-
-    public void setUniqueNumberErrors(List<String> uniqueNumberErrors) {
-        this.uniqueNumberErrors = uniqueNumberErrors;
     }
 }

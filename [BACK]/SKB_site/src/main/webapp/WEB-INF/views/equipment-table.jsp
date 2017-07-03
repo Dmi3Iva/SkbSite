@@ -52,11 +52,11 @@
                                 <div class="form-group">
                                     <input type="hidden" name="idEquip" value="${item.id}"/>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="text" class="form-control" name="uniqueNumber">
-                                    <c:forEach items="${item.uniqueNumberErrors}" var="error">
-                                        <spring:message code="${error}"/>
-                                    </c:forEach>
+                                    <input type="text" class="form-control" name="uniqueNumber" value="${uniqueNumbers[item.id]}">
                                     <button type="submit" class="btn btn-success">Изменить UN</button>
+                                    <c:forEach items="${uniqueNumberErrors[item.id]}" var="error">
+                                        ${error}
+                                    </c:forEach>
                                 </div>
                             </form>
                         </td>

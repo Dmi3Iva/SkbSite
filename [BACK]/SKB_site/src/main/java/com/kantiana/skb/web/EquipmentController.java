@@ -229,19 +229,19 @@ public class EquipmentController {
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
     public String equipmentTable(@PathVariable Long idType, Model model) {
         EquipmentType equipmentType = equipmentTypeService.findById(idType);
-        model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
+        model.addAttribute("equipmentSet", (equipmentType != null) ? equipmentService.findAllByEquipmentTypeId(idType) : null);
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
         return "equipment-table";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request, Model model, RedirectAttributes redirectAttributes)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType, @ModelAttribute Request request, Model model, RedirectAttributes redirectAttributes)
     {
         equipmentValidator.validate(equipment, bindingResult);
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeIdOrderById(idType));
+            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeId(idType));
             model.addAttribute("equipmentType", equipmentTypeService.findById(idType));
             return "equipment-table";
         }
@@ -257,16 +257,18 @@ public class EquipmentController {
         List<String> errors = new LinkedList<>();
         equipmentValidator.validate(uniqueNumber, errors);
         if (!errors.isEmpty()) {
-            equipment.setUniqueNumberErrors(errors);
-            Long idType = equipment.getEquipmentType().getId();
-            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeIdOrderById(idType));
-            model.addAttribute("equipmentType", equipmentTypeService.findById(idType));
-            return "equipment-table";
+            Map<Long, List<String>> errorsMap = new HashMap<>();
+            errorsMap.put(idEquip, errors);
+            redirectAttributes.addFlashAttribute("uniqueNumberErrors", errorsMap);
+            Map<Long, String> uniqueNumbersMap = new HashMap<>();
+            uniqueNumbersMap.put(idEquip, uniqueNumber);
+            redirectAttributes.addFlashAttribute("uniqueNumbers", uniqueNumbersMap);
+            return "redirect:/equipment-table-" + equipment.getEquipmentType().getId();
         }
         equipment.setUniqueNumber(uniqueNumber);
         equipmentService.save(equipment);
         redirectAttributes.addFlashAttribute("equipmentEditSuccess", "Equipment.edit.success");
-        return "redirect:/equipment-table-"+equipment.getEquipmentType().getId();
+        return "redirect:/equipment-table-" + equipment.getEquipmentType().getId();
     }
 
     @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)

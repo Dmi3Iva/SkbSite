@@ -18,8 +18,9 @@ public class EquipmentServiceImpl implements EquipmentService {
         equipmentRepository.save(equipment);
     }
 
-    public List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId){
-        return equipmentRepository.findAllByEquipmentTypeIdOrderById(equipmentTypeId);
+    @Override
+    public List<Equipment> findAllByEquipmentTypeId(Long equipmentTypeId){
+        return equipmentRepository.findAllByEquipmentTypeIdOrderByUniqueNumber(equipmentTypeId);
     }
 
     public Equipment findById(Long id){
