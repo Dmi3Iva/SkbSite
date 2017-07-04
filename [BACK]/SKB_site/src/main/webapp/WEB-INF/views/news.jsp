@@ -1,14 +1,14 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
-
 <c:choose>
-    <c:when test="${news.name != null}">
-        <c:set var="title" value="Редактирование новости '${news.name}'"/>
+    <c:when test="${project == null}">
+        <c:set var="title" value="Новости"/>
     </c:when>
     <c:otherwise>
-        <c:set var="title" value="Добавление новости"/>
+        <c:set var="title" value="Новости проекта '${project.name}'"/>
     </c:otherwise>
 </c:choose>
+
 
 <!doctype html>
 <html lang="ru">
