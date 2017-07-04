@@ -1,6 +1,12 @@
 package com.kantiana.skb.model;
 
+import org.springframework.context.i18n.LocaleContext;
+
 import javax.validation.OverridesAttribute;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RequestEquipment {
@@ -14,7 +20,6 @@ public class RequestEquipment {
         this.timeList = new ArrayList<String>();
         this.makeTimeList();
         this.timeChoose = new ArrayList<String>();
-        this.date = new String();
         this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
     }
 
@@ -89,5 +94,36 @@ public class RequestEquipment {
         this.timeList.add("17.00-17.30");
         this.timeList.add("17.30-18.00");
         this.timeList.add("18.00-18.30");
+    }
+
+    public java.sql.Date getSqlDate() {
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            java.util.Date utilDate = format.parse(getDate());
+            return new java.sql.Date(utilDate.getTime());
+        }
+        catch (ParseException pEx) {
+            pEx.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getChosenTimeMask() {
+        int timeMask = 0;
+        Map<String,Integer> timeMap = new HashMap<String,Integer>();
+
+        List<String> timeChoose = getTimeChoose();
+        List<String> timeList = getTimeList();
+
+        int i = 0 ;
+        for (String s: timeList){
+            timeMap.put( s, i );
+            ++ i ;
+        }
+        for (String s: timeChoose) {
+            timeMask = timeMask | (1 << timeMap.get(s));
+        }
+
+        return timeMask;
     }
 }

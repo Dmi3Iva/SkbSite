@@ -178,28 +178,17 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
-        //Формируем отрезки времени
-        int timeMask=0;
-        Map<String,Integer> timeMap = new HashMap<String,Integer>();
-
-        List<String> timeChoose = requestEquipment.getTimeChoose();
-        List<String> timeList = requestEquipment.getTimeList();
-
-        int i = 0 ;
-        for (String s: timeList){
-            timeMap.put( s, i );
-            ++ i ;
-        }
-        for (String s: timeChoose) {
-            timeMask= timeMask | (1<<timeMap.get(s));
+    public String equipmentBookingPost(Model model, BindingResult bindingResult, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
+        bookingValidator.validateBooking(requestEquipment, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "equipment-booking";
         }
 
-        //
         Request request = new Request();
         request.setUser(securityService.findLoggedUser());
         requestService.save(request);
 
+        int chosenTimeMask = requestEquipment.getChosenTimeMask(), i;
         //Формириуем bookings
         List<EquipmentTypeCount> equipmentTypeCountList = requestEquipment.getEquipmentTypeCountList();
         Booking booking = null;
@@ -216,21 +205,14 @@ public class EquipmentController {
                 }
                 booking = new Booking();
                 booking.setRequest(request);
-                //Преобразуем Date
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                try {
-                    java.util.Date utilDate = format.parse(requestEquipment.getDate());
-                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                    booking.setDay(sqlDate);
-                }
-                catch (Exception ex) {}
+                booking.setDay(requestEquipment.getSqlDate());
                 booking.setEquipment(e);
-                booking.setTimeMask(timeMask);
+                booking.setTimeMask(chosenTimeMask);
                 bookingService.save(booking);
                 i++;
             }
         }
-        return "equipment";
+        return "redirect:/equipment";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
