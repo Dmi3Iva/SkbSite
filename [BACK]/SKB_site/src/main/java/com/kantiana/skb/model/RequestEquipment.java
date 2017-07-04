@@ -111,19 +111,14 @@ public class RequestEquipment {
     public int getChosenTimeMask() {
         int timeMask = 0;
         Map<String,Integer> timeMap = new HashMap<String,Integer>();
-
-        List<String> timeChoose = getTimeChoose();
-        List<String> timeList = getTimeList();
-
-        int i = 0 ;
-        for (String s: timeList){
+        int i = 0;
+        for (String s: getTimeList()){
             timeMap.put( s, i );
-            ++ i ;
+            ++i ;
         }
-        for (String s: timeChoose) {
+        for (String s: getTimeChoose()) {
             timeMask = timeMask | (1 << timeMap.get(s));
         }
-
         return timeMask;
     }
 }

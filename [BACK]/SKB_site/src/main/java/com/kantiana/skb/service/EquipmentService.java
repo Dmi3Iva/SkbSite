@@ -14,4 +14,6 @@ public interface EquipmentService {
     void deleteById(Long id);
 
     Equipment findByUniqueNumber(String uniqueNumber);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }

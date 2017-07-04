@@ -36,4 +36,9 @@ public class EquipmentServiceImpl implements EquipmentService {
     public Equipment findByUniqueNumber(String uniqueNumber) {
         return equipmentRepository.findByUniqueNumber(uniqueNumber);
     }
+
+    @Override
+    public int countByEquipmentTypeId(Long equipmentTypeId) {
+        return equipmentRepository.countByEquipmentTypeId(equipmentTypeId);
+    }
 }

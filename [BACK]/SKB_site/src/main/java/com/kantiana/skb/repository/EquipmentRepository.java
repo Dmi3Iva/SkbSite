@@ -13,4 +13,6 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     void deleteById(Long id);
 
     Equipment findByUniqueNumber(String uniqueNumber);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }
