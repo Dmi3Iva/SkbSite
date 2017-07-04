@@ -178,7 +178,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, BindingResult bindingResult, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
+    public String equipmentBookingPost(@ModelAttribute RequestEquipment requestEquipment, BindingResult bindingResult, Model model) throws ParseException {
         bookingValidator.validateBooking(requestEquipment, bindingResult);
         if (bindingResult.hasErrors()) {
             return "equipment-booking";

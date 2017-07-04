@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.List;
 
 public interface BookingService {
-    public void save(Booking booking);
+    void save(Booking booking);
 
-    boolean canBook(List<EquipmentTypeCount> etcList, Date day, int timeMask);
+    List<Booking> findByDayAndEquipmentType(Date day, Long equipmentTypeId);
 }

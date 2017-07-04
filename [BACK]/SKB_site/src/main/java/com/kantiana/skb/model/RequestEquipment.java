@@ -1,9 +1,5 @@
 package com.kantiana.skb.model;
 
-import org.springframework.context.i18n.LocaleContext;
-
-import javax.validation.OverridesAttribute;
-import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,20 +9,20 @@ public class RequestEquipment {
 
     private List<EquipmentTypeCount> equipmentTypeCount;
     private String date;
-    private List<String> timeChoose;
+    private List<String> chosenTime;
     private List<String> timeList;
 
     public RequestEquipment() {
         this.timeList = new ArrayList<String>();
         this.makeTimeList();
-        this.timeChoose = new ArrayList<String>();
+        this.chosenTime = new ArrayList<String>();
         this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
     }
 
-    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, String date, List<String> timeChoose, List<String> timeList) {
+    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, String date, List<String> chosenTime, List<String> timeList) {
         this.equipmentTypeCount = equipmentTypeCount;
         this.date = date;
-        this.timeChoose = timeChoose;
+        this.chosenTime = chosenTime;
         this.timeList = timeList;
     }
 
@@ -50,12 +46,12 @@ public class RequestEquipment {
         this.equipmentTypeCount = equipmentTypeCount;
     }
 
-    public List<String> getTimeChoose() {
-        return timeChoose;
+    public List<String> getChosenTime() {
+        return chosenTime;
     }
 
-    public void setTimeChoose(List<String> timeChoose) {
-        this.timeChoose = timeChoose;
+    public void setChosenTime(List<String> chosenTime) {
+        this.chosenTime = chosenTime;
     }
 
     public List<String> getTimeList() {
@@ -116,7 +112,7 @@ public class RequestEquipment {
             timeMap.put( s, i );
             ++i ;
         }
-        for (String s: getTimeChoose()) {
+        for (String s: getChosenTime()) {
             timeMask = timeMask | (1 << timeMap.get(s));
         }
         return timeMask;
