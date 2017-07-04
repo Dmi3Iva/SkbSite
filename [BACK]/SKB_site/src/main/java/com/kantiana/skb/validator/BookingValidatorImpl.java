@@ -36,9 +36,6 @@ public class BookingValidatorImpl implements BookingValidator {
         int chosenTimeMask = requestEquipment.getChosenTimeMask();
         validateChosenDay(chosenDay, errors);
         validateChosenTime(chosenTimeMask, errors);
-        if (errors.hasErrors()) {
-            return;
-        }
         validateCount(chosenEquipments, errors);
         if (errors.hasErrors()) {
             return;
@@ -68,11 +65,11 @@ public class BookingValidatorImpl implements BookingValidator {
     private void validateCount(List<EquipmentTypeCount> chosenEquipments, Errors errors) {
         for (EquipmentTypeCount etc : chosenEquipments) {
             if (etc.getCount() <= 0) {
-                errors.rejectValue("equipmentTypeCount", "NotValid.equipment.count.negative");
+                errors.rejectValue("equipmentTypeCountList", "NotValid.equipment.count.negative");
             }
             else if (etc.getCount() > equipmentService.countByEquipmentTypeId(etc.getId())) {
                 Object[] arg = {etc.getCount(), etc.getName()};
-                errors.rejectValue("equipmentTypeCount", "NotValid.equipment.count.tooMany", arg, "");
+                errors.rejectValue("equipmentTypeCountList", "NotValid.equipment.count.tooMany", arg, "");
             }
         }
     }

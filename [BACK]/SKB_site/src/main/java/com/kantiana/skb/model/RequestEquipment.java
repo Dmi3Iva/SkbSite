@@ -7,7 +7,7 @@ import java.util.*;
 
 public class RequestEquipment {
 
-    private List<EquipmentTypeCount> equipmentTypeCount;
+    private List<EquipmentTypeCount> equipmentTypeCountList;
     private String date;
     private List<String> chosenTime;
     private List<String> timeList;
@@ -16,22 +16,22 @@ public class RequestEquipment {
         this.timeList = new ArrayList<String>();
         this.makeTimeList();
         this.chosenTime = new ArrayList<String>();
-        this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
+        this.equipmentTypeCountList = new Vector<EquipmentTypeCount>();
     }
 
-    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, String date, List<String> chosenTime, List<String> timeList) {
-        this.equipmentTypeCount = equipmentTypeCount;
+    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCountList, String date, List<String> chosenTime, List<String> timeList) {
+        this.equipmentTypeCountList = equipmentTypeCountList;
         this.date = date;
         this.chosenTime = chosenTime;
         this.timeList = timeList;
     }
 
     public List<EquipmentTypeCount> getEquipmentTypeCountList() {
-        return equipmentTypeCount;
+        return equipmentTypeCountList;
     }
 
     public void setEquipmentTypeCountList(Vector<EquipmentTypeCount> equipmentTypeCount) {
-        this.equipmentTypeCount = equipmentTypeCount;
+        this.equipmentTypeCountList = equipmentTypeCount;
     }
 
     public String getDate() {
@@ -43,7 +43,7 @@ public class RequestEquipment {
     }
 
     public void setEquipmentTypeCountList(List<EquipmentTypeCount> equipmentTypeCount) {
-        this.equipmentTypeCount = equipmentTypeCount;
+        this.equipmentTypeCountList = equipmentTypeCount;
     }
 
     public List<String> getChosenTime() {
@@ -63,11 +63,11 @@ public class RequestEquipment {
     }
 
     public int getSize(){
-        return this.equipmentTypeCount.size();
+        return this.equipmentTypeCountList.size();
     }
 
     public void add(Long idType, Long count, String name){
-        this.equipmentTypeCount.add(new EquipmentTypeCount(idType,count, name));
+        this.equipmentTypeCountList.add(new EquipmentTypeCount(idType,count, name));
     }
 
     public void makeTimeList(){

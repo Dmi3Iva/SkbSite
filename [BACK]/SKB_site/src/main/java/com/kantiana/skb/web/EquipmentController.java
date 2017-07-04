@@ -178,7 +178,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(@ModelAttribute RequestEquipment requestEquipment, BindingResult bindingResult, Model model) throws ParseException {
+    public String equipmentBookingPost(@ModelAttribute RequestEquipment requestEquipment, BindingResult bindingResult, Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
         bookingValidator.validateBooking(requestEquipment, bindingResult);
         if (bindingResult.hasErrors()) {
             return "equipment-booking";
@@ -212,6 +212,7 @@ public class EquipmentController {
                 i++;
             }
         }
+        basket.clear();
         return "redirect:/equipment";
     }
 

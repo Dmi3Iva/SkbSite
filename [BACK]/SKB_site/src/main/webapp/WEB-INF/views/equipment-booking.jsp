@@ -65,23 +65,27 @@
         <c:if test="${!empty basket}">
           <h1>В вашей корзине:</h1>
           <form:form modelAttribute="requestEquipment" method="POST" >
-            <c:forEach items="${requestEquipment.equipmentTypeCountList}" var="item" varStatus="status">
-              <div class="row">
-                  <div class="col-xs-4">
-                    <label>${item.name} </label>
-                  </div>
-                  <div class="col-xs-1">
-                    <button>-</button>
-                  </div>
-                  <div class="col-xs-2">
-                    <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
-                    <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
-                  </div>
-                  <div class="col-xs-1">
-                    <button>+</button>
-                  </div>
-              </div>
-            </c:forEach>
+            <spring:bind path="equipmentTypeCountList">
+              <c:forEach items="${requestEquipment.equipmentTypeCountList}" var="item" varStatus="status">
+                <div class="row">
+                    <div class="col-xs-4">
+                      <label>${item.name}</label>
+                    </div>
+                    <div class="col-xs-1">
+                      <button>-</button>
+                    </div>
+                    <div class="col-xs-2">
+                      <form:hidden path="equipmentTypeCountList[${status.index}].name"/>
+                      <form:hidden path="equipmentTypeCountList[${status.index}].id"></form:hidden>
+                      <form:input class = "form-control" path="equipmentTypeCountList[${status.index}].count"></form:input>
+                    </div>
+                    <div class="col-xs-1">
+                      <button>+</button>
+                    </div>
+                </div>
+              </c:forEach>
+              <p class="alert-danger"><form:errors path="equipmentTypeCountList"/></p>
+            </spring:bind>
 
 
 
@@ -91,31 +95,35 @@
 
         <div class="col-md-6">
           <div class="row">
-            <div class="text-center">
-              Выберите дату бронирования
-            </div>
+            <%--<div class="text-center">--%>
+              <%--Выберите дату бронирования--%>
+            <%--</div>--%>
 
 
             <div class=" col-xs-5">
-              <label for="Date">Выберите день</label>
-              <div id="Date">
-                <form:input type = "text" class = "form-control" path="date"></form:input>
-                <div></div>
-              </div>
+              <label for="Date">День</label>
+              <spring:bind path="date">
+                <div id="Date">
+                  <form:input type = "text" class = "form-control" path="date"></form:input>
+                  <div></div>
+                </div>
+                <p class="alert-danger"><form:errors path="date"/></p>
+              </spring:bind>
             </div>
             <div class="col-xs-5">
-              Время:
-              <form:select multiple = "true" path="chosenTime" class="form-control">
-                <form:options items="${RequestEquipment.timeList}"></form:options>
-              </form:select>
+              <label for="chosenTime">Время</label>
+              <spring:bind path="chosenTime">
+                <form:select size="10" multiple = "true" path="chosenTime" class="form-control" id="chosenTime">
+                  <form:options items="${requestEquipment.timeList}"></form:options>
+                </form:select>
+                <p class="alert-danger"><form:errors path="chosenTime"/></p>
+              </spring:bind>
             </div>
           </div>
           <div class="col-xs-offset-8 col-xs-4">
             <form:button class="btn btn-default btn-md">Забронировать</form:button>
           </div>
         </div>
-      </div>
-      </div>
     </form:form>
     <form:form action="/clear-basket">
       <div class="col-xs-offset-3">
@@ -123,6 +131,8 @@
       </div>
     </form:form>
   </c:if>
+    </div>
+  </div>
   <!--мой вариант -->
   <div class="forFont">
     <div class="container" >
