@@ -4,7 +4,6 @@
 <!doctype html>
 <html>
 <head>
-    <title>СКБ</title>
     <%@include file="includes/head.jsp"%>
     <link type="text/css" rel="stylesheet" href="/resources/css/index.css">
     <title>${title}</title>

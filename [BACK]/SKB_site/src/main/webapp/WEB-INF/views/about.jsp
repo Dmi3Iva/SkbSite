@@ -1,11 +1,12 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
+<c:set var="title" value="О нас"/>
 <!doctype html>
 <html lang="ru">
 <head>
 
 
-    <title>СКБ</title>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/about.css">
     <%@include file="includes/head.jsp"%>
     <%@include file="includes/summernoteLinksScrtipts.jsp"%>
@@ -34,9 +35,7 @@
         <div class="col-xs-6" >
             <ul class="titleHead">
                 <li><div class="smallBlueBox"></div></li>
-                <li><h3>О нас</h3></li>
-                <!-- Что это такое снизу, я без понятия-->
-                <%--<li><h3>${title}</h3></li>--%>
+                <li><h3>${title}</h3></li>
             </ul>
         </div>
         <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>

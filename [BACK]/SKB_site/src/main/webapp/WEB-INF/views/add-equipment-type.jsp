@@ -1,9 +1,17 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
 <!doctype html>
+<c:choose>
+    <c:when test="${equipmentType.name != null}">
+        <c:set var="title" value="Редактирование модели '${equipmentType.name}'"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="title" value="Добавление модели"/>
+    </c:otherwise>
+</c:choose>
 <html>
 <head>
-    <title>СКБ</title>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/add-news.css">
     <%@include file="includes/head.jsp"%>
     <%@include file="includes/summernoteLinksScrtipts.jsp"%>

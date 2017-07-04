@@ -1,7 +1,6 @@
-<c:set var="title" value="Изменение личной информации ${pageContext.request.userPrincipal.name}"/>
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
-
+<c:set var="title" value="Изменение личной информации ${pageContext.request.userPrincipal.name}"/>
 <!doctype html>
 <html>
 <head>
