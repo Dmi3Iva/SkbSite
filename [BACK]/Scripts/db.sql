@@ -41,6 +41,7 @@ CREATE TABLE users (
 	github VARCHAR(255) DEFAULT NULL,
 	contact_details VARCHAR(255),
 	about TEXT DEFAULT NULL,
+	checked BOOLEAN,
 	role_id INT NOT NULL REFERENCES roles(id) ON UPDATE CASCADE
 );
 
@@ -141,4 +142,4 @@ CREATE TABLE booking (
 CREATE TABLE about(
 	id SERIAL NOT NULL PRIMARY KEY,
 	text_about TEXT NOT NULL
-)
+);

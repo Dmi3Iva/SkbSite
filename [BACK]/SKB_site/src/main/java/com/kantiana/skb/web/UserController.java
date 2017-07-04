@@ -115,12 +115,13 @@ public class UserController {
 
     // Контроллер редактирования информации в личном кабинете пользователя
     @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
-    public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+    public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "change-profile";
         }
 
-        User oldUser= userService.findById(id);
+        User oldUser = userService.findById(id);
+        String oldName = oldUser.getUsername();
 
         oldUser.setEmail(user.getEmail());
         oldUser.setDateOfBirth(user.getDateOfBirth());
@@ -132,10 +133,16 @@ public class UserController {
         oldUser.setGithub(user.getGithub());
         oldUser.setOrganization(user.getOrganization());
         oldUser.setUsername(user.getUsername());
+        if (!oldUser.isChecked()) {
+            oldUser.setChecked(user.isChecked());
+        }
+        oldUser.setModerator(user.isModerator());
         userService.update(oldUser);
-        securityService.relogin(oldUser.getUsername(), oldUser.getPassword());
+        if (oldName.equals(securityService.findLoggedInUsername())) {
+            securityService.relogin(oldUser.getUsername(), oldUser.getPassword());
+        }
 
-        return "redirect:/profile";
+        return "redirect:/id" + oldUser.getId();
     }
 
     // Контроллер изменения пароля пользователя
@@ -159,7 +166,7 @@ public class UserController {
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userService.update(currentUser);
 
-        return "redirect:/profile";
+        return "redirect:/id" + currentUser.getId();
     }
 
     //Контроллеры для интеграции страниц
@@ -171,6 +178,17 @@ public class UserController {
         model.addAttribute("error", new String());
         return "change-profile";
     }
+
+    @RequestMapping(value = "/change-profile{id}", method = RequestMethod.GET)
+    public String changeProfileById(@PathVariable Long id, Model model) {
+        User user = userService.findById(id);
+        User loggedUser = securityService.findLoggedUser();
+        model.addAttribute("user", user);
+        model.addAttribute("loggedUser", loggedUser);
+        model.addAttribute("error", new String());
+        return "change-profile";
+    }
+
 
     @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
     public String forgetPassword(Model model, String error) {

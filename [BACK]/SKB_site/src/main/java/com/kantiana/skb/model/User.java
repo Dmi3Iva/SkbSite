@@ -30,6 +30,8 @@ public class User {
     private Set<Request> requestList;
     private Set<ProjectMembership> projectMemberships;
     private boolean customer;
+    private boolean moderator;
+    private boolean checked;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -212,5 +214,22 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Transient
+    public boolean isModerator() {
+        return moderator;
+    }
+
+    public void setModerator(boolean moderator) {
+        this.moderator = moderator;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

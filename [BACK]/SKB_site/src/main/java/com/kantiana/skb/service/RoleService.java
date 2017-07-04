@@ -8,4 +8,6 @@ public interface RoleService {
     Role getRoleCustomer();
 
     Role getRoleMember();
+
+    Role getRoleModerator();
 }
