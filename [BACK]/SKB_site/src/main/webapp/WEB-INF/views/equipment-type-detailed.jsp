@@ -26,11 +26,13 @@
           <li><h3>${title}</h3></li>
         </ul>
       </div>
-      <div class="col-xs-3">
-        <a href="/equipment-table-${equipmentType.id}" class="btn btn-primary" role="button">
-          Просмотреть список устройств <span class="badge">${equipmentType.equipmentSet.size()}</span>
-        </a>
-      </div>
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
+        <div class="col-xs-3">
+          <a href="/equipment-table-${equipmentType.id}" class="btn btn-primary" role="button">
+            Просмотреть список устройств <span class="badge">${equipmentType.equipmentSet.size()}</span>
+          </a>
+        </div>
+      </sec:authorize>
     </div>
     <c:if test="${!empty equipmentType}">
     <div class="row ">
@@ -48,7 +50,9 @@
         <form action="equipment-type-detailed" method="post">
           <input type="hidden" name="id" value="${equipmentType.id}"/>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-          <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
+          <sec:authorize access="hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')">
+            <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
+          </sec:authorize>
         </form>
       </div>
     </div>

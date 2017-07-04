@@ -6,7 +6,7 @@
 <html lang="ru">
 
 <head>
-    <%@include file="includes/head.jsp"%>>
+    <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/news-detailed.css">
   <title>${title}</title>
 </head>
@@ -18,6 +18,69 @@
   <div id="rightSide">
   </div>
 
+  <%--<script type="text/javascript">--%>
+<%--//      Функция для появления формы с комментарием и кнопки,--%>
+<%--//          с помощью которых можно изменить комментарий--%>
+      <%--function prepareForEdit(id) {--%>
+          <%--var editButton = document.getElementById("editBtn" + id.toString());--%>
+          <%--editButton.style.display = 'none';--%>
+          <%--var comment = document.getElementById("textComment" + id.toString());--%>
+          <%--comment.style.display = 'none';--%>
+          <%--var text = comment.innerHTML;--%>
+          <%--var inputForm = document.getElementById("editTextComment" + id.toString());--%>
+          <%--inputForm.style.display = 'block';--%>
+          <%--inputForm.value = text;--%>
+          <%--var inputButton = document.getElementById("editBtnComment" + id.toString());--%>
+          <%--inputButton.style.display = 'block';--%>
+          <%--var cancelButton = document.getElementById("cancelChangeComment" + id.toString());--%>
+          <%--cancelButton.style.display = 'block';--%>
+      <%--}--%>
+  <%--</script>--%>
+  <%--<script type="text/javascript">--%>
+<%--//      Функция для динамического изменения комментария и--%>
+<%--//      сохранения его в базу данных--%>
+      <%--function changeComment(idComment){--%>
+          <%--var formData = {--%>
+              <%--id : idComment,--%>
+              <%--content : $("#editTextComment" + idComment.toString()).val()--%>
+              <%--};--%>
+          <%--$.ajax({--%>
+              <%--headers: {'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')},--%>
+              <%--type: "POST",--%>
+              <%--url: "/news-detailed/edit-comment",--%>
+              <%--data: JSON.stringify(formData),--%>
+              <%--contentType: 'application/json',--%>
+              <%--success: function (result) {--%>
+                  <%--var comment = document.getElementById("textComment" + idComment.toString());--%>
+                  <%--comment.style.display = 'inline';--%>
+                  <%--comment.innerHTML = formData.content;--%>
+                  <%--var inputForm = document.getElementById("editTextComment" + idComment.toString());--%>
+                  <%--inputForm.style.display = 'none';--%>
+                  <%--var inputButton = document.getElementById("editBtnComment" + idComment.toString());--%>
+                  <%--inputButton.style.display = 'none';--%>
+                  <%--var cancelButton = document.getElementById("cancelChangeComment" + idComment.toString());--%>
+                  <%--cancelButton.style.display = 'none';--%>
+                  <%--var editButton = document.getElementById("editBtn" + idComment.toString());--%>
+                  <%--editButton.style.display = 'inline';--%>
+              <%--}--%>
+          <%--});--%>
+      <%--}--%>
+  <%--</script>--%>
+  <%--<script type="text/javascript">--%>
+<%--//  Функция для отмены редактирования комментария--%>
+      <%--function cancelEditComment(idComment) {--%>
+          <%--var comment = document.getElementById("textComment" + idComment.toString());--%>
+          <%--comment.style.display = 'block';--%>
+          <%--var inputForm = document.getElementById("editTextComment" + idComment.toString());--%>
+          <%--inputForm.style.display = 'none';--%>
+          <%--var inputButton = document.getElementById("editBtnComment" + idComment.toString());--%>
+          <%--inputButton.style.display = 'none';--%>
+          <%--var cancelButton = document.getElementById("cancelChangeComment" + idComment.toString());--%>
+          <%--cancelButton.style.display = 'none';--%>
+          <%--var editButton = document.getElementById("editBtn" + idComment.toString());--%>
+          <%--editButton.style.display = 'inline';--%>
+      <%--}--%>
+  <%--</script>--%>
 
   <%@include file="includes/header.jsp" %>
 
@@ -49,7 +112,7 @@
         </sec:authorize>
         <c:set var="newsProject" value="${news.project}"/>
         <div class="row">
-            <div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>
+            <%--<div class="col-xs-12 image"><img src="${news.photoPath}" alt="${news.name} Картинка" width="100%"></div></div>--%>
         <div class="row ">
             <div class="col-xs-12">
 
@@ -81,7 +144,6 @@
                             <span class="glyphicon glyphicon-pencil"></span> Изменено ${news.timeOfLastUpdate}
                         </c:if>
                     </p>
-
                 </div>
             </div>
 
@@ -105,7 +167,8 @@
           <div class="col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong><a href="/id${item.author.id}">${item.author.username}</a></strong> <span class="text-muted">добавлено ${item.timeOfCreation}</span>
+                    <strong><a href="/id${item.author.id}">${item.author.username}</a></strong>
+                    <span class="text-muted">добавлено ${item.timeOfCreation}</span>
                 </div>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.id == item.author.id}'">
                     <div class="form-group">
@@ -115,10 +178,20 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-back" onClick="(confirm('Вы уверены что хотите удалить комментарий?'))">Удалить</button>
                         </form>
+                        <button type="submit" id="editBtn${item.id}" class="btn btn-back" onClick="prepareForEdit('${item.id}')">Редактировать</button>
                     </div>
                 </sec:authorize>
               <div class="panel-body">
-                  ${item.content}
+                  <p id="textComment${item.id}">${item.content}</p>
+                  <div class="row-fluid">
+                      <div class="form-group">
+                          <textarea id="editTextComment${item.id}" class="form-control editText"></textarea>
+                      </div>
+                  </div>
+                  <div class="btn-group inline">
+                      <button type="submit" id="editBtnComment${item.id}" class="btn btn-md btn-primary editBtn" onClick="changeComment(${item.id})">Изменить</button>
+                      <button type="button" id="cancelChangeComment${item.id}" class="btn-md btn btn-primary cancelEditBtn" onClick="cancelEditComment(${item.id})">Отмена</button>
+                  </div>
               </div>
                 <!-- /panel-body -->
             </div>
@@ -140,7 +213,7 @@
                 <spring:bind path="news.id">
                     <form:input path="news.id" value="${news.id}" cssStyle="visibility: hidden"/>
                 </spring:bind>
-                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
+                <button class="btn btn-success green"><i class="fa fa-share"></i> Комментировать</button>
               </form:form>
             </div><!-- Status Upload  -->
           </div><!-- Widget Area -->
@@ -149,9 +222,12 @@
 
     </c:if>
   </div>
+  </div>
+
 <!-- /container -->
 
   <%@include file="includes/footer.jsp" %>
+  <script type="text/javascript" src="/resources/js/editComment.js"></script>
 </body>
 
 </html>

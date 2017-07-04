@@ -33,8 +33,6 @@
       </div>
     </div>
     <c:if test = "${!empty order}">
-    <div class="row">
-      <div class="col-xs-12 image"><img src="${order.photoPath}" alt="${order.name} Картинка" width="100%"></div></div>
     <div class="row ">
       <div class="col-xs-12">
         <div class="new">
@@ -67,6 +65,7 @@
   </div>
 <!-- /container -->
 
+  <%@include file="includes/footer.jsp" %>
 
 </body>
 </html>

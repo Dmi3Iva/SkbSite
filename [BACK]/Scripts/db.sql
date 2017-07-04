@@ -1,5 +1,5 @@
-п»ї---------------------------------------
---РЎРєСЂРёРїС‚ СЃРѕР·РґР°РЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+---------------------------------------
+--Скрипт создания структуры базы данных
 ---------------------------------------
 
 DROP TABLE IF EXISTS roles CASCADE;
@@ -24,9 +24,8 @@ CREATE TABLE roles (
 
 INSERT INTO roles (name) VALUES ('ROLE_MEMBER');
 INSERT INTO roles (name) VALUES ('ROLE_CUSTOMER');
-INSERT INTO roles (name) VALUES ('ROLE_CAPTAIN');
+INSERT INTO roles (name) VALUES ('ROLE_MODERATOR');
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
-
 
 CREATE TABLE users (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -38,17 +37,12 @@ CREATE TABLE users (
 	email VARCHAR(255) DEFAULT NULL,
 	organization VARCHAR(255) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
+	photo_path VARCHAR(255) DEFAULT NULL,
 	github VARCHAR(255) DEFAULT NULL,
 	contact_details VARCHAR(255),
-	about TEXT DEFAULT NULL
+	about TEXT DEFAULT NULL,
+	role_id INT NOT NULL REFERENCES roles(id) ON UPDATE CASCADE
 );
-
-CREATE TABLE users_roles (
-	user_id INT NOT NULL REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
-	role_id INT NOT NULL REFERENCES roles ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY (user_id, role_id)
-);
-
 
 CREATE TABLE project_statuses (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -112,7 +106,7 @@ CREATE TABLE orders (
 );
 
 --------------
---РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ
+--Оборудование
 --------------
 CREATE TABLE equipment_type (
 	id SERIAL NOT NULL PRIMARY KEY,
@@ -142,7 +136,7 @@ CREATE TABLE booking (
 );
 
 ---------------
---Рћ РЅР°СЃ
+--О нас
 --------------
 CREATE TABLE about(
 	id SERIAL NOT NULL PRIMARY KEY,

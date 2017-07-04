@@ -1,14 +1,14 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
-
 <c:choose>
-    <c:when test="${news.name != null}">
-        <c:set var="title" value="Редактирование новости '${news.name}'"/>
+    <c:when test="${project == null}">
+        <c:set var="title" value="Новости"/>
     </c:when>
     <c:otherwise>
-        <c:set var="title" value="Добавление новости"/>
+        <c:set var="title" value="Новости проекта '${project.name}'"/>
     </c:otherwise>
 </c:choose>
+
 
 <!doctype html>
 <html lang="ru">
@@ -40,7 +40,7 @@
                         </h3></li>
                     </ul>
                 </div>
-                <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == project.captain.username}'">
+                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == project.captain.username}'">
                     <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
                         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news?projectId=${project.id}';" value="Добавить новость">
                     </div>
@@ -55,7 +55,7 @@
                         </h3></li>
                     </ul>
                 </div>
-                <sec:authorize access="hasRole('ROLE_ADMIN') or '${!empty logUser}'">
+                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_MEMBER')">
                     <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
                         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-news';" value="Добавить новость">
                     </div>
@@ -95,13 +95,13 @@
                                     </c:if>
                                     <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
                                         <c:if test="${item.editor.username != item.author.username}">
-                                            Редактор: ${item.editor.username} <br>
+                                            Редактор: <a href="/id${item.editor.id}">${item.editor.username}</a><br>
                                         </c:if>
                                         <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
                                     </c:if>
                                 </p>
                             </li>
-                            <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == item.author.username}'">
+                            <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
                                 <div class="form-group">
                                     <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
                                     <form method="POST" action="/delete-news" class="btn">
