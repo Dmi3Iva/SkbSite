@@ -83,7 +83,7 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
                         <div class="form-group order-shell-project">
                             <label class="control-label col-xs-3">Проект, реализующий заказ</label>
                             <div class="col-xs-9">

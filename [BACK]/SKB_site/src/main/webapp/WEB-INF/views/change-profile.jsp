@@ -139,7 +139,7 @@
                                 </div>
                             </spring:bind>
                         </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_ADMIN') and ${user.role.id} != 4">
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                             <spring:bind path="moderator">
                                 <div class="form-check">
                                     <label class="control-label col-xs-5">Модератор</label>

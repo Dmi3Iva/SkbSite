@@ -201,7 +201,7 @@
         </div>
       </c:forEach>
 
-    <sec:authorize access="isAuthenticated()">
+    <sec:authorize access="isAuthenticated() and ${logUser.checked}">
         <div class="col-md-9">
           <div class="widget-area no-padding blank">
             <div class="status-upload">
