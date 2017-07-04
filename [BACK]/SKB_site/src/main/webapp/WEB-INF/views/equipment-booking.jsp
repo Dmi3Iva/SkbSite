@@ -118,6 +118,11 @@
     </div>
     </div>
     </form:form>
+    <form:form action="/clear-basket">
+      <div class="col-xs-offset-3">
+        <button type="submit" class="btn btn-default btn-md">Очистить корзину</button>
+      </div>
+    </form:form>
   </c:if>
   <!--мой вариант -->
   <div class="forFont">

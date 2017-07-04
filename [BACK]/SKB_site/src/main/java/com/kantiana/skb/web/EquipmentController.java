@@ -148,7 +148,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
+    public String equipmentBooking(Model model, @ModelAttribute("basket") Set<EquipmentType> basket,
                                    @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
         if (requestEquipment == null)
         {
@@ -169,6 +169,12 @@ public class EquipmentController {
         }
 
         return "equipment-booking";
+    }
+
+    @RequestMapping(value = "/clear-basket", method = RequestMethod.POST)
+    public String equipmentBooking(Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        basket.clear();
+        return "redirect:/equipment-booking";
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
