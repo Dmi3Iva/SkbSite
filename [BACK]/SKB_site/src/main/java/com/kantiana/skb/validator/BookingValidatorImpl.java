@@ -40,9 +40,9 @@ public class BookingValidatorImpl implements BookingValidator {
         if (errors.hasErrors()) {
             return;
         }
-//        for (EquipmentTypeCount etc : chosenEquipments) {
-//            validateChosenEquipment(etc, chosenDay, chosenTimeMask, errors);
-//        }
+        for (EquipmentTypeCount etc : chosenEquipments) {
+            validateChosenEquipment(etc, chosenDay, chosenTimeMask, errors);
+        }
     }
 
     private void validateChosenDay(Date chosenDay, Errors errors) {
@@ -64,8 +64,12 @@ public class BookingValidatorImpl implements BookingValidator {
 
     private void validateCount(List<EquipmentTypeCount> chosenEquipments, Errors errors) {
         for (EquipmentTypeCount etc : chosenEquipments) {
+            if (etc.getCount() == null) {
+                errors.rejectValue("equipmentTypeCountList", "NotEmpty.equipment.count");
+                return;
+            }
             if (etc.getCount() <= 0) {
-                errors.rejectValue("equipmentTypeCountList", "NotValid.equipment.count.negative");
+                errors.rejectValue("equipmentTypeCountList", "NotValid.equipment.count.notPositive");
             }
             else if (etc.getCount() > equipmentService.countByEquipmentTypeId(etc.getId())) {
                 Object[] arg = {etc.getCount(), etc.getName()};
@@ -75,13 +79,10 @@ public class BookingValidatorImpl implements BookingValidator {
     }
 
     private boolean canBook(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask) {
-        List<Booking> bookings;
-        int allEquipmentCount;
         final int TIME_RANGES_COUNT = 19; // Размер нужно как-то получать
         int bookedEquipmentsCounts[] = new int[TIME_RANGES_COUNT];
-        int timeMask2, timeMask3 = (1 << TIME_RANGES_COUNT) - 1;
-        bookings = bookingService.findByDayAndEquipmentType(chosenDay, chosenEquipment.getId());
-        allEquipmentCount = equipmentService.countByEquipmentTypeId(chosenEquipment.getId());
+        List<Booking> bookings = bookingService.findByDayAndEquipmentType(chosenDay, chosenEquipment.getId());
+        int allEquipmentCount = equipmentService.countByEquipmentTypeId(chosenEquipment.getId());
         // Сюда можно написать Димину оптимизацию
         for (int i = 0; i < TIME_RANGES_COUNT; ++i) {
             bookedEquipmentsCounts[i] = 0;
@@ -93,17 +94,19 @@ public class BookingValidatorImpl implements BookingValidator {
                 }
             }
         }
-        timeMask2 = 0;
+        int timeMask2 = 0;
         for (int i = 0; i < TIME_RANGES_COUNT; ++i) {
             if (allEquipmentCount - bookedEquipmentsCounts[i] >= chosenEquipment.getCount()) {
                 timeMask2 |= (1 << i);
             }
         }
-        timeMask3 &= timeMask2;
-        return (chosenTimeMask & timeMask3) == chosenTimeMask;
+        return (chosenTimeMask & timeMask2) == chosenTimeMask;
     }
 
     private void validateChosenEquipment(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask, Errors errors) {
-
+        if (!canBook(chosenEquipment, chosenDay, chosenTimeMask)) {
+            Object[] arg = {chosenEquipment.getName()};
+            errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
+        }
     }
 }
