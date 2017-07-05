@@ -14,7 +14,7 @@ public class RequestEquipment {
 
     public RequestEquipment() {
         this.timeList = new ArrayList<String>();
-        this.makeTimeList();
+        timeList = makeTimeList();
         this.chosenTime = new ArrayList<String>();
         this.equipmentTypeCountList = new Vector<EquipmentTypeCount>();
     }
@@ -70,26 +70,28 @@ public class RequestEquipment {
         this.equipmentTypeCountList.add(new EquipmentTypeCount(idType,count, name));
     }
 
-    public void makeTimeList(){
-        this.timeList.add("8.30-9.00");
-        this.timeList.add("9.00-9.30");
-        this.timeList.add("9.30-10.00");
-        this.timeList.add("10.00-10.30");
-        this.timeList.add("10.30-11.00");
-        this.timeList.add("11.30-12.00");
-        this.timeList.add("12.00-12.30");
-        this.timeList.add("12.30-13.00");
-        this.timeList.add("13.00-13.30");
-        this.timeList.add("13.30-14.00");
-        this.timeList.add("14.00-14.30");
-        this.timeList.add("14.30-15.00");
-        this.timeList.add("15.00-15.30");
-        this.timeList.add("15.30-16.00");
-        this.timeList.add("16.00-16.30");
-        this.timeList.add("16.30-17.00");
-        this.timeList.add("17.00-17.30");
-        this.timeList.add("17.30-18.00");
-        this.timeList.add("18.00-18.30");
+    public static List<String> makeTimeList() {
+        List<String> timeList = new LinkedList<>();
+        timeList.add("8.30-9.00");
+        timeList.add("9.00-9.30");
+        timeList.add("9.30-10.00");
+        timeList.add("10.00-10.30");
+        timeList.add("10.30-11.00");
+        timeList.add("11.30-12.00");
+        timeList.add("12.00-12.30");
+        timeList.add("12.30-13.00");
+        timeList.add("13.00-13.30");
+        timeList.add("13.30-14.00");
+        timeList.add("14.00-14.30");
+        timeList.add("14.30-15.00");
+        timeList.add("15.00-15.30");
+        timeList.add("15.30-16.00");
+        timeList.add("16.00-16.30");
+        timeList.add("16.30-17.00");
+        timeList.add("17.00-17.30");
+        timeList.add("17.30-18.00");
+        timeList.add("18.00-18.30");
+        return timeList;
     }
 
     public java.sql.Date getSqlDate() {
