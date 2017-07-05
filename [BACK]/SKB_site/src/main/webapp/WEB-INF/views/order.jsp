@@ -33,7 +33,7 @@
           <li><h3>${title}</h3></li>
         </ul>
       </div>
-      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or (hasRole('ROLE_CUSTOMER') and ${logUser.checked})">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or (hasRole('ROLE_CUSTOMER') and '${logUser.checked == true}')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
           <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-order';" value="Добавить заказ">
         </div>
