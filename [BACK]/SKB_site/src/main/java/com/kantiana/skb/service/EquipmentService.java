@@ -5,11 +5,15 @@ import com.kantiana.skb.model.Equipment;
 import java.util.List;
 
 public interface EquipmentService {
-    public void save(Equipment equipment);
+    void save(Equipment equipment);
 
-    List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
+    List<Equipment> findAllByEquipmentTypeId(Long equipmentTypeId);
 
-    public Equipment findById(Long id);
+    Equipment findById(Long id);
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
+
+    Equipment findByUniqueNumber(String uniqueNumber);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }

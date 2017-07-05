@@ -67,4 +67,14 @@ public class EquipmentType {
     public void setEquipmentSet(Set<Equipment> equipmentSet) {
         this.equipmentSet = equipmentSet;
     }
+
+    @Override
+    public int hashCode() {
+        return id.intValue();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof EquipmentType) && ((EquipmentType)obj).getId().equals(this.getId());
+    }
 }

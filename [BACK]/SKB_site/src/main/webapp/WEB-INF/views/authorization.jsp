@@ -30,8 +30,8 @@
                     <form:form method="POST" action="${contextPath}/login" class="form-horizontal">
                         <div class="form-group">
                             <!--Ошибка некрасиво выводится-->
-                            <p class="alert-success">${success}</p>
-                            <p class="alert-danger">${error}</p>
+                            <p class="alert-success">${emailPasswordSuccess}</p>
+                            <p class="alert-danger"><spring:message code="${loginErrorCode}"/></p>
                             <label class="control-label col-xs-5">Логин</label>
                             <div class="col-xs-5">
                                 <input name="username" type="text" class="form-control" autofocus="true"/>

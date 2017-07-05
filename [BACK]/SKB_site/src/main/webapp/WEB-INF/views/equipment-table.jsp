@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
 <c:set var="title" value="Таблица устройств модели ${equipmentType.name}"/>
+
 <!doctype html>
 <html lang="ru">
 
@@ -13,6 +14,10 @@
 
 <main class="container-fluid">
     <H1>${title}</H1>
+    ${equipmentAddSuccess}
+    <spring:message code="${equipmentEditSuccess}"/>
+    ${equipmentDeleteSuccess}
+
     <c:if test="${empty equipmentSet}">
         <h2>Не добавлено ни одно устройство.</h2>
     </c:if>
@@ -34,8 +39,11 @@
                                 <div class="form-group">
                                     <input type="hidden" name="idEquip" value="${item.id}"/>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="text" class="form-control" name="uniqueNumber">
+                                    <input type="text" class="form-control" name="uniqueNumber" value="${uniqueNumbers[item.id]}">
                                     <button type="submit" class="btn btn-success">Изменить UN</button>
+                                    <c:forEach items="${uniqueNumberErrors[item.id]}" var="error">
+                                        ${error}
+                                    </c:forEach>
                                 </div>
                             </form>
                         </td>

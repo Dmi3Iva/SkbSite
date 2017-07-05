@@ -23,6 +23,9 @@
 
   <%@include file="includes/header.jsp" %>
 
+  <spring:message code="${orderAddSuccess}"/>
+  <spring:message code="${orderDeleteSuccess}"/>
+
   <div class="container content">
     <!--Новости и проекты-->
     <div class="row">
@@ -45,7 +48,7 @@
       <div class="col-md-8">
         <div class="order">
           <p class="title">
-              ${item.name}
+            <a href="/order-detailed?orderId=${item.id}">${item.name}</a>
           </p>
           <p class="article">
               ${item.content}
@@ -74,7 +77,7 @@
             <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
               <div class="form-group">
                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
-                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
+                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены, что хотите удалить этот заказ?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
               </div>
             </sec:authorize>
           </ul>

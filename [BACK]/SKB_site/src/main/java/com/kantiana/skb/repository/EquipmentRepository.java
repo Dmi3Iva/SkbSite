@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
-    public Equipment findById(Long id);
+    Equipment findById(Long id);
 
-    List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId);
+    List<Equipment> findAllByEquipmentTypeIdOrderByUniqueNumber(Long equipmentTypeId);
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
+
+    Equipment findByUniqueNumber(String uniqueNumber);
+
+    int countByEquipmentTypeId(Long equipmentTypeId);
 }

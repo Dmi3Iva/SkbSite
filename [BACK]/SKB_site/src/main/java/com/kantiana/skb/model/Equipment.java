@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment")
@@ -11,7 +12,6 @@ public class Equipment {
     private Long id;
     private EquipmentType equipmentType;
     private String uniqueNumber;
-
     private Booking booking;
 
     @Id
@@ -45,7 +45,7 @@ public class Equipment {
     }
 
     public void setUniqueNumber(String uniqueNumber) {
-        this.uniqueNumber = uniqueNumber;
+        this.uniqueNumber = uniqueNumber.trim();
     }
 
     public void setBooking(Booking booking) {

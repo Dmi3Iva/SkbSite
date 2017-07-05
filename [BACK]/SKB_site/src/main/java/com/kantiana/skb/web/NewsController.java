@@ -2,12 +2,15 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.CommentValidator;
+import com.kantiana.skb.validator.NewsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -31,6 +34,12 @@ public class NewsController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private NewsValidator newsValidator;
+
+    @Autowired
+    private CommentValidator commentValidator;
 
     //-----------------------------------------
     //      ВСЕ НОВОСТИ
@@ -64,18 +73,24 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news-detailed", method = RequestMethod.POST)
-    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model) {
+    public String newsDetailed(@ModelAttribute("commentForm") Comment commentForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        commentValidator.validate(commentForm, bindingResult);
         if (bindingResult.hasErrors()) {
+            Long newsId = commentForm.getNews().getId();
+            model.addAttribute("news", newsService.findById(newsId));
+            model.addAttribute("commentsForCurrentNews", commentService.findAllByNewsIdOrderByTimeOfCreation(newsId));
             return "news-detailed";
         }
         commentService.save(commentForm);
+        redirectAttributes.addFlashAttribute("commentAddSuccess", "Comment.add.success");
         return "redirect:/news-detailed?newsId=" + commentForm.getNews().getId(); // Нужно делать редирект вместо возвращения имени jsp, чтобы комментарий отобразился, очистился кэш и всё было хорошо.
     }
 
     //TODO: Метод должен быть DELETE
     @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
-    public String editComment(Long newsId, Long commentId) {
+    public String editComment(Long newsId, Long commentId, RedirectAttributes redirectAttributes) {
         commentService.delete(commentId);
+        redirectAttributes.addFlashAttribute("commentDeleteSuccess", "Comment.delete.success");
         return "redirect:/news-detailed?newsId=" + newsId;
     }
 
@@ -109,11 +124,13 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/add-news", method = RequestMethod.POST)
-    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+    public String addNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/add-news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+            return "add-news";
         }
         newsService.save(news);
+        redirectAttributes.addFlashAttribute("newsAddSuccess", "News.add.success");
         return "redirect:/news" + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
     }
 
@@ -143,12 +160,14 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/edit-news", method = RequestMethod.POST)
-    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model) {
+    public String editNews(@ModelAttribute("news") News news, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        newsValidator.validate(news, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "add-news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+            return "add-news";
         }
         newsService.update(news);
-        return "redirect:/news"  + (news.getProject() != null ? "?projectId=" + news.getProject().getId() : "");
+        redirectAttributes.addFlashAttribute("newsEditSuccess", "News.edit.success");
+        return "redirect:/news-detailed?newsId=" + news.getId();
     }
 
     //-----------------------------------------
@@ -156,8 +175,9 @@ public class NewsController {
     //-----------------------------------------
     //TODO: Метод должен быть DELETE
     @RequestMapping(value = "/delete-news", method = RequestMethod.POST)
-    public String deleteNews(Long newsId) {
+    public String deleteNews(Long newsId, RedirectAttributes redirectAttributes) {
         newsService.delete(newsId);
+        redirectAttributes.addFlashAttribute("newsDeleteSuccess", "News.delete.success");
         return "redirect:/news";
     }
 

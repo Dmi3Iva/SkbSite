@@ -124,7 +124,7 @@
                                 <label class="control-label col-xs-5" for="github">github</label>
                                 <div class="col-xs-7">
                                     <form:input type="text" path="github" class="form-control" id="github" placeholder=""/>
-                                    <form:errors path="about"/>
+                                    <form:errors path="github"/>
                                 </div>
                             </div>
                         </spring:bind>
@@ -146,18 +146,21 @@
                             <label class="control-label col-xs-5 text-right">Старый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="currentPassword" class="form-control">
+                                ${passwordChangeErrors['uncorrectPassword']}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5 text-right">Новый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="newPassword" class="form-control">
+                                ${passwordChangeErrors['uncorrectNewPasswordSize']}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>
                             <div class="col-xs-7">
                                 <input type="password" name="confirmNewPassword" class="form-control">
+                                ${passwordChangeErrors['uncorrectNewPasswordConfirm']}
                             </div>
                         </div>
                     </div>

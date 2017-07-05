@@ -2,13 +2,10 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.Project;
 import com.kantiana.skb.model.ProjectMembership;
-import com.kantiana.skb.model.Role;
 import com.kantiana.skb.model.User;
-import com.kantiana.skb.repository.ProjectRepository;
-import com.kantiana.skb.repository.ProjectStatusRepository;
 import com.kantiana.skb.service.*;
+import com.kantiana.skb.validator.ProjectValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 @Controller
@@ -31,6 +29,8 @@ public class ProjectsController {
     private ProjectMembershipService projectMembershipService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProjectValidator projectValidator;
 
     //контроллеры проектов
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
@@ -86,54 +86,67 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/add-project", method = RequestMethod.POST)
-    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult) {
+    public String addProject(@ModelAttribute("project") Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        projectValidator.validateCreation(project, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add-project";
         }
         projectService.saveNewProject(project);
+        redirectAttributes.addFlashAttribute("projectAddSuccess", "Project.add.success");
         return "redirect:/projects";
     }
 
     @RequestMapping(value = "/edit-project", method = RequestMethod.POST)
-    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult) {
+    public String editProject(@ModelAttribute("project") Project project, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        projectValidator.validateEditing(project, bindingResult);
         if (bindingResult.hasErrors()) {
+            Long projectId = project.getId();
+            model.addAttribute("projectTeamExceptCaptain", projectMembershipService.findProjectMembersExceptCaptain(projectId));
+            model.addAttribute("nonProjectMembers", projectMembershipService.findNonProjectMembers(projectId));
+            model.addAttribute("isEditing", true);
+            model.addAttribute("allProjectStatuses", projectStatusService.findAllByOrderById());
             return "add-project";
         }
         projectService.saveUpdatedProject(project);
-        return "redirect:/projects";
+        redirectAttributes.addFlashAttribute("projectEditSuccess", "Project.edit.success");
+        return "redirect:/project-detailed?projectId=" + project.getId();
     }
 
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-project", method = RequestMethod.POST)
-    public String deleteProject(Long projectId) {
+    public String deleteProject(Long projectId, RedirectAttributes redirectAttributes) {
         projectService.delete(projectId);
+        redirectAttributes.addFlashAttribute("projectDeleteSuccess", "Project.delete.success");
         return "redirect:/projects";
     }
 
     @RequestMapping(value = "add-membership", method = RequestMethod.POST)
-    public String addMembership(Long projectId, Long newMemberId) {
+    public String addMembership(Long projectId, Long newMemberId, RedirectAttributes redirectAttributes) {
         ProjectMembership newProjectMembership = new ProjectMembership();
         newProjectMembership.setProject(projectService.findById(projectId));
         newProjectMembership.setUser(userService.findById(newMemberId));
         projectMembershipService.save(newProjectMembership);
+        redirectAttributes.addFlashAttribute("projectMemberAddSuccess", "Project.member.add.success");
         return "redirect:/edit-project?projectId=" + projectId;
     }
 
     //:TODO Метод должен быть DELETE
     @RequestMapping(value = "/delete-membership", method = RequestMethod.POST)
-    public String deleteMembership(Long projectId, Long memberId) {
+    public String deleteMembership(Long projectId, Long memberId, RedirectAttributes redirectAttributes) {
         projectMembershipService.remove(projectId, memberId);
+        redirectAttributes.addFlashAttribute("projectMemberDeleteSuccess", "Project.member.delete.success");
         return "redirect:/edit-project?projectId=" + projectId;
     }
 
     @RequestMapping(value = "/change-captain", method = RequestMethod.POST)
-    public String changeCaptain(Long projectId, Long captainId) {
+    public String changeCaptain(Long projectId, Long captainId, RedirectAttributes redirectAttributes) {
         Project project = projectService.findById(projectId);
         User captain = userService.findById(captainId);
         if (project != null && captain != null) {
             project.setCaptain(captain);
             projectService.saveUpdatedProject(project);
         }
+        redirectAttributes.addFlashAttribute("projectCaptainChangeSuccess", "Project.captain.change.success");
         return "redirect:/edit-project?projectId=" + projectId;
     }
 }

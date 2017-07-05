@@ -1,36 +1,37 @@
 package com.kantiana.skb.model;
 
-import javax.validation.OverridesAttribute;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RequestEquipment {
 
-    private List<EquipmentTypeCount> equipmentTypeCount;
+    private List<EquipmentTypeCount> equipmentTypeCountList;
     private String date;
-    private List<String> timeChoose;
+    private List<String> chosenTime;
     private List<String> timeList;
 
     public RequestEquipment() {
         this.timeList = new ArrayList<String>();
         this.makeTimeList();
-        this.timeChoose = new ArrayList<String>();
-        this.date = new String();
-        this.equipmentTypeCount = new Vector<EquipmentTypeCount>();
+        this.chosenTime = new ArrayList<String>();
+        this.equipmentTypeCountList = new Vector<EquipmentTypeCount>();
     }
 
-    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCount, String date, List<String> timeChoose, List<String> timeList) {
-        this.equipmentTypeCount = equipmentTypeCount;
+    public RequestEquipment(List<EquipmentTypeCount> equipmentTypeCountList, String date, List<String> chosenTime, List<String> timeList) {
+        this.equipmentTypeCountList = equipmentTypeCountList;
         this.date = date;
-        this.timeChoose = timeChoose;
+        this.chosenTime = chosenTime;
         this.timeList = timeList;
     }
 
     public List<EquipmentTypeCount> getEquipmentTypeCountList() {
-        return equipmentTypeCount;
+        return equipmentTypeCountList;
     }
 
     public void setEquipmentTypeCountList(Vector<EquipmentTypeCount> equipmentTypeCount) {
-        this.equipmentTypeCount = equipmentTypeCount;
+        this.equipmentTypeCountList = equipmentTypeCount;
     }
 
     public String getDate() {
@@ -42,15 +43,15 @@ public class RequestEquipment {
     }
 
     public void setEquipmentTypeCountList(List<EquipmentTypeCount> equipmentTypeCount) {
-        this.equipmentTypeCount = equipmentTypeCount;
+        this.equipmentTypeCountList = equipmentTypeCount;
     }
 
-    public List<String> getTimeChoose() {
-        return timeChoose;
+    public List<String> getChosenTime() {
+        return chosenTime;
     }
 
-    public void setTimeChoose(List<String> timeChoose) {
-        this.timeChoose = timeChoose;
+    public void setChosenTime(List<String> chosenTime) {
+        this.chosenTime = chosenTime;
     }
 
     public List<String> getTimeList() {
@@ -62,11 +63,11 @@ public class RequestEquipment {
     }
 
     public int getSize(){
-        return this.equipmentTypeCount.size();
+        return this.equipmentTypeCountList.size();
     }
 
     public void add(Long idType, Long count, String name){
-        this.equipmentTypeCount.add(new EquipmentTypeCount(idType,count, name));
+        this.equipmentTypeCountList.add(new EquipmentTypeCount(idType,count, name));
     }
 
     public void makeTimeList(){
@@ -89,5 +90,31 @@ public class RequestEquipment {
         this.timeList.add("17.00-17.30");
         this.timeList.add("17.30-18.00");
         this.timeList.add("18.00-18.30");
+    }
+
+    public java.sql.Date getSqlDate() {
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            java.util.Date utilDate = format.parse(getDate());
+            return new java.sql.Date(utilDate.getTime());
+        }
+        catch (ParseException pEx) {
+            pEx.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getChosenTimeMask() {
+        int timeMask = 0;
+        Map<String,Integer> timeMap = new HashMap<String,Integer>();
+        int i = 0;
+        for (String s: getTimeList()){
+            timeMap.put( s, i );
+            ++i ;
+        }
+        for (String s: getChosenTime()) {
+            timeMask = timeMask | (1 << timeMap.get(s));
+        }
+        return timeMask;
     }
 }

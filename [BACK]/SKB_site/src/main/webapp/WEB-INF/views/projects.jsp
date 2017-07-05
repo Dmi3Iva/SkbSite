@@ -19,6 +19,9 @@
 
   <%@include file="includes/header.jsp" %>
 
+  <spring:message code="${projectAddSuccess}"/>
+  <spring:message code="${projectDeleteSuccess}"/>
+
   <div class="container content">
     <!--Новости и проекты-->
     <div class="row">
@@ -77,7 +80,7 @@
                   <form method="POST" action="/delete-project" class="btn">
                     <input type="hidden" value="${project.id}" name="projectId"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить проект?'))">Удалить</button>
+                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены, что хотите удалить проект?'))">Удалить</button>
                   </form>
                 </div>
               </sec:authorize>

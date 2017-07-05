@@ -18,8 +18,9 @@ public class EquipmentServiceImpl implements EquipmentService {
         equipmentRepository.save(equipment);
     }
 
-    public List<Equipment> findAllByEquipmentTypeIdOrderById(Long equipmentTypeId){
-        return equipmentRepository.findAllByEquipmentTypeIdOrderById(equipmentTypeId);
+    @Override
+    public List<Equipment> findAllByEquipmentTypeId(Long equipmentTypeId){
+        return equipmentRepository.findAllByEquipmentTypeIdOrderByUniqueNumber(equipmentTypeId);
     }
 
     public Equipment findById(Long id){
@@ -29,5 +30,15 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Transactional
     public void deleteById(Long id){
         equipmentRepository.deleteById(id);
+    }
+
+    @Override
+    public Equipment findByUniqueNumber(String uniqueNumber) {
+        return equipmentRepository.findByUniqueNumber(uniqueNumber);
+    }
+
+    @Override
+    public int countByEquipmentTypeId(Long equipmentTypeId) {
+        return equipmentRepository.countByEquipmentTypeId(equipmentTypeId);
     }
 }

@@ -2,24 +2,21 @@ package com.kantiana.skb.web;
 
 import com.kantiana.skb.model.*;
 import com.kantiana.skb.service.*;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import jdk.nashorn.internal.ir.RuntimeNode;
+import com.kantiana.skb.validator.BookingValidator;
+import com.kantiana.skb.validator.EquipmentTypeValidator;
+import com.kantiana.skb.validator.EquipmentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.management.openmbean.ArrayType;
-import java.lang.reflect.Type;
-import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.Date;
 
 import static com.kantiana.skb.web.WorkingWithFile.uploadFile;
 
@@ -36,6 +33,14 @@ public class EquipmentController {
     private SecurityService securityService;
     @Autowired
     private RequestService requestService;
+    @Autowired
+    private EquipmentTypeValidator equipmentTypeValidator;
+    @Autowired
+    private EquipmentValidator equipmentValidator;
+    @Autowired
+    private BookingValidator bookingValidator;
+    @Autowired
+    private MessageService messageService;
 
     @ModelAttribute("basket")
     public Set<EquipmentType> createBasket(){
@@ -43,7 +48,7 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment", method = RequestMethod.GET)
-    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket )
+    public String equipment(Model model, @ModelAttribute("basket") Set<EquipmentType> basket)
     {
         User logUser = securityService.findLoggedUser();
         model.addAttribute("logUser", logUser);
@@ -51,14 +56,10 @@ public class EquipmentController {
         List<EquipmentType> equipmentTypeList = equipmentTypeService.getAllEquipmentType();
         model.addAttribute("equipmentTypeList",equipmentTypeList);
 
-        if(!model.containsAttribute("basket"))
-            model.addAttribute("basket", new HashSet<EquipmentType>());
-
         return "equipment";
     }
 
-
-    @RequestMapping(value = {"/add-equipment-type","/edit-equipment-type"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-equipment-type", "/edit-equipment-type"}, method = RequestMethod.GET)
     public  String equipmentTypeAddGet(Model model, Long id)
     {
         User logUser = securityService.findLoggedUser();
@@ -79,80 +80,80 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/add-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public  String equipmentTypeAddPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
     {
-        if(bindingResult.hasErrors())
+        equipmentTypeValidator.validate(equipmentType, bindingResult);
+        if (bindingResult.hasErrors())
         {
             return "add-equipment-type";
         }
         if (file.getSize()>0)
             equipmentType.setPhotoPath(uploadFile(file));
         equipmentTypeService.save(equipmentType);
+        redirectAttributes.addFlashAttribute("equipmentTypeAddSuccess", "EquipmentType.add.success");
         return "redirect:/equipment";
     }
 
     @RequestMapping(value = "/edit-equipment-type", method = RequestMethod.POST)
-    public  String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file)
+    public String equipmentTypeEditPost(@ModelAttribute("equipmentType") EquipmentType equipmentType, BindingResult bindingResult, Model model, @RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes)
     {
-        if(bindingResult.hasErrors())
+        equipmentTypeValidator.validate(equipmentType, bindingResult);
+        if (bindingResult.hasErrors())
         {
             return "add-equipment-type";
         }
         EquipmentType et= equipmentTypeService.findById(equipmentType.getId());
-        if(et == null) return "redirect:/equipment";
+        if (et == null) {
+            return "redirect:/equipment";
+        }
         et.setAbout(equipmentType.getAbout());
         et.setEquipmentSet(equipmentType.getEquipmentSet());
         et.setFeatures(equipmentType.getFeatures());
         et.setName(equipmentType.getName());
 
-        if (file.getSize()>0)
+        if (file.getSize()>0) {
             et.setPhotoPath(uploadFile(file));
+        }
+
         equipmentTypeService.save(et);
-        return "redirect:/equipment";
+        redirectAttributes.addFlashAttribute("equipmentTypeEditSuccess", "EquipmentType.edit.success");
+        return "redirect:/equipment-type-detailed?id=" + equipmentType.getId();
     }
 
+    //TODO: Метод должен быть DELETE или по крайней мере POST
     @RequestMapping(value = "/del-equipment-type", method = RequestMethod.GET)
-    public String delEquipmentType(Long id) {
+    public String delEquipmentType(Long id, RedirectAttributes redirectAttributes) {
         equipmentTypeService.delete(id);
+        redirectAttributes.addFlashAttribute("equipmentTypeDeleteSuccess", "EquipmentType.delete.success");
         return "redirect:/equipment";
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.GET)
-    public String equipmentDetailed( Long id,Model model,@ModelAttribute("basket") Set<EquipmentType> basket, @ModelAttribute EquipmentType equipmentToBasket) {
+    public String equipmentDetailed(Long id, Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
         EquipmentType equipmentType = equipmentTypeService.findById(id);
-        if(basket ==null) basket = new HashSet<EquipmentType>();
-        model.addAttribute("equipmentType",equipmentType);
-        model.addAttribute("equipment", new Equipment());
-        if(!model.containsAttribute("basket"))
-            model.addAttribute("basket", new HashSet<EquipmentType>());
-        model.addAttribute("equipmentToBasket", equipmentToBasket);
+        model.addAttribute("equipmentType", equipmentType);
+        model.addAttribute("equipmentToBasket", new EquipmentType());
         return "equipment-type-detailed";
     }
 
     @RequestMapping(value = "/equipment-type-detailed", method = RequestMethod.POST)
-    public String equipmentPostDetailed( Long id,Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
-
-        for(EquipmentType e : basket){
-            if(e.getId()== id )return "redirect:/equipment-type-detailed?id="+id;
+    public String equipmentPostDetailed(@ModelAttribute("equipmentToBasket") EquipmentType chosenEquipment, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        chosenEquipment = equipmentTypeService.findById(chosenEquipment.getId());
+        bookingValidator.validateAddingToBasket(chosenEquipment, basket, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("equipmentType", chosenEquipment);
+            return "equipment-type-detailed";
         }
-        basket.add(equipmentTypeService.findById(id));
-        return "redirect:/equipment-type-detailed?id="+id;
-    }
-
-    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
-    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType,@ModelAttribute Request request)
-    {
-        if(bindingResult.hasErrors())
-        {
-            return "redirect:/equipment-table-"+ idType;
-        }
-        equipment.setEquipmentType(equipmentTypeService.findById(idType));
-        equipmentService.save(equipment);
-        return "redirect:/equipment-table-"+ idType;
+        basket.add(chosenEquipment);
+        redirectAttributes.addFlashAttribute(
+                "equipmentAddedToBasketMsg",
+                messageService.getMessage("Basket.equipment.add.success", chosenEquipment.getName())
+        );
+        return "redirect:/equipment-type-detailed?id=" + chosenEquipment.getId();
     }
 
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.GET)
-    public String equipmentBooking(Model model, Long idType, @ModelAttribute("basket") Set<EquipmentType> basket,
+    public String equipmentBooking(Model model, @ModelAttribute("basket") Set<EquipmentType> basket,
                                    @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
         User logUser = securityService.findLoggedUser();
         if (logUser.getUsername() == null ||
@@ -164,7 +165,7 @@ public class EquipmentController {
             requestEquipment = new RequestEquipment();
         }
 
-        if(requestEquipment.getSize() == 0)
+        if (requestEquipment.getSize() == 0)
         {
             for(EquipmentType e : basket)
             {
@@ -172,7 +173,7 @@ public class EquipmentController {
             }
         }
 
-        if(!model.containsAttribute("requestEquipment"))
+        if (!model.containsAttribute("requestEquipment"))
         {
             model.addAttribute("requestEquipment", requestEquipment);
         }
@@ -180,29 +181,24 @@ public class EquipmentController {
         return "equipment-booking";
     }
 
+    @RequestMapping(value = "/clear-basket", method = RequestMethod.POST)
+    public String equipmentBooking(Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        basket.clear();
+        return "redirect:/equipment-booking";
+    }
+
     @RequestMapping(value = "/equipment-booking", method = RequestMethod.POST)
-    public String equipmentBookingPost(Model model, @ModelAttribute RequestEquipment requestEquipment) throws ParseException {
-        //Формируем отрезки времени
-        int timeMask=0;
-        Map<String,Integer> timeMap = new HashMap<String,Integer>();
-
-        List<String> timeChoose = requestEquipment.getTimeChoose();
-        List<String> timeList = requestEquipment.getTimeList();
-
-        int i = 0 ;
-        for (String s: timeList){
-            timeMap.put( s, i );
-            ++ i ;
-        }
-        for (String s: timeChoose) {
-            timeMask= timeMask | (1<<timeMap.get(s));
+    public String equipmentBookingPost(@ModelAttribute RequestEquipment requestEquipment, BindingResult bindingResult, Model model, @ModelAttribute("basket") Set<EquipmentType> basket) {
+        bookingValidator.validateBooking(requestEquipment, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "equipment-booking";
         }
 
-        //
         Request request = new Request();
         request.setUser(securityService.findLoggedUser());
         requestService.save(request);
 
+        int chosenTimeMask = requestEquipment.getChosenTimeMask(), i;
         //Формириуем bookings
         List<EquipmentTypeCount> equipmentTypeCountList = requestEquipment.getEquipmentTypeCountList();
         Booking booking = null;
@@ -219,21 +215,15 @@ public class EquipmentController {
                 }
                 booking = new Booking();
                 booking.setRequest(request);
-                //Преобразуем Date
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                try {
-                    java.util.Date utilDate = format.parse(requestEquipment.getDate());
-                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                    booking.setDay(sqlDate);
-                }
-                catch (Exception ex) {}
+                booking.setDay(requestEquipment.getSqlDate());
                 booking.setEquipment(e);
-                booking.setTimeMask(timeMask);
+                booking.setTimeMask(chosenTimeMask);
                 bookingService.save(booking);
                 i++;
             }
         }
-        return "equipment";
+        basket.clear();
+        return "redirect:/equipment";
     }
 
     @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.GET)
@@ -245,24 +235,60 @@ public class EquipmentController {
             return "redirect:/error403";
         }
         EquipmentType equipmentType = equipmentTypeService.findById(idType);
-        model.addAttribute("equipmentSet", (equipmentType!=null) ? equipmentService.findAllByEquipmentTypeIdOrderById(idType) : null);
+        model.addAttribute("equipmentSet", (equipmentType != null) ? equipmentService.findAllByEquipmentTypeId(idType) : null);
         model.addAttribute("equipmentType",equipmentType);
         model.addAttribute("equipment", new Equipment());
         return "equipment-table";
     }
 
+    @RequestMapping(value = "/equipment-table-{idType}", method = RequestMethod.POST)
+    public  String addEquipment(@ModelAttribute("equipment") Equipment equipment, BindingResult bindingResult, @PathVariable Long idType, @ModelAttribute Request request, Model model, RedirectAttributes redirectAttributes)
+    {
+        equipmentValidator.validate(equipment, bindingResult);
+        if (bindingResult.hasErrors())
+        {
+            model.addAttribute("equipmentSet", equipmentService.findAllByEquipmentTypeId(idType));
+            model.addAttribute("equipmentType", equipmentTypeService.findById(idType));
+            return "equipment-table";
+        }
+        equipment.setEquipmentType(equipmentTypeService.findById(idType));
+        equipmentService.save(equipment);
+        redirectAttributes.addFlashAttribute(
+                "equipmentAddSuccess",
+                messageService.getMessage("Equipment.add.success", equipment.getUniqueNumber())
+        );
+        return "redirect:/equipment-table-"+ idType;
+    }
+
     @RequestMapping(value = "/edit-equipment-table", method = RequestMethod.POST)
-    public String editEquipmentTable(Long idEquip, String uniqueNumber) {
+    public String editEquipmentTable(Long idEquip, String uniqueNumber, Model model, RedirectAttributes redirectAttributes) {
         Equipment equipment = equipmentService.findById(idEquip);
+        List<String> errors = new LinkedList<>();
+        equipmentValidator.validate(uniqueNumber, errors);
+        if (!errors.isEmpty()) {
+            Map<Long, List<String>> errorsMap = new HashMap<>();
+            errorsMap.put(idEquip, errors);
+            redirectAttributes.addFlashAttribute("uniqueNumberErrors", errorsMap);
+            Map<Long, String> uniqueNumbersMap = new HashMap<>();
+            uniqueNumbersMap.put(idEquip, uniqueNumber);
+            redirectAttributes.addFlashAttribute("uniqueNumbers", uniqueNumbersMap);
+            return "redirect:/equipment-table-" + equipment.getEquipmentType().getId();
+        }
         equipment.setUniqueNumber(uniqueNumber);
         equipmentService.save(equipment);
-        return "redirect://equipment-table-"+equipment.getEquipmentType().getId();
+        redirectAttributes.addFlashAttribute("equipmentEditSuccess", "Equipment.edit.success");
+        return "redirect:/equipment-table-" + equipment.getEquipmentType().getId();
     }
 
     @RequestMapping(value = "/del-equipment-table", method = RequestMethod.POST)
-    public String delEquipmentTable(Long idEquip) {
-        Long idType = equipmentService.findById(idEquip).getEquipmentType().getId();
+    public String delEquipmentTable(Long idEquip, RedirectAttributes redirectAttributes) {
+        Equipment equipment = equipmentService.findById(idEquip);
+        Long idType = equipment.getEquipmentType().getId();
         equipmentService.deleteById(idEquip);
-        return "redirect://equipment-table-"+idType;
+        redirectAttributes.addFlashAttribute(
+                "equipmentDeleteSuccess",
+                messageService.getMessage("Equipment.delete.success", equipment.getUniqueNumber())
+        );
+        return "redirect:/equipment-table-" + idType;
     }
 }

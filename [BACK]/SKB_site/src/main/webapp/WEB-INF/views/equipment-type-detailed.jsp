@@ -9,13 +9,15 @@
     <title>${title}</title>
 </head>
 <body>
-
   <div id="leftSide">
   </div>
   <div id="rightSide">
   </div>
 
   <%@include file="includes/header.jsp" %>
+
+  <spring:message code="${equipmentTypeDeleteSuccess}"/>
+  ${equipmentAddedToBasketMsg}
 
   <!-- main-->
   <div class="container">
@@ -47,13 +49,21 @@
       <div class="col-md-6">
         <h5>Описание</h5>
         ${equipmentType.about}
-        <form action="equipment-type-detailed" method="post">
-          <input type="hidden" name="id" value="${equipmentType.id}"/>
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <form:form method="POST" modelAttribute="equipmentToBasket">
+          <spring:bind path="id">
+            <form:input path="id" value="${equipmentType.id}" cssStyle="visibility: hidden"/>
+            <form:errors path="id"/>
+          </spring:bind>
           <sec:authorize access="hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')">
-            <button type="submit" class="btn btn-primary">Добавить к бронированию</button>
+            <button type="submit" class="btn btn-primary">Добавить в корзину</button>
           </sec:authorize>
-        </form>
+        </form:form>
+        <a class="btn btn-lg btn-primary" href="/equipment-booking">
+          Корзина <span class="badge">
+              <c:if test="${empty basket}">0</c:if>
+              <c:if test="${!empty basket}">${basket.size()}</c:if>
+                </span>
+        </a>
       </div>
     </div>
   </div>
