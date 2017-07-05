@@ -131,7 +131,8 @@
               clearBtn: true,
               language: "ru",
               daysOfWeekDisabled: "0",
-              todayHighlight: true
+              todayHighlight: true,
+              format: 'dd.mm.yyyy'
           })
       )
   </script>
