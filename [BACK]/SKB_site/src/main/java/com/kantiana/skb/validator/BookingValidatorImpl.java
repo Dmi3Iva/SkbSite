@@ -7,11 +7,15 @@ import com.kantiana.skb.model.RequestEquipment;
 import com.kantiana.skb.service.BookingService;
 import com.kantiana.skb.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -50,7 +54,7 @@ public class BookingValidatorImpl implements BookingValidator {
             errors.rejectValue("date", "NotEmpty.booking.date");
             return;
         }
-        Date today = new Date(System.currentTimeMillis());
+        Date today = getToday();
         if (chosenDay.compareTo(today) < 0) {
             errors.rejectValue("date", "NotValid.booking.date");
         }
@@ -108,5 +112,18 @@ public class BookingValidatorImpl implements BookingValidator {
             Object[] arg = {chosenEquipment.getName()};
             errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
         }
+    }
+
+    private Date getToday() {
+        Date today = new Date(System.currentTimeMillis());
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            java.util.Date utilDate = format.parse(today.toString());
+            today.setTime(utilDate.getTime());
+        }
+        catch (ParseException pEx) {
+            pEx.printStackTrace();
+        }
+        return today;
     }
 }
