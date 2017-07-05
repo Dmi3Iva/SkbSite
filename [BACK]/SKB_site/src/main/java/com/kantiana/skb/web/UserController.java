@@ -38,6 +38,8 @@ public class UserController {
     private ProjectMembershipService projectMembershipService;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private RoleService roleService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -183,6 +185,9 @@ public class UserController {
     public String changeProfileById(@PathVariable Long id, Model model) {
         User user = userService.findById(id);
         User loggedUser = securityService.findLoggedUser();
+        if (user.getRole().getName().equals(roleService.getRoleModerator().getName())){
+            user.setModerator(true);
+        }
         model.addAttribute("user", user);
         model.addAttribute("loggedUser", loggedUser);
         model.addAttribute("error", new String());

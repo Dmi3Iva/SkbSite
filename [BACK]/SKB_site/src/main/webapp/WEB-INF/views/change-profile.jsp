@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                         </spring:bind>
-                        <sec:authorize access="(hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')) and (${user.checked} == false)">
+                        <sec:authorize access="((hasRole('ROLE_ADMIN') and '${user.role.id != 4}') or hasRole('ROLE_MODERATOR')) and (${user.checked} == false)">
                             <spring:bind path="checked">
                                 <div class="form-check">
                                     <label class="control-label col-xs-5">Модерация</label>
@@ -139,7 +139,7 @@
                                 </div>
                             </spring:bind>
                         </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <sec:authorize access="hasRole('ROLE_ADMIN') and '${user.role.id != 4}'">
                             <spring:bind path="moderator">
                                 <div class="form-check">
                                     <label class="control-label col-xs-5">Модератор</label>

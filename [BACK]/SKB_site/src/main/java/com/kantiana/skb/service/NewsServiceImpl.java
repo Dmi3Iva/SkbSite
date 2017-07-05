@@ -55,6 +55,7 @@ public class NewsServiceImpl implements NewsService {
         oldNews.setEditor(securityService.findLoggedUser());
         oldNews.setName(news.getName());
         oldNews.setContent(news.getContent());
+        oldNews.setChecked(news.getChecked());
         save(oldNews);
     }
 

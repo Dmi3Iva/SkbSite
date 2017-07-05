@@ -93,14 +93,7 @@ public class NewsController {
             //для борьбы с незаконным доступом
             User logUser = securityService.findLoggedUser();
             User captain = project.getCaptain();
-            Boolean admin = false;
-            /*for (Role i: logUser.getRoles()){
-                if (i.getName().equals("ROLE_ADMIN")){
-                    admin = true;
-                    break;
-                }
-            }*/
-            if (logUser.getId() != captain.getId() && !admin){
+            if (logUser.getId() != captain.getId()){
                 return "redirect:/error403";
             }
         }

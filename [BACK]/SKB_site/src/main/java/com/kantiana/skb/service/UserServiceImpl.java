@@ -40,24 +40,16 @@ public class UserServiceImpl implements UserService {
         else {
             user.setRole(roleService.getRoleMember());
         }
-        if (user.isModerator()){
-            user.setRole(roleService.getRoleModerator());
-            user.setRole(roleService.getRoleAdmin());
-            user.setAbout("Я МОДератор");
-        }
-        if (user.isChecked()){
-            user.setChecked(true);
-            user.setAbout("Я Прошел модерацию");
-        }
-        if (user.isModerator()){
-            user.setRole(roleService.getRoleModerator());
-            user.setRole(roleService.getRoleAdmin());
-            user.setAbout("Я МОДератор");
-        }
         userRepository.save(user);
     }
 
     public void update(User user){
+        if (user.isModerator()){
+            user.setRole(roleService.getRoleModerator());
+        }
+        else {
+            user.setRole(roleService.getRoleMember());
+        }
         userRepository.save(user);
     }
 

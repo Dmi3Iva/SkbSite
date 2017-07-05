@@ -16,6 +16,7 @@ public class News {
     private User editor;
     private Project project;
     private Set<Comment> comments;
+    private Boolean checked;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,5 +90,13 @@ public class News {
     @Column(name = "time_of_last_update")
     public Timestamp getTimeOfLastUpdate() {
         return timeOfLastUpdate;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

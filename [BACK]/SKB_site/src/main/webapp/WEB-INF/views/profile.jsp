@@ -39,6 +39,9 @@
                             <c:if test="${user.checked == true}">
                                 пройдена
                             </c:if>
+                            <%--<c:if test="${logUser.role.id == 4}">--%>
+                                <%--пройдена--%>
+                            <%--</c:if>--%>
                         </p>
                         <p>Дата рождения: ${user.dateOfBirth}</p>
                         <p>Логин: ${user.username}</p>
