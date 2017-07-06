@@ -42,6 +42,7 @@
 
     <c:if test="${!empty projectsList}">
       <c:forEach items="${projectsList}" var="project">
+        <c:if test="${(project.checked) or ((!project.checked) and ((logUser.username == project.captain.username) or (logUser.role.id == 3) or (logUser.role.id == 4)))}">
         <div class="row">
           <div class="col-md-8">
             <div class="new">
@@ -84,6 +85,7 @@
             </div>
           </div>
         </div>
+        </c:if>
       </c:forEach>
     </c:if>
   <c:if test="${empty projectsList}">

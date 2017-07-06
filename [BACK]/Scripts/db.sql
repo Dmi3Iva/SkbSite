@@ -63,7 +63,8 @@ CREATE TABLE projects (
 	captain_id INT REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	date_of_start DATE NOT NULL,
 	date_of_last_update DATE NOT NULL,
-	about TEXT NOT NULL
+	about TEXT NOT NULL,
+	checked BOOLEAN
 );
 
 

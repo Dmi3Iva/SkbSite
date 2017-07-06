@@ -68,7 +68,6 @@
     <c:if test="${!empty newsList}">
         <c:forEach items="${newsList}" var="item">
             <c:if test="${(item.checked) or ((!item.checked) and ((logUser.username == item.author.username) or (logUser.role.id == 3) or (logUser.role.id == 4)))}">
-             <%--<c:if test="${item.checked}">--%>
                 <c:set var="newsProject" value="${item.project}"/>
                 <div class="row">
                     <div class="col-md-8">

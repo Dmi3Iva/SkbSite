@@ -44,11 +44,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public void update(User user){
-        if (user.isModerator()){
-            user.setRole(roleService.getRoleModerator());
-        }
-        else {
-            user.setRole(roleService.getRoleMember());
+        if (user.getRole().getId() != roleService.getRoleAdmin().getId() &&
+            user.getRole().getId() != roleService.getRoleCustomer().getId()){
+            if (user.isModerator()){
+                user.setRole(roleService.getRoleModerator());
+            }
+            else {
+                user.setRole(roleService.getRoleMember());
+            }
         }
         userRepository.save(user);
     }

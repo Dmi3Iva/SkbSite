@@ -18,6 +18,7 @@ public class Project {
     private Set<News> news;
     private Order order;
     private Set<ProjectMembership> projectMemberships;
+    private Boolean checked;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -118,5 +119,13 @@ public class Project {
 
     public void setProjectMemberships(Set<ProjectMembership> projectMemberships) {
         this.projectMemberships = projectMemberships;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }
