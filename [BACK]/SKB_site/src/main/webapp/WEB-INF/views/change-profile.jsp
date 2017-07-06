@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8"%>
 <%@include file="includes/aboveHtml.jsp"%>
-<c:set var="title" value="Изменение личной информации ${pageContext.request.userPrincipal.name}"/>
+<c:set var="title" value="Изменение личной информации ${user.username}"/>
 <!doctype html>
 <html>
 <head>
@@ -140,42 +140,44 @@
                     </div>
                 </form:form>
 
-                <form method="POST" action="/change-password">
-                    <div class="col-md-9 col-md-offset-3">
-                        <div class="form-group">
-                            <label class="control-label col-xs-5 text-right">Старый пароль</label>
-                            <div class="col-xs-7">
-                                <input type="password" name="currentPassword" class="form-control">
-                                ${passwordChangeErrors['uncorrectPassword']}
+                <sec:authorize access="'${user.username == pageContext.request.userPrincipal.name}'">
+                    <form method="POST" action="/change-password">
+                        <div class="col-md-9 col-md-offset-3">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 text-right">Старый пароль</label>
+                                <div class="col-xs-7">
+                                    <input type="password" name="currentPassword" class="form-control">
+                                    <p class="alert-danger">    ${passwordChangeErrors['uncorrectPassword']}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 text-right">Новый пароль</label>
+                                <div class="col-xs-7">
+                                    <input type="password" name="newPassword" class="form-control">
+                                    <p class="alert-danger">${passwordChangeErrors['uncorrectNewPasswordSize']}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>
+                                <div class="col-xs-7">
+                                    <input type="password" name="confirmNewPassword" class="form-control">
+                                    <p class="alert-danger">${passwordChangeErrors['uncorrectNewPasswordConfirm']}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-5 text-right">Новый пароль</label>
-                            <div class="col-xs-7">
-                                <input type="password" name="newPassword" class="form-control">
-                                ${passwordChangeErrors['uncorrectNewPasswordSize']}
+                        <input type="hidden" name="userId" value="${user.id}"/>
+                        <div class="col-md-9 col-md-offset-3">
+                            <div class="form-group">
+                                <div class="col-xs-3 text-center">
+                                    <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
+                                </div>
+                                <div class="col-xs-9 text-center">
+                                    <button type="submit" class="btn btn-primary btn-md" formaction="/change-password?${_csrf.parameterName}=${_csrf.token}">Изменить пароль</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-5 text-right">Подвердите новый пароль</label>
-                            <div class="col-xs-7">
-                                <input type="password" name="confirmNewPassword" class="form-control">
-                                ${passwordChangeErrors['uncorrectNewPasswordConfirm']}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9 col-md-offset-3">
-                        <div class="form-group">
-                            <div class="col-xs-3 text-center">
-                                <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>
-                            </div>
-                            <div class="col-xs-9 text-center">
-                                <button type="submit" class="btn btn-primary btn-md" formaction="/change-password?${_csrf.parameterName}=${_csrf.token}">Изменить пароль</button>
-                            </div>
-                        </div>
-                        <p class="alert-danger">${error}</p>
-                    </div>
-                </form>
+                    </form>
+                </sec:authorize>
             </div>
         </div>
     </div>

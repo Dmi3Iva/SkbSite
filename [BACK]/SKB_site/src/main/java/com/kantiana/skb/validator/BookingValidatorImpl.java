@@ -83,7 +83,7 @@ public class BookingValidatorImpl implements BookingValidator {
     }
 
     private boolean canBook(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask) {
-        final int TIME_RANGES_COUNT = RequestEquipment.makeTimeList().size(); // Размер нужно как-то получать
+        final int TIME_RANGES_COUNT = RequestEquipment.makeTimeList().size();
         int bookedEquipmentsCounts[] = new int[TIME_RANGES_COUNT];
         List<Booking> bookings = bookingService.findByDayAndEquipmentType(chosenDay, chosenEquipment.getId());
         int allEquipmentCount = equipmentService.countByEquipmentTypeId(chosenEquipment.getId());

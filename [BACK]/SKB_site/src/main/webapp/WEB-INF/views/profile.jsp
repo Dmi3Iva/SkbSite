@@ -17,6 +17,8 @@
 
     <%@include file="includes/header.jsp" %>
 
+    <p class="alert-success col-xs-2">${passwordChangeSuccess}</p>
+
     <!-- Личная инофрмация-->
     <div class="personal_information">
         <div class="container">
@@ -67,7 +69,7 @@
                 </div>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or '${user.username}' == '${logUser.username}'">
                     <div class="btn-group col-xs-6">
-                        <a href="/change-profile">
+                        <a href="/change-profile/${user.id}">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 Изменить данные
                             </button>

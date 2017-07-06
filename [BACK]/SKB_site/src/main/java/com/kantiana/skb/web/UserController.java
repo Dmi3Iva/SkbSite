@@ -114,16 +114,15 @@ public class UserController {
         return "profile";
     }
 
-    @RequestMapping(value = "/change-profile", method = RequestMethod.GET)
-    public String changeProfile(Model model, RedirectAttributes redirectAttributes) {
-        User user = securityService.findLoggedUser();
+    @RequestMapping(value = "/change-profile/{id}", method = RequestMethod.GET)
+    public String changeProfile(@PathVariable Long id, Model model) {
+        User user = userService.findById(id);
         model.addAttribute("user", user);
-        model.addAttribute("error", new String());
         return "change-profile";
     }
 
     // Контроллер редактирования информации в личном кабинете пользователя
-    @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/change-profile/{id}", method = RequestMethod.POST)
     public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         userValidator.validateChange(user, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -150,20 +149,26 @@ public class UserController {
 
     // Контроллер изменения пароля пользователя
     @RequestMapping(value = "/change-password", method = RequestMethod.POST)
-    public String changePassword(String currentPassword, String newPassword, String confirmNewPassword, RedirectAttributes redirectAttributes){
+    public String changePassword(Long userId, String currentPassword, String newPassword, String confirmNewPassword, RedirectAttributes redirectAttributes)
+    {
         Map<String, String> errors = new HashMap<>();
-        userValidator.validatePasswordChange(currentPassword, newPassword, confirmNewPassword, errors);
+        userValidator.validatePasswordChange(userId, currentPassword, newPassword, confirmNewPassword, errors);
         if (!errors.isEmpty()) {
             redirectAttributes.addFlashAttribute("passwordChangeErrors", errors);
-            return "redirect:/change-profile";
+            return "redirect:/change-profile/" + userId;
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        User currentUser = securityService.findLoggedUser();
+        User currentUser = userService.findById(userId);
 
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userService.update(currentUser);
 
-        return "redirect:/profile";
+        redirectAttributes.addFlashAttribute(
+                "passwordChangeSuccess",
+                messageService.getMessage("Password.change.success")
+        );
+
+        return "redirect:/id" + userId;
     }
 
     @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
@@ -184,7 +189,6 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(newPassword));
         userService.update(user);
         mailService.sendNewPassword(user.getUsername(), newPassword, user.getEmail());
-        Object[] arg = {user.getEmail()};
         redirectAttributes.addFlashAttribute(
                 "emailPasswordSuccess",
                 messageService.getMessage("Email.password.success", user.getEmail())

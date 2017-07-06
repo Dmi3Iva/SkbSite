@@ -57,8 +57,8 @@ public class UserValidatorImpl implements UserValidator {
     }
 
     @Override
-    public void validatePasswordChange(String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors) {
-        String correctCurrentPassword = securityService.findLoggedUser().getPassword();
+    public void validatePasswordChange(Long userId, String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors) {
+        String correctCurrentPassword = userService.findById(userId).getPassword();
         if (!bCryptPasswordEncoder.matches(currentPassword, correctCurrentPassword)) {
             errors.put("uncorrectPassword", messageService.getMessage("Password.uncorrect"));
         }

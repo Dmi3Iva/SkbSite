@@ -10,7 +10,7 @@ public interface UserValidator {
 
     void validateChange(User user, Errors errors);
 
-    void validatePasswordChange(String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors);
+    void validatePasswordChange(Long userId, String currentPassword, String newPassword, String newPasswordConfirm, Map<String, String> errors);
 
     void validateForgetPassword(User user, Errors errors);
 }
