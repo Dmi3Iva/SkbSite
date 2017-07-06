@@ -77,6 +77,7 @@ public class RequestEquipment {
         timeList.add("9.30-10.00");
         timeList.add("10.00-10.30");
         timeList.add("10.30-11.00");
+        timeList.add("11.00-11.30");
         timeList.add("11.30-12.00");
         timeList.add("12.00-12.30");
         timeList.add("12.30-13.00");

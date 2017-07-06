@@ -82,12 +82,11 @@ public class BookingValidatorImpl implements BookingValidator {
         }
     }
 
-    private boolean canBook(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask) {
+    private int getTimeMaskWhenEquipmentIsFree(EquipmentTypeCount chosenEquipment, Date chosenDay) {
         final int TIME_RANGES_COUNT = RequestEquipment.makeTimeList().size();
         int bookedEquipmentsCounts[] = new int[TIME_RANGES_COUNT];
         List<Booking> bookings = bookingService.findByDayAndEquipmentType(chosenDay, chosenEquipment.getId());
         int allEquipmentCount = equipmentService.countByEquipmentTypeId(chosenEquipment.getId());
-        // Сюда можно написать Димину оптимизацию
         for (int i = 0; i < TIME_RANGES_COUNT; ++i) {
             bookedEquipmentsCounts[i] = 0;
         }
@@ -98,20 +97,59 @@ public class BookingValidatorImpl implements BookingValidator {
                 }
             }
         }
-        int timeMask2 = 0;
+        int freeTimeMask = 0;
         for (int i = 0; i < TIME_RANGES_COUNT; ++i) {
             if (allEquipmentCount - bookedEquipmentsCounts[i] >= chosenEquipment.getCount()) {
-                timeMask2 |= (1 << i);
+                freeTimeMask |= (1 << i);
             }
         }
-        return (chosenTimeMask & timeMask2) == chosenTimeMask;
+        return freeTimeMask;
     }
 
     private void validateChosenEquipment(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask, Errors errors) {
-        if (!canBook(chosenEquipment, chosenDay, chosenTimeMask)) {
+        int freeTimeMask = getTimeMaskWhenEquipmentIsFree(chosenEquipment, chosenDay);
+        if ((chosenTimeMask & freeTimeMask) != chosenTimeMask) {
             Object[] arg = {chosenEquipment.getName()};
             errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
+            Object[] arg1 = {chosenEquipment.getName(), chosenEquipment.getCount(), getTimeString(freeTimeMask)};
+            errors.rejectValue("equipmentTypeCountList", "Booking.time.recommendation", arg1, "");
         }
+    }
+
+    //ВНИМАНИЕ!!! ФУНКЦИЯ РАБОТАЕТ, ЕСЛИ ОТРЕЗКИ ВРЕМЕНИ ХРАНЯТСЯ В ФОРМАТЕ hh:mm-hh:mm
+    private String getTimeString(int timeMask) {
+        List<String> timeList = RequestEquipment.makeTimeList();
+        StringBuilder sb = new StringBuilder();
+        int i = -1;
+        String leftTime = null, rightTime = null;
+        for (String timeRange : timeList) {
+            ++i;
+            if ((timeMask & (1 << i)) == 0) {
+                if (leftTime != null) {
+                    sb.append(leftTime.substring(0, leftTime.indexOf('-')));
+                    sb.append('-');
+                    sb.append(rightTime.substring(rightTime.indexOf('-') + 1, rightTime.length()));
+                    sb.append(", ");
+                }
+                leftTime = rightTime = null;
+            }
+            else {
+                if (leftTime == null) {
+                    leftTime = rightTime = timeRange;
+                }
+                else {
+                    rightTime = timeRange;
+                }
+            }
+        }
+        if (leftTime != null) {
+            sb.append(leftTime.substring(0, leftTime.indexOf('-')));
+            sb.append('-');
+            sb.append(rightTime.substring(rightTime.indexOf('-') + 1, rightTime.length()));
+            sb.append(", ");
+        }
+        sb.delete(sb.length() - 2, sb.length());
+        return sb.toString();
     }
 
     private Date getToday() {
