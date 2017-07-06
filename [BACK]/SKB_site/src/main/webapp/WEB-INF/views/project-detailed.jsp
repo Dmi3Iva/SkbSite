@@ -63,6 +63,15 @@
                     </c:forEach>
                 </p>
               <p>
+                Модерация:
+                <c:if test="${project.checked}">
+                  пройдена
+                </c:if>
+                <c:if test="${!project.checked}">
+                  не пройдена
+                </c:if>
+              </p>
+              <p>
                 Статус проекта:
                   ${project.projectStatus.name}
               </p>

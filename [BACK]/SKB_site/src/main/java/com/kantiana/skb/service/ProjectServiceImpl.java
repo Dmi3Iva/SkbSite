@@ -56,6 +56,9 @@ public class ProjectServiceImpl implements ProjectService {
             if (project.getStatusPercent() != null) {
                 oldProject.setStatusPercent(project.getStatusPercent());
             }
+            if (project.getChecked() != null) {
+                oldProject.setChecked(project.getChecked());
+            }
             projectRepository.save(oldProject);
         }
     }
