@@ -70,7 +70,7 @@
                             <label class="control-label col-xs-3" for="projectName">Название проекта</label>
                             <div class="col-xs-9">
                                 <spring:bind path="name">
-                                        <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название проекта"></form:input>
+                                        <form:input type="text" path="name" class="form-control" id="projectName" placeholder="Введите название проекта" maxlength="35"></form:input>
                                         <form:errors path="name"></form:errors>
                                 </spring:bind>
                             </div>
