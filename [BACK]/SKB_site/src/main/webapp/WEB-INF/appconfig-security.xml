@@ -17,13 +17,25 @@
         <logout logout-success-url="/index?logout"/>
         <intercept-url pattern="/authorization" access="isAnonymous()"/>
         <intercept-url pattern="/registration" access="isAnonymous()"/>
+
         <intercept-url pattern="/profile" access="isAuthenticated()"/>
-        <intercept-url pattern="/add-project" access="isAuthenticated()"/>
-        <intercept-url pattern="/edit-project" access="isAuthenticated()"/>
-        <intercept-url pattern="/add-news" access="isAuthenticated()"/>
-        <intercept-url pattern="/add-order" access="isAuthenticated()"/>
-        <intercept-url pattern="/edit-order" access="isAuthenticated()"/>
         <intercept-url pattern="/equipment-booking" access="isAuthenticated()"/>
+
+        <intercept-url pattern="/add-project" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>
+        <intercept-url pattern="/edit-project" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>
+        <intercept-url pattern="/add-news" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>
+        <intercept-url pattern="/equipment-type-detailed" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>
+
+
+        <intercept-url pattern="/add-order" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_CUSTOMER')"/>
+        <intercept-url pattern="/edit-order" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_CUSTOMER')"/>
+
+        <intercept-url pattern="/add-equipment-type" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"/>
+        <intercept-url pattern="/equipment-table" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"/>
+
+        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"/>
+
+        <intercept-url pattern="/change-profile" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER','ROLE_CUSTOMER')"/>
     </http>
 
     <authentication-manager alias="authenticationManager">
