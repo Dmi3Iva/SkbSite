@@ -39,6 +39,15 @@
           <p class="title">
             ${order.name}
           </p>
+          <p>
+            Модерация:
+            <c:if test="${order.checked}">
+              пройдена
+            </c:if>
+            <c:if test="${!order.checked}">
+              не пройдена
+            </c:if>
+          </p>
           <p class="article">
             ${order.content}
           </p>

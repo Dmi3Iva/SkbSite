@@ -101,19 +101,21 @@
                             </div>
                         </spring:bind>
                     </div>
-                    <c:if test="${project.name != null && !project.checked}">
-                        <div class="form-group content-shell">
-                            <spring:bind path="checked">
-                                <div class="form-check">
-                                    <label class="control-label col-xs-5">Модерация</label>
-                                    <label class="control-label form-check-label col-xs-1 col-xs-offset-6 text-left">
-                                        <form:checkbox path="checked" class="control-label"/>
-                                        <form:errors path="checked"/>
-                                    </label>
-                                </div>
-                            </spring:bind>
-                        </div>
-                    </c:if>
+                    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
+                        <c:if test="${project.name != null && !project.checked}">
+                            <div class="form-group content-shell">
+                                <spring:bind path="checked">
+                                    <div class="form-check">
+                                        <label class="control-label col-xs-5">Модерация</label>
+                                        <label class="control-label form-check-label col-xs-1 col-xs-offset-6 text-left">
+                                            <form:checkbox path="checked" class="control-label"/>
+                                            <form:errors path="checked"/>
+                                        </label>
+                                    </div>
+                                </spring:bind>
+                            </div>
+                        </c:if>
+                    </sec:authorize>
                     <div class="container">
                         <div class="col-xs-offset-6 col-xs-6 col-md-offset-8 col-md-4 col-sm-offset-7 col-sm-5">
                             <div class="form-group">

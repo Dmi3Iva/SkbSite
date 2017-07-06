@@ -105,7 +105,8 @@ CREATE TABLE orders (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
-	time_of_last_update TIMESTAMP NOT NULL
+	time_of_last_update TIMESTAMP NOT NULL,
+	checked BOOLEAN
 );
 
 --------------

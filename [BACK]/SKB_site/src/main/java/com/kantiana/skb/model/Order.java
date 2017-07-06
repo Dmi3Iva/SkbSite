@@ -14,6 +14,7 @@ public class Order {
     private User author;
     private User editor;
     private Project project;
+    private Boolean checked;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,5 +78,13 @@ public class Order {
 
     public void setProject(Project project){
         this.project=project;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

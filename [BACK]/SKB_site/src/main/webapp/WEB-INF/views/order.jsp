@@ -41,7 +41,8 @@
     </div>
 <c:if test="${!empty ordersList}">
   <c:forEach items="${ordersList}" var="item">
-    <div class="row">
+    <c:if test="${(item.checked) or ((!item.checked) and ((logUser.username == item.author.username) or (logUser.role.id == 3) or (logUser.role.id == 4)))}">
+      <div class="row">
       <div class="col-md-8">
         <div class="order">
           <p class="title">
@@ -82,6 +83,7 @@
       </div>
 
     </div>
+    </c:if>
   </c:forEach>
 </c:if>
     <c:if test="${empty ordersList}">
