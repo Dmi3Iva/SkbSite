@@ -26,4 +26,9 @@ public class RoleServiceImpl implements RoleService{
     public Role getRoleMember() {
         return roleRepository.findByName("ROLE_MEMBER");
     }
+
+    @Override
+    public Role getRoleModerator() {
+        return roleRepository.findByName("ROLE_MODERATOR");
+    }
 }

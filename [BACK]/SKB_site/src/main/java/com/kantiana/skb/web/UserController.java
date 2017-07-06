@@ -41,6 +41,8 @@ public class UserController {
     private MailService mailService;
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private RoleService roleService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -116,6 +118,14 @@ public class UserController {
 
     @RequestMapping(value = "/change-profile/{id}", method = RequestMethod.GET)
     public String changeProfile(@PathVariable Long id, Model model) {
+        User loggedUser = securityService.findLoggedUser();
+        if (loggedUser == null ||
+                !loggedUser.getId().equals(id) &&
+                !loggedUser.getRole().getName().equals(roleService.getRoleAdmin().getName()) &&
+                !loggedUser.getRole().getName().equals(roleService.getRoleModerator().getName()))
+        {
+            return "redirect:/error403";
+        }
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "change-profile";
