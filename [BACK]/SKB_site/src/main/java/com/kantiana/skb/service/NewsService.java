@@ -27,5 +27,5 @@ public interface NewsService {
 
     List<News> findTop(int number);
 
-    List<News> findByChecked(boolean checked);
+    List<News> findByChecked(Boolean checked);
 }
