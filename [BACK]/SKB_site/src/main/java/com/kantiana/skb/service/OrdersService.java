@@ -14,5 +14,6 @@ public interface OrdersService {
 
     public void delete(Order order);
 
+    public List<Order> findByChecked(Boolean checked);
 
 }

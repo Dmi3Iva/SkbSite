@@ -108,7 +108,6 @@ public class OrdersController {
         order.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
         order.setTimeOfLastUpdate(new Timestamp(System.currentTimeMillis()));
         order.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
-        order.setChecked(false);
         ordersService.save(order);
         return "redirect:/order";
     }

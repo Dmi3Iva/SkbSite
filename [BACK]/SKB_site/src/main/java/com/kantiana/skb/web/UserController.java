@@ -31,6 +31,8 @@ public class UserController {
     @Autowired
     private ProjectService projectService;
     @Autowired
+    private OrdersService ordersService;
+    @Autowired
     private SecurityService securityService;
     @Autowired
     private UserValidator userValidator;
@@ -237,7 +239,8 @@ public class UserController {
         List<News> newsUnchecked = newsService.findByChecked(false);
         List<Project> projectsChecked = projectService.findByChecked(true);
         List<Project> projectsUnchecked = projectService.findByChecked(false);
-
+        List<Order> ordersChecked = ordersService.findByChecked(true);
+        List<Order> ordersUnchecked = ordersService.findByChecked(false);
 
         model.addAttribute("usersChecked", usersChecked);
         model.addAttribute("usersUnchecked", usersUnchecked);
@@ -245,6 +248,8 @@ public class UserController {
         model.addAttribute("newsUnchecked", newsUnchecked);
         model.addAttribute("projectsChecked", projectsChecked);
         model.addAttribute("projectsUnchecked", projectsUnchecked);
+        model.addAttribute("ordersChecked", ordersChecked);
+        model.addAttribute("ordersUnchecked", ordersUnchecked);
         return "moderation";
     }
 

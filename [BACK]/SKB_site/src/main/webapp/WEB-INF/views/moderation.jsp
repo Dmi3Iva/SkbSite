@@ -91,6 +91,28 @@
             </c:if>
         </div>
         <br><h4>Заказы</h4>
+        <div class="col-xs-12">
+            <c:if test="${empty ordersUnchecked}">
+                Все проекты прошли модерацию
+            </c:if>
+            <c:if test="${!empty ordersUnchecked}">
+                Проекты, не прошедшие модерацию:<br>
+                <c:forEach items="${ordersUnchecked}" var="item">
+                    <a href="/order-detailed?orderId=${item.id}">${item.name}</a>,
+                </c:forEach>
+            </c:if>
+        </div>
+        <div class="col-xs-12">
+            <c:if test="${empty ordersChecked}">
+                Нет проектов, прошедших модерацию
+            </c:if>
+            <c:if test="${!empty ordersChecked}">
+                Проекты, прошедшие модерацию:<br>
+                <c:forEach items="${ordersChecked}" var="item">
+                    <a href="/order-detailed?orderId=${item.id}">${item.name}</a>,
+                </c:forEach>
+            </c:if>
+        </div>
         <div class="col-xs-6">
             <button type="submit" class="btn btn-md btn-group" onclick="window.history.back()">
                 Назад
