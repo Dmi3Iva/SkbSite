@@ -10,4 +10,6 @@ public interface BookingService {
     void save(Booking booking);
 
     List<Booking> findByDayAndEquipmentType(Date day, Long equipmentTypeId);
+
+    List<Booking> findByRequestId(Long requestId);
 }
