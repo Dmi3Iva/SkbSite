@@ -1,6 +1,7 @@
 package com.kantiana.skb.service;
 
 import com.kantiana.skb.model.Project;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,4 +26,7 @@ public interface ProjectService {
     void delete(Long id );
 
     List<Project> findTop(int number);
+
+    List<Project> findByChecked(Boolean checked);
+
 }

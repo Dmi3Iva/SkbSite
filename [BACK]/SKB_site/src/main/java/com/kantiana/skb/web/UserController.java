@@ -235,12 +235,16 @@ public class UserController {
         List<User> usersUnchecked = userService.findByChecked(false);
         List<News> newsChecked = newsService.findByChecked(true);
         List<News> newsUnchecked = newsService.findByChecked(false);
+        List<Project> projectsChecked = projectService.findByChecked(true);
+        List<Project> projectsUnchecked = projectService.findByChecked(false);
 
 
         model.addAttribute("usersChecked", usersChecked);
         model.addAttribute("usersUnchecked", usersUnchecked);
         model.addAttribute("newsChecked", newsChecked);
         model.addAttribute("newsUnchecked", newsUnchecked);
+        model.addAttribute("projectsChecked", projectsChecked);
+        model.addAttribute("projectsUnchecked", projectsUnchecked);
         return "moderation";
     }
 

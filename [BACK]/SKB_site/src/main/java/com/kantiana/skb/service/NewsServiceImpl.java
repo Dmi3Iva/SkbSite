@@ -43,6 +43,7 @@ public class NewsServiceImpl implements NewsService {
         }
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setChecked(false);
         saveFull(news);
     }
 
