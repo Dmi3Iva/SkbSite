@@ -91,4 +91,10 @@ public class NewsServiceImpl implements NewsService {
         }
         return topList;
     }
+
+    @Override
+    public List<News> findByChecked(boolean checked) {
+        return newsRepository.findByChecked(checked);
+    }
+
 }

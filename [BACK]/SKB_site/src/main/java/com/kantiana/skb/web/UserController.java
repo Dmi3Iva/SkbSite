@@ -222,4 +222,26 @@ public class UserController {
     public String error403(){
         return "error403";
     }
+
+    //Контроллер для модерации конетнта на сайте
+    @RequestMapping(value = "/moderation", method = RequestMethod.GET)
+    public String moderation(Model model){
+        User user = securityService.findLoggedUser();
+        if (user.getRole().getId() == roleService.getRoleMember().getId() ||
+            user.getRole().getId() == roleService.getRoleCustomer().getId()){
+            return "redirect:/error403";
+        }
+        List<User> usersChecked = userService.findByChecked(true);
+        List<User> usersUnchecked = userService.findByChecked(false);
+        List<News> newsChecked = newsService.findByChecked(true);
+        List<News> newsUnchecked = newsService.findByChecked(false);
+
+
+        model.addAttribute("usersChecked", usersChecked);
+        model.addAttribute("usersUnchecked", usersUnchecked);
+        model.addAttribute("newsChecked", newsChecked);
+        model.addAttribute("newsUnchecked", newsUnchecked);
+        return "moderation";
+    }
+
 }

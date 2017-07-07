@@ -66,6 +66,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findByChecked(Boolean checked) {
+        return userRepository.findByChecked(checked);
+    }
+
+    @Override
     public String generatePassword() {
         Random random = new Random();
         String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

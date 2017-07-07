@@ -39,9 +39,6 @@
                             <c:if test="${user.checked == true}">
                                 пройдена
                             </c:if>
-                            <%--<c:if test="${logUser.role.id == 4}">--%>
-                                <%--пройдена--%>
-                            <%--</c:if>--%>
                         </p>
                         <p>Дата рождения: ${user.dateOfBirth}</p>
                         <p>Логин: ${user.username}</p>
@@ -73,15 +70,25 @@
                     </div>
                 </div>
                 <div class="btn-group col-xs-6">
-                    <button type="submit" class="btn btn-primary btn-lg" onclick="window.history.back()">
+                    <button type="submit" class="btn btn-primary btn-md" onclick="window.history.back()">
                         Назад
                     </button>
                 </div>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${user.username}' == '${logUser.username}'">
                     <div class="btn-group col-xs-6">
                         <a href="/change-profile${user.id}">
-                            <button type="submit" class="btn btn-primary btn-lg">
+                            <button type="submit" class="btn btn-primary btn-md">
                                 Изменить данные
+                            </button>
+                        </a>
+                    </div>
+                </sec:authorize>
+                <sec:authorize access="(hasRole('ROLE_ADMIN') and '${logUser.role.id == 4}') or (hasRole('ROLE_MODERATOR') and '${logUser.role.id == 3}')">
+                    <div class="col-xs-6"></div>
+                    <div class="btn-group col-xs-6">
+                        <a href="/moderation">
+                            <button type="submit" class="btn btn-primary btn-md">
+                                Модерация контента
                             </button>
                         </a>
                     </div>
