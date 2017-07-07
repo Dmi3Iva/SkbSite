@@ -44,9 +44,7 @@ public class BookingValidatorImpl implements BookingValidator {
         if (errors.hasErrors()) {
             return;
         }
-        for (EquipmentTypeCount etc : chosenEquipments) {
-            validateChosenEquipment(etc, chosenDay, chosenTimeMask, errors);
-        }
+        validateChosenEquipments(chosenEquipments, chosenDay, chosenTimeMask, errors);
     }
 
     private void validateChosenDay(Date chosenDay, Errors errors) {
@@ -106,17 +104,25 @@ public class BookingValidatorImpl implements BookingValidator {
         return freeTimeMask;
     }
 
-    private void validateChosenEquipment(EquipmentTypeCount chosenEquipment, Date chosenDay, int chosenTimeMask, Errors errors) {
-        int freeTimeMask = getTimeMaskWhenEquipmentIsFree(chosenEquipment, chosenDay);
-        if ((chosenTimeMask & freeTimeMask) != chosenTimeMask) {
-            Object[] arg = {chosenEquipment.getName()};
-            errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
-            Object[] arg1 = {chosenEquipment.getName(), chosenEquipment.getCount(), getTimeString(freeTimeMask)};
-            errors.rejectValue("equipmentTypeCountList", "Booking.time.recommendation", arg1, "");
+    private void validateChosenEquipments(List<EquipmentTypeCount> chosenEquipments, Date chosenDay, int chosenTimeMask, Errors errors) {
+        int commonFreeTimeMask = (1 << RequestEquipment.makeTimeList().size()) - 1;
+        for (EquipmentTypeCount e : chosenEquipments) {
+            int freeTimeMask = getTimeMaskWhenEquipmentIsFree(e, chosenDay);
+            commonFreeTimeMask &= freeTimeMask;
+            if ((chosenTimeMask & freeTimeMask) != chosenTimeMask) {
+                Object[] arg = {e.getName()};
+                errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
+                Object[] arg1 = {e.getName(), e.getCount(), getTimeString(freeTimeMask)};
+                errors.rejectValue("equipmentTypeCountList", "Booking.time.recommendation", arg1, "");
+            }
+        }
+        if (errors.hasErrors()) {
+            Object[] arg = {getTimeString(commonFreeTimeMask)};
+            errors.rejectValue("equipmentTypeCountList", "Booking.set.recommendation", arg, "");
         }
     }
 
-    //ВНИМАНИЕ!!! ФУНКЦИЯ РАБОТАЕТ, ЕСЛИ ОТРЕЗКИ ВРЕМЕНИ ХРАНЯТСЯ В ФОРМАТЕ hh:mm-hh:mm
+    //ВНИМАНИЕ!!! ФУНКЦИЯ РАБОТАЕТ, ЕСЛИ ОТРЕЗКИ ВРЕМЕНИ ХРАНЯТСЯ В ФОРМАТЕ hh.mm-hh.mm
     private String getTimeString(int timeMask) {
         List<String> timeList = RequestEquipment.makeTimeList();
         StringBuilder sb = new StringBuilder();
