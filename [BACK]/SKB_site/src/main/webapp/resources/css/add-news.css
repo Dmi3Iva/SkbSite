@@ -1,18 +1,16 @@
 @import "main.css";
+
 .content {
   color: #333;
   margin-bottom: 40px;
 }
 
-.row {
-  margin-top: 0;
-}
 
 .blue-box {
   background-color: #3095ff;
 }
 
-/*Заголовок*/
+/*!*Заголовок*!*/
 
 .titleHead {
   background-color: #0066d2;
@@ -106,7 +104,7 @@ ul.titleHead li:nth-child(2) {
   text-decoration: none;
 }
 
-/*commetns box*/
+/*!*commetns box*!*/
 
 .widget-area {
   background-color: #fff;
@@ -228,12 +226,12 @@ ul.titleHead li:nth-child(2) {
   margin-right: 7px;
 }
 
-/*Для контента*/
+/*!*!*Для контента*!*!*/
 .content-shell {
   margin-bottom: 50px;
 }
 
-.content-shell select, textarea, input{
+.content-shell>select,.content-shell>textarea,.content-shell>input{
   margin-bottom: 30px;
 }
 

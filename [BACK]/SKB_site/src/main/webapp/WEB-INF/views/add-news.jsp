@@ -61,7 +61,7 @@
                         <label class="control-label col-xs-3 " for="newsName">Название новости</label>
                         <spring:bind path="name">
                             <div class="col-xs-9">
-                                <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости"></form:input>
+                                <form:input type="text" path="name" class="form-control" id="newsName" placeholder="Введите название новости" maxlength="35"></form:input>
                                 <form:errors path="name"></form:errors>
                             </div>
                         </spring:bind>
