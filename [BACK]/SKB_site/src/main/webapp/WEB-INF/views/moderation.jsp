@@ -7,7 +7,7 @@
 
     <title>${title}</title>
     <title>Изменить личную информацию</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/moderation.css">
     <%@include file="includes/head.jsp"%>
 </head>
 <body>
@@ -114,7 +114,7 @@
             </c:if>
         </div>
         <div class="col-xs-6">
-            <button type="submit" class="btn btn-md btn-group" onclick="window.history.back()">
+            <button type="submit" class="btn btn-md btn-primary" onclick="window.history.back()">
                 Назад
             </button>
         </div>

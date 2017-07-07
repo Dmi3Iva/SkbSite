@@ -1,0 +1,40 @@
+@import "main.css";
+
+/*Персональная информация*/
+
+.personal_information {
+    padding-bottom: 20px;
+}
+
+.personal_information p{
+    font-size: 16px;
+    color: black;
+}
+
+.personal_information h1{
+    color: #0066d2;
+}
+
+
+.personal_information button {
+    margin-top: 20px;
+    margin-left: 50%;
+}
+
+.personal_information button {
+    background-color: #0066d2;
+    border-radius: 5px;
+}
+
+.load_btn {
+    margin-left: 50%;
+    margin-right: 5%;
+}
+
+label{
+    color: #333333;
+}
+
+.container a{
+    text-decoration: none;
+}

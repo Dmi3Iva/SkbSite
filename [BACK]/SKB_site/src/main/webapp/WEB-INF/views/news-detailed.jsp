@@ -38,11 +38,12 @@
     <c:if test = "${!empty news}">
         <sec:authorize access="hasRole('ROLE_ADMIN') or '${logUser.username == news.author.username}'">
             <div class="form-group">
-                <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
+                <input type="button" class="btn btn-back btn-md" onClick="window.history.back()" value="Назад">
+                <input type="button" class="btn btn-back btn-md" onClick="self.location.href='/edit-news?newsId=${news.id}';" value="Редактировать">
                 <form method="POST" action="/delete-news" class="btn">
                     <input type="hidden" value="${news.id}" name="newsId"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
+                    <button type="submit" class="btn btn-back btn-md" onClick="(confirm('Вы уверены что хотите удалить новость?'))">Удалить</button>
                 </form>
             </div>
         </sec:authorize>

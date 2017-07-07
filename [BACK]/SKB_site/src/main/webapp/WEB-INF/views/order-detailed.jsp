@@ -33,6 +33,13 @@
       </div>
     </div>
     <c:if test = "${!empty order}">
+    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
+      <div class="form-group">
+        <input type="button" class="btn btn-back btn-md" onClick="window.history.back()" value="Назад">
+        <input type="button" class="btn btn-back btn-md" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
+        <input type="button" class="btn btn-back btn-md" onClick="(confirm('Вы уверены что хотите удалить новость?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
+      </div>
+    </sec:authorize>
     <div class="row ">
       <div class="col-xs-12">
         <div class="new">
