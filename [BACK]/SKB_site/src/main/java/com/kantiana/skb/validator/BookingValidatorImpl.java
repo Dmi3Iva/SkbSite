@@ -112,50 +112,14 @@ public class BookingValidatorImpl implements BookingValidator {
             if ((chosenTimeMask & freeTimeMask) != chosenTimeMask) {
                 Object[] arg = {e.getName()};
                 errors.rejectValue("equipmentTypeCountList", "NotFree.equipment", arg, "");
-                Object[] arg1 = {e.getName(), e.getCount(), getTimeString(freeTimeMask)};
+                Object[] arg1 = {e.getName(), e.getCount(), RequestEquipment.getTimeString(freeTimeMask)};
                 errors.rejectValue("equipmentTypeCountList", "Booking.time.recommendation", arg1, "");
             }
         }
         if (errors.hasErrors()) {
-            Object[] arg = {getTimeString(commonFreeTimeMask)};
+            Object[] arg = {RequestEquipment.getTimeString(commonFreeTimeMask)};
             errors.rejectValue("equipmentTypeCountList", "Booking.set.recommendation", arg, "");
         }
-    }
-
-    //ВНИМАНИЕ!!! ФУНКЦИЯ РАБОТАЕТ, ЕСЛИ ОТРЕЗКИ ВРЕМЕНИ ХРАНЯТСЯ В ФОРМАТЕ hh.mm-hh.mm
-    private String getTimeString(int timeMask) {
-        List<String> timeList = RequestEquipment.makeTimeList();
-        StringBuilder sb = new StringBuilder();
-        int i = -1;
-        String leftTime = null, rightTime = null;
-        for (String timeRange : timeList) {
-            ++i;
-            if ((timeMask & (1 << i)) == 0) {
-                if (leftTime != null) {
-                    sb.append(leftTime.substring(0, leftTime.indexOf('-')));
-                    sb.append('-');
-                    sb.append(rightTime.substring(rightTime.indexOf('-') + 1, rightTime.length()));
-                    sb.append(", ");
-                }
-                leftTime = rightTime = null;
-            }
-            else {
-                if (leftTime == null) {
-                    leftTime = rightTime = timeRange;
-                }
-                else {
-                    rightTime = timeRange;
-                }
-            }
-        }
-        if (leftTime != null) {
-            sb.append(leftTime.substring(0, leftTime.indexOf('-')));
-            sb.append('-');
-            sb.append(rightTime.substring(rightTime.indexOf('-') + 1, rightTime.length()));
-            sb.append(", ");
-        }
-        sb.delete(sb.length() - 2, sb.length());
-        return sb.toString();
     }
 
     private Date getToday() {
