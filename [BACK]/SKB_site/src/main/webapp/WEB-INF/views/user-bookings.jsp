@@ -15,28 +15,42 @@
 
     <%@include file="includes/header.jsp" %>
 
-    <div class="personal_header col-sm-offset-3">
+    <div class="user-booking-title col-sm-offset-3">
         <h1>${title}</h1>
     </div>
 
     <div class="row">
-        <div class="table-header">
-            <p class="col-xs-offset-2 col-xs-1">Устройство</p>
-            <p class="col-xs-offset-1 col-xs-1">UN</p>
-            <p class="col-xs-offset-1 col-xs-1">День</p>
-            <p class="col-xs-offset-1 col-xs-2">Время</p>
+        <div class="col-xs-offset-2 col-xs-8">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Устройство</th>
+                        <th>UN</th>
+                        <th>День</th>
+                        <th>Время</th>
+                    </tr>
+                    <c:forEach items="${bookingsGroupedByRequest}" var="bookings">
+                        <c:forEach items="${bookings}" var="booking">
+                            <tr>
+                                <td><a href="/equipment-type-detailed?id=${booking.equipment.equipmentType.id}">${booking.equipment.equipmentType.name}</a></td>
+                                <td>${booking.equipment.uniqueNumber}</td>
+                                <td>${booking.day}</td>
+                                <td>${booking.timeString}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
-    <c:forEach items="${bookingsGroupedByRequest}" var="bookings">
-        <c:forEach items="${bookings}" var="booking">
-            <div class="row">
-                <p class="col-xs-offset-2 col-xs-1">${booking.equipment.equipmentType.name}</p>
-                <p class="col-xs-offset-1 col-xs-1">${booking.equipment.uniqueNumber}</p>
-                <p class="col-xs-offset-1 col-xs-1">${booking.day}</p>
-                <p class="col-xs-offset-1 col-xs-2">${booking.timeString}</p>
-            </div>
-        </c:forEach>
-    </c:forEach>
+    <div class="row">
+
+    </div>
+    <div class="row col-xs-offset-2 btn-group btn">
+        <button type="submit" class="btn btn-primary btn-lg" onclick="window.history.back()">
+            Назад
+        </button>
+    </div>
 
     <%@include file="includes/footer.jsp" %>
 </body>

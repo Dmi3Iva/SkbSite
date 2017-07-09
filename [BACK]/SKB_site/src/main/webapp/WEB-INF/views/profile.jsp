@@ -52,9 +52,11 @@
                             </c:if>
                         </p>
                         <p>Проекты:
-                            <c:forEach items="${userProjects}" var="project">
+                            <c:forEach items="${userProjects}" var="project" varStatus="status">
                                 <a href="/project-detailed?projectId=${project.id}">${project.name}</a>
-                                ,
+                                <c:if test="${!status.last}">
+                                    ,
+                                </c:if>
                             </c:forEach>
                         </p>
                         <p>Github: ${user.github}</p>
