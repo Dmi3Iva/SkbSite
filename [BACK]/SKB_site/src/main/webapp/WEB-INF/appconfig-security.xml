@@ -20,6 +20,8 @@
 
         <intercept-url pattern="/profile" access="isAuthenticated()"/>
         <intercept-url pattern="/equipment-booking" access="isAuthenticated()"/>
+        <intercept-url pattern="/user/**" access="isAuthenticated()"/>
+
 
         <intercept-url pattern="/add-project" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>
         <intercept-url pattern="/edit-project" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER')"/>

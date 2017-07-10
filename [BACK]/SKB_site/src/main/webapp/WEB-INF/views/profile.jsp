@@ -69,13 +69,15 @@
                         Назад
                     </button>
                 </div>
-                <div class="btn-group col-xs-3">
-                    <a href="/user/${user.id}/bookings">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            Бронирования
-                        </button>
-                    </a>
-                </div>
+                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${user.id}' == '${logUser.id}'">
+                    <div class="btn-group col-xs-3">
+                        <a href="/user/${user.id}/bookings">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Бронирования
+                            </button>
+                        </a>
+                    </div>
+                </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN') or '${user.username}' == '${logUser.username}'">
                     <div class="btn-group col-xs-4">
                         <a href="/change-profile/${user.id}">

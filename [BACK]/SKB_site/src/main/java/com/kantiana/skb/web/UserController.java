@@ -212,6 +212,14 @@ public class UserController {
 
     @RequestMapping(value = "/user/{userId}/bookings", method = RequestMethod.GET)
     public String userBookings(@PathVariable Long userId, Model model) {
+        User logUser = securityService.findLoggedUser();
+        if (logUser == null ||
+                !logUser.getId().equals(userId) &&
+                !logUser.getRole().getName().equals(roleService.getRoleAdmin().getName()) &&
+                !logUser.getRole().getName().equals(roleService.getRoleModerator().getName()))
+        {
+            return "redirect:/error403";
+        }
         User user = userService.findById(userId);
         List<List<Booking>> bookingsGroupedByRequest = new LinkedList<>();
         List<Request> requests = requestService.findByUserId(userId);

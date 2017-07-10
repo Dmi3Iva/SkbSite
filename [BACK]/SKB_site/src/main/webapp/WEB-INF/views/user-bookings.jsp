@@ -7,6 +7,7 @@
 <html lang="ru">
 <head>
     <title>${title}</title>
+    <%@include file="includes/head.jsp"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/user-bookings.css">
 </head>
 <body>
@@ -21,7 +22,7 @@
 
     <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
                 <tbody>
                     <tr>
                         <th>Устройство</th>
@@ -56,9 +57,7 @@
 
     </div>
     <div class="row col-xs-offset-2 btn-group btn">
-        <button type="submit" class="btn btn-primary btn-lg" onclick="window.history.back()">
-            Назад
-        </button>
+        <a href="/id${user.id}" class="btn btn-primary btn-lg">Назад</a>
     </div>
 
     <%@include file="includes/footer.jsp" %>
