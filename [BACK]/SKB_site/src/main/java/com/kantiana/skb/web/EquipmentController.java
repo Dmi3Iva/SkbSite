@@ -291,4 +291,10 @@ public class EquipmentController {
         );
         return "redirect:/equipment-table-" + idType;
     }
+
+    @RequestMapping(value = "/delete-booking", method = RequestMethod.POST)
+    public String userBookings(Long userId, Long bookingId, Model model) {
+        bookingService.removeById(bookingId);
+        return "redirect:/user/" + userId + "/bookings";
+    }
 }

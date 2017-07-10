@@ -12,4 +12,6 @@ public interface BookingService {
     List<Booking> findByDayAndEquipmentType(Date day, Long equipmentTypeId);
 
     List<Booking> findByRequestId(Long requestId);
+
+    void removeById(Long id);
 }

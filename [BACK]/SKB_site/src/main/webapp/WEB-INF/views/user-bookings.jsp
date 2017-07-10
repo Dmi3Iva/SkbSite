@@ -28,6 +28,7 @@
                         <th>UN</th>
                         <th>День</th>
                         <th>Время</th>
+                        <th></th>
                     </tr>
                     <c:forEach items="${bookingsGroupedByRequest}" var="bookings">
                         <c:forEach items="${bookings}" var="booking">
@@ -36,6 +37,14 @@
                                 <td>${booking.equipment.uniqueNumber}</td>
                                 <td>${booking.day}</td>
                                 <td>${booking.timeString}</td>
+                                <td>
+                                    <form method="POST" action="/delete-booking">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <input type="hidden" name="userId" value="${user.id}"/>
+                                        <input type="hidden" name="bookingId" value="${booking.id}"/>
+                                        <button type="submit" class="btn btn-default btn-sm">Удалить</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:forEach>
