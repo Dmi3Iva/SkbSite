@@ -42,7 +42,7 @@
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input type="hidden" name="userId" value="${user.id}"/>
                                         <input type="hidden" name="bookingId" value="${booking.id}"/>
-                                        <button type="submit" class="btn btn-default btn-sm">Удалить</button>
+                                        <button type="submit" class="btn btn-default btn-sm" onclick='return confirm("Вы действительно хотите удалить эту бронь?")'>Удалить</button>
                                     </form>
                                 </td>
                             </tr>
