@@ -2,6 +2,7 @@ package com.kantiana.skb.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -59,4 +60,8 @@ public class Booking {
         this.request = request;
     }
 
+    @Transient
+    public String getTimeString() {
+        return RequestEquipment.getTimeString(timeMask);
+    }
 }

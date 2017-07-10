@@ -25,4 +25,14 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> findByDayAndEquipmentType(Date day, Long equipmentTypeId) {
         return bookingRepository.findByDayAndEquipmentType(day, equipmentTypeId);
     }
+
+    @Override
+    public List<Booking> findByRequestId(Long requestId) {
+        return bookingRepository.findByRequestId(requestId);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        bookingRepository.delete(id);
+    }
 }

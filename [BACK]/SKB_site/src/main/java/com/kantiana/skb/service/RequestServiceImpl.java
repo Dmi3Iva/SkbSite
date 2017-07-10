@@ -5,6 +5,8 @@ import com.kantiana.skb.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RequestServiceImpl implements RequestService {
     @Autowired
@@ -12,5 +14,10 @@ public class RequestServiceImpl implements RequestService {
 
     public void save(Request request){
         requestRepository.save(request);
+    }
+
+    @Override
+    public List<Request> findByUserId(Long userId) {
+        return requestRepository.findByUserId(userId);
     }
 }

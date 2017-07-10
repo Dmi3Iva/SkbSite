@@ -43,6 +43,10 @@ public class UserController {
     private MessageService messageService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private BookingService bookingService;
+    @Autowired
+    private RequestService requestService;
 
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -204,6 +208,27 @@ public class UserController {
                 messageService.getMessage("Email.password.success", user.getEmail())
         );
         return "redirect:/authorization";
+    }
+
+    @RequestMapping(value = "/user/{userId}/bookings", method = RequestMethod.GET)
+    public String userBookings(@PathVariable Long userId, Model model) {
+        User logUser = securityService.findLoggedUser();
+        if (logUser == null ||
+                !logUser.getId().equals(userId) &&
+                !logUser.getRole().getName().equals(roleService.getRoleAdmin().getName()) &&
+                !logUser.getRole().getName().equals(roleService.getRoleModerator().getName()))
+        {
+            return "redirect:/error403";
+        }
+        User user = userService.findById(userId);
+        List<List<Booking>> bookingsGroupedByRequest = new LinkedList<>();
+        List<Request> requests = requestService.findByUserId(userId);
+        for (Request request : requests) {
+            bookingsGroupedByRequest.add(bookingService.findByRequestId(request.getId()));
+        }
+        model.addAttribute("bookingsGroupedByRequest", bookingsGroupedByRequest);
+        model.addAttribute("user", user);
+        return "user-bookings";
     }
 
     //Контроллер для страницы с ошибкой доступа
