@@ -16,7 +16,6 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private MessageService messageService;
 
-    //TODO: Текст письма хранить в отдельном файле, откуда он читается при вызове данной функции
     @Override
     public void sendNewPassword(String username, String newPassword, String email) {
         SimpleMailMessage message = new SimpleMailMessage(templateMessage);
