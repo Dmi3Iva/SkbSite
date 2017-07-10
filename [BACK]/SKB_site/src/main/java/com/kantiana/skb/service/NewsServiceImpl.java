@@ -43,6 +43,7 @@ public class NewsServiceImpl implements NewsService {
         }
         news.setAuthor(securityService.findLoggedUser());
         news.setTimeOfCreation(new Timestamp(System.currentTimeMillis()));
+        news.setChecked(false);
         saveFull(news);
     }
 
@@ -55,6 +56,7 @@ public class NewsServiceImpl implements NewsService {
         oldNews.setEditor(securityService.findLoggedUser());
         oldNews.setName(news.getName());
         oldNews.setContent(news.getContent());
+        oldNews.setChecked(news.getChecked());
         save(oldNews);
     }
 
@@ -90,4 +92,10 @@ public class NewsServiceImpl implements NewsService {
         }
         return topList;
     }
+
+    @Override
+    public List<News> findByChecked(Boolean checked) {
+        return newsRepository.findByChecked(checked);
+    }
+
 }

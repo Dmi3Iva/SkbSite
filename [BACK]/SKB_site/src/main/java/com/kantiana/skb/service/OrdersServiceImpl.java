@@ -13,6 +13,7 @@ public class OrdersServiceImpl implements OrdersService {
     private OrderRepository orderRepository;
 
     public void save(Order news) {
+        news.setChecked(false);
         orderRepository.save(news);
     }
 
@@ -31,5 +32,10 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Order findById(Long id) {
         return orderRepository.findById(id);
+    }
+
+    @Override
+    public List<Order> findByChecked(Boolean checked) {
+        return orderRepository.findByChecked(checked);
     }
 }

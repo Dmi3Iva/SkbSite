@@ -38,6 +38,7 @@
         <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"/>
 
         <intercept-url pattern="/change-profile" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR','ROLE_MEMBER','ROLE_CUSTOMER')"/>
+        <intercept-url pattern="/moderation" access="isAuthenticated()"/>
     </http>
 
     <authentication-manager alias="authenticationManager">

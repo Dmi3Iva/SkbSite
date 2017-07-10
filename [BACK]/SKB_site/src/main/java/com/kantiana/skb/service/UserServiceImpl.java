@@ -44,6 +44,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public void update(User user){
+        if (user.getRole().getId() != roleService.getRoleAdmin().getId() &&
+            user.getRole().getId() != roleService.getRoleCustomer().getId()){
+            if (user.isModerator()){
+                user.setRole(roleService.getRoleModerator());
+            }
+            else {
+                user.setRole(roleService.getRoleMember());
+            }
+        }
         userRepository.save(user);
     }
 
@@ -54,6 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findByChecked(Boolean checked) {
+        return userRepository.findByChecked(checked);
     }
 
     @Override

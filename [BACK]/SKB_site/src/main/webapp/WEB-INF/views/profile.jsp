@@ -32,8 +32,17 @@
                     </div>
                     <div class="col-xs-6">
                         <p>Ф.И.О: ${user.lastName} ${user.firstName} ${user.middleName}</p>
+                        <p>Модерация
+                            <c:if test="${user.checked == false}">
+                                не пройдена</p>
+                                <p>Пока вы не прошли модерацию, вы не можете добавлять новости, учавстовать в проектах,
+                                    оставлять заказы и бронировать оборудование.
+                            </c:if>
+                            <c:if test="${user.checked == true}">
+                                пройдена
+                            </c:if>
+                        </p>
                         <p>Дата рождения: ${user.dateOfBirth}</p>
-                        <p>Пол: </p>
                         <p>Логин: ${user.username}</p>
                         <p>E-mail: ${user.email}</p>
                         <p>Органицзация: ${user.organization}</p>
@@ -83,6 +92,16 @@
                         <a href="/change-profile/${user.id}">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 Изменить данные
+                            </button>
+                        </a>
+                    </div>
+                </sec:authorize>
+                <sec:authorize access="(hasRole('ROLE_ADMIN') and '${logUser.role.id == 4}') or (hasRole('ROLE_MODERATOR') and '${logUser.role.id == 3}')">
+                    <div class="col-xs-6"></div>
+                    <div class="btn-group col-xs-6">
+                        <a href="/moderation">
+                            <button type="submit" class="btn btn-primary btn-md">
+                                Модерация контента
                             </button>
                         </a>
                     </div>

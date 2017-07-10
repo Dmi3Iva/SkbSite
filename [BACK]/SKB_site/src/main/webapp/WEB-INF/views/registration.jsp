@@ -104,12 +104,6 @@
                             </div>
                         </spring:bind>
                         <div class="form-group">
-                            <label class="control-label col-xs-5" for="kapcha">Введите число с картинки</label>
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" id="kapcha" placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-xs-offset-5 col-xs-7">
                                 <button type="submit" class="btn btn-primary btn-lg">Регистрация</button>
                                 <!--<input type="submit" class="btn btn-primary btn-lg" value="Регистрация"> -->
