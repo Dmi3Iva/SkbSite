@@ -157,7 +157,8 @@ public class EquipmentController {
                                    @ModelAttribute("RequestEquipment") RequestEquipment requestEquipment) {
         User logUser = securityService.findLoggedUser();
         if (logUser.getUsername() == null ||
-            logUser.getRole().getName().equals("ROLE_CUSTOMER")){
+            logUser.getRole().getName().equals("ROLE_CUSTOMER") ||
+            !logUser.isChecked()){
             return "redirect:/error403";
         }
         if(requestEquipment == null)

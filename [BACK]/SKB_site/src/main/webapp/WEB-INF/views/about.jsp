@@ -38,29 +38,29 @@
                 <li><h3>${title}</h3></li>
             </ul>
         </div>
-        <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
-        <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
-            <button type="button" class="btn btn-back btn-lg" id="about-toggle-button">
-                Редактировать
-            </button>
-        </div>
-
-        <div class="row about-toggle" style="display: none">
-            <div class="col-xs-12">
-                <form:form modelAttribute="aboutPage" method="post" action="/about?${_csrf.parameterName}=${_csrf.token}">
-                        <spring:bind path="id">
-                            <form:hidden path="id"/>
-                        </spring:bind>
-                        <spring:bind path="text">
-                            <form:textarea path="text" class="summernote-editor"/>
-                        </spring:bind>
-                    <div class="col-xs-3 col-xs-offset-9">
-                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
-                    </div>
-                </form:form>
+        <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
+            <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
+                <button type="button" class="btn btn-back btn-lg" id="about-toggle-button">
+                    Редактировать
+                </button>
             </div>
-        </div>
-        <%--</sec:authorize>--%>
+
+            <div class="row about-toggle" style="display: none">
+                <div class="col-xs-12">
+                    <form:form modelAttribute="aboutPage" method="post" action="/about?${_csrf.parameterName}=${_csrf.token}">
+                            <spring:bind path="id">
+                                <form:hidden path="id"/>
+                            </spring:bind>
+                            <spring:bind path="text">
+                                <form:textarea path="text" class="summernote-editor"/>
+                            </spring:bind>
+                        <div class="col-xs-3 col-xs-offset-9">
+                            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                        </div>
+                    </form:form>
+                </div>
+            </div>
+        </sec:authorize>
     </div>
 
     <div class="row about-toggle" >

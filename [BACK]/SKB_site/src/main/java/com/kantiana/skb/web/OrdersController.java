@@ -116,6 +116,7 @@ public class OrdersController {
         oldOrder.setContent(order.getContent());
         oldOrder.setName(order.getName());
         oldOrder.setProject(order.getProject() != null ? projectService.findById(order.getProject().getId()) : null);
+        oldOrder.setChecked(order.getChecked());
         ordersService.save(oldOrder);
         redirectAttributes.addFlashAttribute("orderEditSuccess", "Order.edit.success");
         return "redirect:/order-detailed?orderId=" + order.getId();

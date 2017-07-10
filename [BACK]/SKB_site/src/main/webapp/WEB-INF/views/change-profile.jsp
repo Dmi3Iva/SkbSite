@@ -128,6 +128,28 @@
                                 </div>
                             </div>
                         </spring:bind>
+                        <sec:authorize access="((hasRole('ROLE_ADMIN') and '${user.role.id != 4}') or hasRole('ROLE_MODERATOR')) and (${user.checked} == false)">
+                            <spring:bind path="checked">
+                                <div class="form-check">
+                                    <label class="control-label col-xs-5">Модерация</label>
+                                    <label class="control-label form-check-label col-xs-1 col-xs-offset-6 text-left">
+                                        <form:checkbox path="checked" class="control-label"/>
+                                        <form:errors path="checked"/>
+                                    </label>
+                                </div>
+                            </spring:bind>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('ROLE_ADMIN') and '${user.role.id != 4}'">
+                            <spring:bind path="moderator">
+                                <div class="form-check">
+                                    <label class="control-label col-xs-5">Модератор</label>
+                                    <label class="control-label form-check-label col-xs-7 text-left">
+                                        <form:checkbox path="moderator" class="control-label"/>
+                                        <form:errors path="moderator"/>
+                                    </label>
+                                </div>
+                            </spring:bind>
+                        </sec:authorize>
                         <div class="form-group">
                             <div class="col-xs-3 text-center">
                                 <button type="submit" class="btn btn-primary btn-md" onClick="history.go(-1);return true;">Отмена</button>

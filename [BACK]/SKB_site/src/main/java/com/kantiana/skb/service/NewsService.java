@@ -26,4 +26,6 @@ public interface NewsService {
     List<News> findAllByOrderByTimeOfCreation();
 
     List<News> findTop(int number);
+
+    List<News> findByChecked(Boolean checked);
 }

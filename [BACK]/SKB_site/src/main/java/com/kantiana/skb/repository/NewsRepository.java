@@ -15,6 +15,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
     List<News> findAllByOrderByTimeOfCreation();
 
+    List<News> findByChecked(Boolean checked);
+
     @Query("SELECT n FROM News n ORDER BY n.timeOfCreation DESC")
     List<News> findTop();
 }

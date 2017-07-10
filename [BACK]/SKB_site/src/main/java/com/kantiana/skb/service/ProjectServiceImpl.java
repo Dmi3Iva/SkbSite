@@ -33,6 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setProjectStatus(projectStatusService.getStatusActive()); // Указываем статус "Активен"
         project.setStatusPercent(0L);
         project.setDateOfLastUpdate(new Date(System.currentTimeMillis()));
+        project.setChecked(false);
         projectRepository.save(project);
         projectMembershipService.save(project, project.getCaptain());
     }
@@ -55,6 +56,9 @@ public class ProjectServiceImpl implements ProjectService {
             }
             if (project.getStatusPercent() != null) {
                 oldProject.setStatusPercent(project.getStatusPercent());
+            }
+            if (project.getChecked() != null) {
+                oldProject.setChecked(project.getChecked());
             }
             projectRepository.save(oldProject);
         }
@@ -92,4 +96,10 @@ public class ProjectServiceImpl implements ProjectService {
         }
         return topList;
     }
+
+    @Override
+    public List<Project> findByChecked(Boolean checked) {
+        return projectRepository.findByChecked(checked);
+    }
+
 }

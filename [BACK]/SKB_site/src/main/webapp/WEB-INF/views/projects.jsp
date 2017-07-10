@@ -35,7 +35,7 @@
             <h3>${title}</h3></li>
         </ul>
       </div>
-      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_MEMBER')">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or (hasRole('ROLE_MEMBER') and '${logUser.checked == true}')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
             <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-project';" value="Добавить проект">
         </div>
@@ -45,6 +45,7 @@
 
     <c:if test="${!empty projectsList}">
       <c:forEach items="${projectsList}" var="project">
+        <c:if test="${(project.checked) or ((!project.checked) and ((logUser.username == project.captain.username) or (logUser.role.id == 3) or (logUser.role.id == 4)))}">
         <div class="row">
           <div class="col-md-8">
             <div class="new">
@@ -87,6 +88,7 @@
             </div>
           </div>
         </div>
+        </c:if>
       </c:forEach>
     </c:if>
   <c:if test="${empty projectsList}">

@@ -36,7 +36,7 @@
           <li><h3>${title}</h3></li>
         </ul>
       </div>
-      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_MODERATOR')">
+      <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or (hasRole('ROLE_CUSTOMER') and '${logUser.checked == true}')">
         <div class="col-xs-offset-1 col-xs-3 col-sm-offset-3 col-xs-3">
           <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/add-order';" value="Добавить заказ">
         </div>
@@ -44,7 +44,8 @@
     </div>
 <c:if test="${!empty ordersList}">
   <c:forEach items="${ordersList}" var="item">
-    <div class="row">
+    <c:if test="${(item.checked) or ((!item.checked) and ((logUser.username == item.author.username) or (logUser.role.id == 3) or (logUser.role.id == 4)))}">
+      <div class="row">
       <div class="col-md-8">
         <div class="order">
           <p class="title">
@@ -85,6 +86,7 @@
       </div>
 
     </div>
+    </c:if>
   </c:forEach>
 </c:if>
     <c:if test="${empty ordersList}">

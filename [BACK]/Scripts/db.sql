@@ -41,6 +41,7 @@ CREATE TABLE users (
 	github VARCHAR(255) DEFAULT NULL,
 	contact_details VARCHAR(255),
 	about TEXT DEFAULT NULL,
+	checked BOOLEAN,
 	role_id INT NOT NULL REFERENCES roles(id) ON UPDATE CASCADE
 );
 
@@ -62,7 +63,8 @@ CREATE TABLE projects (
 	captain_id INT REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	date_of_start DATE NOT NULL,
 	date_of_last_update DATE NOT NULL,
-	about TEXT NOT NULL
+	about TEXT NOT NULL,
+	checked BOOLEAN
 );
 
 
@@ -81,7 +83,8 @@ CREATE TABLE news (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
-	time_of_last_update TIMESTAMP NOT NULL
+	time_of_last_update TIMESTAMP NOT NULL,
+	checked BOOLEAN
 );
 
 
@@ -102,7 +105,8 @@ CREATE TABLE orders (
 	name VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	time_of_creation TIMESTAMP NOT NULL,
-	time_of_last_update TIMESTAMP NOT NULL
+	time_of_last_update TIMESTAMP NOT NULL,
+	checked BOOLEAN
 );
 
 --------------
@@ -141,4 +145,4 @@ CREATE TABLE booking (
 CREATE TABLE about(
 	id SERIAL NOT NULL PRIMARY KEY,
 	text_about TEXT NOT NULL
-)
+);
