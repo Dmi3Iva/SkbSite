@@ -38,7 +38,7 @@
     <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == order.author.username}'">
       <div class="form-group">
         <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${order.id}';" value="Редактировать">
-        <input type="button" class="btn btn-back btn-lg" onClick="(return confirm('Вы уверены, что хотите удалить этот заказ?'))?self.location.href='/del-order?orderId=${order.id}':1/1;" value="Удалить">
+        <input type="button" class="btn btn-back btn-lg" onClick="return confirm('Вы уверены, что хотите удалить этот заказ?')?self.location.href='/del-order?orderId=${order.id}':1/1;" value="Удалить">
       </div>
     </sec:authorize>
     <div class="row">
