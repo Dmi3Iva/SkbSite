@@ -78,7 +78,11 @@
             <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
               <div class="form-group">
                 <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-order?orderId=${item.id}';" value="Редактировать">
-                <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены, что хотите удалить этот заказ?'))?self.location.href='/del-order?orderId=${item.id}':1/1;" value="Удалить">
+                <form method="POST" action="/del-order" class="btn">
+                  <input type="hidden" value="${item.id}" name="orderId"/>
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <button type="submit" class="btn btn-back btn-lg" onClick="return confirm('Вы уверены, что хотите удалить новость?')">Удалить</button>
+                </form>
               </div>
             </sec:authorize>
           </ul>

@@ -79,7 +79,11 @@
           <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')">
               <div class="form-group">
                   <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-equipment-type?id=${item.id}';" value="Редактировать">
-                  <input type="button" class="btn btn-back btn-lg" onClick="(confirm('Вы уверены, что хотите удалить модель?'))?self.location.href='/del-equipment-type?id=${item.id}':1/1;" value="Удалить">
+                  <form method="POST" action="/del-equipment-type" class="btn">
+                      <input type="hidden" value="${item.id}" name="id"/>
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                      <button type="submit" class="btn btn-back btn-lg" onClick="return confirm('Вы уверены, что хотите удалить модель?')">Удалить</button>
+                  </form>
               </div>
           </sec:authorize>
       </div>

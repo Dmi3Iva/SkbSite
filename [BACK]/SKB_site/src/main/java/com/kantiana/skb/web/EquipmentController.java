@@ -120,8 +120,8 @@ public class EquipmentController {
         return "redirect:/equipment-type-detailed?id=" + equipmentType.getId();
     }
 
-    //TODO: Метод должен быть DELETE или по крайней мере POST
-    @RequestMapping(value = "/del-equipment-type", method = RequestMethod.GET)
+    //TODO: Метод должен быть DELETE
+    @RequestMapping(value = "/del-equipment-type", method = RequestMethod.POST)
     public String delEquipmentType(Long id, RedirectAttributes redirectAttributes) {
         equipmentTypeService.delete(id);
         redirectAttributes.addFlashAttribute("equipmentTypeDeleteSuccess", "EquipmentType.delete.success");

@@ -122,11 +122,10 @@ public class OrdersController {
         return "redirect:/order-detailed?orderId=" + order.getId();
     }
 
-    //TODO: Метод должен быть DELETE или на крайний случай POST
-    @RequestMapping(value = "/del-order", method = RequestMethod.GET)
+    //TODO: Метод должен быть DELETE
+    @RequestMapping(value = "/del-order", method = RequestMethod.POST)
     public String editOrder(Long orderId, RedirectAttributes redirectAttributes) {
-        Order order = ordersService.findById(orderId);
-        ordersService.delete(order);
+        ordersService.delete(orderId);
         redirectAttributes.addFlashAttribute("orderDeleteSuccess", "Order.delete.success");
         return "redirect:/order";
     }

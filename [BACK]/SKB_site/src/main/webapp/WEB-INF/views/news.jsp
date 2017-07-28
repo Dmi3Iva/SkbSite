@@ -98,10 +98,15 @@
                                         <c:if test="${item.timeOfCreation == item.timeOfLastUpdate}">
                                             <span class="glyphicon glyphicon-plus"></span>Добавлено ${item.timeOfCreation}
                                         </c:if>
-                                        <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
-                                    </c:if>
-                                </p>
-                            </li>
+                                        <c:if test="${item.timeOfCreation != item.timeOfLastUpdate}">
+                                            <c:if test="${item.editor.username != item.author.username}">
+                                                Редактор: <a href="/id${item.editor.id}">${item.editor.username}</a><br>
+                                            </c:if>
+                                            <span class="glyphicon glyphicon-pencil"></span> Изменено ${item.timeOfLastUpdate}
+                                        </c:if>
+                                    </p>
+                                </li>
+
                             <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR') or '${logUser.username == item.author.username}'">
                                 <div class="form-group">
                                     <input type="button" class="btn btn-back btn-lg" onClick="self.location.href='/edit-news?newsId=${item.id}';" value="Редактировать">
@@ -113,11 +118,13 @@
                                 </div>
                             </sec:authorize>
                         </ul>
+                        </div>
                     </div>
                 </div>
             </c:if>
         </c:forEach>
     </c:if>
+
     <c:if test="${empty newsList}">
         <div class="empty-list">
             <h2>
