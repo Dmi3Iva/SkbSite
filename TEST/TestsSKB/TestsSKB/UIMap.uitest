@@ -41,6 +41,110 @@
   </Configuration>
   <InitializeActions />
   <ExecuteActions>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="35" Y="17" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
+      <ParameterName />
+      <Value Encoded="false">admin</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <SendKeysAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit">
+      <ParameterName />
+      <Value Encoded="true">ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="26" Y="23" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="70" Y="26" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="adminAuthorization">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="47" Y="21" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
+      <ParameterName />
+      <Value Encoded="false">customer</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <SendKeysAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit">
+      <ParameterName />
+      <Value Encoded="true">EXeGolg/ZzKdz70tAf+cmD5CTdoPja9I</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="31" Y="25" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="66" Y="7" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="customerAuthorization">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
     <NavigateToUrlAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow">
       <ParameterName />
       <Url>http://localhost:8080/</Url>
@@ -109,242 +213,7 @@
       <ActionType>Click</ActionType>
       <MouseButton>Left</MouseButton>
     </MouseAction>
-    <TestStepMarkerAction Comment="" MarkerInformation="UserAutorization">
-      <ParameterName />
-      <StepId>-1</StepId>
-      <Direction>Start</Direction>
-      <Outcome />
-      <Disabled>false</Disabled>
-      <WorkItemId>0</WorkItemId>
-      <MarkerRegionType>Action</MarkerRegionType>
-    </TestStepMarkerAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="47" Y="21" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <Value Encoded="false">customer</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <SendKeysAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Text Encoded="false">{Tab}</Text>
-    </SendKeysAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit">
-      <ParameterName />
-      <Value Encoded="true">EXeGolg/ZzKdz70tAf+cmD5CTdoPja9I</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="31" Y="25" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="66" Y="7" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <TestStepMarkerAction Comment="" MarkerInformation="customerAutorization">
-      <ParameterName />
-      <StepId>-1</StepId>
-      <Direction>Start</Direction>
-      <Outcome />
-      <Disabled>false</Disabled>
-      <WorkItemId>0</WorkItemId>
-      <MarkerRegionType>Action</MarkerRegionType>
-    </TestStepMarkerAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="35" Y="17" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <Value Encoded="false">admin</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <SendKeysAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Text Encoded="false">{Tab}</Text>
-    </SendKeysAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit">
-      <ParameterName />
-      <Value Encoded="true">ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="26" Y="23" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="70" Y="26" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <TestStepMarkerAction Comment="" MarkerInformation="adminAutorization">
-      <ParameterName />
-      <StepId>-1</StepId>
-      <Direction>Start</Direction>
-      <Outcome />
-      <Disabled>false</Disabled>
-      <WorkItemId>0</WorkItemId>
-      <MarkerRegionType>Action</MarkerRegionType>
-    </TestStepMarkerAction>
-    <MouseAction UIObjectName="UIMap.UIСообщениесвебстраницWindow.UIОтменаWindow.UIОтменаButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="16" Y="13" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <TestStepMarkerAction Comment="" MarkerInformation="RecordedMethod1">
-      <ParameterName />
-      <StepId>-1</StepId>
-      <Direction>Start</Direction>
-      <Outcome />
-      <Disabled>false</Disabled>
-      <WorkItemId>0</WorkItemId>
-      <MarkerRegionType>Action</MarkerRegionType>
-    </TestStepMarkerAction>
-    <NavigateToUrlAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow">
-      <ParameterName />
-      <Url>about:NewsFeed</Url>
-      <NewInstance>true</NewInstance>
-    </NavigateToUrlAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIНоваявкладкаDocument.UIJstopsitesCustom.UIМагазинMicrosoftHyperlink">
-      <ContinueOnError>True</ContinueOnError>
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="1" Y="1" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Hover</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIНоваявкладкаDocument.UIHeadercommonCustom">
-      <ContinueOnError>True</ContinueOnError>
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="1" Y="1" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Hover</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <NavigateToUrlAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow">
-      <ParameterName />
-      <Url>http://localhost:8080/</Url>
-      <NewInstance>false</NewInstance>
-    </NavigateToUrlAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument2.UIНайтиРегистрацияВходPane.UIВходHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="49" Y="18" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <Value Encoded="false">admin</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <SendKeysAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Text Encoded="false">{Tab}</Text>
-    </SendKeysAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit">
-      <ParameterName />
-      <Value Encoded="true">ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="51" Y="24" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIMain_navCustom.UIОнасHyperlink">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="108" Y="15" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIОнасDocument.UIРедактироватьButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="87" Y="7" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <SetValueAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIОнасDocument.UIAboutPageCustom.UIItemEdit">
-      <ParameterName />
-      <Value Encoded="false">У нас всё хорошо, мы СКБ.</Value>
-      <Type>String</Type>
-    </SetValueAction>
-    <MouseAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIОнасDocument.UIAboutPageCustom.UIСохранитьизмененияButton">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <Location X="51" Y="11" />
-      <WheelDirection>0</WheelDirection>
-      <ActionType>Click</ActionType>
-      <MouseButton>Left</MouseButton>
-    </MouseAction>
-    <DragAction UIObjectName="UIMap.UIНоваявкладкаInternetWindow.UIОнасDocument.UIУнасвсёхорошомыСКБPane">
-      <ParameterName />
-      <ModifierKeys>None</ModifierKeys>
-      <IsGlobalHotkey>false</IsGlobalHotkey>
-      <MouseButton>Left</MouseButton>
-      <StartLocation X="23" Y="11" />
-      <MoveBy X="184" Y="2" />
-    </DragAction>
-    <TestStepMarkerAction Comment="" MarkerInformation="aboutEditText">
+    <TestStepMarkerAction Comment="" MarkerInformation="UserAuthorization">
       <ParameterName />
       <StepId>-1</StepId>
       <Direction>Start</Direction>
@@ -1005,6 +874,142 @@
                   </AndCondition>
                   <SupportLevel>0</SupportLevel>
                   <Descendants />
+                </UIObject>
+                <UIObject ControlType="Custom" Id="UIAboutPageCustom1" FriendlyName="aboutPage" SpecialControlType="None">
+                  <TechnologyName>Web</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>О нас</WindowTitle>
+                  </WindowTitles>
+                  <AndCondition Id="SearchCondition">
+                    <AndCondition Id="Primary">
+                      <PropertyCondition Name="ControlType">Custom</PropertyCondition>
+                      <PropertyCondition Name="TagName">FORM</PropertyCondition>
+                      <PropertyCondition Name="Id">aboutPage</PropertyCondition>
+                      <PropertyCondition Name="Name" />
+                    </AndCondition>
+                    <FilterCondition Id="Secondary">
+                      <PropertyCondition Name="Class" />
+                      <PropertyCondition Name="ControlDefinition">id="aboutPage" action="/about?_csrf=8012</PropertyCondition>
+                      <PropertyCondition Name="TagInstance">3</PropertyCondition>
+                    </FilterCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants>
+                    <UIObject ControlType="Edit" Id="UIУнасвсёхорошомыСКБEdit" FriendlyName="У нас всё хорошо, мы СКБ." SpecialControlType="None">
+                      <TechnologyName>Web</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>О нас</WindowTitle>
+                      </WindowTitles>
+                      <AndCondition Id="SearchCondition">
+                        <AndCondition Id="Primary">
+                          <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                          <PropertyCondition Name="TagName">DIV</PropertyCondition>
+                          <PropertyCondition Name="Id" />
+                          <PropertyCondition Name="Name" />
+                        </AndCondition>
+                        <FilterCondition Id="Secondary">
+                          <PropertyCondition Name="InnerText">У нас всё хорошо, мы СКБ.</PropertyCondition>
+                          <PropertyCondition Name="Title" />
+                          <PropertyCondition Name="Class">note-editable panel-body</PropertyCondition>
+                          <PropertyCondition Name="ControlDefinition">class="note-editable panel-body" contenteditable="true"</PropertyCondition>
+                          <PropertyCondition Name="TagInstance">84</PropertyCondition>
+                        </FilterCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants />
+                    </UIObject>
+                    <UIObject ControlType="Edit" Id="UIУнасвсёхорошоEdit" FriendlyName="У нас всё хорошо." SpecialControlType="None">
+                      <TechnologyName>Web</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>О нас</WindowTitle>
+                      </WindowTitles>
+                      <AndCondition Id="SearchCondition">
+                        <AndCondition Id="Primary">
+                          <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                          <PropertyCondition Name="TagName">DIV</PropertyCondition>
+                          <PropertyCondition Name="Id" />
+                          <PropertyCondition Name="Name" />
+                        </AndCondition>
+                        <FilterCondition Id="Secondary">
+                          <PropertyCondition Name="InnerText">У нас всё хорошо.</PropertyCondition>
+                          <PropertyCondition Name="Title" />
+                          <PropertyCondition Name="Class">note-editable panel-body</PropertyCondition>
+                          <PropertyCondition Name="ControlDefinition">class="note-editable panel-body" contenteditable="true"</PropertyCondition>
+                          <PropertyCondition Name="TagInstance">84</PropertyCondition>
+                        </FilterCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants />
+                    </UIObject>
+                  </Descendants>
+                </UIObject>
+                <UIObject ControlType="Custom" Id="UIAboutPageCustom2" FriendlyName="aboutPage" SpecialControlType="None">
+                  <TechnologyName>Web</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>О нас</WindowTitle>
+                  </WindowTitles>
+                  <AndCondition Id="SearchCondition">
+                    <AndCondition Id="Primary">
+                      <PropertyCondition Name="ControlType">Custom</PropertyCondition>
+                      <PropertyCondition Name="TagName">FORM</PropertyCondition>
+                      <PropertyCondition Name="Id">aboutPage</PropertyCondition>
+                      <PropertyCondition Name="Name" />
+                    </AndCondition>
+                    <FilterCondition Id="Secondary">
+                      <PropertyCondition Name="Class" />
+                      <PropertyCondition Name="ControlDefinition">id="aboutPage" action="/about?_csrf=66f8</PropertyCondition>
+                      <PropertyCondition Name="TagInstance">3</PropertyCondition>
+                    </FilterCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants>
+                    <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                      <TechnologyName>Web</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>О нас</WindowTitle>
+                      </WindowTitles>
+                      <AndCondition Id="SearchCondition">
+                        <AndCondition Id="Primary">
+                          <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                          <PropertyCondition Name="TagName">DIV</PropertyCondition>
+                          <PropertyCondition Name="Id" />
+                          <PropertyCondition Name="Name" />
+                        </AndCondition>
+                        <FilterCondition Id="Secondary">
+                          <PropertyCondition Name="InnerText" />
+                          <PropertyCondition Name="Title" />
+                          <PropertyCondition Name="Class">note-editable panel-body</PropertyCondition>
+                          <PropertyCondition Name="ControlDefinition">class="note-editable panel-body" contenteditable="true"</PropertyCondition>
+                          <PropertyCondition Name="TagInstance">84</PropertyCondition>
+                        </FilterCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants />
+                    </UIObject>
+                    <UIObject ControlType="Edit" Id="UIУнасвсёхорошоEdit" FriendlyName="У нас всё хорошо." SpecialControlType="None">
+                      <TechnologyName>Web</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>О нас</WindowTitle>
+                      </WindowTitles>
+                      <AndCondition Id="SearchCondition">
+                        <AndCondition Id="Primary">
+                          <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                          <PropertyCondition Name="TagName">DIV</PropertyCondition>
+                          <PropertyCondition Name="Id" />
+                          <PropertyCondition Name="Name" />
+                        </AndCondition>
+                        <FilterCondition Id="Secondary">
+                          <PropertyCondition Name="InnerText">У нас всё хорошо.</PropertyCondition>
+                          <PropertyCondition Name="Title" />
+                          <PropertyCondition Name="Class">note-editable panel-body</PropertyCondition>
+                          <PropertyCondition Name="ControlDefinition">class="note-editable panel-body" contenteditable="true"</PropertyCondition>
+                          <PropertyCondition Name="TagInstance">84</PropertyCondition>
+                        </FilterCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants />
+                    </UIObject>
+                  </Descendants>
                 </UIObject>
               </Descendants>
             </UIObject>

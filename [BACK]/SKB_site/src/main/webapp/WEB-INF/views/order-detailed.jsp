@@ -41,8 +41,6 @@
         <input type="button" class="btn btn-back btn-lg" onClick="return confirm('Вы уверены, что хотите удалить этот заказ?')?self.location.href='/del-order?orderId=${order.id}':1/1;" value="Удалить">
       </div>
     </sec:authorize>
-    <div class="row">
-      <div class="col-xs-12 image"><img src="${order.photoPath}" alt="${order.name} Картинка" width="100%"></div></div>
     <div class="row ">
       <div class="col-xs-12">
         <div class="new">

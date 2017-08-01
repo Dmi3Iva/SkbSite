@@ -39,12 +39,8 @@ namespace TestsSKB
             var browser = BrowserWindow.Launch("http://localhost:8080");
 
             userAuthorization(browser);
-            ClickLink(browser,"Новости");
-            ClickInputButton(browser, "Добавить новость");
-            EnterTextById(browser, "newsName", "HelloTest");
-            browser.ExecuteScript("$('#newsContent').summernote('insertText', 'Обычная новость');");
-            ClickButton(browser,"Добавить новость");
-
+            AddNews(browser, "HelloTest", "Regular news");
+            
             Assert.AreEqual("HelloTest", GetNameNews(browser, "HelloTest").InnerText, "The name of the news is wrong");
             ClickButton(browser, "Удалить");
             browser.PerformDialogAction(BrowserDialogAction.Ok);
@@ -56,11 +52,7 @@ namespace TestsSKB
             var browser = BrowserWindow.Launch("http://localhost:8080");
 
             userAuthorization(browser);
-            ClickLink(browser, "Проекты");
-            ClickInputButton(browser, "Добавить проект");
-            EnterTextById(browser, "projectName", "HelloTest");
-            browser.ExecuteScript("$('#about').summernote('insertText', 'Обычный проект');");
-            ClickButton(browser, "Добавить проект");
+            AddProject(browser, "HelloTest", "Regular project");
 
             Assert.AreEqual("HelloTest", GetNameNews(browser, "HelloTest").InnerText, "The name of the project is wrong");
             ClickButton(browser, "Удалить");
@@ -73,11 +65,7 @@ namespace TestsSKB
             var browser = BrowserWindow.Launch("http://localhost:8080");
 
             orderAuthorization(browser);
-            ClickLink(browser, "Заказы");
-            ClickInputButton(browser, "Добавить заказ");
-            EnterTextById(browser, "orderName", "HelloTest");
-            browser.ExecuteScript("$('#orderContent').summernote('insertText', 'Обычный проект');");
-            ClickButton(browser, "Добавить заказ");
+            AddOrder(browser, "HelloTest", "Regular Order");
 
             Assert.AreEqual("HelloTest", GetNameNews(browser, "HelloTest").InnerText, "The name of the project is wrong");
             ClickButton(browser, "Удалить");
@@ -104,9 +92,144 @@ namespace TestsSKB
         [TestMethod]
         public void EditAbout()
         {
+            var browser = BrowserWindow.Launch("http://localhost:8080");
 
-            this.UIMap.aboutEditText();
+            adminAuthorization(browser);
+            ClickLink(browser, "О нас");
+            ClickButton(browser, "Редактировать");
+            browser.ExecuteScript("$('#text').summernote('reset');");
+            browser.ExecuteScript("$('#text').summernote('insertText', 'О нас');");
+            ClickButton(browser, "Сохранить изменения");
+            
+            ClickButton(browser, "Редактировать");
+            browser.ExecuteScript("$('#text').summernote('reset');");
 
+            ClickButton(browser, "Сохранить изменения");
+        }
+
+        [TestMethod]
+        public void CommentNews()
+        {
+            var browser = BrowserWindow.Launch("http://localhost:8080");
+
+            userAuthorization(browser);
+            AddNews(browser, "HelloTest", "Regular news");
+
+            ClickLink(browser, "Подробнее...");
+            WriteTextAreaById(browser, "content", "Это же обычная новость!");
+            ClickButton(browser,"Комментировать");
+
+            ClickLink(browser, "Новости");
+            ClickButton(browser, "Удалить");
+            browser.PerformDialogAction(BrowserDialogAction.Ok);
+        }
+
+        [TestMethod]
+        public void ConnectNewsAndProject()
+        {
+            //add project
+            var browser = BrowserWindow.Launch("http://localhost:8080");
+
+            adminAuthorization(browser);
+            ClickLink(browser, "Проекты");
+            ClickInputButton(browser, "Добавить проект");
+            EnterTextById(browser, "projectName", "HelloTest");
+            browser.ExecuteScript("$('#about').summernote('insertText', 'Обычный проект');");
+            ClickButton(browser, "Добавить проект");
+            ClickLink(browser, "Подробнее...");
+            ClickLink(browser, "Новости проекта");
+            
+            ClickInputButton(browser, "Добавить новость");
+            EnterTextById(browser, "newsName", "HelloTest");
+            browser.ExecuteScript("$('#newsContent').summernote('insertText', 'Обычная новость');");
+            ClickButton(browser, "Добавить новость");
+
+            ClickLink(browser, "Новости");
+            ClickButton(browser, "Удалить");
+            browser.PerformDialogAction(BrowserDialogAction.Ok);
+            //connect
+            ClickLink(browser, "Проекты");
+            ClickButton(browser, "Удалить");
+            browser.PerformDialogAction(BrowserDialogAction.Ok);
+        }
+
+        [TestMethod]
+        public void ConnectProjectAndOrder()
+        {
+            //add project
+            var browser = BrowserWindow.Launch("http://localhost:8080");
+
+            adminAuthorization(browser);
+            ClickLink(browser, "Проекты");
+            ClickInputButton(browser, "Добавить проект");
+            EnterTextById(browser, "projectName", "HelloTest");
+            browser.ExecuteScript("$('#about').summernote('insertText', 'Обычный проект');");
+            ClickButton(browser, "Добавить проект");
+            
+            ClickLink(browser, "Заказы");
+            ClickInputButton(browser, "Добавить заказ");
+            EnterTextById(browser, "orderName", "HelloTest");
+            browser.ExecuteScript("$('#orderContent').summernote('insertText', 'Обычный проект');");
+            SelectComboBox(browser, "project.id", "1");
+            ClickButton(browser, "Добавить заказ");
+
+            ClickLink(browser, "Заказы");
+            ClickButton(browser, "Удалить");
+            browser.PerformDialogAction(BrowserDialogAction.Ok);
+            //connect
+            ClickLink(browser, "Проекты");
+            ClickButton(browser, "Удалить");
+            browser.PerformDialogAction(BrowserDialogAction.Ok);
+            //project.id
+        }
+
+        void AddOrder(BrowserWindow browser, string title, string text)
+        {
+            ClickLink(browser, "Заказы");
+            ClickInputButton(browser, "Добавить заказ");
+            EnterTextById(browser, "orderName", title);
+            browser.ExecuteScript("$('#orderContent').summernote('insertText', '"+text+"');");
+            ClickButton(browser, "Добавить заказ");
+        }
+
+        void AddProject(BrowserWindow browser, string title, string text)
+        {
+            ClickLink(browser, "Проекты");
+            ClickInputButton(browser, "Добавить проект");
+            EnterTextById(browser, "projectName", title);
+            browser.ExecuteScript("$('#about').summernote('insertText', '" + text + "');");
+            ClickButton(browser, "Добавить проект");
+        }
+
+        void AddNews(BrowserWindow browser, string title, string text)
+        {
+            ClickLink(browser, "Новости");
+            ClickInputButton(browser, "Добавить новость");
+            EnterTextById(browser, "newsName", title);
+            browser.ExecuteScript("$('#newsContent').summernote('insertText', '"+text+"');");
+            ClickButton(browser, "Добавить новость");
+        }
+
+        void SelectComboBox(UITestControl bro, string id, string value)
+        {
+            HtmlComboBox comboBox = new HtmlComboBox(bro);
+            comboBox.SearchProperties.Add(HtmlComboBox.PropertyNames.Id, id);
+            comboBox.SelectedIndex = 1;
+        }
+
+
+        void WriteTextAreaById(UITestControl bro, string id, string value)
+        {
+            var edit = new HtmlTextArea(bro);
+            edit.SearchProperties.Add(HtmlTextArea.PropertyNames.Id, id);
+            edit.Text = value;
+        }
+        HtmlDiv GetAboutInnerText(UITestControl bro, string value)
+        {
+            var cell = new HtmlDiv(bro);
+            cell.SearchProperties.Add(HtmlDiv.PropertyNames.InnerText, value);
+
+            return cell;
         }
 
         HtmlHyperlink GetNameNews(UITestControl bro, string value)

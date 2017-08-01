@@ -138,7 +138,7 @@ public class UserController {
     }
 
     // Контроллер редактирования информации в личном кабинете пользователя
-    @RequestMapping(value = "/change-profile/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/change-profile{id}", method = RequestMethod.POST)
     public String changeUser(@PathVariable Long id, @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
         userValidator.validateChange(user, bindingResult);
         if (bindingResult.hasErrors()) {

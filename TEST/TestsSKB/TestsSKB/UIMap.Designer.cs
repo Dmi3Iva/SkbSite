@@ -31,7 +31,71 @@ namespace TestsSKB
     {
         
         /// <summary>
-        /// UserAutorization - Use 'UserAutorizationParams' to pass parameters into this method.
+        /// adminAuthorization - Use 'adminAuthorizationParams' to pass parameters into this method.
+        /// </summary>
+        public void adminAuthorization()
+        {
+            #region Variable Declarations
+            HtmlHyperlink uIВходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink;
+            HtmlEdit uIUsernameEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit;
+            HtmlEdit uIPasswordEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit;
+            HtmlButton uIВойтиButton = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton;
+            HtmlHyperlink uIВыходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink;
+            #endregion
+
+            // Click 'Вход' link
+            Mouse.Click(uIВходHyperlink, new Point(35, 17));
+
+            // Type 'admin' in 'username' text box
+            uIUsernameEdit.Text = this.adminAuthorizationParams.UIUsernameEditText;
+
+            // Type '{Tab}' in 'username' text box
+            Keyboard.SendKeys(uIUsernameEdit, this.adminAuthorizationParams.UIUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'password' text box
+            uIPasswordEdit.Password = this.adminAuthorizationParams.UIPasswordEditPassword;
+
+            // Click 'Войти' button
+            Mouse.Click(uIВойтиButton, new Point(26, 23));
+
+            // Click 'Выход' link
+            Mouse.Click(uIВыходHyperlink, new Point(70, 26));
+        }
+        
+        /// <summary>
+        /// customerAuthorization - Use 'customerAuthorizationParams' to pass parameters into this method.
+        /// </summary>
+        public void customerAuthorization()
+        {
+            #region Variable Declarations
+            HtmlHyperlink uIВходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink;
+            HtmlEdit uIUsernameEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit;
+            HtmlEdit uIPasswordEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit;
+            HtmlButton uIВойтиButton = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton;
+            HtmlHyperlink uIВыходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink;
+            #endregion
+
+            // Click 'Вход' link
+            Mouse.Click(uIВходHyperlink, new Point(47, 21));
+
+            // Type 'customer' in 'username' text box
+            uIUsernameEdit.Text = this.customerAuthorizationParams.UIUsernameEditText;
+
+            // Type '{Tab}' in 'username' text box
+            Keyboard.SendKeys(uIUsernameEdit, this.customerAuthorizationParams.UIUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'password' text box
+            uIPasswordEdit.Password = this.customerAuthorizationParams.UIPasswordEditPassword;
+
+            // Click 'Войти' button
+            Mouse.Click(uIВойтиButton, new Point(31, 25));
+
+            // Click 'Выход' link
+            Mouse.Click(uIВыходHyperlink, new Point(66, 7));
+        }
+        
+        /// <summary>
+        /// UserAuthorization - Use 'UserAuthorizationParams' to pass parameters into this method.
         /// </summary>
         public void UserAuthorization()
         {
@@ -45,16 +109,16 @@ namespace TestsSKB
             #endregion
 
             // Go to web page 'http://localhost:8080/' using new browser instance
-            this.UIНоваявкладкаInternetWindow.LaunchUrl(new System.Uri(this.UserAutorizationParams.UIНоваявкладкаInternetWindowUrl));
+            this.UIНоваявкладкаInternetWindow.LaunchUrl(new System.Uri(this.UserAuthorizationParams.UIНоваявкладкаInternetWindowUrl));
 
             // Click 'Вход' link
             Mouse.Click(uIВходHyperlink, new Point(57, 43));
 
             // Type 'user' in 'username' text box
-            uIUsernameEdit.Text = this.UserAutorizationParams.UIUsernameEditText;
+            uIUsernameEdit.Text = this.UserAuthorizationParams.UIUsernameEditText;
 
             // Type '********' in 'password' text box
-            uIPasswordEdit.Password = this.UserAutorizationParams.UIPasswordEditPassword;
+            uIPasswordEdit.Password = this.UserAuthorizationParams.UIPasswordEditPassword;
 
             // Click 'Войти' button
             Mouse.Click(uIВойтиButton, new Point(33, 18));
@@ -73,188 +137,40 @@ namespace TestsSKB
             Mouse.Click(uIВыходHyperlink, new Point(77, 21));
         }
         
-        /// <summary>
-        /// customerAutorization - Use 'customerAutorizationParams' to pass parameters into this method.
-        /// </summary>
-        public void customerAuthorization()
-        {
-            #region Variable Declarations
-            HtmlHyperlink uIВходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink;
-            HtmlEdit uIUsernameEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit;
-            HtmlEdit uIPasswordEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit;
-            HtmlButton uIВойтиButton = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton;
-            HtmlHyperlink uIВыходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink;
-            #endregion
-
-            // Click 'Вход' link
-            Mouse.Click(uIВходHyperlink, new Point(47, 21));
-
-            // Type 'customer' in 'username' text box
-            uIUsernameEdit.Text = this.customerAutorizationParams.UIUsernameEditText;
-
-            // Type '{Tab}' in 'username' text box
-            Keyboard.SendKeys(uIUsernameEdit, this.customerAutorizationParams.UIUsernameEditSendKeys, ModifierKeys.None);
-
-            // Type '********' in 'password' text box
-            uIPasswordEdit.Password = this.customerAutorizationParams.UIPasswordEditPassword;
-
-            // Click 'Войти' button
-            Mouse.Click(uIВойтиButton, new Point(31, 25));
-
-            // Click 'Выход' link
-            Mouse.Click(uIВыходHyperlink, new Point(66, 7));
-        }
-        
-        /// <summary>
-        /// adminAutorization - Use 'adminAutorizationParams' to pass parameters into this method.
-        /// </summary>
-        public void adminAuthorization()
-        {
-            #region Variable Declarations
-            HtmlHyperlink uIВходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument.UIНайтиРегистрацияВходPane.UIВходHyperlink;
-            HtmlEdit uIUsernameEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit;
-            HtmlEdit uIPasswordEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit;
-            HtmlButton uIВойтиButton = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton;
-            HtmlHyperlink uIВыходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIНайтиЛичныйкабинетВыPane.UIВыходHyperlink;
-            #endregion
-
-            // Click 'Вход' link
-            Mouse.Click(uIВходHyperlink, new Point(35, 17));
-
-            // Type 'admin' in 'username' text box
-            uIUsernameEdit.Text = this.adminAutorizationParams.UIUsernameEditText;
-
-            // Type '{Tab}' in 'username' text box
-            Keyboard.SendKeys(uIUsernameEdit, this.adminAutorizationParams.UIUsernameEditSendKeys, ModifierKeys.None);
-
-            // Type '********' in 'password' text box
-            uIPasswordEdit.Password = this.adminAutorizationParams.UIPasswordEditPassword;
-
-            // Click 'Войти' button
-            Mouse.Click(uIВойтиButton, new Point(26, 23));
-
-            // Click 'Выход' link
-            Mouse.Click(uIВыходHyperlink, new Point(70, 26));
-        }
-        
-        /// <summary>
-        /// RecordedMethod1
-        /// </summary>
-        public void RecordedMethod1()
-        {
-            #region Variable Declarations
-            WinButton uIОтменаButton = this.UIСообщениесвебстраницWindow.UIОтменаWindow.UIОтменаButton;
-            #endregion
-
-            // Click 'Отмена' button
-            Mouse.Click(uIОтменаButton, new Point(16, 13));
-        }
-        
-        /// <summary>
-        /// aboutEditText - Use 'aboutEditTextParams' to pass parameters into this method.
-        /// </summary>
-        public void aboutEditText()
-        {
-            #region Variable Declarations
-            HtmlHyperlink uIМагазинMicrosoftHyperlink = this.UIНоваявкладкаInternetWindow.UIНоваявкладкаDocument.UIJstopsitesCustom.UIМагазинMicrosoftHyperlink;
-            HtmlCustom uIHeadercommonCustom = this.UIНоваявкладкаInternetWindow.UIНоваявкладкаDocument.UIHeadercommonCustom;
-            BrowserWindow uIНоваявкладкаInternetWindow = this.UIНоваявкладкаInternetWindow;
-            HtmlHyperlink uIВходHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument2.UIНайтиРегистрацияВходPane.UIВходHyperlink;
-            HtmlEdit uIUsernameEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIUsernameEdit;
-            HtmlEdit uIPasswordEdit = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UIPasswordEdit;
-            HtmlButton uIВойтиButton = this.UIНоваявкладкаInternetWindow.UIАвторизацияDocument.UICommandCustom.UIВойтиButton;
-            HtmlHyperlink uIОнасHyperlink = this.UIНоваявкладкаInternetWindow.UIСКБDocument1.UIMain_navCustom.UIОнасHyperlink;
-            HtmlButton uIРедактироватьButton = this.UIНоваявкладкаInternetWindow.UIОнасDocument.UIРедактироватьButton;
-            HtmlEditableDiv uIItemEdit = this.UIНоваявкладкаInternetWindow.UIОнасDocument.UIAboutPageCustom.UIItemEdit;
-            HtmlButton uIСохранитьизмененияButton = this.UIНоваявкладкаInternetWindow.UIОнасDocument.UIAboutPageCustom.UIСохранитьизмененияButton;
-            HtmlDiv uIУнасвсёхорошомыСКБPane = this.UIНоваявкладкаInternetWindow.UIОнасDocument.UIУнасвсёхорошомыСКБPane;
-            #endregion
-
-            // Go to web page 'about:NewsFeed' using new browser instance
-            this.UIНоваявкладкаInternetWindow.LaunchUrl(new System.Uri(this.aboutEditTextParams.UIНоваявкладкаInternetWindowUrl));
-
-            // Go to web page 'http://localhost:8080/'
-            uIНоваявкладкаInternetWindow.NavigateToUrl(new System.Uri(this.aboutEditTextParams.UIНоваявкладкаInternetWindowUrl1));
-
-            // Click 'Вход' link
-            Mouse.Click(uIВходHyperlink, new Point(49, 18));
-
-            // Type 'admin' in 'username' text box
-            uIUsernameEdit.Text = this.aboutEditTextParams.UIUsernameEditText;
-
-            // Type '{Tab}' in 'username' text box
-            Keyboard.SendKeys(uIUsernameEdit, this.aboutEditTextParams.UIUsernameEditSendKeys, ModifierKeys.None);
-
-            // Type '********' in 'password' text box
-            uIPasswordEdit.Password = this.aboutEditTextParams.UIPasswordEditPassword;
-
-            // Click 'Войти' button
-            Mouse.Click(uIВойтиButton, new Point(51, 24));
-
-            // Click 'О нас' link
-            Mouse.Click(uIОнасHyperlink, new Point(108, 15));
-
-            // Click 'Редактировать' button
-            Mouse.Click(uIРедактироватьButton, new Point(87, 7));
-
-            // Type 'У нас всё хорошо, мы СКБ.' in text box
-            uIItemEdit.Text = this.aboutEditTextParams.UIItemEditText;
-
-            // Click 'Сохранить изменения' button
-            Mouse.Click(uIСохранитьизмененияButton, new Point(51, 11));
-
-            // Move 'У нас всё хорошо, мы СКБ.' pane
-            Mouse.StartDragging(uIУнасвсёхорошомыСКБPane, new Point(23, 11));
-            Mouse.StopDragging(uIУнасвсёхорошомыСКБPane, 184, 2);
-
-        }
-        
         #region Properties
-        public virtual UserAutorizationParams UserAutorizationParams
+        public virtual adminAuthorizationParams adminAuthorizationParams
         {
             get
             {
-                if ((this.mUserAutorizationParams == null))
+                if ((this.madminAuthorizationParams == null))
                 {
-                    this.mUserAutorizationParams = new UserAutorizationParams();
+                    this.madminAuthorizationParams = new adminAuthorizationParams();
                 }
-                return this.mUserAutorizationParams;
+                return this.madminAuthorizationParams;
             }
         }
         
-        public virtual customerAutorizationParams customerAutorizationParams
+        public virtual customerAuthorizationParams customerAuthorizationParams
         {
             get
             {
-                if ((this.mcustomerAutorizationParams == null))
+                if ((this.mcustomerAuthorizationParams == null))
                 {
-                    this.mcustomerAutorizationParams = new customerAutorizationParams();
+                    this.mcustomerAuthorizationParams = new customerAuthorizationParams();
                 }
-                return this.mcustomerAutorizationParams;
+                return this.mcustomerAuthorizationParams;
             }
         }
         
-        public virtual adminAutorizationParams adminAutorizationParams
+        public virtual UserAuthorizationParams UserAuthorizationParams
         {
             get
             {
-                if ((this.madminAutorizationParams == null))
+                if ((this.mUserAuthorizationParams == null))
                 {
-                    this.madminAutorizationParams = new adminAutorizationParams();
+                    this.mUserAuthorizationParams = new UserAuthorizationParams();
                 }
-                return this.madminAutorizationParams;
-            }
-        }
-        
-        public virtual aboutEditTextParams aboutEditTextParams
-        {
-            get
-            {
-                if ((this.maboutEditTextParams == null))
-                {
-                    this.maboutEditTextParams = new aboutEditTextParams();
-                }
-                return this.maboutEditTextParams;
+                return this.mUserAuthorizationParams;
             }
         }
         
@@ -284,13 +200,11 @@ namespace TestsSKB
         #endregion
         
         #region Fields
-        private UserAutorizationParams mUserAutorizationParams;
+        private adminAuthorizationParams madminAuthorizationParams;
         
-        private customerAutorizationParams mcustomerAutorizationParams;
+        private customerAuthorizationParams mcustomerAuthorizationParams;
         
-        private adminAutorizationParams madminAutorizationParams;
-        
-        private aboutEditTextParams maboutEditTextParams;
+        private UserAuthorizationParams mUserAuthorizationParams;
         
         private UIНоваявкладкаInternetWindow mUIНоваявкладкаInternetWindow;
         
@@ -299,35 +213,35 @@ namespace TestsSKB
     }
     
     /// <summary>
-    /// Parameters to be passed into 'UserAutorization'
+    /// Parameters to be passed into 'adminAuthorization'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
-    public class UserAutorizationParams
+    public class adminAuthorizationParams
     {
         
         #region Fields
         /// <summary>
-        /// Go to web page 'http://localhost:8080/' using new browser instance
+        /// Type 'admin' in 'username' text box
         /// </summary>
-        public string UIНоваявкладкаInternetWindowUrl = "http://localhost:8080/";
+        public string UIUsernameEditText = "admin";
         
         /// <summary>
-        /// Type 'user' in 'username' text box
+        /// Type '{Tab}' in 'username' text box
         /// </summary>
-        public string UIUsernameEditText = "user";
+        public string UIUsernameEditSendKeys = "{Tab}";
         
         /// <summary>
         /// Type '********' in 'password' text box
         /// </summary>
-        public string UIPasswordEditPassword = "VLLA+bJzNf882FWpmiwJPY0v6P7+sGGK";
+        public string UIPasswordEditPassword = "ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX";
         #endregion
     }
     
     /// <summary>
-    /// Parameters to be passed into 'customerAutorization'
+    /// Parameters to be passed into 'customerAuthorization'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
-    public class customerAutorizationParams
+    public class customerAuthorizationParams
     {
         
         #region Fields
@@ -349,67 +263,27 @@ namespace TestsSKB
     }
     
     /// <summary>
-    /// Parameters to be passed into 'adminAutorization'
+    /// Parameters to be passed into 'UserAuthorization'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
-    public class adminAutorizationParams
+    public class UserAuthorizationParams
     {
         
         #region Fields
         /// <summary>
-        /// Type 'admin' in 'username' text box
+        /// Go to web page 'http://localhost:8080/' using new browser instance
         /// </summary>
-        public string UIUsernameEditText = "admin";
+        public string UIНоваявкладкаInternetWindowUrl = "http://localhost:8080/";
         
         /// <summary>
-        /// Type '{Tab}' in 'username' text box
+        /// Type 'user' in 'username' text box
         /// </summary>
-        public string UIUsernameEditSendKeys = "{Tab}";
-        
-        /// <summary>
-        /// Type '********' in 'password' text box
-        /// </summary>
-        public string UIPasswordEditPassword = "ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'aboutEditText'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
-    public class aboutEditTextParams
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Go to web page 'about:NewsFeed' using new browser instance
-        /// </summary>
-        public string UIНоваявкладкаInternetWindowUrl = "about:NewsFeed";
-        
-        /// <summary>
-        /// Go to web page 'http://localhost:8080/'
-        /// </summary>
-        public string UIНоваявкладкаInternetWindowUrl1 = "http://localhost:8080/";
-        
-        /// <summary>
-        /// Type 'admin' in 'username' text box
-        /// </summary>
-        public string UIUsernameEditText = "admin";
-        
-        /// <summary>
-        /// Type '{Tab}' in 'username' text box
-        /// </summary>
-        public string UIUsernameEditSendKeys = "{Tab}";
+        public string UIUsernameEditText = "user";
         
         /// <summary>
         /// Type '********' in 'password' text box
         /// </summary>
-        public string UIPasswordEditPassword = "ltMtR4VOfdZS3D8xaljxesqUwEXKaQEX";
-        
-        /// <summary>
-        /// Type 'У нас всё хорошо, мы СКБ.' in text box
-        /// </summary>
-        public string UIItemEditText = "У нас всё хорошо, мы СКБ.";
+        public string UIPasswordEditPassword = "VLLA+bJzNf882FWpmiwJPY0v6P7+sGGK";
         #endregion
     }
     
@@ -1176,6 +1050,30 @@ namespace TestsSKB
                 return this.mUIУнасвсёхорошомыСКБPane;
             }
         }
+        
+        public UIAboutPageCustom1 UIAboutPageCustom1
+        {
+            get
+            {
+                if ((this.mUIAboutPageCustom1 == null))
+                {
+                    this.mUIAboutPageCustom1 = new UIAboutPageCustom1(this);
+                }
+                return this.mUIAboutPageCustom1;
+            }
+        }
+        
+        public UIAboutPageCustom2 UIAboutPageCustom2
+        {
+            get
+            {
+                if ((this.mUIAboutPageCustom2 == null))
+                {
+                    this.mUIAboutPageCustom2 = new UIAboutPageCustom2(this);
+                }
+                return this.mUIAboutPageCustom2;
+            }
+        }
         #endregion
         
         #region Fields
@@ -1184,6 +1082,10 @@ namespace TestsSKB
         private UIAboutPageCustom mUIAboutPageCustom;
         
         private HtmlDiv mUIУнасвсёхорошомыСКБPane;
+        
+        private UIAboutPageCustom1 mUIAboutPageCustom1;
+        
+        private UIAboutPageCustom2 mUIAboutPageCustom2;
         #endregion
     }
     
@@ -1256,6 +1158,148 @@ namespace TestsSKB
         private HtmlEditableDiv mUIItemEdit;
         
         private HtmlButton mUIСохранитьизмененияButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
+    public class UIAboutPageCustom1 : HtmlCustom
+    {
+        
+        public UIAboutPageCustom1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties["TagName"] = "FORM";
+            this.SearchProperties["Id"] = "aboutPage";
+            this.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            this.FilterProperties["Class"] = null;
+            this.FilterProperties["ControlDefinition"] = "id=\"aboutPage\" action=\"/about?_csrf=8012";
+            this.FilterProperties["TagInstance"] = "3";
+            this.WindowTitles.Add("О нас");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlEditableDiv UIУнасвсёхорошомыСКБEdit
+        {
+            get
+            {
+                if ((this.mUIУнасвсёхорошомыСКБEdit == null))
+                {
+                    this.mUIУнасвсёхорошомыСКБEdit = new HtmlEditableDiv(this);
+                    #region Search Criteria
+                    this.mUIУнасвсёхорошомыСКБEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = null;
+                    this.mUIУнасвсёхорошомыСКБEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = null;
+                    this.mUIУнасвсёхорошомыСКБEdit.FilterProperties[HtmlEdit.PropertyNames.InnerText] = "У нас всё хорошо, мы СКБ.";
+                    this.mUIУнасвсёхорошомыСКБEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIУнасвсёхорошомыСКБEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "note-editable panel-body";
+                    this.mUIУнасвсёхорошомыСКБEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "class=\"note-editable panel-body\" contenteditable=\"true\"";
+                    this.mUIУнасвсёхорошомыСКБEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "84";
+                    this.mUIУнасвсёхорошомыСКБEdit.WindowTitles.Add("О нас");
+                    #endregion
+                }
+                return this.mUIУнасвсёхорошомыСКБEdit;
+            }
+        }
+        
+        public HtmlEditableDiv UIУнасвсёхорошоEdit
+        {
+            get
+            {
+                if ((this.mUIУнасвсёхорошоEdit == null))
+                {
+                    this.mUIУнасвсёхорошоEdit = new HtmlEditableDiv(this);
+                    #region Search Criteria
+                    this.mUIУнасвсёхорошоEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = null;
+                    this.mUIУнасвсёхорошоEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = null;
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.InnerText] = "У нас всё хорошо.";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "note-editable panel-body";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "class=\"note-editable panel-body\" contenteditable=\"true\"";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "84";
+                    this.mUIУнасвсёхорошоEdit.WindowTitles.Add("О нас");
+                    #endregion
+                }
+                return this.mUIУнасвсёхорошоEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlEditableDiv mUIУнасвсёхорошомыСКБEdit;
+        
+        private HtmlEditableDiv mUIУнасвсёхорошоEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
+    public class UIAboutPageCustom2 : HtmlCustom
+    {
+        
+        public UIAboutPageCustom2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties["TagName"] = "FORM";
+            this.SearchProperties["Id"] = "aboutPage";
+            this.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            this.FilterProperties["Class"] = null;
+            this.FilterProperties["ControlDefinition"] = "id=\"aboutPage\" action=\"/about?_csrf=66f8";
+            this.FilterProperties["TagInstance"] = "3";
+            this.WindowTitles.Add("О нас");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlEditableDiv UIItemEdit
+        {
+            get
+            {
+                if ((this.mUIItemEdit == null))
+                {
+                    this.mUIItemEdit = new HtmlEditableDiv(this);
+                    #region Search Criteria
+                    this.mUIItemEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = null;
+                    this.mUIItemEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = null;
+                    this.mUIItemEdit.FilterProperties[HtmlEdit.PropertyNames.InnerText] = null;
+                    this.mUIItemEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIItemEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "note-editable panel-body";
+                    this.mUIItemEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "class=\"note-editable panel-body\" contenteditable=\"true\"";
+                    this.mUIItemEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "84";
+                    this.mUIItemEdit.WindowTitles.Add("О нас");
+                    #endregion
+                }
+                return this.mUIItemEdit;
+            }
+        }
+        
+        public HtmlEditableDiv UIУнасвсёхорошоEdit
+        {
+            get
+            {
+                if ((this.mUIУнасвсёхорошоEdit == null))
+                {
+                    this.mUIУнасвсёхорошоEdit = new HtmlEditableDiv(this);
+                    #region Search Criteria
+                    this.mUIУнасвсёхорошоEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = null;
+                    this.mUIУнасвсёхорошоEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = null;
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.InnerText] = "У нас всё хорошо.";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "note-editable panel-body";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "class=\"note-editable panel-body\" contenteditable=\"true\"";
+                    this.mUIУнасвсёхорошоEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "84";
+                    this.mUIУнасвсёхорошоEdit.WindowTitles.Add("О нас");
+                    #endregion
+                }
+                return this.mUIУнасвсёхорошоEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlEditableDiv mUIItemEdit;
+        
+        private HtmlEditableDiv mUIУнасвсёхорошоEdit;
         #endregion
     }
     

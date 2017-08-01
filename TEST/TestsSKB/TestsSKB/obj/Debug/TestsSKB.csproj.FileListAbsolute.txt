@@ -3,3 +3,8 @@ c:\users\ftl\documents\visual studio 2017\Projects\TestsSKB\TestsSKB\bin\Debug\T
 c:\users\ftl\documents\visual studio 2017\Projects\TestsSKB\TestsSKB\obj\Debug\TestsSKB.csprojResolveAssemblyReference.cache
 c:\users\ftl\documents\visual studio 2017\Projects\TestsSKB\TestsSKB\obj\Debug\TestsSKB.dll
 c:\users\ftl\documents\visual studio 2017\Projects\TestsSKB\TestsSKB\obj\Debug\TestsSKB.pdb
+C:\Users\FTL\Documents\SkbSite\TEST\TestsSKB\TestsSKB\obj\Debug\TestsSKB.csprojResolveAssemblyReference.cache
+C:\Users\FTL\Documents\SkbSite\TEST\TestsSKB\TestsSKB\obj\Debug\TestsSKB.dll
+C:\Users\FTL\Documents\SkbSite\TEST\TestsSKB\TestsSKB\obj\Debug\TestsSKB.pdb
+C:\Users\FTL\Documents\SkbSite\TEST\TestsSKB\TestsSKB\bin\Debug\TestsSKB.dll
+C:\Users\FTL\Documents\SkbSite\TEST\TestsSKB\TestsSKB\bin\Debug\TestsSKB.pdb
