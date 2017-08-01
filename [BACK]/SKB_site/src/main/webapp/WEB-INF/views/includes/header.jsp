@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Студентческое конструкторское бюро</a>
+            <a class="navbar-brand" href="/">Студенческое конструкторское бюро</a>
         </div>
         <div id="navbar" class="hidden-lg navbar-collapse collapse navbar-right main-navbar">
             <form class="navbar-nav navbar-form ">
